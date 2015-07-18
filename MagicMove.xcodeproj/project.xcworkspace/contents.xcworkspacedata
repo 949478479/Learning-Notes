@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:&#x81ea;&#x5b9a;&#x4e49;&#x8f6c;&#x573a;&#x52a8;&#x753b;.xcodeproj">
+      location = "self:MagicMove.xcodeproj">
    </FileRef>
 </Workspace>

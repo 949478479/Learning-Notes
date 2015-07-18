@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="W3D-Zi-cRS">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+    </dependencies>
+    <scenes>
+        <!--霹靂-->
+        <scene sceneID="AeN-Ff-dyf">
+            <objects>
+                <collectionViewController id="039-r2-q9Q" customClass="MasterViewController" customModule="MagicMove" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="I7q-jR-DNv">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Bu0-Ba-DLR">
+                            <size key="itemSize" width="185" height="175"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Role" id="i3j-KJ-6WJ" customClass="RoleCell" customModule="MagicMove" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="185" height="175"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="霽無瑕" translatesAutoresizingMaskIntoConstraints="NO" id="h19-jw-Xqw">
+                                            <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="h19-jw-Xqw" secondAttribute="height" multiplier="4:3" id="VOL-GS-3bX"/>
+                                            </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="VOL-GS-3bX"/>
+                                                </mask>
+                                            </variation>
+                                            <variation key="heightClass=regular-widthClass=compact">
+                                                <mask key="constraints">
+                                                    <include reference="VOL-GS-3bX"/>
+                                                </mask>
+                                            </variation>
+                                        </imageView>
+                                        <label userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="霽無瑕" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gua-gF-pm4">
+                                            <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="h19-jw-Xqw" secondAttribute="trailing" id="9MN-CN-H9N"/>
+                                    <constraint firstItem="Gua-gF-pm4" firstAttribute="top" secondItem="h19-jw-Xqw" secondAttribute="bottom" constant="8" id="d3s-DH-9XW"/>
+                                    <constraint firstAttribute="centerX" secondItem="Gua-gF-pm4" secondAttribute="centerX" id="mM2-w7-vmW"/>
+                                    <constraint firstItem="h19-jw-Xqw" firstAttribute="top" secondItem="i3j-KJ-6WJ" secondAttribute="top" id="mjg-gs-wmH"/>
+                                    <constraint firstItem="h19-jw-Xqw" firstAttribute="leading" secondItem="i3j-KJ-6WJ" secondAttribute="leading" id="vLu-Wt-h9V"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="subviews">
+                                        <exclude reference="h19-jw-Xqw"/>
+                                        <exclude reference="Gua-gF-pm4"/>
+                                    </mask>
+                                    <mask key="constraints">
+                                        <exclude reference="d3s-DH-9XW"/>
+                                        <exclude reference="mM2-w7-vmW"/>
+                                        <exclude reference="9MN-CN-H9N"/>
+                                        <exclude reference="mjg-gs-wmH"/>
+                                        <exclude reference="vLu-Wt-h9V"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact">
+                                    <mask key="subviews">
+                                        <include reference="h19-jw-Xqw"/>
+                                        <include reference="Gua-gF-pm4"/>
+                                    </mask>
+                                    <mask key="constraints">
+                                        <include reference="d3s-DH-9XW"/>
+                                        <include reference="mM2-w7-vmW"/>
+                                        <include reference="9MN-CN-H9N"/>
+                                        <include reference="mjg-gs-wmH"/>
+                                        <include reference="vLu-Wt-h9V"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <outlet property="imageView" destination="h19-jw-Xqw" id="kom-dK-sbA"/>
+                                    <outlet property="nameLabel" destination="Gua-gF-pm4" id="zXb-yd-tlL"/>
+                                    <segue destination="s9q-hd-goN" kind="show" id="CBg-ab-oIg"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="039-r2-q9Q" id="q6D-cK-zDg"/>
+                            <outlet property="delegate" destination="039-r2-q9Q" id="xkg-n3-00B"/>
+                        </connections>
+                    </collectionView>
+                    <navigationItem key="navigationItem" title="霹靂" id="KPf-nO-pTh"/>
+                    <connections>
+                        <outlet property="flowLayout" destination="Bu0-Ba-DLR" id="hJE-EB-DRI"/>
+                    </connections>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sLX-LD-lUD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="856.5" y="600"/>
+        </scene>
+        <!--Detail View Controller-->
+        <scene sceneID="2UM-5d-vDK">
+            <objects>
+                <viewController id="s9q-hd-goN" customClass="DetailViewController" customModule="MagicMove" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="bzF-cG-ZYh"/>
+                        <viewControllerLayoutGuide type="bottom" id="oWA-sP-OcX"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="VEz-0M-KxX">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="霽無瑕" translatesAutoresizingMaskIntoConstraints="NO" id="rtZ-yL-lQX">
+                                <rect key="frame" x="20" y="84" width="560" height="420"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="rtZ-yL-lQX" secondAttribute="height" multiplier="1024:768" id="cf3-BY-kk1"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DWt-Rq-WfG" userLabel="PoetryLabel">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <string key="text">滿夕霜雪人獨影，紅塵今古幾月明？
+笑寒飲，慣新晴，千山已過風雲行。</string>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="風姿颯爽、直接俐落的豪氣女俠客，行走武道仗義不平，天生神力無窮，手持極重的泰若山劍，曾一劍擊退巨魔神，罕逢匹敵對手。真實身份為魔佛波旬中的女琊，因遭烽火關鍵衝撞，導致波旬三體分離，神智受創錯亂，方以俠女之姿行走江湖。" translatesAutoresizingMaskIntoConstraints="NO" id="TVI-Nl-CyZ">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="rtZ-yL-lQX" firstAttribute="leading" secondItem="VEz-0M-KxX" secondAttribute="leading" constant="20" symbolic="YES" id="2Hx-0c-BBj"/>
+                            <constraint firstAttribute="trailing" secondItem="TVI-Nl-CyZ" secondAttribute="trailing" constant="20" id="2vS-TU-abN"/>
+                            <constraint firstAttribute="bottom" secondItem="TVI-Nl-CyZ" secondAttribute="bottom" constant="20" id="5L1-ey-mBm"/>
+                            <constraint firstItem="TVI-Nl-CyZ" firstAttribute="top" secondItem="DWt-Rq-WfG" secondAttribute="bottom" constant="7" id="E8h-Tg-HbV"/>
+                            <constraint firstAttribute="trailing" secondItem="rtZ-yL-lQX" secondAttribute="trailing" constant="20" symbolic="YES" id="MY1-kb-Uz5"/>
+                            <constraint firstItem="TVI-Nl-CyZ" firstAttribute="leading" secondItem="VEz-0M-KxX" secondAttribute="leading" constant="20" id="UCC-8I-tXN"/>
+                            <constraint firstItem="DWt-Rq-WfG" firstAttribute="top" secondItem="rtZ-yL-lQX" secondAttribute="bottom" constant="20" id="aCW-19-349"/>
+                            <constraint firstAttribute="centerX" secondItem="DWt-Rq-WfG" secondAttribute="centerX" id="brF-Dr-VOV"/>
+                            <constraint firstItem="rtZ-yL-lQX" firstAttribute="top" secondItem="bzF-cG-ZYh" secondAttribute="bottom" constant="20" id="wjm-l3-Y8o"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="DWt-Rq-WfG"/>
+                                <exclude reference="TVI-Nl-CyZ"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="aCW-19-349"/>
+                                <exclude reference="brF-Dr-VOV"/>
+                                <exclude reference="2vS-TU-abN"/>
+                                <exclude reference="5L1-ey-mBm"/>
+                                <exclude reference="E8h-Tg-HbV"/>
+                                <exclude reference="UCC-8I-tXN"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="DWt-Rq-WfG"/>
+                                <include reference="TVI-Nl-CyZ"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="aCW-19-349"/>
+                                <include reference="brF-Dr-VOV"/>
+                                <include reference="2vS-TU-abN"/>
+                                <include reference="5L1-ey-mBm"/>
+                                <include reference="E8h-Tg-HbV"/>
+                                <include reference="UCC-8I-tXN"/>
+                            </mask>
+                        </variation>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="VMF-aQ-GVh" appends="YES" id="l5f-ER-YRH"/>
+                        </connections>
+                    </view>
+                    <navigationItem key="navigationItem" id="3TE-BM-rgn"/>
+                    <connections>
+                        <outlet property="imageView" destination="rtZ-yL-lQX" id="Njv-bf-Zwn"/>
+                        <outlet property="overviewLabel" destination="TVI-Nl-CyZ" id="TuK-Jm-T3a"/>
+                        <outlet property="poetryLabel" destination="DWt-Rq-WfG" id="umP-jP-St4"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YoG-bd-BqE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="VMF-aQ-GVh">
+                    <connections>
+                        <action selector="popGestureRecognizerHandle:" destination="s9q-hd-goN" id="j7d-JC-fqV"/>
+                    </connections>
+                </panGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="1510.5" y="600"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="xOn-qh-1R4">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="W3D-Zi-cRS" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="egk-5F-xlR">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="039-r2-q9Q" kind="relationship" relationship="rootViewController" id="bFM-yA-vXX"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aMp-xt-gpb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="208.5" y="600"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="霽無瑕" width="512" height="384"/>
+    </resources>
+</document>

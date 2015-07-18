@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  自定义转场动画
+//  MagicMove
 //
 //  Created by 从今以后 on 15/7/18.
 //  Copyright (c) 2015年 949478479. All rights reserved.

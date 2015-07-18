@@ -1,6 +1,6 @@
 //
-//  _______Tests.swift
-//  自定义转场动画Tests
+//  MagicMoveTests.swift
+//  MagicMoveTests
 //
 //  Created by 从今以后 on 15/7/18.
 //  Copyright (c) 2015年 949478479. All rights reserved.
@@ -9,7 +9,7 @@
 import UIKit
 import XCTest
 
-class _______Tests: XCTestCase {
+class MagicMoveTests: XCTestCase {
     
     override func setUp() {
         super.setUp()

@@ -7,12 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		18C4342E1B5A1B180024DB2B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C4342D1B5A1B180024DB2B /* AppDelegate.swift */; };
-		18C434301B5A1B180024DB2B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C4342F1B5A1B180024DB2B /* ViewController.swift */; };
-		18C434331B5A1B180024DB2B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18C434311B5A1B180024DB2B /* Main.storyboard */; };
-		18C434351B5A1B180024DB2B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18C434341B5A1B180024DB2B /* Images.xcassets */; };
-		18C434381B5A1B180024DB2B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18C434361B5A1B180024DB2B /* LaunchScreen.xib */; };
-		18C434441B5A1B180024DB2B /* _______Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C434431B5A1B180024DB2B /* _______Tests.swift */; };
+		18ABAE451B5ACE97007968EF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18ABAE381B5ACE97007968EF /* AppDelegate.swift */; };
+		18ABAE471B5ACE97007968EF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18ABAE3B1B5ACE97007968EF /* Main.storyboard */; };
+		18ABAE481B5ACE97007968EF /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18ABAE3D1B5ACE97007968EF /* DetailViewController.swift */; };
+		18ABAE491B5ACE97007968EF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18ABAE3E1B5ACE97007968EF /* Images.xcassets */; };
+		18ABAE4B1B5ACE97007968EF /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18ABAE401B5ACE97007968EF /* MasterViewController.swift */; };
+		18ABAE4C1B5ACE97007968EF /* PopAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18ABAE411B5ACE97007968EF /* PopAnimationController.swift */; };
+		18ABAE4D1B5ACE97007968EF /* PushAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18ABAE421B5ACE97007968EF /* PushAnimationController.swift */; };
+		18ABAE4E1B5ACE97007968EF /* Role.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18ABAE431B5ACE97007968EF /* Role.swift */; };
+		18ABAE4F1B5ACE97007968EF /* RoleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18ABAE441B5ACE97007968EF /* RoleCell.swift */; };
+		18ABAE571B5ACF9A007968EF /* MagicMoveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18ABAE521B5ACEA1007968EF /* MagicMoveTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -26,16 +30,20 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		18C434281B5A1B180024DB2B /* 自定义转场动画.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "自定义转场动画.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		18C4342C1B5A1B180024DB2B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		18C4342D1B5A1B180024DB2B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		18C4342F1B5A1B180024DB2B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		18C434321B5A1B180024DB2B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		18C434341B5A1B180024DB2B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		18C434371B5A1B180024DB2B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		18C4343D1B5A1B180024DB2B /* 自定义转场动画Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "自定义转场动画Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		18C434421B5A1B180024DB2B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		18C434431B5A1B180024DB2B /* _______Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "_______Tests.swift"; sourceTree = "<group>"; };
+		18ABAE381B5ACE97007968EF /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		18ABAE3C1B5ACE97007968EF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		18ABAE3D1B5ACE97007968EF /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		18ABAE3E1B5ACE97007968EF /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		18ABAE3F1B5ACE97007968EF /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		18ABAE401B5ACE97007968EF /* MasterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
+		18ABAE411B5ACE97007968EF /* PopAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopAnimationController.swift; sourceTree = "<group>"; };
+		18ABAE421B5ACE97007968EF /* PushAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushAnimationController.swift; sourceTree = "<group>"; };
+		18ABAE431B5ACE97007968EF /* Role.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Role.swift; sourceTree = "<group>"; };
+		18ABAE441B5ACE97007968EF /* RoleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoleCell.swift; sourceTree = "<group>"; };
+		18ABAE511B5ACEA1007968EF /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		18ABAE521B5ACEA1007968EF /* MagicMoveTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MagicMoveTests.swift; sourceTree = "<group>"; };
+		18C434281B5A1B180024DB2B /* MagicMove.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MagicMove.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		18C4343D1B5A1B180024DB2B /* MagicMoveTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MagicMoveTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,11 +64,37 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		18ABAE371B5ACE97007968EF /* MagicMove */ = {
+			isa = PBXGroup;
+			children = (
+				18ABAE3B1B5ACE97007968EF /* Main.storyboard */,
+				18ABAE3E1B5ACE97007968EF /* Images.xcassets */,
+				18ABAE3F1B5ACE97007968EF /* Info.plist */,
+				18ABAE381B5ACE97007968EF /* AppDelegate.swift */,
+				18ABAE431B5ACE97007968EF /* Role.swift */,
+				18ABAE441B5ACE97007968EF /* RoleCell.swift */,
+				18ABAE3D1B5ACE97007968EF /* DetailViewController.swift */,
+				18ABAE401B5ACE97007968EF /* MasterViewController.swift */,
+				18ABAE411B5ACE97007968EF /* PopAnimationController.swift */,
+				18ABAE421B5ACE97007968EF /* PushAnimationController.swift */,
+			);
+			path = MagicMove;
+			sourceTree = "<group>";
+		};
+		18ABAE501B5ACEA1007968EF /* MagicMoveTests */ = {
+			isa = PBXGroup;
+			children = (
+				18ABAE511B5ACEA1007968EF /* Info.plist */,
+				18ABAE521B5ACEA1007968EF /* MagicMoveTests.swift */,
+			);
+			path = MagicMoveTests;
+			sourceTree = "<group>";
+		};
 		18C4341F1B5A1B180024DB2B = {
 			isa = PBXGroup;
 			children = (
-				18C4342A1B5A1B180024DB2B /* 自定义转场动画 */,
-				18C434401B5A1B180024DB2B /* 自定义转场动画Tests */,
+				18ABAE371B5ACE97007968EF /* MagicMove */,
+				18ABAE501B5ACEA1007968EF /* MagicMoveTests */,
 				18C434291B5A1B180024DB2B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -68,56 +102,18 @@
 		18C434291B5A1B180024DB2B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				18C434281B5A1B180024DB2B /* 自定义转场动画.app */,
-				18C4343D1B5A1B180024DB2B /* 自定义转场动画Tests.xctest */,
+				18C434281B5A1B180024DB2B /* MagicMove.app */,
+				18C4343D1B5A1B180024DB2B /* MagicMoveTests.xctest */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		18C4342A1B5A1B180024DB2B /* 自定义转场动画 */ = {
-			isa = PBXGroup;
-			children = (
-				18C4342D1B5A1B180024DB2B /* AppDelegate.swift */,
-				18C4342F1B5A1B180024DB2B /* ViewController.swift */,
-				18C434311B5A1B180024DB2B /* Main.storyboard */,
-				18C434341B5A1B180024DB2B /* Images.xcassets */,
-				18C434361B5A1B180024DB2B /* LaunchScreen.xib */,
-				18C4342B1B5A1B180024DB2B /* Supporting Files */,
-			);
-			path = "自定义转场动画";
-			sourceTree = "<group>";
-		};
-		18C4342B1B5A1B180024DB2B /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				18C4342C1B5A1B180024DB2B /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		18C434401B5A1B180024DB2B /* 自定义转场动画Tests */ = {
-			isa = PBXGroup;
-			children = (
-				18C434431B5A1B180024DB2B /* _______Tests.swift */,
-				18C434411B5A1B180024DB2B /* Supporting Files */,
-			);
-			path = "自定义转场动画Tests";
-			sourceTree = "<group>";
-		};
-		18C434411B5A1B180024DB2B /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				18C434421B5A1B180024DB2B /* Info.plist */,
-			);
-			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		18C434271B5A1B180024DB2B /* 自定义转场动画 */ = {
+		18C434271B5A1B180024DB2B /* MagicMove */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 18C434471B5A1B180024DB2B /* Build configuration list for PBXNativeTarget "自定义转场动画" */;
+			buildConfigurationList = 18C434471B5A1B180024DB2B /* Build configuration list for PBXNativeTarget "MagicMove" */;
 			buildPhases = (
 				18C434241B5A1B180024DB2B /* Sources */,
 				18C434251B5A1B180024DB2B /* Frameworks */,
@@ -127,14 +123,14 @@
 			);
 			dependencies = (
 			);
-			name = "自定义转场动画";
+			name = MagicMove;
 			productName = "自定义转场动画";
-			productReference = 18C434281B5A1B180024DB2B /* 自定义转场动画.app */;
+			productReference = 18C434281B5A1B180024DB2B /* MagicMove.app */;
 			productType = "com.apple.product-type.application";
 		};
-		18C4343C1B5A1B180024DB2B /* 自定义转场动画Tests */ = {
+		18C4343C1B5A1B180024DB2B /* MagicMoveTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 18C4344A1B5A1B180024DB2B /* Build configuration list for PBXNativeTarget "自定义转场动画Tests" */;
+			buildConfigurationList = 18C4344A1B5A1B180024DB2B /* Build configuration list for PBXNativeTarget "MagicMoveTests" */;
 			buildPhases = (
 				18C434391B5A1B180024DB2B /* Sources */,
 				18C4343A1B5A1B180024DB2B /* Frameworks */,
@@ -145,9 +141,9 @@
 			dependencies = (
 				18C4343F1B5A1B180024DB2B /* PBXTargetDependency */,
 			);
-			name = "自定义转场动画Tests";
+			name = MagicMoveTests;
 			productName = "自定义转场动画Tests";
-			productReference = 18C4343D1B5A1B180024DB2B /* 自定义转场动画Tests.xctest */;
+			productReference = 18C4343D1B5A1B180024DB2B /* MagicMoveTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -168,7 +164,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 18C434231B5A1B180024DB2B /* Build configuration list for PBXProject "自定义转场动画" */;
+			buildConfigurationList = 18C434231B5A1B180024DB2B /* Build configuration list for PBXProject "MagicMove" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -181,8 +177,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				18C434271B5A1B180024DB2B /* 自定义转场动画 */,
-				18C4343C1B5A1B180024DB2B /* 自定义转场动画Tests */,
+				18C434271B5A1B180024DB2B /* MagicMove */,
+				18C4343C1B5A1B180024DB2B /* MagicMoveTests */,
 			);
 		};
 /* End PBXProject section */
@@ -192,9 +188,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				18C434331B5A1B180024DB2B /* Main.storyboard in Resources */,
-				18C434381B5A1B180024DB2B /* LaunchScreen.xib in Resources */,
-				18C434351B5A1B180024DB2B /* Images.xcassets in Resources */,
+				18ABAE471B5ACE97007968EF /* Main.storyboard in Resources */,
+				18ABAE491B5ACE97007968EF /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -212,8 +207,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				18C434301B5A1B180024DB2B /* ViewController.swift in Sources */,
-				18C4342E1B5A1B180024DB2B /* AppDelegate.swift in Sources */,
+				18ABAE4B1B5ACE97007968EF /* MasterViewController.swift in Sources */,
+				18ABAE481B5ACE97007968EF /* DetailViewController.swift in Sources */,
+				18ABAE451B5ACE97007968EF /* AppDelegate.swift in Sources */,
+				18ABAE4C1B5ACE97007968EF /* PopAnimationController.swift in Sources */,
+				18ABAE4D1B5ACE97007968EF /* PushAnimationController.swift in Sources */,
+				18ABAE4F1B5ACE97007968EF /* RoleCell.swift in Sources */,
+				18ABAE4E1B5ACE97007968EF /* Role.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -221,7 +221,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				18C434441B5A1B180024DB2B /* _______Tests.swift in Sources */,
+				18ABAE571B5ACF9A007968EF /* MagicMoveTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -230,26 +230,18 @@
 /* Begin PBXTargetDependency section */
 		18C4343F1B5A1B180024DB2B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 18C434271B5A1B180024DB2B /* 自定义转场动画 */;
+			target = 18C434271B5A1B180024DB2B /* MagicMove */;
 			targetProxy = 18C4343E1B5A1B180024DB2B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		18C434311B5A1B180024DB2B /* Main.storyboard */ = {
+		18ABAE3B1B5ACE97007968EF /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				18C434321B5A1B180024DB2B /* Base */,
+				18ABAE3C1B5ACE97007968EF /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		18C434361B5A1B180024DB2B /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				18C434371B5A1B180024DB2B /* Base */,
-			);
-			name = LaunchScreen.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -340,9 +332,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = "自定义转场动画/Info.plist";
+				INFOPLIST_FILE = MagicMove/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = MagicMove;
 			};
 			name = Debug;
 		};
@@ -350,9 +342,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = "自定义转场动画/Info.plist";
+				INFOPLIST_FILE = MagicMove/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = MagicMove;
 			};
 			name = Release;
 		};
@@ -370,7 +362,7 @@
 				);
 				INFOPLIST_FILE = "自定义转场动画Tests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = MagicMoveTests;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/自定义转场动画.app/自定义转场动画";
 			};
 			name = Debug;
@@ -385,7 +377,7 @@
 				);
 				INFOPLIST_FILE = "自定义转场动画Tests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = MagicMoveTests;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/自定义转场动画.app/自定义转场动画";
 			};
 			name = Release;
@@ -393,7 +385,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		18C434231B5A1B180024DB2B /* Build configuration list for PBXProject "自定义转场动画" */ = {
+		18C434231B5A1B180024DB2B /* Build configuration list for PBXProject "MagicMove" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				18C434451B5A1B180024DB2B /* Debug */,
@@ -402,21 +394,23 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		18C434471B5A1B180024DB2B /* Build configuration list for PBXNativeTarget "自定义转场动画" */ = {
+		18C434471B5A1B180024DB2B /* Build configuration list for PBXNativeTarget "MagicMove" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				18C434481B5A1B180024DB2B /* Debug */,
 				18C434491B5A1B180024DB2B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
-		18C4344A1B5A1B180024DB2B /* Build configuration list for PBXNativeTarget "自定义转场动画Tests" */ = {
+		18C4344A1B5A1B180024DB2B /* Build configuration list for PBXNativeTarget "MagicMoveTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				18C4344B1B5A1B180024DB2B /* Debug */,
 				18C4344C1B5A1B180024DB2B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
