@@ -360,10 +360,10 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "自定义转场动画Tests/Info.plist";
+				INFOPLIST_FILE = MagicMoveTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = MagicMoveTests;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/自定义转场动画.app/自定义转场动画";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MagicMove.app/MagicMove";
 			};
 			name = Debug;
 		};
@@ -375,10 +375,10 @@
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "自定义转场动画Tests/Info.plist";
+				INFOPLIST_FILE = MagicMoveTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = MagicMoveTests;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/自定义转场动画.app/自定义转场动画";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MagicMove.app/MagicMove";
 			};
 			name = Release;
 		};
