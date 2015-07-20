@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Presenting View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="vXZ-lx-hvc" customClass="PresentingViewController" customModule="FlipTransion" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -15,11 +15,98 @@
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="倦收天" translatesAutoresizingMaskIntoConstraints="NO" id="Fs0-hd-aUB">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <gestureRecognizers/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B4h-OF-8iQ">
+                                <rect key="frame" x="562" y="562" width="30" height="30"/>
+                                <color key="backgroundColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="15"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <segue destination="AFM-zX-rc0" kind="presentation" identifier="PresentVC" id="5FB-iM-Rs0"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="Fs0-hd-aUB" secondAttribute="bottom" id="OBw-h8-0fR"/>
+                            <constraint firstAttribute="trailing" secondItem="Fs0-hd-aUB" secondAttribute="trailing" id="OnE-Bh-Tym"/>
+                            <constraint firstItem="Fs0-hd-aUB" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="U0P-Wg-hd1"/>
+                            <constraint firstItem="Fs0-hd-aUB" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="d7z-yx-Llp"/>
+                            <constraint firstAttribute="bottom" secondItem="B4h-OF-8iQ" secondAttribute="bottom" constant="8" id="mWZ-GS-5vD"/>
+                            <constraint firstAttribute="trailing" secondItem="B4h-OF-8iQ" secondAttribute="trailing" constant="8" id="ul6-z6-0G2"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="87" y="427"/>
+        </scene>
+        <!--Presented View Controller-->
+        <scene sceneID="c4k-Pq-j4t">
+            <objects>
+                <viewController storyboardIdentifier="PresentedViewController" id="AFM-zX-rc0" customClass="PresentedViewController" customModule="FlipTransion" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="i6G-CA-SYr"/>
+                        <viewControllerLayoutGuide type="bottom" id="8CL-bv-1IM"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="vxV-hs-7xq">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="缥缈月" translatesAutoresizingMaskIntoConstraints="NO" id="sam-tU-yq7">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5V1-wF-WeM">
+                                <rect key="frame" x="562" y="562" width="30" height="30"/>
+                                <color key="backgroundColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="15"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <segue destination="iR2-Jj-0LF" kind="unwind" unwindAction="prepareForDismissWithSegue:" id="eW6-Bm-zZc"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="5V1-wF-WeM" secondAttribute="bottom" constant="8" id="6ML-bm-5no"/>
+                            <constraint firstAttribute="trailing" secondItem="sam-tU-yq7" secondAttribute="trailing" id="BD9-Bf-hRf"/>
+                            <constraint firstAttribute="trailing" secondItem="5V1-wF-WeM" secondAttribute="trailing" constant="8" id="MwA-Ka-7fj"/>
+                            <constraint firstItem="sam-tU-yq7" firstAttribute="top" secondItem="vxV-hs-7xq" secondAttribute="top" id="Rhk-by-AMb"/>
+                            <constraint firstAttribute="bottom" secondItem="sam-tU-yq7" secondAttribute="bottom" id="VPd-Kx-56y"/>
+                            <constraint firstItem="sam-tU-yq7" firstAttribute="top" secondItem="i6G-CA-SYr" secondAttribute="bottom" id="dhK-Zs-Vdp"/>
+                            <constraint firstItem="sam-tU-yq7" firstAttribute="leading" secondItem="vxV-hs-7xq" secondAttribute="leading" id="hsr-aK-x3a"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="dhK-Zs-Vdp"/>
+                            </mask>
+                        </variation>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KCa-R2-0wH" sceneMemberID="firstResponder"/>
+                <exit id="iR2-Jj-0LF" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="719" y="427"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="倦收天" width="1045" height="1521"/>
+        <image name="缥缈月" width="1024" height="1475"/>
+    </resources>
 </document>

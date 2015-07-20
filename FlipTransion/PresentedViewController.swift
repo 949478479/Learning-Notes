@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  PresentedViewController.swift
 //  FlipTransion
 //
 //  Created by 从今以后 on 15/7/19.
@@ -8,8 +8,12 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class PresentedViewController: UIViewController {
 
+    deinit {
+        println(self)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -19,7 +23,4 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
 }
-

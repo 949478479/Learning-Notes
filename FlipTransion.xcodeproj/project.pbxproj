@@ -8,11 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		18C4A4AF1B5B938200F044AF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C4A4AE1B5B938200F044AF /* AppDelegate.swift */; };
-		18C4A4B11B5B938200F044AF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C4A4B01B5B938200F044AF /* ViewController.swift */; };
+		18C4A4B11B5B938200F044AF /* PresentedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C4A4B01B5B938200F044AF /* PresentedViewController.swift */; };
 		18C4A4B41B5B938200F044AF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18C4A4B21B5B938200F044AF /* Main.storyboard */; };
 		18C4A4B61B5B938200F044AF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18C4A4B51B5B938200F044AF /* Images.xcassets */; };
-		18C4A4B91B5B938200F044AF /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18C4A4B71B5B938200F044AF /* LaunchScreen.xib */; };
 		18C4A4C51B5B938300F044AF /* FlipTransionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C4A4C41B5B938300F044AF /* FlipTransionTests.swift */; };
+		18C4A4CF1B5B940D00F044AF /* PresentAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C4A4CE1B5B940D00F044AF /* PresentAnimationController.swift */; };
+		18C4A4D11B5B94F500F044AF /* PresentingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C4A4D01B5B94F500F044AF /* PresentingViewController.swift */; };
+		18CF43FC1B5BD53000A98B48 /* DismissAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CF43FB1B5BD53000A98B48 /* DismissAnimationController.swift */; };
+		18CF43FE1B5BE10700A98B48 /* TransitioningController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CF43FD1B5BE10700A98B48 /* TransitioningController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,13 +32,16 @@
 		18C4A4A91B5B938200F044AF /* FlipTransion.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlipTransion.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18C4A4AD1B5B938200F044AF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		18C4A4AE1B5B938200F044AF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		18C4A4B01B5B938200F044AF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		18C4A4B01B5B938200F044AF /* PresentedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentedViewController.swift; sourceTree = "<group>"; };
 		18C4A4B31B5B938200F044AF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		18C4A4B51B5B938200F044AF /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		18C4A4B81B5B938200F044AF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		18C4A4BE1B5B938300F044AF /* FlipTransionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FlipTransionTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		18C4A4C31B5B938300F044AF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		18C4A4C41B5B938300F044AF /* FlipTransionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlipTransionTests.swift; sourceTree = "<group>"; };
+		18C4A4CE1B5B940D00F044AF /* PresentAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentAnimationController.swift; sourceTree = "<group>"; };
+		18C4A4D01B5B94F500F044AF /* PresentingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentingViewController.swift; sourceTree = "<group>"; };
+		18CF43FB1B5BD53000A98B48 /* DismissAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DismissAnimationController.swift; sourceTree = "<group>"; };
+		18CF43FD1B5BE10700A98B48 /* TransitioningController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitioningController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,10 +84,11 @@
 			isa = PBXGroup;
 			children = (
 				18C4A4AE1B5B938200F044AF /* AppDelegate.swift */,
-				18C4A4B01B5B938200F044AF /* ViewController.swift */,
-				18C4A4B21B5B938200F044AF /* Main.storyboard */,
-				18C4A4B51B5B938200F044AF /* Images.xcassets */,
-				18C4A4B71B5B938200F044AF /* LaunchScreen.xib */,
+				18C4A4D01B5B94F500F044AF /* PresentingViewController.swift */,
+				18C4A4B01B5B938200F044AF /* PresentedViewController.swift */,
+				18C4A4CE1B5B940D00F044AF /* PresentAnimationController.swift */,
+				18CF43FB1B5BD53000A98B48 /* DismissAnimationController.swift */,
+				18CF43FD1B5BE10700A98B48 /* TransitioningController.swift */,
 				18C4A4AC1B5B938200F044AF /* Supporting Files */,
 			);
 			path = FlipTransion;
@@ -90,6 +97,8 @@
 		18C4A4AC1B5B938200F044AF /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				18C4A4B21B5B938200F044AF /* Main.storyboard */,
+				18C4A4B51B5B938200F044AF /* Images.xcassets */,
 				18C4A4AD1B5B938200F044AF /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -193,7 +202,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				18C4A4B41B5B938200F044AF /* Main.storyboard in Resources */,
-				18C4A4B91B5B938200F044AF /* LaunchScreen.xib in Resources */,
 				18C4A4B61B5B938200F044AF /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -212,8 +220,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				18C4A4B11B5B938200F044AF /* ViewController.swift in Sources */,
+				18CF43FE1B5BE10700A98B48 /* TransitioningController.swift in Sources */,
+				18C4A4CF1B5B940D00F044AF /* PresentAnimationController.swift in Sources */,
+				18C4A4B11B5B938200F044AF /* PresentedViewController.swift in Sources */,
 				18C4A4AF1B5B938200F044AF /* AppDelegate.swift in Sources */,
+				18C4A4D11B5B94F500F044AF /* PresentingViewController.swift in Sources */,
+				18CF43FC1B5BD53000A98B48 /* DismissAnimationController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -242,14 +254,6 @@
 				18C4A4B31B5B938200F044AF /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		18C4A4B71B5B938200F044AF /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				18C4A4B81B5B938200F044AF /* Base */,
-			);
-			name = LaunchScreen.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -409,6 +413,7 @@
 				18C4A4CA1B5B938300F044AF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		18C4A4CB1B5B938300F044AF /* Build configuration list for PBXNativeTarget "FlipTransionTests" */ = {
 			isa = XCConfigurationList;
@@ -417,6 +422,7 @@
 				18C4A4CD1B5B938300F044AF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
