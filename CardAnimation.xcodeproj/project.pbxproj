@@ -13,6 +13,7 @@
 		189699121B5D2AC1000BF865 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 189699111B5D2AC1000BF865 /* Images.xcassets */; };
 		189699151B5D2AC1000BF865 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 189699131B5D2AC1000BF865 /* LaunchScreen.xib */; };
 		189699211B5D2AC1000BF865 /* CardAnimationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189699201B5D2AC1000BF865 /* CardAnimationTests.swift */; };
+		1896992B1B5D2ADD000BF865 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1896992A1B5D2ADD000BF865 /* CardView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,7 @@
 		1896991A1B5D2AC1000BF865 /* CardAnimationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CardAnimationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1896991F1B5D2AC1000BF865 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		189699201B5D2AC1000BF865 /* CardAnimationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardAnimationTests.swift; sourceTree = "<group>"; };
+		1896992A1B5D2ADD000BF865 /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +81,7 @@
 			children = (
 				1896990A1B5D2AC1000BF865 /* AppDelegate.swift */,
 				1896990C1B5D2AC1000BF865 /* ViewController.swift */,
+				1896992A1B5D2ADD000BF865 /* CardView.swift */,
 				1896990E1B5D2AC1000BF865 /* Main.storyboard */,
 				189699111B5D2AC1000BF865 /* Images.xcassets */,
 				189699131B5D2AC1000BF865 /* LaunchScreen.xib */,
@@ -213,6 +216,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1896990D1B5D2AC1000BF865 /* ViewController.swift in Sources */,
+				1896992B1B5D2ADD000BF865 /* CardView.swift in Sources */,
 				1896990B1B5D2AC1000BF865 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
