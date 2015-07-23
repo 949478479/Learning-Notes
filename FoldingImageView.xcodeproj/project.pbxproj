@@ -408,10 +408,10 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = FoldImageTests/Info.plist;
+				INFOPLIST_FILE = FoldingImageView/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = FoldingImageViewTests;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FoldImage.app/FoldImage";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FoldingImageView.app/FoldingImageView";
 			};
 			name = Debug;
 		};
@@ -423,10 +423,10 @@
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = FoldImageTests/Info.plist;
+				INFOPLIST_FILE = FoldingImageView/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = FoldingImageViewTests;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FoldImage.app/FoldImage";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FoldingImageView.app/FoldingImageView";
 			};
 			name = Release;
 		};
