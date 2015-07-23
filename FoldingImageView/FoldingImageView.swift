@@ -27,8 +27,8 @@ class FoldingImageView: UIView {
 
     private let imageLayer = CALayer()
 
-    private lazy var pageLayer1: CALayer = self.p_configureLayerBasicAttributes(CALayer()) // 左方/上方 的图层.
-    private lazy var pageLayer2: CALayer = self.p_configureLayerBasicAttributes(CALayer()) // 右方/下方 的图层.
+    private lazy var pageLayer1: CALayer = self.configureLayerBasicAttributes(CALayer()) // 左方/上方 的图层.
+    private lazy var pageLayer2: CALayer = self.configureLayerBasicAttributes(CALayer()) // 右方/下方 的图层.
 
     private lazy var shadowLayer1 = CAGradientLayer()
     private lazy var shadowLayer2 = CAGradientLayer()
@@ -40,17 +40,17 @@ class FoldingImageView: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        layer.addSublayer(p_configureLayerBasicAttributes(imageLayer))
+        layer.addSublayer(configureLayerBasicAttributes(imageLayer))
     }
 
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        layer.addSublayer(p_configureLayerBasicAttributes(imageLayer))
+        layer.addSublayer(configureLayerBasicAttributes(imageLayer))
     }
 
     // MARK: - 配置图层基本属性
 
-    private func p_configureLayerBasicAttributes(layer: CALayer) -> CALayer {
+    private func configureLayerBasicAttributes(layer: CALayer) -> CALayer {
         layer.masksToBounds   = (contentMode != .ScaleAspectFit)
         layer.transform.m34   = -1 / 1_000
         layer.contentsScale   = UIScreen.mainScreen().scale
@@ -80,19 +80,19 @@ class FoldingImageView: UIView {
         return image != nil
     }
 
-    @IBAction private func p_panGestureRecognizerHandle(pan: UIPanGestureRecognizer) {
+    @IBAction private func panGestureRecognizerHandle(pan: UIPanGestureRecognizer) {
         switch pan.state {
         case .Changed:
             if CGRectContainsPoint(bounds, pan.locationInView(self)) {
-                let percent = p_calculatePercentForTranslation(pan.translationInView(self))
-                p_foldImageViewWithAnimationForPercent(percent)
+                let percent = calculatePercentForTranslation(pan.translationInView(self))
+                foldImageViewWithAnimationForPercent(percent)
             } else {
                 pan.enabled = false
             }
         case .Began:
-            panDirection = p_determinePanDirectionForInitialVelocity(pan.velocityInView(self))
-            if p_shouldDividePagesForInitialLocation(pan.locationInView(self)) {
-                p_dividePages()
+            panDirection = determinePanDirectionForInitialVelocity(pan.velocityInView(self))
+            if shouldDividePagesForInitialLocation(pan.locationInView(self)) {
+                dividePages()
             } else {
                 panDirection = .Unspecified
                 pan.enabled = false
@@ -102,12 +102,12 @@ class FoldingImageView: UIView {
             if let propertyNamed = animationPropertyNamed {
                 userInteractionEnabled = false
                 animationPropertyNamed = nil
-                p_recoverAnimationForPropertyNamed(propertyNamed)
+                recoverAnimationForPropertyNamed(propertyNamed)
             }
         }
     }
 
-    private func p_determinePanDirectionForInitialVelocity(velocity: CGPoint) -> PanDirection {
+    private func determinePanDirectionForInitialVelocity(velocity: CGPoint) -> PanDirection {
         let velocity = (velocity.x, velocity.y)
         switch velocity {
         case (0, let y) where y < 0: return .Up
@@ -120,7 +120,7 @@ class FoldingImageView: UIView {
 
     // MARK: - 分页
 
-    private func p_shouldDividePagesForInitialLocation(location: CGPoint) -> Bool {
+    private func shouldDividePagesForInitialLocation(location: CGPoint) -> Bool {
         switch panDirection {
         case .Up:          return location.y > bounds.midY
         case .Down:        return location.y < bounds.midY
@@ -130,7 +130,7 @@ class FoldingImageView: UIView {
         }
     }
 
-    private func p_calculateImageRect() -> CGRect {
+    private func calculateImageRect() -> CGRect {
 
         if contentMode == .ScaleAspectFit {
 
@@ -157,7 +157,7 @@ class FoldingImageView: UIView {
     }
 
     // 针对 AspectFit 的两种情况进行像素舍入,不然分页显示时有缝.
-    private func p_roundSize(var size: CGSize) -> CGSize {
+    private func roundSize(var size: CGSize) -> CGSize {
         if contentMode != .ScaleAspectFit { return size }
 
         let scale = UIScreen.mainScreen().scale
@@ -169,7 +169,7 @@ class FoldingImageView: UIView {
         return size
     }
 
-    private func p_dividePages() {
+    private func dividePages() {
 
         var bounds   = CGRect()
         let position = CGPoint(x: self.bounds.midX, y: self.bounds.midY)
@@ -177,7 +177,7 @@ class FoldingImageView: UIView {
         let anchorPoint1:  CGPoint, anchorPoint2:  CGPoint
         let contentsRect1: CGRect,  contentsRect2: CGRect
 
-        let imageRect            = p_calculateImageRect()
+        let imageRect            = calculateImageRect()
         let imageAspectRatio     = image!.size.height       / image!.size.width
         let imageViewAspectRatio = imageLayer.bounds.height / imageLayer.bounds.width
 
@@ -196,7 +196,7 @@ class FoldingImageView: UIView {
                 contentsRect2  = CGRect(x: 0, y: 0.5, width: 1, height: 0.5)
             }
 
-            bounds.size = p_roundSize(CGSize(width: imageRect.width, height: imageRect.height / 2))
+            bounds.size = roundSize(CGSize(width: imageRect.width, height: imageRect.height / 2))
 
         case .Left, .Right:
 
@@ -212,23 +212,23 @@ class FoldingImageView: UIView {
                 contentsRect2 = CGRect(x: 0.5, y: 0, width: 0.5, height: 1)
             }
 
-            bounds.size = p_roundSize(CGSize(width: imageRect.width / 2, height: imageRect.height))
+            bounds.size = roundSize(CGSize(width: imageRect.width / 2, height: imageRect.height))
             
         case .Unspecified: return
         }
 
         imageLayer.hidden = true
 
-        p_configureLayerWithoutImplicitAnimation {
-            self.layer.addSublayer(self.p_configurePageLayer(self.pageLayer1, withAnchorPoint: anchorPoint1, position: position, bounds: bounds, contentsRect: contentsRect1))
-            self.layer.addSublayer(self.p_configurePageLayer(self.pageLayer2, withAnchorPoint: anchorPoint2, position: position, bounds: bounds, contentsRect: contentsRect2))
+        configureLayerWithoutImplicitAnimation {
+            self.layer.addSublayer(self.configurePageLayer(self.pageLayer1, withAnchorPoint: anchorPoint1, position: position, bounds: bounds, contentsRect: contentsRect1))
+            self.layer.addSublayer(self.configurePageLayer(self.pageLayer2, withAnchorPoint: anchorPoint2, position: position, bounds: bounds, contentsRect: contentsRect2))
 
-            self.layer.addSublayer(self.p_configureShadowlayer(self.shadowLayer1, forPageLayer: self.pageLayer1))
-            self.layer.addSublayer(self.p_configureShadowlayer(self.shadowLayer2, forPageLayer: self.pageLayer2))
+            self.layer.addSublayer(self.configureShadowlayer(self.shadowLayer1, forPageLayer: self.pageLayer1))
+            self.layer.addSublayer(self.configureShadowlayer(self.shadowLayer2, forPageLayer: self.pageLayer2))
         }
     }
 
-    private func p_configurePageLayer(layer: CALayer, withAnchorPoint anchorPoint: CGPoint, position: CGPoint, bounds: CGRect, contentsRect: CGRect) -> CALayer {
+    private func configurePageLayer(layer: CALayer, withAnchorPoint anchorPoint: CGPoint, position: CGPoint, bounds: CGRect, contentsRect: CGRect) -> CALayer {
         layer.shouldRasterize    = true
         layer.rasterizationScale = UIScreen.mainScreen().scale
         layer.contents           = self.imageLayer.contents
@@ -239,7 +239,7 @@ class FoldingImageView: UIView {
         return layer
     }
 
-    private func p_configureShadowlayer(shadowLayer: CAGradientLayer, forPageLayer pageLayer: CALayer) -> CAGradientLayer {
+    private func configureShadowlayer(shadowLayer: CAGradientLayer, forPageLayer pageLayer: CALayer) -> CAGradientLayer {
         shadowLayer.opacity       = 0
         shadowLayer.transform     = CATransform3DIdentity
         shadowLayer.transform.m34 = -1 / 1_000
@@ -265,7 +265,7 @@ class FoldingImageView: UIView {
 
     // MARK: - 动画
 
-    private func p_calculatePercentForTranslation(translation: CGPoint) -> CGFloat {
+    private func calculatePercentForTranslation(translation: CGPoint) -> CGFloat {
         switch panDirection {
         case .Up:          return max(0, min(-translation.y / bounds.height, 1))
         case .Down:        return max(0, min(+translation.y / bounds.height, 1))
@@ -275,7 +275,7 @@ class FoldingImageView: UIView {
         }
     }
 
-    private func p_animatingLayers() -> [CALayer]? {
+    private func animatingLayers() -> [CALayer]? {
         switch panDirection {
         case .Down, .Right: return [pageLayer1, shadowLayer1]
         case .Up, .Left:    return [pageLayer2, shadowLayer2]
@@ -283,7 +283,7 @@ class FoldingImageView: UIView {
         }
     }
 
-    private func p_foldImageViewWithAnimationForPercent(percent: CGFloat) {
+    private func foldImageViewWithAnimationForPercent(percent: CGFloat) {
         let keyPath: String
         let factor: CGFloat
 
@@ -300,18 +300,18 @@ class FoldingImageView: UIView {
         }
 
         [shadowLayer1, shadowLayer2].map { $0.opacity = Float(percent) }
-        p_animatingLayers()?.map {
+        animatingLayers()?.map {
             $0.setValue(CGFloat(M_PI_2) * factor * percent, forKeyPath: keyPath)
         }
     }
 
-    private func p_recoverAnimationForPropertyNamed(propertyNamed: String) {
+    private func recoverAnimationForPropertyNamed(propertyNamed: String) {
         let recoverAnimation = POPSpringAnimation(propertyNamed: propertyNamed)
         recoverAnimation.toValue  = 0
         recoverAnimation.delegate = self
         recoverAnimation.springBounciness = 25
         recoverAnimation.name = "recoverAnimation"
-        p_animatingLayers()?.map { layer -> () in
+        animatingLayers()?.map { layer -> () in
             if layer === self.pageLayer1 || layer === self.pageLayer2 {
                 layer.pop_addAnimation(recoverAnimation, forKey: "recoverAnimation")
             }
@@ -323,9 +323,9 @@ class FoldingImageView: UIView {
 // MARK: - POPAnimationDelegate
 
 extension FoldingImageView: POPAnimationDelegate {
-    func pop_animationDidStop(anim: POPAnimation!, finished: Bool) {
+    func poanimationDidStop(anim: POPAnimation!, finished: Bool) {
         userInteractionEnabled = true
-        p_configureLayerWithoutImplicitAnimation {
+        configureLayerWithoutImplicitAnimation {
             self.imageLayer.hidden = false
         }
         [pageLayer1, pageLayer2].map { $0.removeFromSuperlayer() }
@@ -334,7 +334,7 @@ extension FoldingImageView: POPAnimationDelegate {
 
 // MARK: - 辅助函数
 
-private func p_configureLayerWithoutImplicitAnimation(configuration: () -> ()) {
+private func configureLayerWithoutImplicitAnimation(configuration: () -> ()) {
     CATransaction.begin()
     CATransaction.setDisableActions(true)
     configuration()

@@ -42,7 +42,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
                 <panGestureRecognizer minimumNumberOfTouches="1" id="xoK-G1-TJt">
                     <connections>
-                        <action selector="p_panGestureRecognizerHandle:" destination="mL2-L3-vXR" id="lbz-aL-xoG"/>
+                        <action selector="panGestureRecognizerHandle:" destination="mL2-L3-vXR" id="lbz-aL-xoG"/>
                     </connections>
                 </panGestureRecognizer>
             </objects>
