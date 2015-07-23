@@ -19,9 +19,6 @@ class TransitioningController: NSObject {
     var action: (() -> ())!
 
     private lazy var window  = UIApplication.sharedApplication().keyWindow!
-    private var shouldBegin  = true
-    private var percent      = CGFloat()
-    private var translationX = CGFloat()
     private var percentDriven: UIPercentDrivenInteractiveTransition!
     
     override init() {
@@ -32,32 +29,32 @@ class TransitioningController: NSObject {
 
     func panGestureRecognizerHandle(sender: UIPanGestureRecognizer) {
 
-        if shouldBegin {
-            translationX = sender.translationInView(window).x
-            percent = max(0, min(translationX * (transitioningType == .Present ? -1 : 1) / window.bounds.width, 1))
+        let percent: CGFloat
+        if sender.enabled {
+            let translationX = sender.translationInView(window).x * (transitioningType == .Present ? -1 : 1)
+            percent = max(0, min(translationX / window.bounds.width, 1))
+        } else {
+            percent = 0
         }
 
         switch sender.state {
         case .Began:
             if transitioningType == .Present && sender.velocityInView(window).x > 0 ||
                transitioningType == .Dismiss && sender.velocityInView(window).x < 0 {
-                shouldBegin = false
+                sender.enabled = false
             } else {
                 percentDriven = UIPercentDrivenInteractiveTransition()
                 action()
             }
         case .Changed:
-            if shouldBegin {
-                percentDriven.updateInteractiveTransition(percent)
-            }
-        case .Ended, .Cancelled:
-            if shouldBegin {
+            percentDriven.updateInteractiveTransition(percent)
+        default:
+            if sender.enabled {
                 percent > 0.5 ? percentDriven.finishInteractiveTransition() : percentDriven.cancelInteractiveTransition()
                 percentDriven = nil
             } else {
-                shouldBegin = true
+                sender.enabled = true
             }
-        default: break
         }
     }
 }
