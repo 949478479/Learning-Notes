@@ -34,6 +34,7 @@ class MasterViewController: UICollectionViewController {
     // MARK: - Navigation
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+
         let toVC  = segue.destinationViewController as! DetailViewController
         let index = collectionView!.indexPathForCell(selectedCell)!.item
         toVC.role = roles[index]
@@ -43,24 +44,30 @@ class MasterViewController: UICollectionViewController {
 // MARK: - UICollectionViewDataSource
 
 extension MasterViewController {
+
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+
         return roles.count
     }
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! RoleCell
         cell.configureForRole(roles[indexPath.item])
         return cell
     }
 
     override func collectionView(collectionView: UICollectionView, shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
+
         selectedCell = collectionView.cellForItemAtIndexPath(indexPath) as! RoleCell
         return true
     }
 }
 
 extension MasterViewController: UINavigationControllerDelegate {
+
     func navigationController(navigationController: UINavigationController, animationControllerForOperation operation: UINavigationControllerOperation, fromViewController fromVC: UIViewController, toViewController toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+
         return PushAnimationController()
     }
 }

@@ -15,7 +15,7 @@ class DetailViewController: UIViewController {
     @IBOutlet var overviewLabel: UITextView!
     
     var role: Role!
-    var interactiveTransition: UIPercentDrivenInteractiveTransition!
+    private var interactiveTransition: UIPercentDrivenInteractiveTransition!
 
     override func viewDidLoad() {
         super.viewDidLoad()

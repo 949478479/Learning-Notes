@@ -47,12 +47,16 @@ class PopAnimationController: NSObject, UIViewControllerAnimatedTransitioning {
         // 将源控制器淡出,并将截图以动画效果移动到目标控制器选中 cell 的 imageView 的位置.
         // 结束后显示真正的 imageView, 并将截图移除.这里需要将源控制器的 imageView 恢复显示,因为有可能中途取消 pop.
         UIView.animateWithDuration(kTransitionDuration, animations: {
+
             fromVC.view.alpha = 0
             snapshot.frame = containerView.convertRect(toImageView.frame, fromView: toImageView.superview)
+
         }, completion: { _ in
+
             snapshot.removeFromSuperview()
             fromImageView.hidden = false
             toImageView.hidden = false
+
             transitionContext.completeTransition(!transitionContext.transitionWasCancelled())
         })
     }

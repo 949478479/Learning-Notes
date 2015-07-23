@@ -73,10 +73,10 @@
 				18ABAE381B5ACE97007968EF /* AppDelegate.swift */,
 				18ABAE431B5ACE97007968EF /* Role.swift */,
 				18ABAE441B5ACE97007968EF /* RoleCell.swift */,
-				18ABAE3D1B5ACE97007968EF /* DetailViewController.swift */,
 				18ABAE401B5ACE97007968EF /* MasterViewController.swift */,
-				18ABAE411B5ACE97007968EF /* PopAnimationController.swift */,
+				18ABAE3D1B5ACE97007968EF /* DetailViewController.swift */,
 				18ABAE421B5ACE97007968EF /* PushAnimationController.swift */,
+				18ABAE411B5ACE97007968EF /* PopAnimationController.swift */,
 			);
 			path = MagicMove;
 			sourceTree = "<group>";

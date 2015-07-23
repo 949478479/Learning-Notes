@@ -55,11 +55,15 @@ class PushAnimationController: NSObject, UIViewControllerAnimatedTransitioning {
         // 将目标控制器淡入,并将截图动画移动到目标控制器中 imageView 的位置.
         // 结束后显示目标控制器的 imageView, 并将截图移除.
         UIView.animateWithDuration(kTransitionDuration, animations: {
+
             toVC.view.alpha = 1
             snapshot.frame = toImageView.frame
+
         }, completion: { _ in
+        
             toImageView.hidden = false
             snapshot.removeFromSuperview()
+
             transitionContext.completeTransition(true)
         })
     }

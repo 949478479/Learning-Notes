@@ -46,7 +46,7 @@
                                         <label userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="霽無瑕" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gua-gF-pm4">
                                             <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -129,7 +129,7 @@
                                 <string key="text">滿夕霜雪人獨影，紅塵今古幾月明？
 笑寒飲，慣新晴，千山已過風雲行。</string>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="風姿颯爽、直接俐落的豪氣女俠客，行走武道仗義不平，天生神力無窮，手持極重的泰若山劍，曾一劍擊退巨魔神，罕逢匹敵對手。真實身份為魔佛波旬中的女琊，因遭烽火關鍵衝撞，導致波旬三體分離，神智受創錯亂，方以俠女之姿行走江湖。" translatesAutoresizingMaskIntoConstraints="NO" id="TVI-Nl-CyZ">
