@@ -8,10 +8,42 @@
 
 import UIKit
 
-class PingAnimationController: NSObject, UIViewControllerAnimatedTransitioning {
+class PingAnimationController: NSObject {
 
-    private let transitionDuration = 1.0
-    private var transitionContext: UIViewControllerContextTransitioning!
+    let transitionDuration = 1.0
+
+    var transitionContext: UIViewControllerContextTransitioning!
+
+    var presentingViewController: UIViewController {
+        return transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey)!
+    }
+
+    var presentedViewController: UIViewController {
+        return transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey)!
+    }
+
+    var fromViewController: UIViewController {
+        return presentingViewController
+    }
+
+    func maskLayerPathRadiusForButtonFrame(frame: CGRect) -> CGFloat {
+        return sqrt(
+            pow(frame.midX, 2) +
+            pow(fromViewController.view.bounds.height - frame.midY, 2)
+        )
+    }
+
+    func animationValuesForFromViewController(fromVC: UIViewController) -> (CGPathRef, CGPathRef) {
+        let buttonFrame = (fromVC as! PresentingViewController).button.frame
+        let pathRadius  = maskLayerPathRadiusForButtonFrame(buttonFrame)
+        return (
+            CGPathCreateWithEllipseInRect(buttonFrame, nil),
+            CGPathCreateWithEllipseInRect(CGRectInset(buttonFrame, -pathRadius, -pathRadius), nil)
+        )
+    }
+}
+
+extension PingAnimationController: UIViewControllerAnimatedTransitioning {
 
     func transitionDuration(transitionContext: UIViewControllerContextTransitioning) -> NSTimeInterval {
         return transitionDuration
@@ -20,33 +52,24 @@ class PingAnimationController: NSObject, UIViewControllerAnimatedTransitioning {
     func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
         self.transitionContext = transitionContext
 
-        let fromVC = transitionContext.viewControllerForKey(
-            UITransitionContextFromViewControllerKey) as! PresentingViewController
-        let toVC   = transitionContext.viewControllerForKey(
-            UITransitionContextToViewControllerKey) as! PresentedViewController
+        presentedViewController.view.layer.mask = CAShapeLayer()
+        transitionContext.containerView().addSubview(presentingViewController.view)
+        transitionContext.containerView().addSubview(presentedViewController.view)
 
-        toVC.view.layer.mask = CAShapeLayer()
-        transitionContext.containerView().addSubview(toVC.view)
-
-        let radius = sqrt(
-            pow(fromVC.button.frame.midX, 2) +
-            pow(fromVC.view.bounds.height - fromVC.button.frame.midY, 2)
-        )
+        let animationValues = animationValuesForFromViewController(fromViewController)
 
         let animation = CABasicAnimation(keyPath: "path")
         animation.delegate  = self
         animation.duration  = transitionDuration
-        animation.fromValue = CGPathCreateWithEllipseInRect(fromVC.button.frame, nil)
-        animation.toValue   = CGPathCreateWithEllipseInRect(CGRectInset(fromVC.button.frame, -radius, -radius), nil)
-        toVC.view.layer.mask.addAnimation(animation, forKey: nil)
+        animation.fromValue = animationValues.0
+        animation.toValue   = animationValues.1
+        presentedViewController.view.layer.mask.addAnimation(animation, forKey: nil)
     }
 }
 
 extension PingAnimationController {
     override func animationDidStop(anim: CAAnimation!, finished flag: Bool) {
         transitionContext.completeTransition(true)
-        
-        (transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey)
-            as! PresentedViewController).view.layer.mask = nil
+        presentedViewController.view.layer.mask = nil
     }
 }

@@ -8,45 +8,26 @@
 
 import UIKit
 
-class PingInvertAnimationController: NSObject, UIViewControllerAnimatedTransitioning {
+class PingInvertAnimationController: PingAnimationController {
 
-    private let transitionDuration = 1.0
-    private var transitionContext: UIViewControllerContextTransitioning!
-
-    func transitionDuration(transitionContext: UIViewControllerContextTransitioning) -> NSTimeInterval {
-        return transitionDuration
+    override var presentingViewController: UIViewController {
+        return transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey)!
     }
 
-    func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
-        self.transitionContext = transitionContext
+    override var presentedViewController: UIViewController {
+        return transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey)!
+    }
 
-        let fromVC = transitionContext.viewControllerForKey(
-            UITransitionContextFromViewControllerKey) as! PresentedViewController
-        let toVC   = transitionContext.viewControllerForKey(
-            UITransitionContextToViewControllerKey) as! PresentingViewController
+    override var fromViewController: UIViewController {
+        return presentedViewController
+    }
 
-        fromVC.view.layer.mask = CAShapeLayer()
-        transitionContext.containerView().insertSubview(toVC.view, belowSubview: fromVC.view)
-
-        let radius = sqrt(
-            pow(fromVC.button.frame.midX, 2) +
-            pow(fromVC.view.bounds.height - fromVC.button.frame.midY, 2)
+    override func animationValuesForFromViewController(fromVC: UIViewController) -> (CGPathRef, CGPathRef) {
+        let buttonFrame = (fromVC as! PresentedViewController).button.frame
+        let pathRadius  = maskLayerPathRadiusForButtonFrame(buttonFrame)
+        return (
+            CGPathCreateWithEllipseInRect(CGRectInset(buttonFrame, -pathRadius, -pathRadius), nil),
+            CGPathCreateWithEllipseInRect(buttonFrame, nil)
         )
-
-        let animation = CABasicAnimation(keyPath: "path")
-        animation.delegate  = self
-        animation.duration  = transitionDuration
-        animation.fromValue = CGPathCreateWithEllipseInRect(CGRectInset(fromVC.button.frame, -radius, -radius), nil)
-        animation.toValue   = CGPathCreateWithEllipseInRect(fromVC.button.frame, nil)
-        fromVC.view.layer.mask.addAnimation(animation, forKey: nil)
-    }
-}
-
-extension PingInvertAnimationController {
-    override func animationDidStop(anim: CAAnimation!, finished flag: Bool) {
-        transitionContext.completeTransition(!transitionContext.transitionWasCancelled())
-
-        (transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey)
-            as! PresentedViewController).view.layer.mask = nil
     }
 }
