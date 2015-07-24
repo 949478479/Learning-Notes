@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Presenting View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="vXZ-lx-hvc" customClass="PresentingViewController" customModule="PingTransition" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -15,11 +15,99 @@
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="惋红曲" translatesAutoresizingMaskIntoConstraints="NO" id="HGv-uo-8d3">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IFe-ys-hko">
+                                <rect key="frame" x="562" y="8" width="30" height="30"/>
+                                <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="15"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <segue destination="MLq-GJ-264" kind="presentation" id="aB0-OI-tDB"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="HGv-uo-8d3" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="EIb-3f-c8y"/>
+                            <constraint firstAttribute="trailing" secondItem="IFe-ys-hko" secondAttribute="trailing" constant="8" id="GGi-J4-MmE"/>
+                            <constraint firstAttribute="bottom" secondItem="HGv-uo-8d3" secondAttribute="bottom" id="HZK-J4-wSA"/>
+                            <constraint firstItem="IFe-ys-hko" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" constant="8" id="L5J-2Z-7zi"/>
+                            <constraint firstItem="HGv-uo-8d3" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="VSs-9B-Cbp"/>
+                            <constraint firstAttribute="trailing" secondItem="HGv-uo-8d3" secondAttribute="trailing" id="voP-lM-a9O"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="Rgv-iR-Gjx"/>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <connections>
+                        <outlet property="button" destination="IFe-ys-hko" id="mU3-KX-c2s"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="940" y="463"/>
+        </scene>
+        <!--Presented View Controller-->
+        <scene sceneID="NFt-vT-hSg">
+            <objects>
+                <viewController id="MLq-GJ-264" customClass="PresentedViewController" customModule="PingTransition" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="yBE-hS-bxa"/>
+                        <viewControllerLayoutGuide type="bottom" id="hkn-k0-cF0"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="fFo-3J-rgr">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="百岫嶙峋" translatesAutoresizingMaskIntoConstraints="NO" id="lfF-bM-gIN">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pup-Mz-01u">
+                                <rect key="frame" x="8" y="8" width="30" height="30"/>
+                                <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="15"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <segue destination="vil-jb-okH" kind="unwind" unwindAction="dismissViewController:" id="JPO-DG-HRd"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="Pup-Mz-01u" firstAttribute="top" secondItem="fFo-3J-rgr" secondAttribute="top" constant="8" id="76N-p2-iTg"/>
+                            <constraint firstItem="lfF-bM-gIN" firstAttribute="top" secondItem="fFo-3J-rgr" secondAttribute="top" id="D1M-qP-zGF"/>
+                            <constraint firstItem="Pup-Mz-01u" firstAttribute="leading" secondItem="fFo-3J-rgr" secondAttribute="leading" constant="8" id="IZW-nX-fhJ"/>
+                            <constraint firstAttribute="bottom" secondItem="lfF-bM-gIN" secondAttribute="bottom" id="b9h-zk-Zgm"/>
+                            <constraint firstItem="lfF-bM-gIN" firstAttribute="leading" secondItem="fFo-3J-rgr" secondAttribute="leading" id="oa8-fk-q8d"/>
+                            <constraint firstAttribute="trailing" secondItem="lfF-bM-gIN" secondAttribute="trailing" id="vpV-Pn-Yyo"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="6WB-2d-vMm"/>
+                    <connections>
+                        <outlet property="button" destination="Pup-Mz-01u" id="lpN-WR-ISf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ucX-72-8Lg" sceneMemberID="firstResponder"/>
+                <exit id="vil-jb-okH" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="1577" y="463"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="惋红曲" width="512" height="384"/>
+        <image name="百岫嶙峋" width="512" height="384"/>
+    </resources>
 </document>

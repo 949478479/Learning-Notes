@@ -7,12 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1855427F1B6231BA004E5AA7 /* PresentedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1855427E1B6231BA004E5AA7 /* PresentedViewController.swift */; };
+		185542811B6256B4004E5AA7 /* PingInvertAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185542801B6256B4004E5AA7 /* PingInvertAnimationController.swift */; };
 		18CFFBB61B622ED700A5BD57 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CFFBB51B622ED700A5BD57 /* AppDelegate.swift */; };
-		18CFFBB81B622ED700A5BD57 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CFFBB71B622ED700A5BD57 /* ViewController.swift */; };
+		18CFFBB81B622ED700A5BD57 /* PresentingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CFFBB71B622ED700A5BD57 /* PresentingViewController.swift */; };
 		18CFFBBB1B622ED700A5BD57 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18CFFBB91B622ED700A5BD57 /* Main.storyboard */; };
 		18CFFBBD1B622ED700A5BD57 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18CFFBBC1B622ED700A5BD57 /* Images.xcassets */; };
-		18CFFBC01B622ED700A5BD57 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18CFFBBE1B622ED700A5BD57 /* LaunchScreen.xib */; };
 		18CFFBCC1B622ED700A5BD57 /* PingTransitionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CFFBCB1B622ED700A5BD57 /* PingTransitionTests.swift */; };
+		18CFFBD61B622FD300A5BD57 /* PingAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CFFBD51B622FD300A5BD57 /* PingAnimationController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -26,16 +28,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1855427E1B6231BA004E5AA7 /* PresentedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentedViewController.swift; sourceTree = "<group>"; };
+		185542801B6256B4004E5AA7 /* PingInvertAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PingInvertAnimationController.swift; sourceTree = "<group>"; };
 		18CFFBB01B622ED700A5BD57 /* PingTransition.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PingTransition.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18CFFBB41B622ED700A5BD57 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		18CFFBB51B622ED700A5BD57 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		18CFFBB71B622ED700A5BD57 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		18CFFBB71B622ED700A5BD57 /* PresentingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentingViewController.swift; sourceTree = "<group>"; };
 		18CFFBBA1B622ED700A5BD57 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		18CFFBBC1B622ED700A5BD57 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		18CFFBBF1B622ED700A5BD57 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		18CFFBC51B622ED700A5BD57 /* PingTransitionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PingTransitionTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		18CFFBCA1B622ED700A5BD57 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		18CFFBCB1B622ED700A5BD57 /* PingTransitionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PingTransitionTests.swift; sourceTree = "<group>"; };
+		18CFFBD51B622FD300A5BD57 /* PingAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PingAnimationController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,10 +82,11 @@
 			isa = PBXGroup;
 			children = (
 				18CFFBB51B622ED700A5BD57 /* AppDelegate.swift */,
-				18CFFBB71B622ED700A5BD57 /* ViewController.swift */,
+				18CFFBB71B622ED700A5BD57 /* PresentingViewController.swift */,
+				1855427E1B6231BA004E5AA7 /* PresentedViewController.swift */,
+				18CFFBD51B622FD300A5BD57 /* PingAnimationController.swift */,
+				185542801B6256B4004E5AA7 /* PingInvertAnimationController.swift */,
 				18CFFBB91B622ED700A5BD57 /* Main.storyboard */,
-				18CFFBBC1B622ED700A5BD57 /* Images.xcassets */,
-				18CFFBBE1B622ED700A5BD57 /* LaunchScreen.xib */,
 				18CFFBB31B622ED700A5BD57 /* Supporting Files */,
 			);
 			path = PingTransition;
@@ -90,6 +95,7 @@
 		18CFFBB31B622ED700A5BD57 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				18CFFBBC1B622ED700A5BD57 /* Images.xcassets */,
 				18CFFBB41B622ED700A5BD57 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -193,7 +199,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				18CFFBBB1B622ED700A5BD57 /* Main.storyboard in Resources */,
-				18CFFBC01B622ED700A5BD57 /* LaunchScreen.xib in Resources */,
 				18CFFBBD1B622ED700A5BD57 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -212,8 +217,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				18CFFBB81B622ED700A5BD57 /* ViewController.swift in Sources */,
+				18CFFBB81B622ED700A5BD57 /* PresentingViewController.swift in Sources */,
+				1855427F1B6231BA004E5AA7 /* PresentedViewController.swift in Sources */,
 				18CFFBB61B622ED700A5BD57 /* AppDelegate.swift in Sources */,
+				185542811B6256B4004E5AA7 /* PingInvertAnimationController.swift in Sources */,
+				18CFFBD61B622FD300A5BD57 /* PingAnimationController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -242,14 +250,6 @@
 				18CFFBBA1B622ED700A5BD57 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		18CFFBBE1B622ED700A5BD57 /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				18CFFBBF1B622ED700A5BD57 /* Base */,
-			);
-			name = LaunchScreen.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -409,6 +409,7 @@
 				18CFFBD11B622ED700A5BD57 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		18CFFBD21B622ED700A5BD57 /* Build configuration list for PBXNativeTarget "PingTransitionTests" */ = {
 			isa = XCConfigurationList;
@@ -417,6 +418,7 @@
 				18CFFBD41B622ED700A5BD57 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
