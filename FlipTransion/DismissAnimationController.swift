@@ -25,16 +25,34 @@ class DismissAnimationController: PresentAnimationController {
         return nil
     }
 
-    override func coverViewWithFrame(frame: CGRect) -> UIView {
-        let coverView = super.coverViewWithFrame(frame)
-        coverView.alpha = 0.8
-        coverView.layer.transform = CATransform3DMakeRotation(CGFloat(-M_PI_2), 0, 1, 0)
-        return coverView
+    override var frameForPresentedView: CGRect? {
+        if let presentedVC = presentedViewController {
+            return transitionContext?.initialFrameForViewController(presentedVC)
+        }
+        return nil
     }
 
-    override func animationForPresentingView(view: UIView, coverView: UIView) {
-        coverView.alpha           = 0
-        coverView.layer.transform = CATransform3DIdentity
-        view.layer.transform      = CATransform3DIdentity
+    // MARK: - 动画预备
+
+    override func configurePresentingView(view: UIView, shadowView: ShadowView, withFrame frame: CGRect) {
+        super.configurePresentingView(view, shadowView: shadowView, withFrame: frame)
+        shadowView.layer.transform = CATransform3DMakeRotation(CGFloat(-M_PI_2), 0, 1, 0)
+        shadowView.layer.opacity   = 1
+    }
+
+    override func configurePresentedView(view: UIView, shadowView: ShadowView, withFrame frame: CGRect) {
+        shadowView.layer.opacity = 0
+    }
+
+    // MARK: - 动画过程
+
+    override func animationForPresentingView(view: UIView, shadowView: ShadowView) {
+        view.layer.transform       = CATransform3DIdentity
+        shadowView.layer.transform = CATransform3DIdentity
+        shadowView.layer.opacity   = 0
+    }
+
+    override func animationForPresentedView(view: UIView, shadowView: ShadowView) {
+        shadowView.layer.opacity = 1
     }
 }
