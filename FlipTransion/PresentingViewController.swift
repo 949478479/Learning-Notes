@@ -39,5 +39,5 @@ class PresentingViewController: UIViewController {
         toVC.transitioningDelegate = transitioningController
     }
 
-    @IBAction func prepareForDismissWithSegue(segue: UIStoryboardSegue) {}
+    @IBAction func prepareForDismissWithSegue(segue: UIStoryboardSegue) { }
 }

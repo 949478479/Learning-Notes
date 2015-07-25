@@ -8,57 +8,33 @@
 
 import UIKit
 
-class DismissAnimationController: NSObject, UIViewControllerAnimatedTransitioning {
+class DismissAnimationController: PresentAnimationController {
 
-    let transitionDuration: NSTimeInterval = 1
-
-    func transitionDuration(transitionContext: UIViewControllerContextTransitioning) -> NSTimeInterval {
-        return transitionDuration
+    override var presentintViewController: UIViewController? {
+        return transitionContext?.viewControllerForKey(UITransitionContextToViewControllerKey)
     }
 
-    func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
+    override var presentedViewController: UIViewController? {
+        return transitionContext?.viewControllerForKey(UITransitionContextFromViewControllerKey)
+    }
 
-        let containerView = transitionContext.containerView()
+    override var frameForPresentingView: CGRect? {
+        if let presentingVC = presentintViewController {
+            return transitionContext?.finalFrameForViewController(presentingVC)
+        }
+        return nil
+    }
 
-        let presentingVC  = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey)!
-        let presentedVC   = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey)!
+    override func coverViewWithFrame(frame: CGRect) -> UIView {
+        let coverView = super.coverViewWithFrame(frame)
+        coverView.alpha = 0.8
+        coverView.layer.transform = CATransform3DMakeRotation(CGFloat(-M_PI_2), 0, 1, 0)
+        return coverView
+    }
 
-        let finalFrame    = transitionContext.finalFrameForViewController(presentingVC)
-
-        let coverView     = UIView(frame: finalFrame)
-
-        coverView.alpha               = 0.8
-        coverView.backgroundColor     = UIColor.blackColor()
-        coverView.layer.anchorPoint.x = 0
-        coverView.layer.position.x    = finalFrame.minX
-        coverView.layer.transform     = CATransform3DMakeRotation(CGFloat(-M_PI_2), 0, 1, 0)
-
-        presentingVC.view.layer.shouldRasterize    = true
-        presentingVC.view.layer.rasterizationScale = UIScreen.mainScreen().scale
-        presentingVC.view.layer.anchorPoint.x      = 0
-        presentingVC.view.layer.position.x         = finalFrame.minX
-        presentingVC.view.layer.transform          = CATransform3DMakeRotation(CGFloat(-M_PI_2), 0, 1, 0)
-
-        containerView.layer.sublayerTransform.m34 = -1 / 1_000
-        containerView.addSubview(presentingVC.view)
-        containerView.addSubview(coverView)
-
-        UIView.animateWithDuration(transitionDuration, delay: 0, options: .CurveLinear, animations: {
-
-            coverView.alpha                   = 0
-            coverView.layer.transform         = CATransform3DIdentity
-
-            presentingVC.view.layer.transform = CATransform3DIdentity
-
-        }, completion: { _ in
-
-            coverView.removeFromSuperview()
-
-            presentingVC.view.layer.shouldRasterize = false
-            presentingVC.view.layer.anchorPoint.x   = 0.5
-            presentingVC.view.layer.position.x      = finalFrame.midX
-
-            transitionContext.completeTransition(!transitionContext.transitionWasCancelled())
-        })
+    override func animationForPresentingView(view: UIView, coverView: UIView) {
+        coverView.alpha           = 0
+        coverView.layer.transform = CATransform3DIdentity
+        view.layer.transform      = CATransform3DIdentity
     }
 }
