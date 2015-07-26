@@ -29,7 +29,6 @@ class DetailViewController: UIViewController {
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-
         navigationController?.delegate = self
     }
 
@@ -37,18 +36,25 @@ class DetailViewController: UIViewController {
 
     @IBAction func popGestureRecognizerHandle(sender: UIPanGestureRecognizer) {
 
-        let progress = max(0, min(sender.translationInView(view).x / view.bounds.width, 1))
+        let progress = sender.enabled ? max(0, min(sender.translationInView(view).x / view.bounds.width, 1)) : 0
 
         switch sender.state {
         case .Began:
-            interactiveTransition = UIPercentDrivenInteractiveTransition()
-            navigationController?.popViewControllerAnimated(true)
+            if sender.velocityInView(view).x < 0 {
+                sender.enabled = false
+            } else {
+                interactiveTransition = UIPercentDrivenInteractiveTransition()
+                navigationController?.popViewControllerAnimated(true)
+            }
         case .Changed:
             interactiveTransition.updateInteractiveTransition(progress)
-        case .Ended, .Cancelled:
-            progress > 0.5 ? interactiveTransition.finishInteractiveTransition() : interactiveTransition.cancelInteractiveTransition()
-            interactiveTransition = nil
-        default: break
+        default:
+            if sender.enabled {
+                progress > 0.5 ? interactiveTransition.finishInteractiveTransition() : interactiveTransition.cancelInteractiveTransition()
+                interactiveTransition = nil
+            } else {
+                sender.enabled = true
+            }
         }
     }
 }

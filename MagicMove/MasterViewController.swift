@@ -12,7 +12,7 @@ let reuseIdentifier = "Role"
 
 class MasterViewController: UICollectionViewController {
 
-    var selectedCell: RoleCell!
+    private(set) var selectedCell: RoleCell!
     @IBOutlet var flowLayout: UICollectionViewFlowLayout!
 
     override func viewDidLoad() {
@@ -27,17 +27,14 @@ class MasterViewController: UICollectionViewController {
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-
         navigationController?.delegate = self
     }
 
     // MARK: - Navigation
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-
-        let toVC  = segue.destinationViewController as! DetailViewController
         let index = collectionView!.indexPathForCell(selectedCell)!.item
-        toVC.role = roles[index]
+        (segue.destinationViewController as! DetailViewController).role = roles[index]
     }
 }
 
@@ -46,28 +43,26 @@ class MasterViewController: UICollectionViewController {
 extension MasterViewController {
 
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-
         return roles.count
     }
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! RoleCell
         cell.configureForRole(roles[indexPath.item])
         return cell
     }
 
     override func collectionView(collectionView: UICollectionView, shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-
         selectedCell = collectionView.cellForItemAtIndexPath(indexPath) as! RoleCell
         return true
     }
 }
 
+// MARK: - UINavigationControllerDelegate
+
 extension MasterViewController: UINavigationControllerDelegate {
 
     func navigationController(navigationController: UINavigationController, animationControllerForOperation operation: UINavigationControllerOperation, fromViewController fromVC: UIViewController, toViewController toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-
         return PushAnimationController()
     }
 }

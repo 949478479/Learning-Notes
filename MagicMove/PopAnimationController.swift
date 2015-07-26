@@ -8,54 +8,44 @@
 
 import UIKit
 
-private let kTransitionDuration: NSTimeInterval = 0.4
-
 class PopAnimationController: NSObject, UIViewControllerAnimatedTransitioning {
 
+    let transitionDuration: NSTimeInterval = 0.4
+
     func transitionDuration(transitionContext: UIViewControllerContextTransitioning) -> NSTimeInterval {
-        return kTransitionDuration
+        return transitionDuration
     }
 
     func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
 
-        let containerView = transitionContext.containerView()
+        let fromVC = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey) as! DetailViewController
+        let toVC   = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey) as! MasterViewController
 
-        let toVC = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey) as! MasterViewController
+        // 隐藏当前控制器的 imageView, 用截图做动画.
+        fromVC.imageView.hidden            = true
+        toVC.selectedCell.imageView.hidden = true
 
-        let toImageView = toVC.selectedCell.imageView
+        // 将当前控制器的 imageView 截图,用来做动画.
+        let snapshotView   = fromVC.imageView.snapshotViewAfterScreenUpdates(false)
+        snapshotView.frame = fromVC.imageView.frame
 
-        // 隐藏源控制器的 imageView, 用截图做动画.
-        let fromVC: DetailViewController = {
-            let vc = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey) as! DetailViewController
-            vc.imageView.hidden = true
-            return vc
-        }()
+        // 由于是 pop 过程,需将根控制器视图添加到当前控制视图的下层.
+        transitionContext.containerView().insertSubview(toVC.view, belowSubview: fromVC.view)
+        transitionContext.containerView().addSubview(snapshotView)
 
-        let fromImageView = fromVC.imageView
+        // 将当前控制器视图淡出,并将截图以动画效果移动到根控制器选中 cell 的 imageView 的位置.
+        // 结束后显示真正的 imageView, 并将截图移除.这里需要将当前控制器的 imageView 恢复显示,因为有可能中途取消 pop.
+        UIView.animateWithDuration(transitionDuration, animations: {
 
-        // 将源控制器的 imageView 截图,用来做动画.
-        let snapshot: UIView = {
-            let view = fromImageView.snapshotViewAfterScreenUpdates(false)
-            view.frame = fromImageView.frame
-            return view
-        }()
-
-        // 由于是 pop 过程,需将目标控制器视图添加到源控制视图的下层.
-        containerView.insertSubview(toVC.view, belowSubview: fromVC.view)
-        containerView.addSubview(snapshot)
-
-        // 将源控制器淡出,并将截图以动画效果移动到目标控制器选中 cell 的 imageView 的位置.
-        // 结束后显示真正的 imageView, 并将截图移除.这里需要将源控制器的 imageView 恢复显示,因为有可能中途取消 pop.
-        UIView.animateWithDuration(kTransitionDuration, animations: {
-
-            fromVC.view.alpha = 0
-            snapshot.frame = containerView.convertRect(toImageView.frame, fromView: toImageView.superview)
+            fromVC.view.alpha  = 0
+            snapshotView.frame = transitionContext.containerView().convertRect(
+                toVC.selectedCell.imageView.frame, fromView: toVC.selectedCell.imageView.superview)
 
         }, completion: { _ in
 
-            snapshot.removeFromSuperview()
-            fromImageView.hidden = false
-            toImageView.hidden = false
+            snapshotView.removeFromSuperview()
+            fromVC.imageView.hidden            = false
+            toVC.selectedCell.imageView.hidden = false
 
             transitionContext.completeTransition(!transitionContext.transitionWasCancelled())
         })
