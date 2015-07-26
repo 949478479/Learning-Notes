@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		18457BD31B64FC9E00558D59 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 18457BD21B64FC9E00558D59 /* main.m */; };
 		18457BD61B64FC9E00558D59 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 18457BD51B64FC9E00558D59 /* AppDelegate.m */; };
-		18457BD91B64FC9E00558D59 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18457BD81B64FC9E00558D59 /* ViewController.m */; };
+		18457BD91B64FC9E00558D59 /* LXViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18457BD81B64FC9E00558D59 /* LXViewController.m */; };
 		18457BDC1B64FC9E00558D59 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18457BDA1B64FC9E00558D59 /* Main.storyboard */; };
 		18457BDE1B64FC9E00558D59 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18457BDD1B64FC9E00558D59 /* Images.xcassets */; };
 		18457BED1B64FC9E00558D59 /* SimpleWeatherTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 18457BEC1B64FC9E00558D59 /* SimpleWeatherTests.m */; };
@@ -32,8 +32,8 @@
 		18457BD21B64FC9E00558D59 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		18457BD41B64FC9E00558D59 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		18457BD51B64FC9E00558D59 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		18457BD71B64FC9E00558D59 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		18457BD81B64FC9E00558D59 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		18457BD71B64FC9E00558D59 /* LXViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXViewController.h; sourceTree = "<group>"; };
+		18457BD81B64FC9E00558D59 /* LXViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXViewController.m; sourceTree = "<group>"; };
 		18457BDB1B64FC9E00558D59 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		18457BDD1B64FC9E00558D59 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		18457BE61B64FC9E00558D59 /* SimpleWeatherTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SimpleWeatherTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -88,8 +88,8 @@
 			children = (
 				18457BD41B64FC9E00558D59 /* AppDelegate.h */,
 				18457BD51B64FC9E00558D59 /* AppDelegate.m */,
-				18457BD71B64FC9E00558D59 /* ViewController.h */,
-				18457BD81B64FC9E00558D59 /* ViewController.m */,
+				18457BD71B64FC9E00558D59 /* LXViewController.h */,
+				18457BD81B64FC9E00558D59 /* LXViewController.m */,
 				18457BDA1B64FC9E00558D59 /* Main.storyboard */,
 				18457BDD1B64FC9E00558D59 /* Images.xcassets */,
 				18457BD01B64FC9E00558D59 /* Supporting Files */,
@@ -186,6 +186,7 @@
 		18457BC51B64FC9E00558D59 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = LX;
 				LastUpgradeCheck = 0630;
 				ORGANIZATIONNAME = 949478479;
 				TargetAttributes = {
@@ -274,7 +275,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				18457BD91B64FC9E00558D59 /* ViewController.m in Sources */,
+				18457BD91B64FC9E00558D59 /* LXViewController.m in Sources */,
 				18457BD61B64FC9E00558D59 /* AppDelegate.m in Sources */,
 				18457BD31B64FC9E00558D59 /* main.m in Sources */,
 			);
@@ -395,9 +396,15 @@
 			baseConfigurationReference = 2AA661DC52CE5D4793903F47 /* Pods-SimpleWeather.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = SimpleWeather/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				WARNING_CFLAGS = (
+					"-Weverything",
+					"-Wno-objc-missing-property-synthesis",
+					"-Wno-direct-ivar-access",
+				);
 			};
 			name = Debug;
 		};
@@ -406,9 +413,15 @@
 			baseConfigurationReference = 4E49DF41D928590E04E3020B /* Pods-SimpleWeather.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = SimpleWeather/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				WARNING_CFLAGS = (
+					"-Weverything",
+					"-Wno-objc-missing-property-synthesis",
+					"-Wno-direct-ivar-access",
+				);
 			};
 			name = Release;
 		};
