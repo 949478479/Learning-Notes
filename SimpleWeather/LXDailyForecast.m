@@ -8,7 +8,6 @@
 
 #import "LXDailyForecast.h"
 
-
 @implementation LXDailyForecast
 
 + (NSDictionary *)replacedKeyFromPropertyName

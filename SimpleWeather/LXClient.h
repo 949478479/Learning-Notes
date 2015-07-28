@@ -11,7 +11,6 @@
 
 @class RACSignal;
 
-
 @interface LXClient : NSObject
 
 - (RACSignal *)fetchJSONFromURL:(NSURL *)url;

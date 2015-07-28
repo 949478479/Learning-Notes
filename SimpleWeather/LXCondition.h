@@ -13,8 +13,6 @@
 /** dt. */
 @property (nonatomic, readonly, strong) NSDate   *date;
 
-/** main.humidity */
-@property (nonatomic, readonly, strong) NSNumber *humidity;
 /** main.temp_min */
 @property (nonatomic, readonly, strong) NSNumber *tempLow;
 /** main.temp_max */
@@ -25,22 +23,10 @@
 /** name. */
 @property (nonatomic, readonly, copy  ) NSString *locationName;
 
-/** sys.sunrise */
-@property (nonatomic, readonly, strong) NSDate   *sunrise;
-/** sys.sunset */
-@property (nonatomic, readonly, strong) NSDate   *sunset;
-
 /** weather[0].icon */
 @property (nonatomic, readonly, copy  ) NSString *icon;
-/** weather[0].main */
-@property (nonatomic, readonly, copy  ) NSString *condition;
 /** weather[0].description */
 @property (nonatomic, readonly, copy  ) NSString *conditionDescription;
-
-/** wind.speed */
-@property (nonatomic, readonly, strong) NSNumber *windSpeed;
-/** wind.deg */
-@property (nonatomic, readonly, strong) NSNumber *windBearing;
 
 - (NSString *)imageName;
 

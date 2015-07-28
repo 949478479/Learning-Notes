@@ -12,7 +12,6 @@
 #import <TSMessage.h>
 #import <ReactiveCocoa.h>
 
-
 @interface LXManager () <CLLocationManagerDelegate>
 
 @property (nonatomic, readwrite, strong) LXCondition *currentCondition;
@@ -57,12 +56,16 @@
         _client = [LXClient new];
 
         // 观察自身的 currentLocation 属性变化, 如果其值为 nil 则忽略方法链后面的部分.
-        [[[[RACObserve(self, currentLocation) ignore:nil] flattenMap:^RACStream *(CLLocation *newLocation) {
+        [[[[RACObserve(self, currentLocation) ignore:nil]
+           flattenMap:^RACStream *(CLLocation *newLocation) {
+
             return [RACSignal merge:@[[self updateCurrentConditions],
                                       [self updateDailyForecast],
                                       [self updateHourlyForecast]]];
+
             // 将信号传递给主线程的观察者.发生错误时显示个提示.
         }] deliverOn:RACScheduler.mainThreadScheduler] subscribeError:^(NSError *error) {
+
             [TSMessage showNotificationWithTitle:@"错误"
                                         subtitle:@"获取过程出了些问题..."
                                             type:TSMessageNotificationTypeError];
@@ -86,6 +89,8 @@
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 {
+    if (self.currentLocation) return;
+
     CLLocation *location = locations.lastObject;
     if (location.horizontalAccuracy > 0) {
         [manager stopUpdatingLocation];
@@ -95,28 +100,33 @@
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
 {
-    [manager stopUpdatingLocation];
+    if (error.code != kCLErrorLocationUnknown) {
+        [manager stopUpdatingLocation];
+    }
 }
 
 #pragma mark - 获取气象数据
 
 - (RACSignal *)updateCurrentConditions
 {
-    return [[self.client fetchCurrentConditionsForLocation:self.currentLocation.coordinate] doNext:^(LXCondition *condition) {
+    return [[self.client fetchCurrentConditionsForLocation:self.currentLocation.coordinate]
+            doNext:^(LXCondition *condition) {
         self.currentCondition = condition;
     }];
 }
 
 - (RACSignal *)updateDailyForecast
 {
-    return [[self.client fetchDailyForecastForLocation:self.currentLocation.coordinate] doNext:^(NSArray *conditions) {
+    return [[self.client fetchDailyForecastForLocation:self.currentLocation.coordinate]
+            doNext:^(NSArray *conditions) {
         self.dailyForecast = conditions;
     }];
 }
 
 - (RACSignal *)updateHourlyForecast
 {
-    return [[self.client fetchHourlyForecastForLocation:self.currentLocation.coordinate] doNext:^(NSArray *conditions) {
+    return [[self.client fetchHourlyForecastForLocation:self.currentLocation.coordinate]
+            doNext:^(NSArray *conditions) {
         self.hourlyForecast = conditions;
     }];
 }

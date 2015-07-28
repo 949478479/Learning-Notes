@@ -8,13 +8,8 @@
 
 #import "LXCondition.h"
 
-
 @implementation LXCondition
-
-@synthesize date      = _date;
-@synthesize windSpeed = _windSpeed;
-@synthesize sunset    = _sunset;
-@synthesize sunrise   = _sunrise;
+@synthesize date = _date;
 
 #pragma mark - 映射图片名
 
@@ -55,43 +50,18 @@
 {
     return @{@"date"                 : @"dt",
              @"locationName"         : @"name",
-             @"humidity"             : @"main.humidity",
              @"temperature"          : @"main.temp",
              @"tempHigh"             : @"main.temp_max",
              @"tempLow"              : @"main.temp_min",
-             @"sunrise"              : @"sys.sunrise",
-             @"sunset"               : @"sys.sunset",
              @"conditionDescription" : @"weather[0].description",
-             @"condition"            : @"weather[0].main",
-             @"icon"                 : @"weather[0].icon",
-             @"windBearing"          : @"wind.deg",
-             @"windSpeed"            : @"wind.speed"};
+             @"icon"                 : @"weather[0].icon"};
 }
 
-#pragma mark - 类型转换
+#pragma mark - 日期转换
 
 - (NSDate *)date
 {
     return [NSDate dateWithTimeIntervalSince1970:[(NSNumber *)_date doubleValue]];
 }
 
-- (NSDate *)sunrise
-{
-    return [NSDate dateWithTimeIntervalSince1970:[(NSNumber *)_sunrise doubleValue]];
-}
-
-- (NSDate *)sunset
-{
-    return [NSDate dateWithTimeIntervalSince1970:[(NSNumber *)_sunset doubleValue]];
-}
-
-// 由 m/s => 英里/时
-//#pragma mark - 风速转换
-//
-//static const double kMPSToMPH = 2.23694;
-//
-//- (NSNumber *)windSpeed
-//{
-//    return @(_windSpeed.doubleValue * kMPSToMPH);
-//}
 @end

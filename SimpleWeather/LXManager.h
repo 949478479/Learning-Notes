@@ -11,7 +11,6 @@
 
 @class LXCondition;
 
-
 @interface LXManager : NSObject
 
 @property (nonatomic, readonly, strong) LXCondition *currentCondition;

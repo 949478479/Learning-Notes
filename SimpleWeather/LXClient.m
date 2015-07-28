@@ -11,18 +11,18 @@
 #import "LXDailyForecast.h"
 #import <ReactiveCocoa.h>
 
-
-static NSString *const kConditionsWeatherAPI = @"http://api.openweathermap.org/data/2.5/weather?lat=%f&lon=%f&units=imperial";
-static NSString *const kHourlyForecastAPI    = @"http://api.openweathermap.org/data/2.5/forecast?lat=%f&lon=%f&units=imperial&cnt=12";
-static NSString *const kDailyForecastAPI     = @"http://api.openweathermap.org/data/2.5/forecast/daily?lat=%f&lon=%f&units=imperial&cnt=7";
-
+static NSString *const kConditionsWeatherAPI =
+    @"http://api.openweathermap.org/data/2.5/weather?lat=%f&lon=%f&units=metric&lang=zh_cn";
+static NSString *const kHourlyForecastAPI    =
+    @"http://api.openweathermap.org/data/2.5/forecast?lat=%f&lon=%f&units=metric&cnt=12";
+static NSString *const kDailyForecastAPI     =
+    @"http://api.openweathermap.org/data/2.5/forecast/daily?lat=%f&lon=%f&units=metric&cnt=7";
 
 @interface LXClient ()
 
 @property (nonatomic, strong) NSURLSession *session;
 
 @end
-
 
 @implementation LXClient
 
@@ -43,8 +43,8 @@ static NSString *const kDailyForecastAPI     = @"http://api.openweathermap.org/d
 {
     // 创建然后返回信号.直到这个信号被订阅才会执行网络请求.
     return [[RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-        NSURLSessionDataTask *dataTask = [ self.session dataTaskWithURL:url
-                                                      completionHandler:
+        NSURLSessionDataTask *dataTask = [self.session dataTaskWithURL:url
+                                                     completionHandler:
                                           ^(NSData *data, NSURLResponse *response, NSError *error) {
             if (!error) {
                 NSError *jsonError;
@@ -71,21 +71,13 @@ static NSString *const kDailyForecastAPI     = @"http://api.openweathermap.org/d
 
 #pragma mark - 获取对应位置的环境信息
 
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wformat-nonliteral"
-- (NSURL *)p_jsonURLForWeatherAPI:(NSString *)weatherAPI withLocation:(CLLocationCoordinate2D)coordinate
-{
-    return [NSURL URLWithString:[NSString stringWithFormat:weatherAPI, coordinate.latitude, coordinate.longitude]];
-}
-#pragma clang diagnostic pop
-
 - (RACSignal *)fetchCurrentConditionsForLocation:(CLLocationCoordinate2D)coordinate
 {
-    NSURL *url = [self p_jsonURLForWeatherAPI:kConditionsWeatherAPI withLocation:coordinate];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:kConditionsWeatherAPI,
+                                       coordinate.latitude, coordinate.longitude]];
 
     return [[self fetchJSONFromURL:url] map:^id(id json) {
-        LXCondition *model = [LXCondition objectWithKeyValues:json];
-        return model;
+        return [LXCondition objectWithKeyValues:json];
     }];
 }
 
@@ -93,7 +85,8 @@ static NSString *const kDailyForecastAPI     = @"http://api.openweathermap.org/d
 
 - (RACSignal *)fetchHourlyForecastForLocation:(CLLocationCoordinate2D)coordinate
 {
-    NSURL *url = [self p_jsonURLForWeatherAPI:kHourlyForecastAPI withLocation:coordinate];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:kHourlyForecastAPI,
+                                       coordinate.latitude, coordinate.longitude]];
 
     return [[self fetchJSONFromURL:url] map:^id(id json) {
         RACSequence *list = [json[@"list"] rac_sequence]; // 获取返回 JSON 中的 "list" 数组,生成 rac 序列.
@@ -107,12 +100,13 @@ static NSString *const kDailyForecastAPI     = @"http://api.openweathermap.org/d
 
 - (RACSignal *)fetchDailyForecastForLocation:(CLLocationCoordinate2D)coordinate
 {
-    NSURL *url = [self p_jsonURLForWeatherAPI:kDailyForecastAPI withLocation:coordinate];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:kDailyForecastAPI,
+                                       coordinate.latitude, coordinate.longitude]];
 
     return [[self fetchJSONFromURL:url] map:^id(id json) {
         RACSequence *list = [json[@"list"] rac_sequence];
         return [[list map:^id(id item) {
-            return [LXCondition objectWithKeyValues:item];
+            return [LXDailyForecast objectWithKeyValues:item];
         }] array];
     }];
 }

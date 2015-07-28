@@ -9,11 +9,9 @@
 #import "AppDelegate.h"
 #import <TSMessage.h>
 
-
 @interface AppDelegate ()
 
 @end
-
 
 @implementation AppDelegate
 
