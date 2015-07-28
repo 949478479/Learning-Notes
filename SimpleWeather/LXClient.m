@@ -9,6 +9,7 @@
 #import "LXClient.h"
 #import "LXCondition.h"
 #import "LXDailyForecast.h"
+#import <MJExtension.h>
 #import <ReactiveCocoa.h>
 
 static NSString *const kConditionsWeatherAPI =

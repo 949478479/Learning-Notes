@@ -7,6 +7,7 @@
 //
 
 #import "LXCondition.h"
+#import <MJExtension.h>
 
 @implementation LXCondition
 @synthesize date = _date;
