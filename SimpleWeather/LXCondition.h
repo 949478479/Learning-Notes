@@ -6,32 +6,41 @@
 //  Copyright (c) 2015年 949478479. All rights reserved.
 //
 
-#import <Mantle.h>
+#import <MJExtension.h>
 
+@interface LXCondition : NSObject
 
-@interface LXCondition : MTLModel <MTLJSONSerializing>
+/** dt. */
+@property (nonatomic, readonly, strong) NSDate   *date;
 
-@property (nonatomic, readonly) NSDate *date;
+/** main.humidity */
+@property (nonatomic, readonly, strong) NSNumber *humidity;
+/** main.temp_min */
+@property (nonatomic, readonly, strong) NSNumber *tempLow;
+/** main.temp_max */
+@property (nonatomic, readonly, strong) NSNumber *tempHigh;
+/** main.temp */
+@property (nonatomic, readonly, strong) NSNumber *temperature;
 
-@property (nonatomic, readonly) NSDate *sunrise;
-@property (nonatomic, readonly) NSDate *sunset;
+/** name. */
+@property (nonatomic, readonly, copy  ) NSString *locationName;
 
-@property (nonatomic, readonly) NSNumber *humidity;
+/** sys.sunrise */
+@property (nonatomic, readonly, strong) NSDate   *sunrise;
+/** sys.sunset */
+@property (nonatomic, readonly, strong) NSDate   *sunset;
 
-@property (nonatomic, readonly) NSNumber *tempLow;
-@property (nonatomic, readonly) NSNumber *tempHigh;
-@property (nonatomic, readonly) NSNumber *temperature;
+/** weather[0].icon */
+@property (nonatomic, readonly, copy  ) NSString *icon;
+/** weather[0].main */
+@property (nonatomic, readonly, copy  ) NSString *condition;
+/** weather[0].description */
+@property (nonatomic, readonly, copy  ) NSString *conditionDescription;
 
-@property (nonatomic, readonly) NSNumber *windSpeed;
-@property (nonatomic, readonly) NSNumber *windBearing;
-
-@property (nonatomic, readonly) NSString *icon;
-
-@property (nonatomic, readonly) NSString *locationName;
-
-@property (nonatomic, readonly) NSString *condition;
-@property (nonatomic, readonly) NSString *conditionDescription;
-
+/** wind.speed */
+@property (nonatomic, readonly, strong) NSNumber *windSpeed;
+/** wind.deg */
+@property (nonatomic, readonly, strong) NSNumber *windBearing;
 
 - (NSString *)imageName;
 

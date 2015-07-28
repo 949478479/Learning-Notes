@@ -7,7 +7,23 @@
 //
 
 @import Foundation;
+@import CoreLocation;
+
+@class LXCondition;
+
 
 @interface LXManager : NSObject
+
+@property (nonatomic, readonly, strong) LXCondition *currentCondition;
+
+@property (nonatomic, readonly, strong) CLLocation  *currentLocation;
+
+@property (nonatomic, readonly, strong) NSArray     *hourlyForecast;
+
+@property (nonatomic, readonly, strong) NSArray     *dailyForecast;
+
++ (instancetype)sharedManager;
+
+- (void)findCurrentLocation;
 
 @end

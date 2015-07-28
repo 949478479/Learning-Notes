@@ -7,14 +7,23 @@
 //
 
 #import "LXViewController.h"
-#import <LBBlurredImage/UIImageView+LBBlurredImage.h>
+#import "LXManager.h"
+#import "LXCondition.h"
+
+#import <ReactiveCocoa.h>
+#import <UIImageView+LBBlurredImage.h>
 
 
 @interface LXViewController () <UITableViewDataSource, UITableViewDelegate>
 
-@property (nonatomic) IBOutlet UIImageView *blurredImageView;
+@property (nonatomic, strong) IBOutlet UILabel     *cityLabel;
+@property (nonatomic, strong) IBOutlet UILabel     *hiloLabel;
+@property (nonatomic, strong) IBOutlet UILabel     *temperatureLabel;
+@property (nonatomic, strong) IBOutlet UILabel     *conditionsLabel;
+@property (nonatomic, strong) IBOutlet UIImageView *iconView;
 
-@property (nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) IBOutlet UIImageView *blurredImageView;
 
 @end
 
@@ -27,8 +36,21 @@
 {
     [super viewDidLoad];
 
-    _tableView.tableHeaderView.frame = self.view.bounds;
-    [_blurredImageView setImageToBlur:[UIImage imageNamed:@"bg"] blurRadius:10 completionBlock:nil];
+    self.tableView.tableHeaderView.frame = self.view.bounds;
+
+    [self.blurredImageView setImageToBlur:[UIImage imageNamed:@"bg"]
+                               blurRadius:10
+                          completionBlock:nil];
+
+    [[RACObserve([LXManager sharedManager], currentCondition)
+      deliverOn:RACScheduler.mainThreadScheduler] subscribeNext:^(LXCondition *newCondition) {
+
+        self.temperatureLabel.text = [NSString stringWithFormat:@"%.f°", newCondition.temperature.floatValue];
+        self.conditionsLabel.text  = [newCondition.condition capitalizedString];
+        self.cityLabel.text        = [newCondition.locationName capitalizedString];
+        self.iconView.image        = [UIImage imageNamed:newCondition.imageName];
+    }];
+    [[LXManager sharedManager] findCurrentLocation];
 }
 
 #pragma mark - UITableViewDataSource

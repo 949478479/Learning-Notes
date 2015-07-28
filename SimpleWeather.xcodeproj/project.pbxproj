@@ -13,10 +13,10 @@
 		18457BDC1B64FC9E00558D59 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18457BDA1B64FC9E00558D59 /* Main.storyboard */; };
 		18457BDE1B64FC9E00558D59 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18457BDD1B64FC9E00558D59 /* Images.xcassets */; };
 		18457BED1B64FC9E00558D59 /* SimpleWeatherTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 18457BEC1B64FC9E00558D59 /* SimpleWeatherTests.m */; };
-		18457BF81B65152F00558D59 /* LXClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 18457BF71B65152F00558D59 /* LXClient.m */; };
-		18457BFB1B65156A00558D59 /* LXManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 18457BFA1B65156A00558D59 /* LXManager.m */; };
-		18457BFE1B65158000558D59 /* LXCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = 18457BFD1B65158000558D59 /* LXCondition.m */; };
-		18457C011B65159400558D59 /* LXDailyForecast.m in Sources */ = {isa = PBXBuildFile; fileRef = 18457C001B65159400558D59 /* LXDailyForecast.m */; };
+		18AFDEC21B67A46F006DFFAC /* LXClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 18AFDEBB1B67A46F006DFFAC /* LXClient.m */; };
+		18AFDEC31B67A46F006DFFAC /* LXCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = 18AFDEBD1B67A46F006DFFAC /* LXCondition.m */; };
+		18AFDEC41B67A46F006DFFAC /* LXDailyForecast.m in Sources */ = {isa = PBXBuildFile; fileRef = 18AFDEBF1B67A46F006DFFAC /* LXDailyForecast.m */; };
+		18AFDEC51B67A46F006DFFAC /* LXManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 18AFDEC11B67A46F006DFFAC /* LXManager.m */; };
 		3F87A8752D63AA8445495A37 /* libPods-SimpleWeather.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CE54ACC91F31BFDC8F297FD /* libPods-SimpleWeather.a */; };
 /* End PBXBuildFile section */
 
@@ -43,14 +43,14 @@
 		18457BE61B64FC9E00558D59 /* SimpleWeatherTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SimpleWeatherTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		18457BEB1B64FC9E00558D59 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		18457BEC1B64FC9E00558D59 /* SimpleWeatherTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SimpleWeatherTests.m; sourceTree = "<group>"; };
-		18457BF61B65152F00558D59 /* LXClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXClient.h; sourceTree = "<group>"; };
-		18457BF71B65152F00558D59 /* LXClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXClient.m; sourceTree = "<group>"; };
-		18457BF91B65156A00558D59 /* LXManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXManager.h; sourceTree = "<group>"; };
-		18457BFA1B65156A00558D59 /* LXManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXManager.m; sourceTree = "<group>"; };
-		18457BFC1B65158000558D59 /* LXCondition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXCondition.h; sourceTree = "<group>"; };
-		18457BFD1B65158000558D59 /* LXCondition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXCondition.m; sourceTree = "<group>"; };
-		18457BFF1B65159400558D59 /* LXDailyForecast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXDailyForecast.h; sourceTree = "<group>"; };
-		18457C001B65159400558D59 /* LXDailyForecast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXDailyForecast.m; sourceTree = "<group>"; };
+		18AFDEBA1B67A46F006DFFAC /* LXClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXClient.h; sourceTree = "<group>"; };
+		18AFDEBB1B67A46F006DFFAC /* LXClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXClient.m; sourceTree = "<group>"; };
+		18AFDEBC1B67A46F006DFFAC /* LXCondition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXCondition.h; sourceTree = "<group>"; };
+		18AFDEBD1B67A46F006DFFAC /* LXCondition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXCondition.m; sourceTree = "<group>"; };
+		18AFDEBE1B67A46F006DFFAC /* LXDailyForecast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXDailyForecast.h; sourceTree = "<group>"; };
+		18AFDEBF1B67A46F006DFFAC /* LXDailyForecast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXDailyForecast.m; sourceTree = "<group>"; };
+		18AFDEC01B67A46F006DFFAC /* LXManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXManager.h; sourceTree = "<group>"; };
+		18AFDEC11B67A46F006DFFAC /* LXManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXManager.m; sourceTree = "<group>"; };
 		2AA661DC52CE5D4793903F47 /* Pods-SimpleWeather.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleWeather.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SimpleWeather/Pods-SimpleWeather.debug.xcconfig"; sourceTree = "<group>"; };
 		3CE54ACC91F31BFDC8F297FD /* libPods-SimpleWeather.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SimpleWeather.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E49DF41D928590E04E3020B /* Pods-SimpleWeather.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleWeather.release.xcconfig"; path = "Pods/Target Support Files/Pods-SimpleWeather/Pods-SimpleWeather.release.xcconfig"; sourceTree = "<group>"; };
@@ -102,14 +102,14 @@
 				18457BD51B64FC9E00558D59 /* AppDelegate.m */,
 				18457BD71B64FC9E00558D59 /* LXViewController.h */,
 				18457BD81B64FC9E00558D59 /* LXViewController.m */,
-				18457BF61B65152F00558D59 /* LXClient.h */,
-				18457BF71B65152F00558D59 /* LXClient.m */,
-				18457BF91B65156A00558D59 /* LXManager.h */,
-				18457BFA1B65156A00558D59 /* LXManager.m */,
-				18457BFC1B65158000558D59 /* LXCondition.h */,
-				18457BFD1B65158000558D59 /* LXCondition.m */,
-				18457BFF1B65159400558D59 /* LXDailyForecast.h */,
-				18457C001B65159400558D59 /* LXDailyForecast.m */,
+				18AFDEBA1B67A46F006DFFAC /* LXClient.h */,
+				18AFDEBB1B67A46F006DFFAC /* LXClient.m */,
+				18AFDEBC1B67A46F006DFFAC /* LXCondition.h */,
+				18AFDEBD1B67A46F006DFFAC /* LXCondition.m */,
+				18AFDEBE1B67A46F006DFFAC /* LXDailyForecast.h */,
+				18AFDEBF1B67A46F006DFFAC /* LXDailyForecast.m */,
+				18AFDEC01B67A46F006DFFAC /* LXManager.h */,
+				18AFDEC11B67A46F006DFFAC /* LXManager.m */,
 				18457BDA1B64FC9E00558D59 /* Main.storyboard */,
 				18457BDD1B64FC9E00558D59 /* Images.xcassets */,
 				18457BD01B64FC9E00558D59 /* Supporting Files */,
@@ -295,13 +295,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				18457C011B65159400558D59 /* LXDailyForecast.m in Sources */,
-				18457BF81B65152F00558D59 /* LXClient.m in Sources */,
+				18AFDEC41B67A46F006DFFAC /* LXDailyForecast.m in Sources */,
+				18AFDEC31B67A46F006DFFAC /* LXCondition.m in Sources */,
+				18AFDEC21B67A46F006DFFAC /* LXClient.m in Sources */,
 				18457BD91B64FC9E00558D59 /* LXViewController.m in Sources */,
 				18457BD61B64FC9E00558D59 /* AppDelegate.m in Sources */,
-				18457BFE1B65158000558D59 /* LXCondition.m in Sources */,
-				18457BFB1B65156A00558D59 /* LXManager.m in Sources */,
 				18457BD31B64FC9E00558D59 /* main.m in Sources */,
+				18AFDEC51B67A46F006DFFAC /* LXManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -428,6 +428,8 @@
 					"-Weverything",
 					"-Wno-objc-missing-property-synthesis",
 					"-Wno-direct-ivar-access",
+					"-Wno-implicit-retain-self",
+					"-Wno-gnu-statement-expression",
 				);
 			};
 			name = Debug;
@@ -445,6 +447,8 @@
 					"-Weverything",
 					"-Wno-objc-missing-property-synthesis",
 					"-Wno-direct-ivar-access",
+					"-Wno-implicit-retain-self",
+					"-Wno-gnu-statement-expression",
 				);
 			};
 			name = Release;

@@ -1,9 +1,7 @@
 PODS:
   - HexColors (2.2.1)
   - LBBlurredImage (0.2.2)
-  - Mantle (2.0.2):
-    - Mantle/extobjc (= 2.0.2)
-  - Mantle/extobjc (2.0.2)
+  - MJExtension (2.5.3)
   - ReactiveCocoa (2.5):
     - ReactiveCocoa/UI (= 2.5)
   - ReactiveCocoa/Core (2.5):
@@ -16,14 +14,14 @@ PODS:
 
 DEPENDENCIES:
   - LBBlurredImage
-  - Mantle
+  - MJExtension
   - ReactiveCocoa
   - TSMessages
 
 SPEC CHECKSUMS:
   HexColors: abfd172e329dab59888614ccba6f216cec59289d
   LBBlurredImage: 700634c17922bc2d22343118e7deb6a3ca12db43
-  Mantle: 967fd31ea0220890b2e76589198996b534bb3fb1
+  MJExtension: d636ed42d1af44cba81106ae7831cccb66906eb7
   ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a
   TSMessages: c8cc7b80f2a833af533872cd02010cac061532cc
 

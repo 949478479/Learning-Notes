@@ -136,7 +136,12 @@
                     </view>
                     <connections>
                         <outlet property="blurredImageView" destination="u67-sq-eZu" id="V8F-UV-m9A"/>
+                        <outlet property="cityLabel" destination="ygh-RY-5W5" id="pPl-Fp-3ib"/>
+                        <outlet property="conditionsLabel" destination="n4N-bc-w7L" id="Vs0-Ed-vk2"/>
+                        <outlet property="hiloLabel" destination="fwQ-ms-RRv" id="7g3-BO-0Sm"/>
+                        <outlet property="iconView" destination="w4e-J5-rkf" id="166-8v-RKC"/>
                         <outlet property="tableView" destination="GkR-Gc-AiH" id="RVr-z5-vYa"/>
+                        <outlet property="temperatureLabel" destination="Uqo-WZ-0zI" id="47b-ns-52L"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>

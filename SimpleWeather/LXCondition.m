@@ -9,52 +9,51 @@
 #import "LXCondition.h"
 
 
-static const float kLXMPSToMPH = 2.23694;
-
-
 @implementation LXCondition
+
+@synthesize date      = _date;
+@synthesize windSpeed = _windSpeed;
+@synthesize sunset    = _sunset;
+@synthesize sunrise   = _sunrise;
 
 #pragma mark - 映射图片名
 
 + (NSDictionary *)p_imageMap
 {
-    static NSDictionary *_imageMap;
-    if (!_imageMap) {
-        _imageMap = @{
-                      @"01d" : @"weather-clear",
-                      @"02d" : @"weather-few",
-                      @"03d" : @"weather-few",
-                      @"04d" : @"weather-broken",
-                      @"09d" : @"weather-shower",
-                      @"10d" : @"weather-rain",
-                      @"11d" : @"weather-tstorm",
-                      @"13d" : @"weather-snow",
-                      @"50d" : @"weather-mist",
-                      @"01n" : @"weather-moon",
-                      @"02n" : @"weather-few-night",
-                      @"03n" : @"weather-few-night",
-                      @"04n" : @"weather-broken",
-                      @"09n" : @"weather-shower",
-                      @"10n" : @"weather-rain-night",
-                      @"11n" : @"weather-tstorm",
-                      @"13n" : @"weather-snow",
-                      @"50n" : @"weather-mist",
-                      };
+    static NSDictionary *imageMap;
+    if (!imageMap) {
+        imageMap = @{@"01d" : @"weather-clear",
+                     @"02d" : @"weather-few",
+                     @"03d" : @"weather-few",
+                     @"04d" : @"weather-broken",
+                     @"09d" : @"weather-shower",
+                     @"10d" : @"weather-rain",
+                     @"11d" : @"weather-tstorm",
+                     @"13d" : @"weather-snow",
+                     @"50d" : @"weather-mist",
+                     @"01n" : @"weather-moon",
+                     @"02n" : @"weather-few-night",
+                     @"03n" : @"weather-few-night",
+                     @"04n" : @"weather-broken",
+                     @"09n" : @"weather-shower",
+                     @"10n" : @"weather-rain-night",
+                     @"11n" : @"weather-tstorm",
+                     @"13n" : @"weather-snow",
+                     @"50n" : @"weather-mist"};
     }
-    return _imageMap;
+    return imageMap;
 }
 
 - (NSString *)imageName
 {
-    return [LXCondition p_imageMap][_icon];
+    return [LXCondition p_imageMap][self.icon];
 }
 
 #pragma mark - 字典转模型
 
-+ (NSDictionary *)JSONKeyPathsByPropertyKey
++ (NSDictionary *)replacedKeyFromPropertyName
 {
-    return @{
-             @"date"                 : @"dt",
+    return @{@"date"                 : @"dt",
              @"locationName"         : @"name",
              @"humidity"             : @"main.humidity",
              @"temperature"          : @"main.temp",
@@ -62,66 +61,37 @@ static const float kLXMPSToMPH = 2.23694;
              @"tempLow"              : @"main.temp_min",
              @"sunrise"              : @"sys.sunrise",
              @"sunset"               : @"sys.sunset",
-             @"conditionDescription" : @"weather.description",
-             @"condition"            : @"weather.main",
-             @"icon"                 : @"weather.icon",
+             @"conditionDescription" : @"weather[0].description",
+             @"condition"            : @"weather[0].main",
+             @"icon"                 : @"weather[0].icon",
              @"windBearing"          : @"wind.deg",
-             @"windSpeed"            : @"wind.speed"
-             };
+             @"windSpeed"            : @"wind.speed"};
 }
 
-#pragma mark - 日期转换
+#pragma mark - 类型转换
 
-+ (NSValueTransformer *)dateJSONTransformer
+- (NSDate *)date
 {
-    return [MTLValueTransformer transformerUsingForwardBlock:^id(id value, BOOL *success, NSError *__autoreleasing *error) {
-        return [NSDate dateWithTimeIntervalSince1970:[value floatValue]];
-    } reverseBlock:^id(id value, BOOL *success, NSError *__autoreleasing *error) {
-        return [NSString stringWithFormat:@"%f",[value timeIntervalSince1970]];
-    }];
+    return [NSDate dateWithTimeIntervalSince1970:[(NSNumber *)_date doubleValue]];
 }
 
-+ (NSValueTransformer *)sunriseJSONTransformer
+- (NSDate *)sunrise
 {
-    return [self dateJSONTransformer];
+    return [NSDate dateWithTimeIntervalSince1970:[(NSNumber *)_sunrise doubleValue]];
 }
 
-+ (NSValueTransformer *)sunsetJSONTransformer
+- (NSDate *)sunset
 {
-    return [self dateJSONTransformer];
+    return [NSDate dateWithTimeIntervalSince1970:[(NSNumber *)_sunset doubleValue]];
 }
 
-#pragma mark - 环境转换
-
-+ (NSValueTransformer *)conditionDescriptionJSONTransformer
-{
-    return [MTLValueTransformer transformerUsingForwardBlock:^id(id value, BOOL *success, NSError *__autoreleasing *error) {
-        return [value firstObject];
-    } reverseBlock:^id(id value, BOOL *success, NSError *__autoreleasing *error) {
-        return @[value];
-    }];
-}
-
-+ (NSValueTransformer *)conditionJSONTransformer
-{
-    return [self conditionDescriptionJSONTransformer];
-}
-
-+ (NSValueTransformer *)iconJSONTransformer
-{
-    return [self conditionDescriptionJSONTransformer];
-}
-
-
-#pragma mark - 风速转换
-
-+ (NSValueTransformer *)windSpeedJSONTransformer
-{
-    return [MTLValueTransformer transformerUsingForwardBlock:^id(id value, BOOL *success, NSError *__autoreleasing *error) {
-        return @([value floatValue] * kLXMPSToMPH);
-    } reverseBlock:^id(id value, BOOL *success, NSError *__autoreleasing *error) {
-        return @([value floatValue] / kLXMPSToMPH);
-    }];
-}
-
+// 由 m/s => 英里/时
+//#pragma mark - 风速转换
+//
+//static const double kMPSToMPH = 2.23694;
+//
+//- (NSNumber *)windSpeed
+//{
+//    return @(_windSpeed.doubleValue * kMPSToMPH);
+//}
 @end

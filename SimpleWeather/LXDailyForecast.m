@@ -11,9 +11,9 @@
 
 @implementation LXDailyForecast
 
-+ (NSDictionary *)JSONKeyPathsByPropertyKey
++ (NSDictionary *)replacedKeyFromPropertyName
 {
-    NSMutableDictionary *paths = [[super JSONKeyPathsByPropertyKey] mutableCopy];
+    NSMutableDictionary *paths = [[super replacedKeyFromPropertyName] mutableCopy];
 
     paths[@"tempHigh"] = @"temp.max";
     paths[@"tempLow"]  = @"temp.min";
