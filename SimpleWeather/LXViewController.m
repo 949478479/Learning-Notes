@@ -6,24 +6,23 @@
 //  Copyright (c) 2015年 949478479. All rights reserved.
 //
 
-#import "LXViewController.h"
-#import "LXManager.h"
-#import "LXCondition.h"
-
-#import <RACEXTScope.h>
 #import <ReactiveCocoa.h>
 #import <UIImageView+LBBlurredImage.h>
 
+#import "LXManager.h"
+#import "LXCondition.h"
+#import "LXViewController.h"
+
 @interface LXViewController () <UITableViewDataSource, UITableViewDelegate>
 
-@property (nonatomic, strong) IBOutlet UILabel     *cityLabel;
-@property (nonatomic, strong) IBOutlet UILabel     *hiloLabel;
-@property (nonatomic, strong) IBOutlet UILabel     *temperatureLabel;
-@property (nonatomic, strong) IBOutlet UILabel     *conditionsLabel;
-@property (nonatomic, strong) IBOutlet UIImageView *iconView;
+@property (nonatomic, weak) IBOutlet UILabel     *cityLabel;
+@property (nonatomic, weak) IBOutlet UILabel     *hiloLabel;
+@property (nonatomic, weak) IBOutlet UILabel     *temperatureLabel;
+@property (nonatomic, weak) IBOutlet UILabel     *conditionsLabel;
+@property (nonatomic, weak) IBOutlet UIImageView *iconView;
 
-@property (nonatomic, strong) IBOutlet UITableView *tableView;
-@property (nonatomic, strong) IBOutlet UIImageView *blurredImageView;
+@property (nonatomic, weak) IBOutlet UITableView *tableView;
+@property (nonatomic, weak) IBOutlet UIImageView *blurredImageView;
 
 @property (nonatomic, strong) NSDateFormatter *hourlyFormatter;
 @property (nonatomic, strong) NSDateFormatter *dailyFormatter;

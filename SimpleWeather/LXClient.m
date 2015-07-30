@@ -6,10 +6,11 @@
 //  Copyright (c) 2015年 949478479. All rights reserved.
 //
 
+#import <ReactiveCocoa.h>
+
 #import "LXClient.h"
 #import "LXCondition.h"
 #import "LXDailyForecast.h"
-#import <ReactiveCocoa.h>
 
 static NSString *const kConditionsWeatherAPI =
     @"http://api.openweathermap.org/data/2.5/weather?lat=%f&lon=%f&units=metric&lang=zh_cn";

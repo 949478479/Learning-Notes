@@ -6,11 +6,12 @@
 //  Copyright (c) 2015年 949478479. All rights reserved.
 //
 
+#import <TSMessage.h>
+#import <ReactiveCocoa.h>
+
 #import "LXClient.h"
 #import "LXManager.h"
 #import "LXCondition.h"
-#import <TSMessage.h>
-#import <ReactiveCocoa.h>
 
 @interface LXManager () <CLLocationManagerDelegate>
 
