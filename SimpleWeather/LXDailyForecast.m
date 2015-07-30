@@ -7,7 +7,6 @@
 //
 
 #import "LXDailyForecast.h"
-#import <MJExtension.h>
 
 @implementation LXDailyForecast
 

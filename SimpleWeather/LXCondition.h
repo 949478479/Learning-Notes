@@ -6,7 +6,7 @@
 //  Copyright (c) 2015年 949478479. All rights reserved.
 //
 
-@import Foundation;
+#import <MJExtension.h>
 
 @interface LXCondition : NSObject
 

@@ -10,6 +10,7 @@
 #import "LXManager.h"
 #import "LXCondition.h"
 
+#import <RACEXTScope.h>
 #import <ReactiveCocoa.h>
 #import <UIImageView+LBBlurredImage.h>
 
@@ -59,37 +60,44 @@
                                blurRadius:10
                           completionBlock:nil];
 
+    @weakify(self)
+    
     // 监听 LXManager 的 currentCondition, 一旦发生变化就在主线程执行 block 中的内容.
     [[RACObserve([LXManager sharedManager], currentCondition)
-      deliverOn:RACScheduler.mainThreadScheduler] subscribeNext:^(LXCondition *newCondition) {
-
-        self.temperatureLabel.text = [NSString stringWithFormat:@"%.f°", newCondition.temperature.floatValue];
-        self.conditionsLabel.text  = newCondition.conditionDescription;
-        self.cityLabel.text        = newCondition.locationName;
-        if (newCondition.imageName) {
-            self.iconView.image    = [UIImage imageNamed:newCondition.imageName];
-        }
+      deliverOn:RACScheduler.mainThreadScheduler]
+      subscribeNext:^(LXCondition *newCondition) {
+          @strongify(self)
+          self.temperatureLabel.text = [NSString stringWithFormat:@"%.f°", newCondition.temperature.floatValue];
+          self.conditionsLabel.text  = newCondition.conditionDescription;
+          self.cityLabel.text        = newCondition.locationName;
+          if (newCondition.imageName) {
+              self.iconView.image    = [UIImage imageNamed:newCondition.imageName];
+          }
     }];
 
     // 信号的返回值将会赋值给 hiloLabel 的 text 属性.
     // 观察 LXManager 的 currentCondition 属性的 tempHigh 和 tempLow, 将信号合并返回单一数据.
-    RAC(self.hiloLabel, text) = [[RACSignal combineLatest:
-        @[RACObserve([LXManager sharedManager], currentCondition.tempHigh),
-          RACObserve([LXManager sharedManager], currentCondition.tempLow)]
-    reduce:^(NSNumber *high, NSNumber *low){
-        return [NSString stringWithFormat:@"%.f° / %.f°", high.floatValue, low.floatValue];
-    }] deliverOn:RACScheduler.mainThreadScheduler];
+    RAC(self.hiloLabel, text) =
+        [[RACSignal combineLatest:
+              @[RACObserve([LXManager sharedManager], currentCondition.tempHigh),
+                RACObserve([LXManager sharedManager], currentCondition.tempLow)]
+          reduce:^(NSNumber *high, NSNumber *low){
+              return [NSString stringWithFormat:@"%.f° / %.f°", high.floatValue, low.floatValue];
+          }]
+          deliverOn:RACScheduler.mainThreadScheduler];
 
     // 逐时/每日 预报变化时刷新表视图.
     [[RACObserve([LXManager sharedManager], hourlyForecast)
       deliverOn:RACScheduler.mainThreadScheduler] subscribeNext:^(NSArray *newForecast) {
-        [self.tableView reloadData];
-    }];
+            @strongify(self)
+            [self.tableView reloadData];
+      }];
 
     [[RACObserve([LXManager sharedManager], dailyForecast)
       deliverOn:RACScheduler.mainThreadScheduler] subscribeNext:^(NSArray *newForecast) {
-        [self.tableView reloadData];
-    }];
+            @strongify(self)
+            [self.tableView reloadData];
+      }];
 
     [[LXManager sharedManager] findCurrentLocation];
 }
