@@ -1,0 +1,112 @@
+//
+//  LXFlickrPhotosViewController.m
+//  FlickrSearch
+//
+//  Created by 从今以后 on 15/8/1.
+//  Copyright (c) 2015年 从今以后. All rights reserved.
+//
+
+#import <ObjectiveFlickr.h>
+
+#import "LXFlickr.h"
+#import "LXFlickrPhoto.h"
+#import "LXFlickrPhotosViewController.h"
+
+static NSString * const reuseIdentifier             = @"FlickrCell";
+
+static NSString * const kOFSampleAppAPIKey          = @"77766361c226eb1cf362b9dc46d70c47";
+static NSString * const kOFSampleAppAPISharedSecret = @"44dce4451bb55ea1";
+
+@interface LXFlickrPhotosViewController () <UICollectionViewDelegateFlowLayout, UITextFieldDelegate, OFFlickrAPIRequestDelegate>
+
+@property (nonatomic, weak) IBOutlet UITextField    *textField;
+@property (nonatomic, weak) UIActivityIndicatorView *activityIndicator;
+
+@property (nonatomic, strong) NSMutableArray      *searches;
+@property (nonatomic, strong) NSMutableDictionary *searchResults;
+
+@property (nonatomic, strong) LXFlickr *flickr;
+
+@end
+
+@implementation LXFlickrPhotosViewController
+
+#pragma mark - 生命周期
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+
+    self.flickr        = [LXFlickr new];
+    self.searches      = [NSMutableArray new];
+    self.searchResults = [NSMutableDictionary new];
+
+    [self.textField addSubview:({
+        UIActivityIndicatorView *activityIndicator =
+            [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        activityIndicator.center = (CGPoint){
+            CGRectGetMidX(self.textField.bounds), CGRectGetMidY(self.textField.bounds)
+        };
+        self.activityIndicator = activityIndicator;
+        activityIndicator;
+    })];
+}
+
+#pragma mark - UITextFieldDelegate
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [self.flickr flickrPhotosWithSearchString:textField.text
+                                   completion:
+     ^(NSString *searchString, NSArray *flickrPhotos, NSError *error) {
+         if (flickrPhotos.count > 0 && ![self.searches containsObject:searchString]) {
+             [self.searches insertObject:searchString atIndex:0];
+             self.searchResults[searchString] = flickrPhotos;
+
+             [self.activityIndicator stopAnimating];
+             [self.collectionView reloadData];
+         }
+     }];
+
+    [self.activityIndicator startAnimating];
+    [textField resignFirstResponder];
+    textField.text = nil;
+
+    return YES;
+}
+
+#pragma mark - UICollectionViewDataSource
+
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
+{
+    return self.searches.count;
+}
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    return [self.searchResults[self.searches[section]] count];
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
+                  cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier
+                                                                           forIndexPath:indexPath];
+    cell.backgroundColor = [UIColor whiteColor];
+    return cell;
+}
+
+#pragma mark - UICollectionViewDelegate
+
+#pragma mark - UICollectionViewDelegateFlowLayout
+
+- (CGSize)collectionView:(UICollectionView *)collectionView
+                  layout:(UICollectionViewLayout *)collectionViewLayout
+  sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString *searchString     = self.searches[indexPath.section];
+    LXFlickrPhoto *flickrPhoto = self.searchResults[searchString][indexPath.item];
+    return (CGSize){ flickrPhoto.thumbnailSize.width + 10, flickrPhoto.thumbnailSize.height + 10 };
+}
+
+@end
