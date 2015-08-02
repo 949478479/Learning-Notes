@@ -11,21 +11,53 @@
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="sCG-6C-dju">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="SnX-bD-DV6">
-                            <size key="itemSize" width="50" height="50"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="20" minimumInteritemSpacing="10" id="SnX-bD-DV6">
+                            <size key="itemSize" width="200" height="200"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="20" minY="50" maxX="20" maxY="50"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="FlickrCell" id="hMw-w5-59h">
+                            <collectionViewCell multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="FlickrPhotoCell" id="hMw-w5-59h" customClass="LXFlickrPhotoCell">
                                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="7kv-JX-U3h">
+                                            <rect key="frame" x="90" y="90" width="20" height="20"/>
+                                        </activityIndicatorView>
+                                        <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="KJY-Y5-Kmt">
+                                            <rect key="frame" x="8" y="8" width="184" height="184"/>
+                                        </imageView>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pushpin" translatesAutoresizingMaskIntoConstraints="NO" id="5lM-9N-RpW">
+                                            <rect key="frame" x="89" y="-16" width="22" height="31"/>
+                                        </imageView>
+                                    </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="5lM-9N-RpW" firstAttribute="top" secondItem="hMw-w5-59h" secondAttribute="top" constant="-16" id="0xZ-RZ-cdx"/>
+                                    <constraint firstAttribute="bottom" secondItem="KJY-Y5-Kmt" secondAttribute="bottom" constant="8" id="AzI-9d-cbV"/>
+                                    <constraint firstAttribute="centerX" secondItem="7kv-JX-U3h" secondAttribute="centerX" id="C9f-Zg-rsz"/>
+                                    <constraint firstAttribute="centerY" secondItem="5lM-9N-RpW" secondAttribute="centerY" constant="92.5" id="NF5-1h-R50"/>
+                                    <constraint firstAttribute="trailing" secondItem="KJY-Y5-Kmt" secondAttribute="trailing" constant="8" id="Phj-PE-Rlh"/>
+                                    <constraint firstAttribute="centerY" secondItem="7kv-JX-U3h" secondAttribute="centerY" id="XTg-dl-7wG"/>
+                                    <constraint firstAttribute="centerX" secondItem="5lM-9N-RpW" secondAttribute="centerX" id="iCM-mk-Zfu"/>
+                                    <constraint firstItem="KJY-Y5-Kmt" firstAttribute="top" secondItem="hMw-w5-59h" secondAttribute="top" constant="8" id="mQZ-m1-AEz"/>
+                                    <constraint firstItem="KJY-Y5-Kmt" firstAttribute="leading" secondItem="hMw-w5-59h" secondAttribute="leading" constant="8" id="qyt-n1-Yur"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="NF5-1h-R50"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <outlet property="activityIndicatorView" destination="7kv-JX-U3h" id="kB6-UI-ftP"/>
+                                    <outlet property="imageView" destination="KJY-Y5-Kmt" id="6OP-zs-66Z"/>
+                                </connections>
                             </collectionViewCell>
                         </cells>
                         <connections>
@@ -72,4 +104,7 @@
             <point key="canvasLocation" x="376" y="64"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="pushpin" width="22" height="31"/>
+    </resources>
 </document>

@@ -10,9 +10,12 @@
 
 #import "LXFlickr.h"
 #import "LXFlickrPhoto.h"
+#import "LXFlickrPhotoCell.h"
 #import "LXFlickrPhotosViewController.h"
 
-static NSString * const reuseIdentifier             = @"FlickrCell";
+static const CGFloat kPadding = 16;
+
+static NSString * const reuseIdentifier             = @"FlickrPhotoCell";
 
 static NSString * const kOFSampleAppAPIKey          = @"77766361c226eb1cf362b9dc46d70c47";
 static NSString * const kOFSampleAppAPISharedSecret = @"44dce4451bb55ea1";
@@ -91,9 +94,12 @@ static NSString * const kOFSampleAppAPISharedSecret = @"44dce4451bb55ea1";
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
                   cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier
-                                                                           forIndexPath:indexPath];
-    cell.backgroundColor = [UIColor whiteColor];
+    LXFlickrPhotoCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier
+                                                                        forIndexPath:indexPath];
+    NSString *searchString     = self.searches[indexPath.section];
+    LXFlickrPhoto *flickrPhoto = self.searchResults[searchString][indexPath.row];
+    [cell configureWithFlickrPhoto:flickrPhoto];
+    
     return cell;
 }
 
@@ -107,7 +113,9 @@ static NSString * const kOFSampleAppAPISharedSecret = @"44dce4451bb55ea1";
 {
     NSString *searchString     = self.searches[indexPath.section];
     LXFlickrPhoto *flickrPhoto = self.searchResults[searchString][indexPath.item];
-    return (CGSize){ flickrPhoto.thumbnailSize.width + 10, flickrPhoto.thumbnailSize.height + 10 };
+    return (CGSize){
+        flickrPhoto.thumbnailSize.width + kPadding, flickrPhoto.thumbnailSize.height + kPadding
+    };
 }
 
 @end

@@ -15,6 +15,7 @@
 		182B7A021B6CC985009336FD /* LXFlickrPhotosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 182B7A011B6CC985009336FD /* LXFlickrPhotosViewController.m */; };
 		182B7A051B6CE9FD009336FD /* LXFlickrPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 182B7A041B6CE9FD009336FD /* LXFlickrPhoto.m */; };
 		182B7A081B6D0564009336FD /* LXFlickr.m in Sources */ = {isa = PBXBuildFile; fileRef = 182B7A071B6D0564009336FD /* LXFlickr.m */; };
+		1867DD111B6DE96400E60538 /* LXFlickrPhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1867DD101B6DE96400E60538 /* LXFlickrPhotoCell.m */; };
 		370AAE9E39F3E2921D673B92 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D18A86AA594069100F82E670 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -45,6 +46,8 @@
 		182B7A041B6CE9FD009336FD /* LXFlickrPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXFlickrPhoto.m; sourceTree = "<group>"; };
 		182B7A061B6D0564009336FD /* LXFlickr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXFlickr.h; sourceTree = "<group>"; };
 		182B7A071B6D0564009336FD /* LXFlickr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXFlickr.m; sourceTree = "<group>"; };
+		1867DD0F1B6DE96400E60538 /* LXFlickrPhotoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXFlickrPhotoCell.h; sourceTree = "<group>"; };
+		1867DD101B6DE96400E60538 /* LXFlickrPhotoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXFlickrPhotoCell.m; sourceTree = "<group>"; };
 		CB80C120319277827E3FDD54 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		D18A86AA594069100F82E670 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		E314DEA8F294018C95EAD541 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -98,10 +101,11 @@
 				182B7A071B6D0564009336FD /* LXFlickr.m */,
 				182B7A031B6CE9FD009336FD /* LXFlickrPhoto.h */,
 				182B7A041B6CE9FD009336FD /* LXFlickrPhoto.m */,
+				1867DD0F1B6DE96400E60538 /* LXFlickrPhotoCell.h */,
+				1867DD101B6DE96400E60538 /* LXFlickrPhotoCell.m */,
 				182B7A001B6CC985009336FD /* LXFlickrPhotosViewController.h */,
 				182B7A011B6CC985009336FD /* LXFlickrPhotosViewController.m */,
 				182B79D01B6C6E6C009336FD /* Main.storyboard */,
-				182B79D31B6C6E6C009336FD /* Images.xcassets */,
 				182B79C61B6C6E6C009336FD /* Supporting Files */,
 			);
 			path = FlickrSearch;
@@ -110,6 +114,7 @@
 		182B79C61B6C6E6C009336FD /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				182B79D31B6C6E6C009336FD /* Images.xcassets */,
 				182B79C71B6C6E6C009336FD /* Info.plist */,
 				182B79C81B6C6E6C009336FD /* main.m */,
 			);
@@ -286,6 +291,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				182B79CC1B6C6E6C009336FD /* AppDelegate.m in Sources */,
+				1867DD111B6DE96400E60538 /* LXFlickrPhotoCell.m in Sources */,
 				182B7A021B6CC985009336FD /* LXFlickrPhotosViewController.m in Sources */,
 				182B7A081B6D0564009336FD /* LXFlickr.m in Sources */,
 				182B7A051B6CE9FD009336FD /* LXFlickrPhoto.m in Sources */,
