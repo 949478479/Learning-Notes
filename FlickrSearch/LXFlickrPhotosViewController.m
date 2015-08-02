@@ -63,9 +63,9 @@ static NSString * const kOFSampleAppAPISharedSecret = @"44dce4451bb55ea1";
              [self.searches insertObject:searchString atIndex:0];
              self.searchResults[searchString] = flickrPhotos;
 
-             [self.activityIndicator stopAnimating];
              [self.collectionView reloadData];
          }
+         [self.activityIndicator stopAnimating];
      }];
 
     [self.activityIndicator startAnimating];
@@ -84,7 +84,8 @@ static NSString * const kOFSampleAppAPISharedSecret = @"44dce4451bb55ea1";
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return [self.searchResults[self.searches[section]] count];
+    NSString *searchString = self.searches[section];
+    return [self.searchResults[searchString] count];
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView

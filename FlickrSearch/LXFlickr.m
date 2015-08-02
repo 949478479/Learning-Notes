@@ -29,6 +29,8 @@ static NSString * const kOFSampleAppAPISharedSecret = @"44dce4451bb55ea1";
 
 @implementation LXFlickr
 
+#pragma mark - 初始化
+
 - (instancetype)init
 {
     self = [super init];
@@ -40,6 +42,16 @@ static NSString * const kOFSampleAppAPISharedSecret = @"44dce4451bb55ea1";
     }
     return self;
 }
+
+- (NSMutableArray *)flickrPhotos
+{
+    if (!_flickrPhotos) {
+        _flickrPhotos = [NSMutableArray new];
+    }
+    return _flickrPhotos;
+}
+
+#pragma mark - 发起请求
 
 - (void)flickrPhotosWithSearchString:(NSString *)searchString
                           completion:(LXFlickrSearchCompletionBlock)completion
@@ -63,49 +75,48 @@ static NSString * const kOFSampleAppAPISharedSecret = @"44dce4451bb55ea1";
 - (void)flickrAPIRequest:(OFFlickrAPIRequest *)inRequest
  didCompleteWithResponse:(NSDictionary *)inResponseDictionary
 {
+    // 获取单个图片尺寸请求完成.
     if (self.searchRequest != inRequest) {
         NSArray *size = inResponseDictionary[@"sizes"][@"size"];
 
         LXFlickrPhoto *flickrPhoto = [LXFlickrPhoto new];
+
         for (NSDictionary *dict in size) {
+
             if ([dict[@"label"] isEqualToString:@"Thumbnail"]) {
+
                 flickrPhoto.thumbnailURL  = dict[@"source"];
                 flickrPhoto.thumbnailSize = (CGSize) {
                     [dict[@"width"] doubleValue], [dict[@"height"] doubleValue]
                 };
-                if (!CGSizeEqualToSize(flickrPhoto.largeImageSize, CGSizeZero)) {
-                    break;
-                }
-            } else if ([dict[@"label"] isEqualToString:@"Large"]) {
+
+                if (flickrPhoto.largeImageURL) { break; }
+            }
+            else if ([dict[@"label"] isEqualToString:@"Large"]) {
+
                 flickrPhoto.largeImageURL  = dict[@"source"];
                 flickrPhoto.largeImageSize = (CGSize) {
                     [dict[@"width"] doubleValue], [dict[@"height"] doubleValue]
                 };
-                if (!CGSizeEqualToSize(flickrPhoto.thumbnailSize, CGSizeZero)) {
-                    break;
-                }
+
+                if (flickrPhoto.thumbnailURL) { break; }
             }
         }
-
 
         [self.flickrPhotos addObject:flickrPhoto];
-        
-        [self.getSizeRequests removeObject:inRequest];
 
-        if (self.getSizeRequests.count == 0) {
-            if (self.completion) {
-                self.completion(self.searchString, [self.flickrPhotos copy], nil);
-            }
-            [self.flickrPhotos removeAllObjects];
-        }
+        [self p_isLastGetSizeRequestComplete:inRequest];
     }
+    // 搜索图片请求完成.
     else {
         for (NSDictionary *photo in inResponseDictionary[@"photos"][@"photo"]) {
+            
             OFFlickrAPIRequest *request =
                 [[OFFlickrAPIRequest alloc] initWithAPIContext:self.flickrContext];
             request.delegate = self;
             [request callAPIMethodWithGET:@"flickr.photos.getSizes"
                                 arguments:@{ @"photo_id" : photo[@"id"] }];
+
             [self.getSizeRequests addObject:request];
         }
     }
@@ -114,15 +125,28 @@ static NSString * const kOFSampleAppAPISharedSecret = @"44dce4451bb55ea1";
 - (void)flickrAPIRequest:(OFFlickrAPIRequest *)inRequest
         didFailWithError:(NSError *)inError
 {
+    // 搜索请求出错.
     if (self.searchRequest == inRequest) {
         if (self.completion) {
             self.completion(self.searchString, nil, inError);
         }
-    } else {
-        [self.getSizeRequests removeObject:inRequest];
     }
+    // 获取单个图片尺寸出错.
+    else {
+        [self p_isLastGetSizeRequestComplete:inRequest];
+    }
+}
 
-    NSLog(@"搜索失败: %@", inError.localizedDescription);
+- (void)p_isLastGetSizeRequestComplete:(OFFlickrAPIRequest *)request
+{
+    [self.getSizeRequests removeObject:request];
+
+    if (self.getSizeRequests.count == 0) {
+        if (self.completion) {
+            self.completion(self.searchString, self.flickrPhotos, nil);
+        }
+        self.flickrPhotos = nil;
+    }
 }
 
 @end
