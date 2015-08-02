@@ -2,6 +2,8 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="UcI-RA-ow1">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--Flickr Photos View Controller-->
@@ -11,11 +13,12 @@
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="sCG-6C-dju">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="20" minimumInteritemSpacing="10" id="SnX-bD-DV6">
                             <size key="itemSize" width="200" height="200"/>
-                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="headerReferenceSize" width="50" height="120"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="20" minY="50" maxX="20" maxY="50"/>
+                            <inset key="sectionInset" minX="20" minY="20" maxX="20" maxY="20"/>
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="FlickrPhotoCell" id="hMw-w5-59h" customClass="LXFlickrPhotoCell">
@@ -25,7 +28,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="7kv-JX-U3h">
+                                        <activityIndicatorView hidden="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="7kv-JX-U3h">
                                             <rect key="frame" x="90" y="90" width="20" height="20"/>
                                         </activityIndicatorView>
                                         <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="KJY-Y5-Kmt">
@@ -60,6 +63,49 @@
                                 </connections>
                             </collectionViewCell>
                         </cells>
+                        <collectionReusableView key="sectionHeaderView" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="FlickrPhotoHeaderView" id="bZj-5i-ose" customClass="LXFlickrPhotoHeaderView">
+                            <rect key="frame" x="0.0" y="64" width="600" height="50"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="header_bg" translatesAutoresizingMaskIntoConstraints="NO" id="d4r-bL-UCI">
+                                    <rect key="frame" x="189" y="26" width="222" height="89"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="89" id="iux-EP-GD1"/>
+                                    </constraints>
+                                </imageView>
+                                <label userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="doge" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gtc-os-jyB">
+                                    <rect key="frame" x="264" y="41" width="72" height="39"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <constraints>
+                                <constraint firstAttribute="centerY" secondItem="d4r-bL-UCI" secondAttribute="centerY" id="3Ns-VJ-dxK"/>
+                                <constraint firstItem="Gtc-os-jyB" firstAttribute="centerY" secondItem="d4r-bL-UCI" secondAttribute="centerY" constant="-10" id="FF3-Dg-lzt"/>
+                                <constraint firstAttribute="bottom" secondItem="d4r-bL-UCI" secondAttribute="bottom" constant="20" id="Prk-zo-DG7"/>
+                                <constraint firstItem="d4r-bL-UCI" firstAttribute="width" secondItem="Gtc-os-jyB" secondAttribute="width" constant="150" id="d2Y-BF-syA"/>
+                                <constraint firstItem="Gtc-os-jyB" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="bZj-5i-ose" secondAttribute="leadingMargin" constant="75" id="dl2-9z-i90"/>
+                                <constraint firstItem="d4r-bL-UCI" firstAttribute="width" secondItem="Gtc-os-jyB" secondAttribute="width" multiplier="3" id="eyZ-Fq-3Xe"/>
+                                <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="Gtc-os-jyB" secondAttribute="trailing" constant="75" id="hHp-F1-soJ"/>
+                                <constraint firstItem="d4r-bL-UCI" firstAttribute="top" secondItem="bZj-5i-ose" secondAttribute="top" constant="20" id="iug-sr-Xv4"/>
+                                <constraint firstAttribute="centerX" secondItem="Gtc-os-jyB" secondAttribute="centerX" id="k7Y-jp-sWL"/>
+                                <constraint firstAttribute="centerY" secondItem="Gtc-os-jyB" secondAttribute="centerY" id="oa7-MD-j0v"/>
+                                <constraint firstAttribute="centerX" secondItem="d4r-bL-UCI" secondAttribute="centerX" id="y0c-Ec-0Io"/>
+                            </constraints>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="3Ns-VJ-dxK"/>
+                                    <exclude reference="Prk-zo-DG7"/>
+                                    <exclude reference="eyZ-Fq-3Xe"/>
+                                    <exclude reference="iug-sr-Xv4"/>
+                                </mask>
+                            </variation>
+                            <connections>
+                                <outlet property="searchLabel" destination="Gtc-os-jyB" id="9Ps-d1-Xsh"/>
+                            </connections>
+                        </collectionReusableView>
                         <connections>
                             <outlet property="dataSource" destination="iIm-gM-Zu1" id="sc3-DK-u5y"/>
                             <outlet property="delegate" destination="iIm-gM-Zu1" id="n6r-RQ-rJh"/>
@@ -105,6 +151,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="header_bg" width="102" height="89"/>
         <image name="pushpin" width="22" height="31"/>
     </resources>
 </document>

@@ -12,7 +12,7 @@
 
 @interface LXFlickrPhotoCell : UICollectionViewCell
 
-@property (nonatomic, readonly, weak) IBOutlet UIImageView *imageView;
+//@property (nonatomic, readonly, weak) IBOutlet UIImageView *imageView;
 
 - (void)configureWithFlickrPhoto:(LXFlickrPhoto *)flickrPhoto;
 

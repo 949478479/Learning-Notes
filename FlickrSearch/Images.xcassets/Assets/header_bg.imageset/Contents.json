@@ -1,14 +1,42 @@
 {
   "images" : [
     {
+      "resizing" : {
+        "mode" : "9-part",
+        "center" : {
+          "mode" : "stretch",
+          "width" : 1,
+          "height" : 1
+        },
+        "capInsets" : {
+          "bottom" : 44,
+          "top" : 44,
+          "right" : 68,
+          "left" : 68
+        }
+      },
       "idiom" : "universal",
-      "scale" : "1x",
-      "filename" : "header_bg.png"
+      "filename" : "header_bg.png",
+      "scale" : "1x"
     },
     {
+      "resizing" : {
+        "mode" : "9-part",
+        "center" : {
+          "mode" : "stretch",
+          "width" : 1,
+          "height" : 1
+        },
+        "capInsets" : {
+          "bottom" : 89,
+          "top" : 88,
+          "right" : 137,
+          "left" : 136
+        }
+      },
       "idiom" : "universal",
-      "scale" : "2x",
-      "filename" : "header_bg@2x.png"
+      "filename" : "header_bg@2x.png",
+      "scale" : "2x"
     },
     {
       "idiom" : "universal",

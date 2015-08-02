@@ -11,11 +11,13 @@
 #import "LXFlickr.h"
 #import "LXFlickrPhoto.h"
 #import "LXFlickrPhotoCell.h"
+#import "LXFlickrPhotoHeaderView.h"
 #import "LXFlickrPhotosViewController.h"
 
 static const CGFloat kPadding = 16;
 
-static NSString * const reuseIdentifier             = @"FlickrPhotoCell";
+static NSString * const kPhotoCellIdentifier  = @"FlickrPhotoCell";
+static NSString * const kHeaderViewIdentifier = @"FlickrPhotoHeaderView";
 
 static NSString * const kOFSampleAppAPIKey          = @"77766361c226eb1cf362b9dc46d70c47";
 static NSString * const kOFSampleAppAPISharedSecret = @"44dce4451bb55ea1";
@@ -44,6 +46,9 @@ static NSString * const kOFSampleAppAPISharedSecret = @"44dce4451bb55ea1";
     self.searches      = [NSMutableArray new];
     self.searchResults = [NSMutableDictionary new];
 
+    self.collectionView.backgroundColor =
+        [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg_cork"]];
+
     [self.textField addSubview:({
         UIActivityIndicatorView *activityIndicator =
             [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
@@ -59,15 +64,20 @@ static NSString * const kOFSampleAppAPISharedSecret = @"44dce4451bb55ea1";
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
+    textField.enabled = NO;
+
     [self.flickr flickrPhotosWithSearchString:textField.text
                                    completion:
      ^(NSString *searchString, NSArray *flickrPhotos, NSError *error) {
+         
          if (flickrPhotos.count > 0 && ![self.searches containsObject:searchString]) {
              [self.searches insertObject:searchString atIndex:0];
              self.searchResults[searchString] = flickrPhotos;
 
              [self.collectionView reloadData];
          }
+
+         textField.enabled = YES;
          [self.activityIndicator stopAnimating];
      }];
 
@@ -94,13 +104,29 @@ static NSString * const kOFSampleAppAPISharedSecret = @"44dce4451bb55ea1";
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
                   cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    LXFlickrPhotoCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier
-                                                                        forIndexPath:indexPath];
+    LXFlickrPhotoCell *cell =
+        [collectionView dequeueReusableCellWithReuseIdentifier:kPhotoCellIdentifier
+                                                  forIndexPath:indexPath];
+
     NSString *searchString     = self.searches[indexPath.section];
     LXFlickrPhoto *flickrPhoto = self.searchResults[searchString][indexPath.row];
     [cell configureWithFlickrPhoto:flickrPhoto];
     
     return cell;
+}
+
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView
+           viewForSupplementaryElementOfKind:(NSString *)kind
+                                 atIndexPath:(NSIndexPath *)indexPath
+{
+    LXFlickrPhotoHeaderView *headerView =
+        [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader
+                                           withReuseIdentifier:kHeaderViewIdentifier
+                                                  forIndexPath:indexPath];
+
+    headerView.searchText = self.searches[indexPath.section];
+
+    return headerView;
 }
 
 #pragma mark - UICollectionViewDelegate

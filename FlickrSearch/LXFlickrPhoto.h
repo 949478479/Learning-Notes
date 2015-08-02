@@ -10,9 +10,9 @@
 
 @interface LXFlickrPhoto : NSObject
 
-@property (nonatomic, assign) CGSize  thumbnailSize;
-@property (nonatomic, assign) CGSize  largeImageSize;
-@property (nonatomic, strong) NSURL  *thumbnailURL;
-@property (nonatomic, strong) NSURL  *largeImageURL;
+@property (nonatomic, assign) CGSize thumbnailSize;
+@property (nonatomic, assign) CGSize largeImageSize;
+@property (nonatomic, strong) NSURL *thumbnailURL;
+@property (nonatomic, strong) NSURL *largeImageURL;
 
 @end
