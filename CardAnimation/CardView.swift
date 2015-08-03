@@ -3,7 +3,7 @@
 //  CardAnimation
 //
 //  Created by 从今以后 on 15/7/20.
-//  Copyright (c) 2015年 949478479. All rights reserved.
+//  Copyright (c) 2015年 从今以后. All rights reserved.
 //
 
 import UIKit
@@ -15,9 +15,12 @@ import UIKit
 
 class CardView: UIView {
 
-    @IBOutlet weak var tmp: NSObject? { // 不知道 delegate 为毛拖不了线,先用这个凑合一下...
-        didSet {
-            delegate = tmp as? CardViewDelegate
+    @IBOutlet weak var IBOutletDelegate: NSObject? {
+        set {
+            delegate = newValue as? CardViewDelegate
+        }
+        get {
+            return delegate as? NSObject
         }
     }
     weak var delegate: CardViewDelegate?
@@ -77,7 +80,7 @@ class CardView: UIView {
 
     private func createCards() {
         totalOfCards = delegate!.numberOfCardsInCardView(self)
-        let count = maxCountOfCardsForDisplay < totalOfCards ? maxCountOfCardsForDisplay : totalOfCards
+        let count = (maxCountOfCardsForDisplay < totalOfCards) ? maxCountOfCardsForDisplay : totalOfCards
         for index in 0..<count {
             let card = createCard()
             card.image = delegate?.cardView(self, imageForCardAtIndex: index)

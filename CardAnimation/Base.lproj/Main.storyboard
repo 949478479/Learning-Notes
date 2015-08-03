@@ -20,7 +20,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <connections>
-                                    <outlet property="tmp" destination="vXZ-lx-hvc" id="rwk-bc-mbw"/>
+                                    <outlet property="IBOutletDelegate" destination="vXZ-lx-hvc" id="ELq-GI-HrJ"/>
                                 </connections>
                             </view>
                         </subviews>

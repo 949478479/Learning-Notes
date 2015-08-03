@@ -11,7 +11,6 @@
 		1896990D1B5D2AC1000BF865 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1896990C1B5D2AC1000BF865 /* ViewController.swift */; };
 		189699101B5D2AC1000BF865 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1896990E1B5D2AC1000BF865 /* Main.storyboard */; };
 		189699121B5D2AC1000BF865 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 189699111B5D2AC1000BF865 /* Images.xcassets */; };
-		189699151B5D2AC1000BF865 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 189699131B5D2AC1000BF865 /* LaunchScreen.xib */; };
 		189699211B5D2AC1000BF865 /* CardAnimationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189699201B5D2AC1000BF865 /* CardAnimationTests.swift */; };
 		1896992B1B5D2ADD000BF865 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1896992A1B5D2ADD000BF865 /* CardView.swift */; };
 /* End PBXBuildFile section */
@@ -33,7 +32,6 @@
 		1896990C1B5D2AC1000BF865 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		1896990F1B5D2AC1000BF865 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		189699111B5D2AC1000BF865 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		189699141B5D2AC1000BF865 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		1896991A1B5D2AC1000BF865 /* CardAnimationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CardAnimationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1896991F1B5D2AC1000BF865 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		189699201B5D2AC1000BF865 /* CardAnimationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardAnimationTests.swift; sourceTree = "<group>"; };
@@ -84,7 +82,6 @@
 				1896992A1B5D2ADD000BF865 /* CardView.swift */,
 				1896990E1B5D2AC1000BF865 /* Main.storyboard */,
 				189699111B5D2AC1000BF865 /* Images.xcassets */,
-				189699131B5D2AC1000BF865 /* LaunchScreen.xib */,
 				189699081B5D2AC1000BF865 /* Supporting Files */,
 			);
 			path = CardAnimation;
@@ -196,7 +193,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				189699101B5D2AC1000BF865 /* Main.storyboard in Resources */,
-				189699151B5D2AC1000BF865 /* LaunchScreen.xib in Resources */,
 				189699121B5D2AC1000BF865 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -246,14 +242,6 @@
 				1896990F1B5D2AC1000BF865 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		189699131B5D2AC1000BF865 /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				189699141B5D2AC1000BF865 /* Base */,
-			);
-			name = LaunchScreen.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -413,6 +401,7 @@
 				189699261B5D2AC1000BF865 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		189699271B5D2AC1000BF865 /* Build configuration list for PBXNativeTarget "CardAnimationTests" */ = {
 			isa = XCConfigurationList;
@@ -421,6 +410,7 @@
 				189699291B5D2AC1000BF865 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
