@@ -14,6 +14,7 @@
 		188CFCB71B72664300931F72 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 188CFCB61B72664300931F72 /* Images.xcassets */; };
 		188CFCBA1B72664300931F72 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 188CFCB81B72664300931F72 /* LaunchScreen.xib */; };
 		188CFCC61B72664300931F72 /* CardAnimationByiCarouselTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 188CFCC51B72664300931F72 /* CardAnimationByiCarouselTests.m */; };
+		FBF216CD9E25E350FAD2C307 /* libPods-CardAnimationByiCarousel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 47C23FBB32CD9265AB0DC81C /* libPods-CardAnimationByiCarousel.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,9 @@
 		188CFCBF1B72664300931F72 /* CardAnimationByiCarouselTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CardAnimationByiCarouselTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		188CFCC41B72664300931F72 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		188CFCC51B72664300931F72 /* CardAnimationByiCarouselTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CardAnimationByiCarouselTests.m; sourceTree = "<group>"; };
+		47C23FBB32CD9265AB0DC81C /* libPods-CardAnimationByiCarousel.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CardAnimationByiCarousel.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9D241115EBED77141D7A837F /* Pods-CardAnimationByiCarousel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CardAnimationByiCarousel.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CardAnimationByiCarousel/Pods-CardAnimationByiCarousel.debug.xcconfig"; sourceTree = "<group>"; };
+		CBCB5A6E9876AAEBBE9B0E5C /* Pods-CardAnimationByiCarousel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CardAnimationByiCarousel.release.xcconfig"; path = "Pods/Target Support Files/Pods-CardAnimationByiCarousel/Pods-CardAnimationByiCarousel.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FBF216CD9E25E350FAD2C307 /* libPods-CardAnimationByiCarousel.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -66,6 +71,8 @@
 				188CFCA81B72664300931F72 /* CardAnimationByiCarousel */,
 				188CFCC21B72664300931F72 /* CardAnimationByiCarouselTests */,
 				188CFCA71B72664300931F72 /* Products */,
+				A1A5B047D8621B97DA9BEA81 /* Pods */,
+				6518D7AEAE75E52A8A891951 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -119,6 +126,23 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		6518D7AEAE75E52A8A891951 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				47C23FBB32CD9265AB0DC81C /* libPods-CardAnimationByiCarousel.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A1A5B047D8621B97DA9BEA81 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9D241115EBED77141D7A837F /* Pods-CardAnimationByiCarousel.debug.xcconfig */,
+				CBCB5A6E9876AAEBBE9B0E5C /* Pods-CardAnimationByiCarousel.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -126,9 +150,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 188CFCC91B72664300931F72 /* Build configuration list for PBXNativeTarget "CardAnimationByiCarousel" */;
 			buildPhases = (
+				C5C1B1ED98EA4021DEB46C4C /* Check Pods Manifest.lock */,
 				188CFCA21B72664300931F72 /* Sources */,
 				188CFCA31B72664300931F72 /* Frameworks */,
 				188CFCA41B72664300931F72 /* Resources */,
+				8E32D5064557630642CF198A /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -213,6 +239,39 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		8E32D5064557630642CF198A /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CardAnimationByiCarousel/Pods-CardAnimationByiCarousel-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C5C1B1ED98EA4021DEB46C4C /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		188CFCA21B72664300931F72 /* Sources */ = {
@@ -345,21 +404,35 @@
 		};
 		188CFCCA1B72664300931F72 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9D241115EBED77141D7A837F /* Pods-CardAnimationByiCarousel.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = CardAnimationByiCarousel/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				WARNING_CFLAGS = (
+					"-Weverything",
+					"-Wno-objc-missing-property-synthesis",
+					"-Wno-gnu-statement-expression",
+				);
 			};
 			name = Debug;
 		};
 		188CFCCB1B72664300931F72 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CBCB5A6E9876AAEBBE9B0E5C /* Pods-CardAnimationByiCarousel.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = CardAnimationByiCarousel/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				WARNING_CFLAGS = (
+					"-Weverything",
+					"-Wno-objc-missing-property-synthesis",
+					"-Wno-gnu-statement-expression",
+				);
 			};
 			name = Release;
 		};
@@ -416,6 +489,7 @@
 				188CFCCB1B72664300931F72 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		188CFCCC1B72664300931F72 /* Build configuration list for PBXNativeTarget "CardAnimationByiCarouselTests" */ = {
 			isa = XCConfigurationList;
@@ -424,6 +498,7 @@
 				188CFCCE1B72664300931F72 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
