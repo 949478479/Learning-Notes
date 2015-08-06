@@ -10,9 +10,9 @@
 
 #import "LXFlickr.h"
 #import "LXFlickrPhoto.h"
+#import "LXPhotoBrowser.h"
 #import "MBProgressHUD+LX.h"
 #import "LXFlickrPhotoCell.h"
-#import "LXPhotoBrowser.h"
 #import "LXFlickrPhotoHeaderView.h"
 #import "LXFlickrPhotosViewController.h"
 
@@ -43,7 +43,7 @@ static NSString * const kOFSampleAppAPISharedSecret = @"44dce4451bb55ea1";
 
 @implementation LXFlickrPhotosViewController
 
-#pragma mark - 生命周期
+#pragma mark - 初始化
 
 - (void)viewDidLoad
 {
@@ -58,7 +58,7 @@ static NSString * const kOFSampleAppAPISharedSecret = @"44dce4451bb55ea1";
         [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg_cork"]];
 }
 
-#pragma mark - HUD
+#pragma mark - 创建 HUD
 
 - (MBProgressHUD *)hud
 {
@@ -87,14 +87,17 @@ static NSString * const kOFSampleAppAPISharedSecret = @"44dce4451bb55ea1";
          }
 
          [self.hud hide:NO];
+         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
          if (error) {
              [MBProgressHUD lx_showHudForError:@"网络不给力啊..."];
          }
      }];
 
     [self.hud show:YES];
-    [textField resignFirstResponder];
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+
     textField.text = nil;
+    [textField resignFirstResponder];
 
     return YES;
 }
@@ -181,7 +184,7 @@ static NSString * const kOFSampleAppAPISharedSecret = @"44dce4451bb55ea1";
     return [self p_flickrPhotoForIndexPath:indexPath].largeImageURL;
 }
 
-#pragma mark - 导航
+#pragma mark - 导航控制
 
 - (IBAction)unwindWithSegue:(UIStoryboardSegue *)segue { }
 

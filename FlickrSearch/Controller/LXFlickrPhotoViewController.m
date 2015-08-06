@@ -13,8 +13,7 @@
 
 @interface LXFlickrPhotoViewController ()
 
-@property (nonatomic, strong) MBProgressHUD        *hud;
-@property (nonatomic, strong) IBOutlet UIImageView *imageView;
+@property (nonatomic, weak) IBOutlet UIImageView *imageView;
 
 @end
 
@@ -26,7 +25,8 @@
 
 - (void)dealloc
 {
-
+    // 同时只存在左中右三个控制器,多出的会销毁,及时取消任务,否则 hud 进度走不动.
+    [self.imageView sd_cancelCurrentImageLoad];
 }
 
 #pragma mark - 预加载图片
@@ -35,33 +35,28 @@
 {
     [super viewDidLoad];
 
-    __weak __typeof(self) weakSelf = self;
+    // 这里有个诡异的强引用,在 block 内添加会造成控制器无法销毁,只好把添加 hud 放在外面处理.
+    MBProgressHUD *hud = [[MBProgressHUD alloc] initWithView:self.view];
+    hud.labelText      = @"加载中...";
+    hud.mode           = MBProgressHUDModeDeterminate;
+    [self.imageView addSubview:hud];
+
+    __weak __typeof(hud) weakHud = hud;
+
     [self.imageView sd_setImageWithURL:self.originalImageURL
                       placeholderImage:self.placeholderImage
                                options:(SDWebImageOptions)0
                               progress:
      ^(NSInteger receivedSize, NSInteger expectedSize) {
-         [weakSelf p_addHudToImageView];
-         weakSelf.hud.progress = (float)receivedSize / expectedSize;
+
+         if (expectedSize == -1) { // 第一次调用时 expectedSize 为 -1.
+             [weakHud show:YES];
+         }
+         weakHud.progress = (float)receivedSize / expectedSize;
+
      } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-         [weakSelf.hud hide:YES];
+         [weakHud hide:YES];
      }];
-}
-
-#pragma mark - 添加 HUD
-
-- (void)p_addHudToImageView
-{
-    if (!self.hud) {
-
-        self.hud           = [[MBProgressHUD alloc] initWithView:self.view];
-        self.hud.labelText = @"加载中...";
-        self.hud.mode      = MBProgressHUDModeDeterminate;
-
-        [self.imageView addSubview:self.hud];
-
-        [self.hud show:YES];
-    }
 }
 
 @end

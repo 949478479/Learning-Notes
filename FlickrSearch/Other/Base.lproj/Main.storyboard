@@ -214,6 +214,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </imageView>
                         </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="YVi-0v-hLz" secondAttribute="bottom" id="87d-se-94h"/>
                             <constraint firstItem="YVi-0v-hLz" firstAttribute="leading" secondItem="sw3-H8-S24" secondAttribute="leading" id="EBf-AR-TzK"/>

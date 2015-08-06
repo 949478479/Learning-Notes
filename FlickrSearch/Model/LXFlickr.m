@@ -77,6 +77,7 @@ static NSString * const kOFSampleAppAPISharedSecret = @"44dce4451bb55ea1";
 {
     // 获取单个图片尺寸请求完成.
     if (self.searchRequest != inRequest) {
+
         NSArray *size = inResponseDictionary[@"sizes"][@"size"];
 
         LXFlickrPhoto *flickrPhoto = [LXFlickrPhoto new];
@@ -90,17 +91,26 @@ static NSString * const kOFSampleAppAPISharedSecret = @"44dce4451bb55ea1";
                     [dict[@"width"] doubleValue], [dict[@"height"] doubleValue]
                 };
 
-                if (flickrPhoto.largeImageURL) { break; }
+                break;
             }
-            else if ([dict[@"label"] isEqualToString:@"Large"]) {
+        }
 
-                flickrPhoto.largeImageURL  = [NSURL URLWithString:dict[@"source"]];
-                flickrPhoto.largeImageSize = (CGSize) {
-                    [dict[@"width"] doubleValue], [dict[@"height"] doubleValue]
-                };
+        // 有的图片没有 Large 这个尺寸,所以若最后一个尺寸不是太大就用最后一个.否则用倒数第二个.
+        NSDictionary *dict = size.lastObject;
+        CGSize screenSize  = [UIScreen mainScreen].bounds.size;
+        CGFloat width      = [dict[@"width"] doubleValue];
+        CGFloat height     = [dict[@"height"] doubleValue];
 
-                if (flickrPhoto.thumbnailURL) { break; }
-            }
+        if (width * height <= screenSize.width * screenSize.height) {
+            flickrPhoto.largeImageURL  = [NSURL URLWithString:dict[@"source"]];
+            flickrPhoto.largeImageSize = CGSizeMake(width, height);
+        }
+        else {
+            dict = size[size.count - 2];
+            flickrPhoto.largeImageURL  = [NSURL URLWithString:dict[@"source"]];
+            flickrPhoto.largeImageSize = (CGSize) {
+                [dict[@"width"] doubleValue], [dict[@"height"] doubleValue]
+            };
         }
 
         [self.flickrPhotos addObject:flickrPhoto];
@@ -134,6 +144,8 @@ static NSString * const kOFSampleAppAPISharedSecret = @"44dce4451bb55ea1";
         [self p_isLastGetSizeRequestComplete:inRequest];
     }
 }
+
+#pragma mark - 请求是否完成
 
 - (void)p_isLastGetSizeRequestComplete:(OFFlickrAPIRequest *)request
 {

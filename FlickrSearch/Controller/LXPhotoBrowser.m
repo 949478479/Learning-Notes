@@ -54,8 +54,8 @@
         [self.storyboard instantiateViewControllerWithIdentifier:@"LXFlickrPhotoVC"];
 
     photoVC.photoIndex       = index;
-    photoVC.originalImageURL = [self.delegate photoBrowser:self originalImageURLAtIndex:index];
-    photoVC.placeholderImage = [self.delegate photoBrowser:self thumbnailAtIndex:index];
+    photoVC.originalImageURL = [self.dataSource photoBrowser:self originalImageURLAtIndex:index];
+    photoVC.placeholderImage = [self.dataSource photoBrowser:self thumbnailAtIndex:index];
 
     return photoVC;
 }
