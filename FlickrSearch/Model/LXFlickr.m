@@ -16,14 +16,13 @@ static NSString * const kOFSampleAppAPISharedSecret = @"44dce4451bb55ea1";
 
 @interface LXFlickr () <OFFlickrAPIRequestDelegate>
 
-@property (nonatomic, copy)   NSString           *searchString;
-@property (nonatomic, copy)   LXFlickrSearchCompletionBlock completion;
-
-@property (nonatomic, strong) NSMutableArray     *flickrPhotos;
-@property (nonatomic, strong) NSMutableSet       *getSizeRequests;
+@property (nonatomic, copy  ) NSString *searchString;
+@property (nonatomic, strong) NSMutableArray *flickrPhotos;
+@property (nonatomic, copy  ) LXFlickrSearchCompletionBlock completion;
 
 @property (nonatomic, strong) OFFlickrAPIContext *flickrContext;
 @property (nonatomic, strong) OFFlickrAPIRequest *searchRequest;
+@property (nonatomic, strong) NSMutableSet       *getSizeRequests;
 
 @end
 
@@ -66,8 +65,7 @@ static NSString * const kOFSampleAppAPISharedSecret = @"44dce4451bb55ea1";
     self.searchRequest = [[OFFlickrAPIRequest alloc] initWithAPIContext:self.flickrContext];
     self.searchRequest.delegate = self;
     [self.searchRequest callAPIMethodWithGET:@"flickr.photos.search"
-                                   arguments:@{ @"text" : searchString,
-                                                @"per_page" : @"20" }];
+                                   arguments:@{ @"text" : searchString, @"per_page" : @"20" }];
 }
 
 #pragma mark - OFFlickrAPIRequestDelegate

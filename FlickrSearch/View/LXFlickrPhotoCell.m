@@ -32,4 +32,11 @@
      }];
 }
 
+- (void)setSelected:(BOOL)selected
+{
+    [super setSelected:selected];
+
+    self.backgroundColor = (selected ? self.tintColor : [UIColor whiteColor]);
+}
+
 @end

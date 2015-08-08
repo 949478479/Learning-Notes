@@ -10,6 +10,6 @@
 
 @interface LXFlickrPhotoHeaderView : UICollectionReusableView
 
-@property (nonatomic, copy) NSString *searchText;
+@property (nonatomic, copy) NSString *title;
 
 @end

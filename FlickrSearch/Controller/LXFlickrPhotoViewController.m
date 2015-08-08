@@ -15,12 +15,15 @@
 
 @property (nonatomic, weak) IBOutlet UIImageView *imageView;
 
+@property (nonatomic, readwrite, strong) UIImage *originalImage;
+
 @end
 
 @implementation LXFlickrPhotoViewController
 
 @synthesize photoIndex       = _photoIndex;
 @synthesize originalImageURL = _originalImageURL;
+@synthesize originalImage    = _originalImage;
 @synthesize placeholderImage = _placeholderImage;
 
 - (void)dealloc
@@ -41,7 +44,8 @@
     hud.mode           = MBProgressHUDModeDeterminate;
     [self.imageView addSubview:hud];
 
-    __weak __typeof(hud) weakHud = hud;
+    __weak __typeof(hud) weakHud   = hud;
+    __weak __typeof(self) weakSelf = self;
 
     [self.imageView sd_setImageWithURL:self.originalImageURL
                       placeholderImage:self.placeholderImage
@@ -56,6 +60,7 @@
 
      } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
          [weakHud hide:YES];
+         weakSelf.originalImage = image;
      }];
 }
 

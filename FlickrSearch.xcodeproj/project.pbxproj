@@ -110,8 +110,8 @@
 		182B79C51B6C6E6C009336FD /* FlickrSearch */ = {
 			isa = PBXGroup;
 			children = (
-				1875850A1B739231007F6068 /* Other */,
 				187585101B739237007F6068 /* Resource */,
+				1875850A1B739231007F6068 /* Other */,
 				1875851C1B739273007F6068 /* Model */,
 				187585151B73926A007F6068 /* View */,
 				1867DD1B1B6E580300E60538 /* Controller */,
@@ -171,8 +171,8 @@
 		187585151B73926A007F6068 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				18C648CB1B7154D900C3FB0A /* MBProgressHUD+Extension */,
 				18C8B2461B7589E800D3A7B1 /* Main.storyboard */,
-				18C648CB1B7154D900C3FB0A /* MBProgressHUD */,
 				187585161B73926A007F6068 /* LXFlickrPhotoCell.h */,
 				187585171B73926A007F6068 /* LXFlickrPhotoCell.m */,
 				187585181B73926A007F6068 /* LXFlickrPhotoHeaderView.h */,
@@ -192,14 +192,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		18C648CB1B7154D900C3FB0A /* MBProgressHUD */ = {
+		18C648CB1B7154D900C3FB0A /* MBProgressHUD+Extension */ = {
 			isa = PBXGroup;
 			children = (
 				18C648CC1B7154D900C3FB0A /* MBProgressHUD+LX.h */,
 				18C648CD1B7154D900C3FB0A /* MBProgressHUD+LX.m */,
 				18C648CE1B7154D900C3FB0A /* MBProgressHUD.bundle */,
 			);
-			path = MBProgressHUD;
+			path = "MBProgressHUD+Extension";
 			sourceTree = "<group>";
 		};
 		18C8B2451B75846000D3A7B1 /* PhotoBrower */ = {

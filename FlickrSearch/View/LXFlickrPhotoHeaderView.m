@@ -10,18 +10,17 @@
 
 @interface LXFlickrPhotoHeaderView ()
 
-@property (nonatomic, weak) IBOutlet UILabel     *searchLabel;
-@property (nonatomic, weak) IBOutlet UIImageView *backgroundImageView;
+@property (nonatomic, weak) IBOutlet UILabel *searchLabel;
 
 @end
 
 @implementation LXFlickrPhotoHeaderView
 
-- (void)setSearchText:(NSString *)searchText
+- (void)setTitle:(NSString *)title
 {
-    _searchText = [searchText copy];
+    _title = [title copy];
 
-    self.searchLabel.text = _searchText;
+    self.searchLabel.text = _title;
 }
 
 @end

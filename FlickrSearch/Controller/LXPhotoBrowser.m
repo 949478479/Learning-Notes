@@ -175,4 +175,24 @@ static const NSTimeInterval kHideBarDelay = 3;
     return _delayHideBarBlock;
 }
 
+#pragma mark - 分享图片
+
+- (IBAction)p_shareAction:(UIBarButtonItem *)sender
+{
+    UIViewController<LXPhotoBrowerProtocol> *photoVC =
+        (UIViewController<LXPhotoBrowerProtocol> *)self.pageVC.viewControllers.lastObject;
+
+    if (photoVC.originalImage) {
+
+        UIActivityViewController *activityVC =
+            [[UIActivityViewController alloc] initWithActivityItems:@[photoVC.originalImage]
+                                              applicationActivities:nil];
+
+        activityVC.modalPresentationStyle = UIModalPresentationPopover;
+        activityVC.popoverPresentationController.barButtonItem = self.navigationItem.rightBarButtonItem;
+
+        [self presentViewController:activityVC animated:YES completion:nil];
+    }
+}
+
 @end

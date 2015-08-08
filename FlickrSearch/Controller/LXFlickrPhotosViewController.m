@@ -21,23 +21,20 @@ static const CGFloat kPadding = 16;
 static NSString * const kPhotoCellIdentifier  = @"FlickrPhotoCell";
 static NSString * const kHeaderViewIdentifier = @"FlickrPhotoHeaderView";
 
-static NSString * const kOFSampleAppAPIKey          = @"77766361c226eb1cf362b9dc46d70c47";
-static NSString * const kOFSampleAppAPISharedSecret = @"44dce4451bb55ea1";
-
 @interface LXFlickrPhotosViewController () <UICollectionViewDelegateFlowLayout, UITextFieldDelegate, UIViewControllerTransitioningDelegate, LXFlickrPhotoBrowserDataSource>
 
 @property (nonatomic, strong) MBProgressHUD        *hud;
 @property (nonatomic, strong) IBOutlet UITextField *textField;
+@property (nonatomic, strong) UILabel              *shareTextLabel;
 
-@property (nonatomic, strong) NSMutableArray       *photos;
-@property (nonatomic, strong) NSMutableArray       *searches;
+@property (nonatomic, strong) LXFlickr             *flickr;
+@property (nonatomic, strong) NSMutableArray       *searchStrings;
 @property (nonatomic, strong) NSMutableDictionary  *searchResults;
-@property (nonatomic, strong) NSIndexPath          *currentLargePhotoIndexPath;
-@property (nonatomic, strong) NSIndexPath          *previousLargePhotoIndexPath;
 
-@property (nonatomic, strong) LXFlickr *flickr;
+@property (nonatomic, strong) NSMutableDictionary  *selectedPhotos;
+@property (nonatomic, strong) NSIndexPath          *selectedIndexPath;
 
-@property (nonatomic, strong) NSIndexPath *selectedIndexPath;
+@property (nonatomic, assign) BOOL sharing;
 
 @end
 
@@ -49,13 +46,36 @@ static NSString * const kOFSampleAppAPISharedSecret = @"44dce4451bb55ea1";
 {
     [super viewDidLoad];
 
-    self.flickr        = [LXFlickr new];
-    self.photos        = [NSMutableArray new];
-    self.searches      = [NSMutableArray new];
-    self.searchResults = [NSMutableDictionary new];
+    self.flickr         = [LXFlickr new];
+    self.searchStrings  = [NSMutableArray new];
+    self.searchResults  = [NSMutableDictionary new];
+    self.selectedPhotos = [NSMutableDictionary new];
 
     self.collectionView.backgroundColor =
         [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg_cork"]];
+}
+
+#pragma mark - 导航控制
+
+- (IBAction)unwindWithSegue:(UIStoryboardSegue *)segue { }
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    NSString *searchString = self.searchStrings[self.selectedIndexPath.section];
+
+    LXPhotoBrowser *browser   = [segue.destinationViewController viewControllers].lastObject;
+    browser.dataSource        = self;
+    browser.totalOfPhotos     = [self.searchResults[searchString] count];
+    browser.currentPhotoIndex = self.selectedIndexPath.item;
+}
+
+#pragma mark - 辅助方法
+
+- (LXFlickrPhoto *)p_flickrPhotoForIndexPath:(NSIndexPath *)indexPath
+{
+    NSString *searchString = self.searchStrings[indexPath.section];
+    NSArray *searchResults = self.searchResults[searchString];
+    return searchResults[indexPath.item];
 }
 
 #pragma mark - 创建 HUD
@@ -80,9 +100,9 @@ static NSString * const kOFSampleAppAPISharedSecret = @"44dce4451bb55ea1";
 
          if (flickrPhotos.count > 0) {
 
-             [self.searches removeObject:searchString];
-             [self.searches insertObject:searchString atIndex:0];
-             self.searchResults[searchString] = flickrPhotos;
+             [self.searchStrings removeObject:searchString];
+             [self.searchStrings insertObject:searchString atIndex:0];
+             [self.searchResults setObject:flickrPhotos forKey:searchString];
 
              [self.collectionView reloadData];
          }
@@ -93,6 +113,65 @@ static NSString * const kOFSampleAppAPISharedSecret = @"44dce4451bb55ea1";
              [MBProgressHUD lx_showHudForError:@"网络不给力啊..."];
          }
      }];
+}
+
+#pragma mark - 分享图片
+
+- (IBAction)shareAction:(UIBarButtonItem *)sender
+{
+    if (self.searchStrings.count == 0) { return; }
+
+    if (self.selectedPhotos.count > 0) {
+
+        UIActivityViewController *activityVC =
+            [[UIActivityViewController alloc] initWithActivityItems:self.selectedPhotos.allValues
+                                              applicationActivities:nil];
+        activityVC.completionWithItemsHandler =
+            ^(NSString *activityType, BOOL completed, NSArray *returnedItems, NSError *activityError) {
+                [self p_switchShareState];
+        };
+        activityVC.modalPresentationStyle = UIModalPresentationPopover;
+        activityVC.popoverPresentationController.barButtonItem = self.navigationItem.rightBarButtonItem;
+
+        [self presentViewController:activityVC animated:YES completion:nil];
+    }
+    else {
+        [self p_switchShareState];
+    }
+}
+
+- (void)p_updateShareTextLabel
+{
+    if (!self.shareTextLabel) {
+        self.shareTextLabel = [UILabel new];
+        self.shareTextLabel.textColor = self.view.tintColor;
+    }
+    self.shareTextLabel.text =
+        [NSString stringWithFormat:@"选中了%lu张图片", self.selectedPhotos.count];
+    [self.shareTextLabel sizeToFit];
+}
+
+- (void)p_switchShareState
+{
+    self.sharing = !self.sharing;
+
+    self.textField.enabled = !self.sharing;
+
+    [self.selectedPhotos removeAllObjects];
+
+    self.collectionView.allowsMultipleSelection = self.sharing;
+    [self.collectionView selectItemAtIndexPath:nil
+                                      animated:YES
+                                scrollPosition:UICollectionViewScrollPositionNone];
+    if (self.sharing) {
+        [self p_updateShareTextLabel];
+        UIBarButtonItem *labelItem = [[UIBarButtonItem alloc] initWithCustomView:self.shareTextLabel];
+        [self.navigationItem setRightBarButtonItems:@[self.navigationItem.rightBarButtonItem, labelItem]
+                                           animated:YES];
+    } else {
+        [self.navigationItem setRightBarButtonItems:@[self.navigationItem.rightBarButtonItem]
+                                           animated:YES];
+    }
 }
 
 #pragma mark - UITextFieldDelegate
@@ -129,12 +208,12 @@ static NSString * const kOFSampleAppAPISharedSecret = @"44dce4451bb55ea1";
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-    return self.searches.count;
+    return self.searchStrings.count;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    NSString *searchString = self.searches[section];
+    NSString *searchString = self.searchStrings[section];
     return [self.searchResults[searchString] count];
 }
 
@@ -159,7 +238,7 @@ static NSString * const kOFSampleAppAPISharedSecret = @"44dce4451bb55ea1";
                                            withReuseIdentifier:kHeaderViewIdentifier
                                                   forIndexPath:indexPath];
 
-    headerView.searchText = self.searches[indexPath.section];
+    headerView.title = self.searchStrings[indexPath.section];
 
     return headerView;
 }
@@ -171,7 +250,26 @@ static NSString * const kOFSampleAppAPISharedSecret = @"44dce4451bb55ea1";
 {
     self.selectedIndexPath = indexPath;
 
-    return YES;
+    if (self.sharing) {
+
+        LXFlickrPhotoCell *cell =
+            (LXFlickrPhotoCell *)[collectionView cellForItemAtIndexPath:indexPath];
+
+        [self.selectedPhotos setObject:cell.imageView.image forKey:indexPath];
+        [self p_updateShareTextLabel];
+
+    } else {
+        [self performSegueWithIdentifier:@"ModalPhotoBrower" sender:nil];
+    }
+
+    return self.sharing;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView
+    didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self.selectedPhotos removeObjectForKey:indexPath];
+    [self p_updateShareTextLabel];
 }
 
 #pragma mark - LXFlickrPhotoBrowserDataSource
@@ -192,29 +290,6 @@ static NSString * const kOFSampleAppAPISharedSecret = @"44dce4451bb55ea1";
                                                  inSection:self.selectedIndexPath.section];
 
     return [self p_flickrPhotoForIndexPath:indexPath].largeImageURL;
-}
-
-#pragma mark - 导航控制
-
-- (IBAction)unwindWithSegue:(UIStoryboardSegue *)segue { }
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    NSString *searchString = self.searches[self.selectedIndexPath.section];
-
-    LXPhotoBrowser *browser = [segue.destinationViewController viewControllers].lastObject;
-    browser.dataSource              = self;
-    browser.totalOfPhotos         = [self.searchResults[searchString] count];
-    browser.currentPhotoIndex     = self.selectedIndexPath.item;
-}
-
-#pragma mark - 辅助方法
-
-- (LXFlickrPhoto *)p_flickrPhotoForIndexPath:(NSIndexPath *)indexPath
-{
-    NSString *searchString = self.searches[indexPath.section];
-    NSArray *searchResults = self.searchResults[searchString];
-    return searchResults[indexPath.item];
 }
 
 @end

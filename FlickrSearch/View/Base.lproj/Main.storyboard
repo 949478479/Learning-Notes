@@ -60,7 +60,6 @@
                                 <connections>
                                     <outlet property="activityIndicatorView" destination="7kv-JX-U3h" id="kB6-UI-ftP"/>
                                     <outlet property="imageView" destination="KJY-Y5-Kmt" id="6OP-zs-66Z"/>
-                                    <segue destination="0cV-3x-BAX" kind="presentation" modalTransitionStyle="crossDissolve" id="8mh-g2-vpI"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -123,9 +122,15 @@
                                 <outlet property="delegate" destination="iIm-gM-Zu1" id="Mus-wP-MlT"/>
                             </connections>
                         </textField>
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="bKO-3s-JkJ">
+                            <connections>
+                                <action selector="shareAction:" destination="iIm-gM-Zu1" id="y0Q-d1-moK"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="textField" destination="zBT-6l-SeR" id="enn-Nz-Fh7"/>
+                        <segue destination="0cV-3x-BAX" kind="presentation" identifier="ModalPhotoBrower" modalTransitionStyle="crossDissolve" id="LQX-Hi-dxH"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lrV-qr-Kf9" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -168,7 +173,11 @@
                                 <segue destination="VIp-6H-Uuj" kind="unwind" unwindAction="unwindWithSegue:" id="beY-6S-Q2w"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="保存" id="hZl-lk-IAM"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="hZl-lk-IAM">
+                            <connections>
+                                <action selector="p_shareAction:" destination="xHI-se-MbT" id="kg2-sp-MWf"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p9T-L5-bXd" userLabel="First Responder" sceneMemberID="firstResponder"/>
