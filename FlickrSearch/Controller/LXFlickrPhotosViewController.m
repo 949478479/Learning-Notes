@@ -27,13 +27,13 @@ static NSString * const kOFSampleAppAPISharedSecret = @"44dce4451bb55ea1";
 @interface LXFlickrPhotosViewController () <UICollectionViewDelegateFlowLayout, UITextFieldDelegate, UIViewControllerTransitioningDelegate, LXFlickrPhotoBrowserDataSource>
 
 @property (nonatomic, strong) MBProgressHUD        *hud;
-@property (nonatomic, weak  ) IBOutlet UITextField *textField;
+@property (nonatomic, strong) IBOutlet UITextField *textField;
 
-@property (nonatomic, strong) NSMutableArray      *photos;
-@property (nonatomic, strong) NSMutableArray      *searches;
-@property (nonatomic, strong) NSMutableDictionary *searchResults;
-@property (nonatomic, strong) NSIndexPath         *currentLargePhotoIndexPath;
-@property (nonatomic, strong) NSIndexPath         *previousLargePhotoIndexPath;
+@property (nonatomic, strong) NSMutableArray       *photos;
+@property (nonatomic, strong) NSMutableArray       *searches;
+@property (nonatomic, strong) NSMutableDictionary  *searchResults;
+@property (nonatomic, strong) NSIndexPath          *currentLargePhotoIndexPath;
+@property (nonatomic, strong) NSIndexPath          *previousLargePhotoIndexPath;
 
 @property (nonatomic, strong) LXFlickr *flickr;
 
@@ -70,28 +70,38 @@ static NSString * const kOFSampleAppAPISharedSecret = @"44dce4451bb55ea1";
     return _hud;
 }
 
-#pragma mark - UITextFieldDelegate
+#pragma mark - 发起搜索请求
 
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
+- (void)p_performSearchWithSearchString:(NSString *)searchString
 {
-    [self.flickr flickrPhotosWithSearchString:textField.text
+    [self.flickr flickrPhotosWithSearchString:searchString
                                    completion:
      ^(NSString *searchString, NSArray *flickrPhotos, NSError *error) {
-         
-         if (flickrPhotos.count > 0 && ![self.searches containsObject:searchString]) {
 
+         if (flickrPhotos.count > 0) {
+
+             [self.searches removeObject:searchString];
              [self.searches insertObject:searchString atIndex:0];
              self.searchResults[searchString] = flickrPhotos;
 
              [self.collectionView reloadData];
          }
 
-         [self.hud hide:NO];
+         [self.hud hide:YES];
          [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
          if (error) {
              [MBProgressHUD lx_showHudForError:@"网络不给力啊..."];
          }
      }];
+}
+
+#pragma mark - UITextFieldDelegate
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    NSString *serachString = [textField.text stringByTrimmingCharactersInSet:
+                              [NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    [self p_performSearchWithSearchString:serachString];
 
     [self.hud show:YES];
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;

@@ -135,7 +135,7 @@
         <!--Photo Browser-->
         <scene sceneID="Di7-bR-aBa">
             <objects>
-                <viewController id="xHI-se-MbT" customClass="LXPhotoBrowser" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="xHI-se-MbT" customClass="LXPhotoBrowser" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="WU1-rJ-GSI"/>
                         <viewControllerLayoutGuide type="bottom" id="OpY-f1-xlu"/>
@@ -144,19 +144,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1vB-lc-gsd">
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9lc-Md-dzL">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <connections>
-                                    <segue destination="x5I-Um-cPg" kind="embed" id="I2O-km-VxA"/>
+                                    <segue destination="x5I-Um-cPg" kind="embed" id="aR2-QT-ttY"/>
                                 </connections>
                             </containerView>
                         </subviews>
+                        <gestureRecognizers/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="1vB-lc-gsd" secondAttribute="trailing" id="cWJ-OW-uLN"/>
-                            <constraint firstItem="1vB-lc-gsd" firstAttribute="top" secondItem="Qg4-E4-LkV" secondAttribute="top" id="nPA-kq-gni"/>
-                            <constraint firstItem="1vB-lc-gsd" firstAttribute="leading" secondItem="Qg4-E4-LkV" secondAttribute="leading" id="xif-xi-Bjk"/>
-                            <constraint firstAttribute="bottom" secondItem="1vB-lc-gsd" secondAttribute="bottom" id="z65-zO-C5T"/>
+                            <constraint firstItem="9lc-Md-dzL" firstAttribute="leading" secondItem="Qg4-E4-LkV" secondAttribute="leading" id="6AY-Lf-efi"/>
+                            <constraint firstItem="9lc-Md-dzL" firstAttribute="top" secondItem="Qg4-E4-LkV" secondAttribute="top" id="HmS-Zt-Gi9"/>
+                            <constraint firstAttribute="bottom" secondItem="9lc-Md-dzL" secondAttribute="bottom" id="d9t-Bs-P3K"/>
+                            <constraint firstAttribute="trailing" secondItem="9lc-Md-dzL" secondAttribute="trailing" id="y5j-ma-3fh"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="li4-YQ-36S" appends="YES" id="RCD-uN-GVI"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="wb7-Ii-n3J">
                         <barButtonItem key="leftBarButtonItem" title="返回" id="NSC-rJ-Mv5">
@@ -169,16 +173,21 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p9T-L5-bXd" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="VIp-6H-Uuj" userLabel="Exit" sceneMemberID="exit"/>
+                <tapGestureRecognizer id="li4-YQ-36S">
+                    <connections>
+                        <action selector="p_tapGestureRecognizer:" destination="xHI-se-MbT" id="3ml-tn-B3E"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1010" y="811"/>
         </scene>
         <!--Page View Controller-->
         <scene sceneID="w3y-cu-j53">
             <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="x5I-Um-cPg" sceneMemberID="viewController"/>
+                <pageViewController storyboardIdentifier="LXPageVC" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="x5I-Um-cPg" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nr1-Rs-kEi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1010" y="1474"/>
+            <point key="canvasLocation" x="1010" y="1481"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="1PX-1u-m7u">

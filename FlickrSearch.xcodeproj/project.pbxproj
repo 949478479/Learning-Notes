@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		182B79E31B6C6E6C009336FD /* FlickrSearchTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 182B79E21B6C6E6C009336FD /* FlickrSearchTests.m */; };
 		182B7A021B6CC985009336FD /* LXFlickrPhotosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 182B7A011B6CC985009336FD /* LXFlickrPhotosViewController.m */; };
-		1875850E1B739231007F6068 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1875850B1B739231007F6068 /* Main.storyboard */; };
 		187585131B739237007F6068 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 187585111B739237007F6068 /* Images.xcassets */; };
 		1875851A1B73926A007F6068 /* LXFlickrPhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 187585171B73926A007F6068 /* LXFlickrPhotoCell.m */; };
 		1875851B1B73926A007F6068 /* LXFlickrPhotoHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 187585191B73926A007F6068 /* LXFlickrPhotoHeaderView.m */; };
@@ -21,6 +20,7 @@
 		18C648D11B7154D900C3FB0A /* MBProgressHUD+LX.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C648CD1B7154D900C3FB0A /* MBProgressHUD+LX.m */; };
 		18C648D21B7154D900C3FB0A /* MBProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 18C648CE1B7154D900C3FB0A /* MBProgressHUD.bundle */; };
 		18C649171B71722F00C3FB0A /* LXPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C649161B71722F00C3FB0A /* LXPhotoBrowser.m */; };
+		18C8B2481B7589E800D3A7B1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18C8B2461B7589E800D3A7B1 /* Main.storyboard */; };
 		370AAE9E39F3E2921D673B92 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D18A86AA594069100F82E670 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -41,7 +41,6 @@
 		182B79E21B6C6E6C009336FD /* FlickrSearchTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FlickrSearchTests.m; sourceTree = "<group>"; };
 		182B7A001B6CC985009336FD /* LXFlickrPhotosViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXFlickrPhotosViewController.h; sourceTree = "<group>"; };
 		182B7A011B6CC985009336FD /* LXFlickrPhotosViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXFlickrPhotosViewController.m; sourceTree = "<group>"; };
-		1875850C1B739231007F6068 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1875850D1B739231007F6068 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		187585111B739237007F6068 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		187585161B73926A007F6068 /* LXFlickrPhotoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXFlickrPhotoCell.h; sourceTree = "<group>"; };
@@ -55,14 +54,15 @@
 		187585231B739744007F6068 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		187585241B739744007F6068 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		187585251B739744007F6068 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		187585281B73AD03007F6068 /* LXPhotoBrowerProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXPhotoBrowerProtocol.h; sourceTree = "<group>"; };
+		187585281B73AD03007F6068 /* LXPhotoBrowerProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LXPhotoBrowerProtocol.h; path = ../LXPhotoBrowerProtocol.h; sourceTree = "<group>"; };
 		18C648C81B71370B00C3FB0A /* LXFlickrPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXFlickrPhotoViewController.h; sourceTree = "<group>"; };
 		18C648C91B71370B00C3FB0A /* LXFlickrPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXFlickrPhotoViewController.m; sourceTree = "<group>"; };
 		18C648CC1B7154D900C3FB0A /* MBProgressHUD+LX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+LX.h"; sourceTree = "<group>"; };
 		18C648CD1B7154D900C3FB0A /* MBProgressHUD+LX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+LX.m"; sourceTree = "<group>"; };
 		18C648CE1B7154D900C3FB0A /* MBProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MBProgressHUD.bundle; sourceTree = "<group>"; };
-		18C649151B71722F00C3FB0A /* LXPhotoBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXPhotoBrowser.h; sourceTree = "<group>"; };
-		18C649161B71722F00C3FB0A /* LXPhotoBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXPhotoBrowser.m; sourceTree = "<group>"; };
+		18C649151B71722F00C3FB0A /* LXPhotoBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LXPhotoBrowser.h; path = ../LXPhotoBrowser.h; sourceTree = "<group>"; };
+		18C649161B71722F00C3FB0A /* LXPhotoBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LXPhotoBrowser.m; path = ../LXPhotoBrowser.m; sourceTree = "<group>"; };
+		18C8B2471B7589E800D3A7B1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CB80C120319277827E3FDD54 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		D18A86AA594069100F82E670 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		E314DEA8F294018C95EAD541 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -139,13 +139,11 @@
 		1867DD1B1B6E580300E60538 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				18C8B2451B75846000D3A7B1 /* PhotoBrower */,
 				182B7A001B6CC985009336FD /* LXFlickrPhotosViewController.h */,
 				182B7A011B6CC985009336FD /* LXFlickrPhotosViewController.m */,
 				18C648C81B71370B00C3FB0A /* LXFlickrPhotoViewController.h */,
 				18C648C91B71370B00C3FB0A /* LXFlickrPhotoViewController.m */,
-				187585281B73AD03007F6068 /* LXPhotoBrowerProtocol.h */,
-				18C649151B71722F00C3FB0A /* LXPhotoBrowser.h */,
-				18C649161B71722F00C3FB0A /* LXPhotoBrowser.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -156,7 +154,6 @@
 				187585231B739744007F6068 /* AppDelegate.h */,
 				187585241B739744007F6068 /* AppDelegate.m */,
 				187585251B739744007F6068 /* main.m */,
-				1875850B1B739231007F6068 /* Main.storyboard */,
 				1875850D1B739231007F6068 /* Info.plist */,
 			);
 			path = Other;
@@ -174,6 +171,7 @@
 		187585151B73926A007F6068 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				18C8B2461B7589E800D3A7B1 /* Main.storyboard */,
 				18C648CB1B7154D900C3FB0A /* MBProgressHUD */,
 				187585161B73926A007F6068 /* LXFlickrPhotoCell.h */,
 				187585171B73926A007F6068 /* LXFlickrPhotoCell.m */,
@@ -202,6 +200,16 @@
 				18C648CE1B7154D900C3FB0A /* MBProgressHUD.bundle */,
 			);
 			path = MBProgressHUD;
+			sourceTree = "<group>";
+		};
+		18C8B2451B75846000D3A7B1 /* PhotoBrower */ = {
+			isa = PBXGroup;
+			children = (
+				187585281B73AD03007F6068 /* LXPhotoBrowerProtocol.h */,
+				18C649151B71722F00C3FB0A /* LXPhotoBrowser.h */,
+				18C649161B71722F00C3FB0A /* LXPhotoBrowser.m */,
+			);
+			path = PhotoBrower;
 			sourceTree = "<group>";
 		};
 		23088C86874E0D42CAF69CE0 /* Pods */ = {
@@ -304,9 +312,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18C8B2481B7589E800D3A7B1 /* Main.storyboard in Resources */,
 				18C648D21B7154D900C3FB0A /* MBProgressHUD.bundle in Resources */,
 				187585131B739237007F6068 /* Images.xcassets in Resources */,
-				1875850E1B739231007F6068 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -389,10 +397,10 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		1875850B1B739231007F6068 /* Main.storyboard */ = {
+		18C8B2461B7589E800D3A7B1 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				1875850C1B739231007F6068 /* Base */,
+				18C8B2471B7589E800D3A7B1 /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
