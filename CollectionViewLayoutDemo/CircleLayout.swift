@@ -102,14 +102,12 @@ class CircleLayout: UICollectionViewLayout {
         // 需要确定是变化的那个 item 后再做进一步处理.
         if let insertIndexPaths = insertIndexPaths, index = find(insertIndexPaths, itemIndexPath) {
 
-            assert(layoutAttributes != nil)
-
             // 由屏幕中间边旋转边变大到达最终插入位置.
             layoutAttributes?.center    = center
             layoutAttributes?.transform = CGAffineTransformScale(CGAffineTransformMakeRotation(CGFloat(M_PI)), 0.01, 0.01)
         }
 
-        // 不加这句 cell 的层级有时候不正确,然而即使加上了如果切换布局后再切回来也会层级不正确...不明白...
+        // 不加这句插入 cell 时候有的层级不正确,然而即使加上了如果切换布局后再切回来也会层级不正确.除非关闭动画切换.
         layoutAttributes?.zIndex = itemIndexPath.item
 
         return layoutAttributes
@@ -124,8 +122,6 @@ class CircleLayout: UICollectionViewLayout {
             layoutAttributes?.center    = center
             layoutAttributes?.transform = CGAffineTransformScale(CGAffineTransformMakeRotation(CGFloat(M_PI)), 0.01, 0.01)
         }
-
-        layoutAttributes?.zIndex = itemIndexPath.item
 
         return layoutAttributes
     }
