@@ -21,7 +21,7 @@ static const CGFloat kPadding = 16;
 static NSString * const kPhotoCellIdentifier  = @"FlickrPhotoCell";
 static NSString * const kHeaderViewIdentifier = @"FlickrPhotoHeaderView";
 
-@interface LXFlickrPhotosViewController () <UICollectionViewDelegateFlowLayout, UITextFieldDelegate, UIViewControllerTransitioningDelegate, LXFlickrPhotoBrowserDataSource>
+@interface LXFlickrPhotosViewController () <UITextFieldDelegate, LXFlickrPhotoBrowserDataSource>
 
 @property (nonatomic, strong) MBProgressHUD        *hud;
 @property (nonatomic, strong) IBOutlet UITextField *textField;
@@ -117,7 +117,7 @@ static NSString * const kHeaderViewIdentifier = @"FlickrPhotoHeaderView";
 
 #pragma mark - 分享图片
 
-- (IBAction)shareAction:(UIBarButtonItem *)sender
+- (IBAction)p_shareAction:(UIBarButtonItem *)sender
 {
     if (self.searchStrings.count == 0) { return; }
 

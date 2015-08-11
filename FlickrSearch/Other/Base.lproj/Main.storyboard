@@ -124,7 +124,7 @@
                         </textField>
                         <barButtonItem key="rightBarButtonItem" systemItem="action" id="bKO-3s-JkJ">
                             <connections>
-                                <action selector="shareAction:" destination="iIm-gM-Zu1" id="y0Q-d1-moK"/>
+                                <action selector="p_shareAction:" destination="iIm-gM-Zu1" id="yOy-KG-XMW"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
