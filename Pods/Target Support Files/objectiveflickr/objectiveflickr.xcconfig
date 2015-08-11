@@ -1,1 +1,0 @@
-OBJECTIVEFLICKR_OTHER_LDFLAGS = -framework "CFNetwork" -framework "SystemConfiguration"
