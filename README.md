@@ -77,7 +77,7 @@ func sumAny(anys: Any...) -> String {
 
 ```
 
-映射数组可以使用`map`函数,而求和可以使用`reduce`函数:
+映射数组可以使用`map`函数,而求和可以使用`reduce`函数,例如这样:
 
 ```swift
 
