@@ -109,6 +109,7 @@ static NSString * const kHeaderViewIdentifier = @"FlickrPhotoHeaderView";
 
          [self.hud hide:YES];
          [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+
          if (error) {
              [MBProgressHUD lx_showHudForError:@"网络不给力啊..."];
          }
@@ -134,8 +135,8 @@ static NSString * const kHeaderViewIdentifier = @"FlickrPhotoHeaderView";
         activityVC.popoverPresentationController.barButtonItem = self.navigationItem.rightBarButtonItem;
 
         [self presentViewController:activityVC animated:YES completion:nil];
-    }
-    else {
+
+    } else {
         [self p_switchShareState];
     }
 }
@@ -146,6 +147,7 @@ static NSString * const kHeaderViewIdentifier = @"FlickrPhotoHeaderView";
         self.shareTextLabel = [UILabel new];
         self.shareTextLabel.textColor = self.view.tintColor;
     }
+
     self.shareTextLabel.text =
         [NSString stringWithFormat:@"选中了%lu张图片", self.selectedPhotos.count];
     [self.shareTextLabel sizeToFit];
@@ -164,6 +166,7 @@ static NSString * const kHeaderViewIdentifier = @"FlickrPhotoHeaderView";
                                       animated:YES
                                 scrollPosition:UICollectionViewScrollPositionNone];
     if (self.sharing) {
+
         [self p_updateShareTextLabel];
         UIBarButtonItem *labelItem = [[UIBarButtonItem alloc] initWithCustomView:self.shareTextLabel];
         [self.navigationItem setRightBarButtonItems:@[self.navigationItem.rightBarButtonItem, labelItem]
