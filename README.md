@@ -115,6 +115,7 @@ func sumAny(anys: Any...) -> String {
 ```
 
 最后将求得的和转为`String`即可.
+当然，这里只用一个 reduce 函数也能实现.
 
 ## 递归
 
