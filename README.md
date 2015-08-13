@@ -1,6 +1,6 @@
 出自`RayWenderlich`的教程 [Programming Challenge: Are You a Swift Ninja? ](http://www.raywenderlich.com/76349/swift-ninja-part-1)
 
-觉得挺好玩的,记录一下.未完待续...
+介绍了些`Swift`的特性,扩展了思维,在这记录下.
 
 ## 挑战#1
 
@@ -231,6 +231,52 @@ doWork() && reportTrue() || reportFalse()
 
 巧妙运用了逻辑短路.
 
-如果`doWork()`为`true`,则会执行`reportTrue()`,而该函数返回`true`,`&&`运算结果为`true`,最后的`reportFalse()`将没有机会执行.
+如果`doWork()`为`true`,则会进一步执行`reportTrue()`确定`&&`的结果,而该函数返回`true`,`&&`运算结果为`true`,则`||`的结果直接为`true`,最后的`reportFalse()`将没有机会执行.
 
-如果`doWork()`为`false`,则`&&`运算结果直接为`false`,`reportTrue()`没机会执行,直接去执行`reportFalse()`,当然这里它返回啥无所谓了.
+如果`doWork()`为`false`,则`&&`运算结果直接为`false`,`reportTrue()`没机会执行,此时会进一步执行`reportFalse()`确定`||`的结果,当然这里它返回啥无所谓了.
+
+## 挑战#8
+
+扩展`Array`,增加3个新功能:
+
+```swift
+
+swapElementAtIndex(index: Int)(withIndex: Int) // 交换 index 和 withIndex 位置元素的值.
+arrayWithElementAtIndexToFront(index: Int)     // 交换 index 位置元素和首元素的值.
+arrayWithElementAtIndexToBack(index: Int)      // 交换 index 位置元素和尾元素的值.
+
+``` 
+
+要求:只能使用1次`func`关键字.
+
+可以利用函数`柯里化`来实现`swapElementAtIndex(_:)(withIndex:)`.然后使用`计算属性`配合已有函数完成剩下的俩功能.
+
+```swift
+
+extension Array {
+
+    var arrayWithElementAtIndexToFront: Int -> Array {
+        return swapElementAtIndex(0)
+    }
+
+    var arrayWithElementAtIndexToBack: Int -> Array {
+        return swapElementAtIndex(count - 1)
+    }
+
+    func swapElementAtIndex(index: Int) -> (withIndex: Int) -> Array {
+        return { withIndex in
+            var result = self // 一份可变拷贝.
+            if index < self.count && withIndex < self.count {
+                (result[index], result[withIndex]) = (result[withIndex], result[index])
+            }
+            return result
+        }
+    }
+}
+
+let list = [1, 2, 3]
+list.swapElementAtIndex(1)(withIndex: 2) // [1, 3, 2]
+list.arrayWithElementAtIndexToFront(1)   // [2, 1, 3]
+list.arrayWithElementAtIndexToBack(1)    // [1, 3, 2]
+
+```
