@@ -1,6 +1,6 @@
 出自`RayWenderlich`的教程 [Programming Challenge: Are You a Swift Ninja? ](http://www.raywenderlich.com/76349/swift-ninja-part-1)
 
-介绍了些`Swift`的特性,扩展了思维,在这记录下.
+介绍了些`Swift`的特性,脑洞大开(⊙_⊙),在这记录下.
 
 ## 挑战#1
 
@@ -31,9 +31,9 @@ mySwap(&a, &b) // a = "321", b = "123"
 
 ```swift
 
-flexStrings() //--> "none"  
-flexStrings(s1: "One") //--> "One"  
-flexStrings(s1: "One", s2: "Two") //--> "OneTwo"
+flexStrings() // none  
+flexStrings(s1: "One") // One 
+flexStrings(s1: "One", s2: "Two") // OneTwo
 
 ```
 
@@ -65,9 +65,9 @@ flexStrings(s1: "One", s2: "Two")
 
 ```swift
 
-let result0 = sumAny() //--> "0"
-let result1 = sumAny(Double(), 10, "-10", 2) //--> "12"
-let result2 = sumAny("Marin Todorov", 2, 22, "-3", "10", "", 0, 33, -5) //--> "42"
+let result0 = sumAny() // 0
+let result1 = sumAny(Double(), 10, "-10", 2) // 12
+let result2 = sumAny("Marin Todorov", 2, 22, "-3", "10", "", 0, 33, -5) // 42
 
 ```
 
@@ -121,7 +121,7 @@ func sumAny(anys: Any...) -> String {
 ```
 
 最后将求得的和转为`String`即可.
-当然，这里只用一个 reduce 函数也能实现.
+当然，这里只用一个`reduce`函数也能实现.
 
 ## 挑战#4
 
