@@ -1,6 +1,6 @@
 出自`RayWenderlich`的教程 [Programming Challenge: Are You a Swift Ninja? ](http://www.raywenderlich.com/76349/swift-ninja-part-1)
 
-脑洞大开的 Swift 小题目,在这记录下.(⊙_⊙)
+脑洞大开的 Swift 小题目,在这记录下. (⊙_⊙)
 
 ## 挑战#1
 
