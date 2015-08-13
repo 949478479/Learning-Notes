@@ -174,17 +174,17 @@ func reverseString (input: String, output: String = "") -> String {
  
 ```swift
  
-func charMult(char: Character, var result: String, length: Int) -> String {
+func charMult(#char: Character, var #result: String, #length: Int) -> String {
     if count(result) < length {
         result.append(char)
-        return charMult(char, result, length)
+        return charMult(char: char, result: result, length: length)
     } else {
         return result
     }
 }
 
 func * (left: Character, right: Int) -> String {
-    return charMult(left, "", right)
+    return charMult(char: left, result: "", length: right)
 }
 
 "-" * 10 + ">" // ---------->
@@ -194,3 +194,43 @@ func * (left: Character, right: Int) -> String {
 ```
 
 注意参数`result`需要声明为`var`.默认是`let`.
+
+## 挑战#7
+
+这有个随机返回`true`或`false`的函数:
+
+```swift
+
+func doWork() -> Bool {
+    return arc4random() % 10 < 5
+}
+
+```
+
+当返回`true`时,打印`真`,返回`false`时,打印`假`.要求:
+
+    1. 不能修改`doWork()`.
+    2. 不能使用`if`,`switch`,`while`,`let`.
+    3. 不能使用三元运算符`?:`.
+    
+```swift
+
+func reportTrue() -> Bool {
+    println("真")
+    return true
+}
+
+func reportFalse() -> Bool {
+    println("假")
+    return true
+}
+
+doWork() && reportTrue() || reportFalse()
+
+```
+
+巧妙运用了逻辑短路.
+
+如果`doWork()`为`true`,则会执行`reportTrue()`,而该函数返回`true`,`&&`运算结果为`true`,最后的`reportFalse()`将没有机会执行.
+
+如果`doWork()`为`false`,则`&&`运算结果直接为`false`,`reportTrue()`没机会执行,直接去执行`reportFalse()`,当然这里它返回啥无所谓了.
