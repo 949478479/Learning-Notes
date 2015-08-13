@@ -2,7 +2,9 @@
 
 觉得挺好玩的,记录一下.未完待续...
 
-## 巧用`元组`交换两个值
+## 挑战#1
+
+巧用`元组`交换两个值.
 
 ```swift
 
@@ -17,7 +19,9 @@ mySwap(&a, &b) // a = "321", b = "123"
 ```
 当然,直接使用系统库自带的`swap`函数最省事.
 
-## 编写一个函数`flexStrings`符合下列条件:
+## 挑战#2
+
+编写一个函数`flexStrings`符合下列条件:
 
     1. 函数可以接受0、1或2个字符串参数.
     2. 将函数参数连接为`String`返回.
@@ -47,7 +51,9 @@ flexStrings(s1: "One", s2: "Two")
 
 ```
 
-## 编写一个函数`sumAny`,可以接收任何类型的零个或多个参数.函数应满足以下要求: 
+## 挑战#3
+
+编写一个函数`sumAny`,可以接收任何类型的零个或多个参数.函数应满足以下要求: 
 
     1. 函数将参数求和后以`String`类型返回,并符合后面的要求.
     2. 如果参数是空的`String`或者值为`0`的`Int`,则结果要`-10`.
@@ -117,9 +123,9 @@ func sumAny(anys: Any...) -> String {
 最后将求得的和转为`String`即可.
 当然，这里只用一个 reduce 函数也能实现.
 
-## 递归
+## 挑战#4
 
-这个和`Swift`没啥太大关系. - -!
+递归,这个和`Swift`没啥太大关系. - -!
 
 ```swift
 
@@ -133,3 +139,58 @@ func countFrom(from: Int, #to: Int) {
 countFrom(1, to: 5) // 12345
 
 ```
+
+## 挑战#5
+
+编写一个函数,反转字符串.例如,"0123456789" => "9876543210".要求如下:
+
+    1. 不能使用循环和下标.
+    2. 不能使用数组.
+    3. 不能定义变量.
+
+```swift
+
+func reverseString (input: String, output: String = "") -> String {
+    if input.isEmpty {
+        return output
+    } else {
+        return reverseString(input.substringToIndex(input.endIndex.predecessor()),
+            output: output + input.substringFromIndex(input.endIndex.predecessor()))
+    }
+}
+
+```
+
+主要是递归截串,函数参数存值.从整个字符串开始,之后每次截取点向前挪一位,并把最后一个字符累加到函数参数上保存.  
+注意`endIndex`实际上返回的是字符串末尾索引的后一个,所以需要用下`predecessor()`才是最后一个字符的索引.
+ 
+##  挑战#6
+
+重载运算符`*`,获得这种效果:
+
+```swift
+"-" * 10 // ----------
+```
+ 
+```swift
+ 
+func charMult(char: Character, var result: String, length: Int) -> String {
+    if count(result) < length {
+        result.append(char)
+        return charMult(char, result, length)
+    } else {
+        return result
+    }
+}
+
+func * (left: Character, right: Int) -> String {
+    return charMult(left, "", right)
+}
+
+"-" * 10 + ">" // ---------->
+"%" + "~" * 6  // prints a worm
+"Z" * 20       // ZZZZZZZZZZZZZZZZZZ
+
+```
+
+注意参数`result`需要声明为`var`.默认是`let`.
