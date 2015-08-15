@@ -8,14 +8,13 @@
 
 import UIKit
 
-class RestaurantDetailViewController: UITableViewController {
+class RestaurantDetailViewController: UIViewController {
 
     var restaurant: Restaurant!
 
     private let identifier = "RestaurantDetailCell"
 
-    @IBOutlet
-    private weak var restaurantImageView: UIImageView!
+    @IBOutlet private weak var restaurantImageView: UIImageView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,15 +25,33 @@ class RestaurantDetailViewController: UITableViewController {
             .stringByReplacingOccurrencesOfString("_thumbnail", withString: "")
         restaurantImageView.image = UIImage(named: imageName)
     }
+
+    // MARK: - 导航控制
+
+    @IBAction
+    private func close(segue: UIStoryboardSegue) { }
+
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+
+        let destinationVC: AnyObject = segue.destinationViewController
+
+        if segue.identifier == "Share" {
+            (destinationVC as! ShareViewController).backgroundImage  = restaurantImageView.image
+        } else if segue.identifier == "Review" {
+            (destinationVC as! ReviewViewController).backgroundImage = restaurantImageView.image
+        }
+    }
 }
 
-extension RestaurantDetailViewController {
+// MARK: - TableView 数据源
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+extension RestaurantDetailViewController: UITableViewDataSource {
+
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 4
     }
 
-    override func tableView(tableView: UITableView,
+    func tableView(tableView: UITableView,
         cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 
         let cell = tableView.dequeueReusableCellWithIdentifier(identifier) as! RestaurantDetailCell
