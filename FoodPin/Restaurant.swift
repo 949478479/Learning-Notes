@@ -10,17 +10,19 @@ import Foundation
 
 class Restaurant {
 
-    var name: String
-    var type: String
-    var location: String
-    var image: String
+    let name: String
+    let type: String
+    let location: String
+    let image: String
+    let thumbnail: String
     var isVisited: Bool  
 
-    init(name: String, type: String, location: String, image: String, isVisited: Bool) {
+    init(name: String, type: String, location: String, image: String, thumbnail: String, isVisited: Bool) {
         self.name      = name
         self.type      = type
         self.location  = location
         self.image     = image
+        self.thumbnail = thumbnail
         self.isVisited = isVisited
     }
 }

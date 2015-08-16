@@ -21,24 +21,28 @@ class RestaurantDetailViewController: UIViewController {
 
         title = restaurant.name
 
-        let imageName = restaurant.image
-            .stringByReplacingOccurrencesOfString("_thumbnail", withString: "")
-        restaurantImageView.image = UIImage(named: imageName)
+        restaurantImageView.image = UIImage(named: restaurant.image)
     }
 
     // MARK: - 导航控制
 
-    @IBAction
-    private func close(segue: UIStoryboardSegue) { }
+    @IBAction private func close(segue: UIStoryboardSegue) { }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 
-        let destinationVC: AnyObject = segue.destinationViewController
+        if let identifier = segue.identifier {
 
-        if segue.identifier == "Share" {
-            (destinationVC as! ShareViewController).backgroundImage  = restaurantImageView.image
-        } else if segue.identifier == "Review" {
-            (destinationVC as! ReviewViewController).backgroundImage = restaurantImageView.image
+            let destinationVC: AnyObject = segue.destinationViewController
+
+            switch identifier {
+            case "Share":
+                (destinationVC as! ShareViewController).backgroundImage  = restaurantImageView.image
+            case "Review":
+                (destinationVC as! ReviewViewController).backgroundImage = restaurantImageView.image
+            case "ShowMap":
+                (destinationVC as! MapViewController).restaurant = restaurant
+            default: break
+            }
         }
     }
 }
@@ -56,6 +60,8 @@ extension RestaurantDetailViewController: UITableViewDataSource {
 
         let cell = tableView.dequeueReusableCellWithIdentifier(identifier) as! RestaurantDetailCell
 
+        cell.mapButton.hidden = true
+
         switch indexPath.row {
         case 0:
             cell.TitleLabel.text  = "Name"
@@ -64,6 +70,7 @@ extension RestaurantDetailViewController: UITableViewDataSource {
             cell.TitleLabel.text  = "Type"
             cell.detailLabel.text = restaurant.type
         case 2:
+            cell.mapButton.hidden = false
             cell.TitleLabel.text  = "Location"
             cell.detailLabel.text = restaurant.location
         case 3:

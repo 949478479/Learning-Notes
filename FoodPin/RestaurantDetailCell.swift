@@ -10,6 +10,7 @@ import UIKit
 
 class RestaurantDetailCell: UITableViewCell {
 
+    @IBOutlet weak var mapButton:UIButton!
     @IBOutlet weak var TitleLabel:UILabel!
     @IBOutlet weak var detailLabel:UILabel!
 }
