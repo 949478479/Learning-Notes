@@ -20,6 +20,7 @@
 		18D6011A1B7FF27F00F44DF8 /* ReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D601191B7FF27F00F44DF8 /* ReviewViewController.swift */; };
 		18D6011C1B7FFCE900F44DF8 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D6011B1B7FFCE900F44DF8 /* ShareViewController.swift */; };
 		18D6011E1B80E56D00F44DF8 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D6011D1B80E56D00F44DF8 /* MapViewController.swift */; };
+		18D601201B810B4000F44DF8 /* AddRestaurantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D6011F1B810B4000F44DF8 /* AddRestaurantViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +51,7 @@
 		18D601191B7FF27F00F44DF8 /* ReviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewViewController.swift; sourceTree = "<group>"; };
 		18D6011B1B7FFCE900F44DF8 /* ShareViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
 		18D6011D1B80E56D00F44DF8 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		18D6011F1B810B4000F44DF8 /* AddRestaurantViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddRestaurantViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +138,7 @@
 				18D601191B7FF27F00F44DF8 /* ReviewViewController.swift */,
 				18D6011B1B7FFCE900F44DF8 /* ShareViewController.swift */,
 				18D6011D1B80E56D00F44DF8 /* MapViewController.swift */,
+				18D6011F1B810B4000F44DF8 /* AddRestaurantViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -264,6 +267,7 @@
 				18D6011E1B80E56D00F44DF8 /* MapViewController.swift in Sources */,
 				183257CC1B7F7F4500F78AA1 /* RestaurantDetailCell.swift in Sources */,
 				183257BF1B7F529500F78AA1 /* RestaurantDetailViewController.swift in Sources */,
+				18D601201B810B4000F44DF8 /* AddRestaurantViewController.swift in Sources */,
 				18D6011C1B7FFCE900F44DF8 /* ShareViewController.swift in Sources */,
 				180A52C81B7EECF70093BC59 /* AppDelegate.swift in Sources */,
 			);

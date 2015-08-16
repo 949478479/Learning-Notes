@@ -49,6 +49,8 @@ class RestaurantViewController: UITableViewController {
             }
         }
     }
+
+    @IBAction private func unwindToHomeScreen(segue: UIStoryboardSegue) { }
 }
 
 // MARK: - TableView 数据源
