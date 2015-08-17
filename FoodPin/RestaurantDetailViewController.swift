@@ -20,7 +20,8 @@ class RestaurantDetailViewController: UIViewController {
         super.viewDidLoad()
 
         title = restaurant.name
-
+/* FIXME:
+        restaurantImageView.image = UIImage(data: restaurant.image) */
         restaurantImageView.image = UIImage(named: restaurant.image)
     }
 
@@ -75,7 +76,7 @@ extension RestaurantDetailViewController: UITableViewDataSource {
             cell.detailLabel.text = restaurant.location
         case 3:
             cell.TitleLabel.text  = "Been here"
-            cell.detailLabel.text = (restaurant.isVisited) ? "Yes, I've been here before" : "No"
+            cell.detailLabel.text = (restaurant.isVisited.boolValue) ? "Yes, I've been here before" : "No"
         default:
             cell.TitleLabel.text  = ""
             cell.detailLabel.text = ""

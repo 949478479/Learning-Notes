@@ -62,7 +62,8 @@ extension MapViewController: MKMapViewDelegate {
         } else {
             annotationView.annotation = annotation
         }
-
+/* FIXME:
+        (annotationView.leftCalloutAccessoryView as! UIImageView).image = UIImage(data: restaurant.thumbnail) */
         (annotationView.leftCalloutAccessoryView as! UIImageView).image = UIImage(named: restaurant.thumbnail)
 
         return annotationView

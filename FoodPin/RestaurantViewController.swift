@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class RestaurantViewController: UITableViewController {
 
@@ -34,6 +35,30 @@ class RestaurantViewController: UITableViewController {
         Restaurant(name: "Donostia", type: "Spanish", location: "10 Seymour Place London W1H 7ND United Kingdom", image: "donostia", thumbnail: "donostia_thumbnail", isVisited: false),
         Restaurant(name: "Royal Oak", type: "British", location: "2 Regency Street London SW1P 4BZ United Kingdom", image: "royaloak", thumbnail: "royaloak_thumbnail", isVisited: false),
         Restaurant(name: "Thai Cafe", type: "Thai", location: "22 Charlwood Street London SW1V 2DY Pimlico", image: "thaicafe", thumbnail: "thaicafe_thumbnail", isVisited: false)]
+/* FIXME:
+    lazy var fetchedResultsController: NSFetchedResultsController = {
+
+        let fetchRequest = NSFetchRequest(entityName: "Restaurant")
+
+        let sortDescriptor = NSSortDescriptor(key: "name", ascending: true)
+        fetchRequest.sortDescriptors = [sortDescriptor]
+
+        let fetchedResultsController = NSFetchedResultsController(
+            fetchRequest: fetchRequest,
+            managedObjectContext: AppDelegate.sharedAppDelegate().managedObjectContext,
+            sectionNameKeyPath: nil,
+            cacheName: "Restaurants")
+
+        fetchedResultsController.delegate = self
+
+        var error: NSError?
+
+        if !fetchedResultsController.performFetch(&error) {
+            println(error)
+        }
+
+        return fetchedResultsController
+    }() */
 
     // MARK: - 导航控制
 
@@ -44,7 +69,9 @@ class RestaurantViewController: UITableViewController {
             if let
                 indexPath = tableView.indexPathForSelectedRow(),
                 restaurantDetailVC = segue.destinationViewController as? RestaurantDetailViewController
-            {
+            {/* FIXME:
+                restaurantDetailVC.restaurant =
+                    fetchedResultsController.objectAtIndexPath(indexPath) as! Restaurant */
                 restaurantDetailVC.restaurant = restaurants[indexPath.row]
             }
         }
@@ -58,6 +85,8 @@ class RestaurantViewController: UITableViewController {
 extension RestaurantViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+/* FIXME:
+        return (fetchedResultsController.sections![section] as! NSFetchedResultsSectionInfo).numberOfObjects */
         return restaurants.count
     }
 
@@ -66,15 +95,18 @@ extension RestaurantViewController {
 
         let cell = tableView.dequeueReusableCellWithIdentifier(identifier, forIndexPath: indexPath)
             as! RestaurantCell
-
+/* FIXME:
+        let restaurant = fetchedResultsController.objectAtIndexPath(indexPath) as! Restaurant */
         let restaurant = restaurants[indexPath.row]
 
         cell.nameLabel.text            = restaurant.name
         cell.locationLabel.text        = restaurant.location
         cell.typeLabel.text            = restaurant.type
+/* FIXME:
+        cell.thumbnailImageView.image  = UIImage(data: restaurant.thumbnail) */
         cell.thumbnailImageView.image  = UIImage(named: restaurant.thumbnail)
-        cell.favorIconImageView.hidden = !restaurant.isVisited
-        
+        cell.favorIconImageView.hidden = !restaurant.isVisited.boolValue
+
         return cell
     }
 }
@@ -84,46 +116,7 @@ extension RestaurantViewController {
 extension RestaurantViewController {
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-/*
-        let callAction = UIAlertAction(
-        title: "Call" + "123-000\(indexPath.row)",
-        style: .Default) { _ in
-
-        let alertMessage = UIAlertController(
-        title: "Service Unavailable",
-        message: "Sorry, the call feature is not available yet. Please retry later.",
-        preferredStyle: .Alert)
-
-        alertMessage.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-
-        self.presentViewController(alertMessage, animated: true, completion: nil)
-        }
-
-        let isVisitedAction = UIAlertAction(
-        title: restaurantIsVisited[indexPath.row] ? "I haven't been to here before" : "I've been here",
-        style: .Default) { _ in
-
-        self.restaurantIsVisited[indexPath.row] = !self.restaurantIsVisited[indexPath.row]
-
-        let cell = tableView.cellForRowAtIndexPath(indexPath) as! RestaurantCell
-        cell.favorIconImageView.hidden = !self.restaurantIsVisited[indexPath.row]
-        }
-
-        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
-
-        let optionMenu = UIAlertController(
-        title: "",
-        message: "What do you want to do?",
-        preferredStyle: .ActionSheet)
-
-        optionMenu.addAction(callAction)
-        optionMenu.addAction(isVisitedAction)
-        optionMenu.addAction(cancelAction)
-
-        presentViewController(optionMenu, animated: true, completion: nil)
-*/
     }
 
     override func tableView(tableView: UITableView, commitEditingStyle
@@ -155,6 +148,15 @@ extension RestaurantViewController {
 
         let deleteAction = UITableViewRowAction(style: .Default, title: "Delete") { _, indexPath in
 
+/* FIXME:
+            let restaurant = self.fetchedResultsController.objectAtIndexPath(indexPath) as! Restaurant
+
+            let appDelegate = AppDelegate.sharedAppDelegate()
+
+            appDelegate.managedObjectContext.deleteObject(restaurant)
+
+            appDelegate.saveContext() */
+
             self.restaurants.removeAtIndex(indexPath.row)
 
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
@@ -164,3 +166,39 @@ extension RestaurantViewController {
         return [deleteAction, shareAction]
     }
 }
+
+// MARK: - FetchedResultsController 代理
+/* FIXME:
+extension RestaurantViewController: NSFetchedResultsControllerDelegate {
+
+    func controllerWillChangeContent(controller: NSFetchedResultsController) {
+        tableView.beginUpdates()
+    }
+
+    func controller(controller: NSFetchedResultsController,
+      didChangeObject anObject: AnyObject,
+         atIndexPath indexPath: NSIndexPath?,
+            forChangeType type: NSFetchedResultsChangeType,
+                  newIndexPath: NSIndexPath?)
+    {
+        switch type
+        {
+        case .Insert:
+            tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: .Automatic)
+
+        case .Delete:
+            tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Automatic)
+
+        case .Update:
+            tableView.reloadRowsAtIndexPaths([indexPath!], withRowAnimation: .Automatic)
+
+        case .Move:
+            tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Automatic)
+            tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: .Automatic)
+        }
+    }
+
+    func controllerDidChangeContent(controller: NSFetchedResultsController) {
+        tableView.endUpdates()
+    }
+}*/

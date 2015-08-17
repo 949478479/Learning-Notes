@@ -7,9 +7,27 @@
 //
 
 import UIKit
+import CoreData
+
+func createThumbnailWithImage(var image: UIImage) -> UIImage {
+
+    let size = CGSize(width: 60, height: 60)
+
+    UIGraphicsBeginImageContextWithOptions(size, true, 0)
+
+    image.drawInRect(CGRect(origin: CGPointZero, size: size))
+
+    image = UIGraphicsGetImageFromCurrentImageContext()
+
+    UIGraphicsEndImageContext()
+
+    return image
+}
 
 class AddRestaurantViewController: UITableViewController {
 
+    var restaurant: Restaurant!
+    
     @IBOutlet private weak var noButton: UIButton!
     @IBOutlet private weak var yesButton: UIButton!
     @IBOutlet private weak var imageView: UIImageView!
@@ -46,9 +64,25 @@ class AddRestaurantViewController: UITableViewController {
             
             presentViewController(alertController, animated: true, completion: nil)
 
-        } else {
-            performSegueWithIdentifier("UnwindToHomeScreen", sender: self)
+            return
         }
+/* FIXME:
+        let appDelegate = AppDelegate.sharedAppDelegate()
+        
+        let managedObjectContext = appDelegate.managedObjectContext
+
+        let restaurant = NSEntityDescription.insertNewObjectForEntityForName("Restaurant",
+            inManagedObjectContext: managedObjectContext) as! Restaurant
+
+        restaurant.name      = nameTextField.text
+        restaurant.type      = typeTextField.text
+        restaurant.location  = locationTextField.text
+        restaurant.image     = UIImagePNGRepresentation(imageView.image)
+        restaurant.thumbnail = UIImagePNGRepresentation(createThumbnailWithImage(imageView.image!))
+        restaurant.isVisited = yesButton.selected
+
+        appDelegate.saveContext() */
+        performSegueWithIdentifier("UnwindToHomeScreen", sender: self)
     }
 
     @IBAction private func updateIsVisited(sender: UIButton) {
