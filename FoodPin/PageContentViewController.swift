@@ -37,7 +37,8 @@ class PageContentViewController: UIViewController {
         NSUserDefaults.standardUserDefaults().setBool(true, forKey: hasViewedWalkthrough)
 
         AppDelegate.sharedAppDelegate().window?.rootViewController =
-            storyboard?.instantiateViewControllerWithIdentifier("HomeNavVC") as? UIViewController
+            storyboard?.instantiateViewControllerWithIdentifier("TabBarController")
+                as? UIViewController
     }
 
     @IBAction private func nextScreen(sender: AnyObject) {

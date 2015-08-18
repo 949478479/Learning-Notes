@@ -25,11 +25,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         let storyboardID =
             NSUserDefaults.standardUserDefaults()
-                .boolForKey(hasViewedWalkthrough) ? "HomeNavVC" : "PageVC"
+                .boolForKey(hasViewedWalkthrough) ? "TabBarController" : "PageVC"
         
         window?.rootViewController =
             UIStoryboard(name: "Main", bundle: nil)
                 .instantiateViewControllerWithIdentifier(storyboardID) as? UIViewController
+
+        UITabBar.appearance().tintColor =
+            UIColor(red: 235/255, green: 75/255, blue: 27/255, alpha: 1)
 
         return true
     }
