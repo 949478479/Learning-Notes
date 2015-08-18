@@ -39,6 +39,7 @@ class RestaurantViewController: UITableViewController {
         Restaurant(name: "Royal Oak", type: "British", location: "2 Regency Street London SW1P 4BZ United Kingdom", image: "royaloak", thumbnail: "royaloak_thumbnail", isVisited: false),
         Restaurant(name: "Thai Cafe", type: "Thai", location: "22 Charlwood Street London SW1V 2DY Pimlico", image: "thaicafe", thumbnail: "thaicafe_thumbnail", isVisited: false)
     ]
+    
 /* FIXME:
     lazy var fetchedResultsController: NSFetchedResultsController = {
 
@@ -78,19 +79,6 @@ class RestaurantViewController: UITableViewController {
         definesPresentationContext = true // 记得写这句.
 
         tableView.tableHeaderView = searchController.searchBar
-    }
-
-    // MARK: - 搜索过滤
-
-    func filterContentForSearchText(searchText: String) {
-
-        searchResults = restaurants.filter {
-
-            let nameMatch     = $0.name.rangeOfString(searchText, options: .CaseInsensitiveSearch)
-            let locationMatch = $0.location.rangeOfString(searchText, options: .CaseInsensitiveSearch)
-
-            return nameMatch != nil || locationMatch != nil
-        }
     }
 
     // MARK: - 导航控制
@@ -208,7 +196,20 @@ extension RestaurantViewController {
     }
 }
 
+// MARK: - SearchResultsUpdating 代理
+
 extension RestaurantViewController: UISearchResultsUpdating {
+
+    private func filterContentForSearchText(searchText: String) {
+
+        searchResults = restaurants.filter {
+
+            let nameMatch     = $0.name.rangeOfString(searchText, options: .CaseInsensitiveSearch)
+            let locationMatch = $0.location.rangeOfString(searchText, options: .CaseInsensitiveSearch)
+
+            return (nameMatch != nil) || (locationMatch != nil)
+        }
+    }
 
     func updateSearchResultsForSearchController(searchController: UISearchController) {
 

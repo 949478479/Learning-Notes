@@ -9,6 +9,8 @@
 import UIKit
 import CoreData
 
+let hasViewedWalkthrough = "hasViewedWalkthrough"
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -18,8 +20,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return UIApplication.sharedApplication().delegate as! AppDelegate
     }
 
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+    func application(application: UIApplication,
+        didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+
+        let storyboardID =
+            NSUserDefaults.standardUserDefaults()
+                .boolForKey(hasViewedWalkthrough) ? "HomeNavVC" : "PageVC"
+        
+        window?.rootViewController =
+            UIStoryboard(name: "Main", bundle: nil)
+                .instantiateViewControllerWithIdentifier(storyboardID) as? UIViewController
+
         return true
     }
 

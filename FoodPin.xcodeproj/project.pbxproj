@@ -22,6 +22,8 @@
 		18D601201B810B4000F44DF8 /* AddRestaurantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D6011F1B810B4000F44DF8 /* AddRestaurantViewController.swift */; };
 		18D601561B8170AD00F44DF8 /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D601551B8170AD00F44DF8 /* Restaurant.swift */; };
 		18D601581B8237FE00F44DF8 /* FoodPin.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 18D601571B8237FE00F44DF8 /* FoodPin.xcdatamodel */; };
+		18D6015C1B82721B00F44DF8 /* PageContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D6015B1B82721B00F44DF8 /* PageContentViewController.swift */; };
+		18D6015E1B82760F00F44DF8 /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D6015D1B82760F00F44DF8 /* PageViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +56,8 @@
 		18D6011F1B810B4000F44DF8 /* AddRestaurantViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddRestaurantViewController.swift; sourceTree = "<group>"; };
 		18D601551B8170AD00F44DF8 /* Restaurant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
 		18D601571B8237FE00F44DF8 /* FoodPin.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FoodPin.xcdatamodel; sourceTree = "<group>"; };
+		18D6015B1B82721B00F44DF8 /* PageContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageContentViewController.swift; sourceTree = "<group>"; };
+		18D6015D1B82760F00F44DF8 /* PageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +139,8 @@
 		183257C01B7F599300F78AA1 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				18D6015D1B82760F00F44DF8 /* PageViewController.swift */,
+				18D6015B1B82721B00F44DF8 /* PageContentViewController.swift */,
 				180A52E71B7EEDBD0093BC59 /* RestaurantViewController.swift */,
 				183257BE1B7F529500F78AA1 /* RestaurantDetailViewController.swift */,
 				18D601191B7FF27F00F44DF8 /* ReviewViewController.swift */,
@@ -272,6 +278,8 @@
 				183257CC1B7F7F4500F78AA1 /* RestaurantDetailCell.swift in Sources */,
 				183257BF1B7F529500F78AA1 /* RestaurantDetailViewController.swift in Sources */,
 				18D601201B810B4000F44DF8 /* AddRestaurantViewController.swift in Sources */,
+				18D6015C1B82721B00F44DF8 /* PageContentViewController.swift in Sources */,
+				18D6015E1B82760F00F44DF8 /* PageViewController.swift in Sources */,
 				18D6011C1B7FFCE900F44DF8 /* ShareViewController.swift in Sources */,
 				180A52C81B7EECF70093BC59 /* AppDelegate.swift in Sources */,
 			);
