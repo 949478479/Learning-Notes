@@ -17,7 +17,7 @@ class PageViewController: UIPageViewController {
         "Search and locate your favourite restaurant on Maps",
         "Find restaurants pinned by your friends and other foodies around the world" ]
 
-    // MARK: - 初始化
+    // MARK: - 控制器生命周期
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +30,7 @@ class PageViewController: UIPageViewController {
             direction: .Forward, animated: false, completion: nil)
     }
 
-    // MARK: - 调整布局
+    // MARK: - 布局调整
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -57,7 +57,7 @@ class PageViewController: UIPageViewController {
         }
     }
 
-    // MARK: - 过渡到下一页面
+    // MARK: - 公共方法
 
     func forwardFromIndex(index: Int) {
 
@@ -68,6 +68,8 @@ class PageViewController: UIPageViewController {
         }
     }
 }
+
+// MARK: - UIPageViewControllerDataSource
 
 extension PageViewController: UIPageViewControllerDataSource {
 

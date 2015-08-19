@@ -35,11 +35,15 @@ class AddRestaurantViewController: UITableViewController {
     @IBOutlet private weak var typeTextField: UITextField!
     @IBOutlet private weak var locationTextField: UITextField!
 
+    // MARK: - 控制器生命周期
+
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
 
         view.endEditing(true)
     }
+
+    // MARK: - IBAction
 
     @IBAction private func saveAction(sender: UIBarButtonItem) {
 
@@ -98,7 +102,7 @@ class AddRestaurantViewController: UITableViewController {
     }
 }
 
-// MARK: - TableView 代理
+// MARK: - UITableViewDelegate
 
 extension AddRestaurantViewController {
 
@@ -116,9 +120,9 @@ extension AddRestaurantViewController {
     }
 }
 
-// MARK: - ImagePicker 代理
+// MARK: - UIImagePickerControllerDelegate
 
-extension AddRestaurantViewController: UIImagePickerControllerDelegate {
+extension AddRestaurantViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     func imagePickerController(picker: UIImagePickerController,
         didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
@@ -127,21 +131,5 @@ extension AddRestaurantViewController: UIImagePickerControllerDelegate {
         imageView.image       = info[UIImagePickerControllerOriginalImage] as? UIImage
 
         dismissViewControllerAnimated(true, completion: nil)
-    }
-}
-
-// MARK: - NavigationController 代理
-
-extension AddRestaurantViewController: UINavigationControllerDelegate {
-
-    func navigationController(navigationController: UINavigationController,
-        willShowViewController viewController: UIViewController, animated: Bool) {
-
-        let selfNavigationBar = self.navigationController!.navigationBar
-        let navigationBar     = navigationController.navigationBar
-
-        navigationBar.tintColor           = selfNavigationBar.tintColor
-        navigationBar.barTintColor        = selfNavigationBar.barTintColor
-        navigationBar.titleTextAttributes = selfNavigationBar.titleTextAttributes
     }
 }

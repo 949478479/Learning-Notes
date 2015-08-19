@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreData
+
 /* FIXME:
 class Restaurant: NSManagedObject {
 
@@ -29,6 +30,7 @@ class Restaurant {
     var thumbnail: String
 
     init(name: String, type: String, location: String, image: String, thumbnail: String, isVisited: Bool) {
+        
         self.name      = name
         self.location  = location
         self.type      = type

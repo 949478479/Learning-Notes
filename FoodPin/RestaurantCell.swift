@@ -19,9 +19,9 @@ class RestaurantCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
 
-        thumbnailImageView.layer.shouldRasterize    = true
-        thumbnailImageView.layer.rasterizationScale = UIScreen.mainScreen().scale
         thumbnailImageView.layer.masksToBounds      = true
         thumbnailImageView.layer.cornerRadius       = thumbnailImageView.bounds.width / 2
+        thumbnailImageView.layer.shouldRasterize    = true
+        thumbnailImageView.layer.rasterizationScale = UIScreen.mainScreen().scale
     }
 }

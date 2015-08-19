@@ -16,6 +16,8 @@ class RestaurantDetailViewController: UIViewController {
 
     @IBOutlet private weak var restaurantImageView: UIImageView!
 
+    // MARK: - 控制器生命周期
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -48,7 +50,7 @@ class RestaurantDetailViewController: UIViewController {
     }
 }
 
-// MARK: - TableView 数据源
+// MARK: - UITableViewDataSource
 
 extension RestaurantDetailViewController: UITableViewDataSource {
 

@@ -22,6 +22,8 @@ class PageContentViewController: UIViewController {
     @IBOutlet private weak var getStartedButton: UIButton!
     @IBOutlet private weak var forwardButton: UIButton!
 
+    // MARK: - 控制器生命周期
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -32,6 +34,8 @@ class PageContentViewController: UIViewController {
         contentImageView.image  = UIImage(named: imageFile)
     }
 
+    // MARK: - IBAction
+    
     @IBAction private func close(sender: AnyObject) {
             
         NSUserDefaults.standardUserDefaults().setBool(true, forKey: hasViewedWalkthrough)

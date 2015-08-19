@@ -65,7 +65,7 @@ class RestaurantViewController: UITableViewController {
         return fetchedResultsController
     }() */
 
-    // MARK: - 初始化
+    // MARK: - 控制器生命周期
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -102,7 +102,7 @@ class RestaurantViewController: UITableViewController {
     @IBAction private func unwindToHomeScreen(segue: UIStoryboardSegue) { }
 }
 
-// MARK: - TableView 数据源
+// MARK: - UITableViewDataSource
 
 extension RestaurantViewController {
 
@@ -133,7 +133,7 @@ extension RestaurantViewController {
     }
 }
 
-// MARK: - TableView 代理
+// MARK: - UITableViewDelegate
 
 extension RestaurantViewController {
 
@@ -196,7 +196,7 @@ extension RestaurantViewController {
     }
 }
 
-// MARK: - SearchResultsUpdating 代理
+// MARK: - UISearchResultsUpdating
 
 extension RestaurantViewController: UISearchResultsUpdating {
 
@@ -219,7 +219,7 @@ extension RestaurantViewController: UISearchResultsUpdating {
     }
 }
 
-// MARK: - FetchedResultsController 代理
+// MARK: - NSFetchedResultsControllerDelegate
 /* FIXME:
 extension RestaurantViewController: NSFetchedResultsControllerDelegate {
 

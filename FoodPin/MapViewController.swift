@@ -15,6 +15,8 @@ class MapViewController: UIViewController {
 
     @IBOutlet private weak var mapView: MKMapView!
 
+    // MARK: - 控制器生命周期
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -38,6 +40,8 @@ class MapViewController: UIViewController {
         }
     }
 }
+
+// MARK: - MKMapViewDelegate
 
 extension MapViewController: MKMapViewDelegate {
 

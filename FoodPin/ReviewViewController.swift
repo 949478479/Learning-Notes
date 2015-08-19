@@ -16,6 +16,8 @@ class ReviewViewController: UIViewController {
     @IBOutlet private weak var bgImageView: UIImageView!
     @IBOutlet private weak var sideLengthConstraint: NSLayoutConstraint!
 
+    // MARK: - 控制器生命周期
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -25,7 +27,7 @@ class ReviewViewController: UIViewController {
         let translation      = CGAffineTransformMakeTranslation(0, view.bounds.height)
         dialogView.transform = CGAffineTransformConcat(scale, translation)
     }
-
+    
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
 

@@ -18,6 +18,8 @@ class ShareViewController: UIViewController {
     @IBOutlet private weak var facebookButton: UIButton!
     @IBOutlet private weak var bgImageView: UIImageView!
 
+    // MARK: - 控制器生命周期
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -31,7 +33,7 @@ class ShareViewController: UIViewController {
         twitterButton.transform  = translateUp
         emailButton.transform    = translateUp
     }
-
+    
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
 
