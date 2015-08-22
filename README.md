@@ -4,4 +4,4 @@
 
 台版翻译传送门 [建立一個像Medium App的下滑選單](http://www.appcoda.com.tw/slide-down-menu-navigation/)
 
-![](https://github.com/949478479/SlideDownMenu/blob/gif/SlideDownMenu.gif)
+![](https://github.com/949478479/Animations-Study/blob/master/SlideDownMenu-image/SlideDownMenu.gif)
