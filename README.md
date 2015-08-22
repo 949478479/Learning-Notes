@@ -5,7 +5,7 @@
 
 这一期讲解了`CAGradientLayer`和`mask`的简单使用.最终将实现这样的效果:
 
-![](https://github.com/949478479/ColorIntroduction/blob/image/final-preview.png)
+![](https://github.com/949478479/Animations-Study/blob/master/ColorIntroduction-image/final-preview.png)
 
 下面来一步步实现该效果.在开始前,可以先下载初始项目
 [ColorIntroduction-Starter.zip]
@@ -36,7 +36,7 @@ private func addGradientLayer() {
 
 梯度方向效果如图:
 
-![](https://github.com/949478479/ColorIntroduction/blob/image/gradient.png)
+![](https://github.com/949478479/Animations-Study/blob/master/ColorIntroduction-image/gradient.png)
 
 接下来,在`addGradientLayer()`方法中,设置梯度图层的渐变颜色并将其显示出来:
 
@@ -55,7 +55,7 @@ view.layer.addSublayer(gradient)
 
 运行后效果如图:
 
-![](https://github.com/949478479/ColorIntroduction/blob/image/sim-gradient.png)
+![](https://github.com/949478479/Animations-Study/blob/master/ColorIntroduction-image/sim-gradient.png)
 
 最后依旧在`addGradientLayer()`方法中,为梯度图层添加`mask`:
 
@@ -100,7 +100,7 @@ punchTextAtIndex(story.startIndex)
 
 运行后效果如图:
 
-![](https://github.com/949478479/ColorIntroduction/blob/image/text-animated.gif)
+![](https://github.com/949478479/Animations-Study/blob/master/ColorIntroduction-image/text-animated.gif)
 
 ## 添加额外的动画
 
@@ -148,7 +148,7 @@ delay(seconds: 1.5, addButtonRing)
 
 效果如图:
 
-![](https://github.com/949478479/ColorIntroduction/blob/image/rings-same-position.png)
+![](https://github.com/949478479/Animations-Study/blob/master/ColorIntroduction-image/rings-same-position.png)
 
 因为三个圆圈重合了,所以只能看到一个.接下来在`addButtonRing()`方法末尾,为圆圈添加图层动画:
 
@@ -163,7 +163,7 @@ button.addAnimation(scaleAnimation, forKey: nil)
 
 这样圆圈们就会动了:
 
-![](https://github.com/949478479/ColorIntroduction/blob/image/rings-animated.gif)
+![](https://github.com/949478479/Animations-Study/blob/master/ColorIntroduction-image/rings-animated.gif)
 
 最后为了符合故事情节,添加一只青蛙上去(青蛙图片在 *Images.xcassets* 里),可以在`addGradientLayer()`方法后调用:
 
@@ -177,4 +177,4 @@ private func addFrogImage() {
 
 运行一下,最终的效果是这样的:
 
-![](https://github.com/949478479/ColorIntroduction/blob/image/final-project.png)
+![](https://github.com/949478479/Animations-Study/blob/master/ColorIntroduction-image/final-project.png)
