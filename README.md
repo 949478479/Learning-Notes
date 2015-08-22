@@ -77,6 +77,8 @@ private func punchTextAtIndex(index: String.Index) {
         delay(seconds: 0.04) {
             self.punchTextAtIndex(index.successor())
         }
+    } else {
+        // 故事讲完了...
     }
 }
 ```
@@ -84,7 +86,7 @@ private func punchTextAtIndex(index: String.Index) {
 在`viewDidAppear()`方法的最后调用此方法:
 
 ```swift
-// 去掉 storyboard 中文本标签的内容 "Text", 或者直接去 storyboard 中删掉.
+// 去掉 storyboard 中文本标签的内容 "Text", 或者直接去 storyboard 中删掉,就不用写这句了.
 label.text = ""
 // 往文本标签上拼接字符.
 punchTextAtIndex(story.startIndex)
@@ -93,3 +95,84 @@ punchTextAtIndex(story.startIndex)
 运行后效果如图:
 
 ![](https://github.com/949478479/ColorIntroduction/blob/image/text-animated.gif)
+
+## 添加额外的动画
+
+接下来在故事讲完时添加一个 button-like 动画来提示用户.
+
+```swift
+private func addButtonRing() {
+
+    // 圆圈按钮直径.
+    let diameter: CGFloat = 60
+
+    // 圆圈按钮其实是个 CAShapeLayer 图层.
+    let button = CAShapeLayer()
+
+    // 设置圆圈按钮的路径为圆形路径.
+    button.path = UIBezierPath(ovalInRect: CGRect(x: 0, y: 0, width: diameter, height: diameter)).CGPath
+
+    // 将圆圈按钮置于文本标签底部往上 20 点且水平居中.
+    // CAShapeLayer 可以看做是一个点,由于圆形路径以该点为原点,所以 x 坐标需减去半径, y 坐标需减去直径方符合需求.
+    button.position = CGPoint(x: label.bounds.midX - diameter / 2, y: label.bounds.maxY - diameter - 20)
+
+    // 设置描边颜色,由于 mask 的特点,什么颜色不重要,只要不是透明的就行.
+    button.strokeColor = UIColor.blackColor().CGColor
+
+    // 清除填充颜色,否则由于 mask 的特点,背后的梯度图层会露出来.
+    button.fillColor = nil
+
+    // 为了好看,调整下透明度.
+    button.opacity = 0.5
+
+    // 将圆圈按钮添加到文本标签上显示出来.
+    label.layer.addSublayer(button)
+
+    // 为圆圈按钮添加图层动画.
+    let scaleAnimation = CABasicAnimation(keyPath: "transform.scale")
+    scaleAnimation.toValue = 0.67
+    scaleAnimation.duration = 2
+    scaleAnimation.repeatCount = Float.infinity
+    scaleAnimation.autoreverses = true
+    button.addAnimation(scaleAnimation, forKey: nil)
+}
+```
+
+然后在`punchTextAtIndex(_:)`方法中,故事讲完时,添加三个圆圈:
+
+```swift
+delay(seconds: 0.1, addButtonRing)
+delay(seconds: 1.2, addButtonRing)
+delay(seconds: 2.4, addButtonRing)
+```
+
+效果如图:
+
+![](https://github.com/949478479/ColorIntroduction/blob/image/rings-same-position.png)
+
+因为三个圆圈重合了,所以只能看到一个.接下来在`addButtonRing()`方法末尾,为圆圈添加图层动画:
+
+```swift
+let scaleAnimation = CABasicAnimation(keyPath: "transform.scale")
+scaleAnimation.toValue = 0.67
+scaleAnimation.duration = 2
+scaleAnimation.repeatCount = Float.infinity // 无限重复次数.
+scaleAnimation.autoreverses = true // 自动复原.
+button.addAnimation(scaleAnimation, forKey: nil)
+```
+
+这样圆圈们就会动了:
+
+![](https://github.com/949478479/ColorIntroduction/blob/image/rings-animated.gif)
+
+最后为了符合故事情节,添加一只青蛙上去(青蛙图片在 *Images.xcassets* 里):
+
+```swift
+let frogImageView = UIImageView(image: UIImage(named: "frog"))
+frogImageView.center.x = label.bounds.midX
+label.addSubview(frogImageView)
+```
+
+运行一下,最终的效果是这样的:
+
+![](https://github.com/949478479/ColorIntroduction/blob/image/final-project.png)
