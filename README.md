@@ -4,4 +4,4 @@
 
 附上 [叶孤城中文翻译版传送门](http://www.jianshu.com/p/a7f5cab17395)
 
-![](https://github.com/949478479/3D-Sidebar-Animation/blob/gif/taasky.gif)
+![](https://github.com/949478479/Animations-Study/blob/master/Taasky-image/taasky.gif)
