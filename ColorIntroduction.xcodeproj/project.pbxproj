@@ -81,7 +81,6 @@
 				9C51EE941B4E5B3400DFCDDC /* ViewController.swift */,
 				9C51EE961B4E5B3400DFCDDC /* Main.storyboard */,
 				9C51EE991B4E5B3400DFCDDC /* Images.xcassets */,
-				9C51EE9B1B4E5B3400DFCDDC /* LaunchScreen.xib */,
 				9C51EE901B4E5B3400DFCDDC /* Supporting Files */,
 			);
 			path = ColorIntroduction;
@@ -90,6 +89,7 @@
 		9C51EE901B4E5B3400DFCDDC /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				9C51EE9B1B4E5B3400DFCDDC /* LaunchScreen.xib */,
 				9C51EE911B4E5B3400DFCDDC /* Info.plist */,
 			);
 			name = "Supporting Files";
