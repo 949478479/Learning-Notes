@@ -3,7 +3,7 @@
 学习自 [iOS Animations by Emails](http://www.ios-animations-by-emails.com/)
 七月的教程 [Fun with Gradients and Masks](http://ios-animations-by-emails.com/posts/2015-july#tutorial).
 
-这一期讲解了`CAGradientLayer`和`mask`的简单使用.最终将实现这么个效果:
+这一期讲解了`CAGradientLayer`和`mask`的简单使用.最终将实现这样的效果:
 
 ![](https://github.com/949478479/ColorIntroduction/blob/image/final-preview.png)
 
@@ -13,29 +13,32 @@
 
 - *Main.storyboard* 包含一个视图控制器,它显示了一个全屏的文本标签。 
 - *ViewController.swift* 文件顶部,有一个文本标签的 *@IBOutlet*, 叫做`label`.
-- 还有个很长的字符串属性叫做`story`,讲述了一段格林童话...
+- 还有个很长的字符串属性叫做`story`,讲述了一段关于一只青蛙的童话...
 
 ## 添加 CAGradientLayer
 
-首先,创建一个`CAGradientLayer`实例,可以在`viewDidAppear()`方法中创建:
+首先,创建一个`CAGradientLayer`实例,可以在`viewDidAppear()`方法中调用此方法:
 
 ```swift
-// 创建一个梯度图层.
-let gradient = CAGradientLayer()
+private func addGradientLayer() {
 
-// 使其和控制器根视图一样大小.
-gradient.frame = view.bounds
+    // 创建一个梯度图层.
+    let gradient = CAGradientLayer()
 
-// 设置其梯度方向为 左上角 => 右下角.默认则是 顶边中点 => 底边中点.
-gradient.startPoint = CGPoint(x: 0, y: 0)
-gradient.endPoint   = CGPoint(x: 1, y: 1)
+    // 使其和控制器根视图一样大小.
+    gradient.frame = view.bounds
+
+    // 设置其梯度方向为 左上角 => 右下角.默认则是 顶边中点 => 底边中点.
+    gradient.startPoint = CGPoint(x: 0, y: 0)
+    gradient.endPoint   = CGPoint(x: 1, y: 1)
+}
 ```
 
 梯度方向效果如图:
 
 ![](https://github.com/949478479/ColorIntroduction/blob/image/gradient.png)
 
-接下来,设置梯度图层的渐变颜色并将其显示出来:
+接下来,在`addGradientLayer()`方法中,设置梯度图层的渐变颜色并将其显示出来:
 
 ```swift
 // 设置梯度图层的渐变颜色.数组元素分别表示起点和终点的颜色.注意这里要求是`CGColor`.
@@ -52,7 +55,7 @@ view.layer.addSublayer(gradient)
 
 ![](https://github.com/949478479/ColorIntroduction/blob/image/sim-gradient.png)
 
-接下来为梯度图层添加`mask`:
+最后依旧在`addGradientLayer()`方法中,为梯度图层添加`mask`:
 
 ```swift
 // 将文本标签的图层用作梯度图层的 mask. 
@@ -83,7 +86,7 @@ private func punchTextAtIndex(index: String.Index) {
 }
 ```
 
-在`viewDidAppear()`方法的最后调用此方法:
+然后在调用`addGradientLayer()`方法后调用此方法:
 
 ```swift
 // 去掉 storyboard 中文本标签的内容 "Text", 或者直接去 storyboard 中删掉,就不用写这句了.
@@ -103,16 +106,16 @@ punchTextAtIndex(story.startIndex)
 ```swift
 private func addButtonRing() {
 
-    // 圆圈按钮直径.
+    // 圆圈直径.
     let diameter: CGFloat = 60
 
-    // 圆圈按钮其实是个 CAShapeLayer 图层.
+    // 图层是个 CAShapeLayer 图层.
     let button = CAShapeLayer()
 
-    // 设置圆圈按钮的路径为圆形路径.
+    // 设置图层路径为圆形路径.
     button.path = UIBezierPath(ovalInRect: CGRect(x: 0, y: 0, width: diameter, height: diameter)).CGPath
 
-    // 将圆圈按钮置于文本标签底部往上 20 点且水平居中.
+    // 将图层置于文本标签底部往上 20 点且水平居中.
     // CAShapeLayer 可以看做是一个点,由于圆形路径以该点为原点,所以 x 坐标需减去半径, y 坐标需减去直径方符合需求.
     button.position = CGPoint(x: label.bounds.midX - diameter / 2, y: label.bounds.maxY - diameter - 20)
 
@@ -125,16 +128,8 @@ private func addButtonRing() {
     // 为了好看,调整下透明度.
     button.opacity = 0.5
 
-    // 将圆圈按钮添加到文本标签上显示出来.
+    // 将图层添加到文本标签上显示出来.
     label.layer.addSublayer(button)
-
-    // 为圆圈按钮添加图层动画.
-    let scaleAnimation = CABasicAnimation(keyPath: "transform.scale")
-    scaleAnimation.toValue = 0.67
-    scaleAnimation.duration = 2
-    scaleAnimation.repeatCount = Float.infinity
-    scaleAnimation.autoreverses = true
-    button.addAnimation(scaleAnimation, forKey: nil)
 }
 ```
 
@@ -165,12 +160,14 @@ button.addAnimation(scaleAnimation, forKey: nil)
 
 ![](https://github.com/949478479/ColorIntroduction/blob/image/rings-animated.gif)
 
-最后为了符合故事情节,添加一只青蛙上去(青蛙图片在 *Images.xcassets* 里):
+最后为了符合故事情节,添加一只青蛙上去(青蛙图片在 *Images.xcassets* 里),可以在`addGradientLayer()`方法后调用:
 
 ```swift
-let frogImageView = UIImageView(image: UIImage(named: "frog"))
-frogImageView.center.x = label.bounds.midX
-label.addSubview(frogImageView)
+private func addFrogImage() {
+    let frogImageView = UIImageView(image: UIImage(named: "frog"))
+    frogImageView.center.x = label.bounds.midX
+    label.addSubview(frogImageView)
+}
 ```
 
 运行一下,最终的效果是这样的:
