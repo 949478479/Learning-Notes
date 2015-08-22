@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="ufC-wZ-h7g">
+            <objects>
+                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModule="ColorIntroduction" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
+                        <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Text" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vCj-tT-WZJ">
+                                <rect key="frame" x="16" y="20" width="568" height="560"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="vCj-tT-WZJ" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="88" id="AaS-7E-3lA"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="vCj-tT-WZJ" secondAttribute="bottom" constant="108" id="CjJ-uE-vyb"/>
+                            <constraint firstItem="vCj-tT-WZJ" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="FqF-5P-Ovn"/>
+                            <constraint firstAttribute="trailing" secondItem="vCj-tT-WZJ" secondAttribute="trailing" constant="16" id="Tsf-9f-gvZ"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="vCj-tT-WZJ" secondAttribute="bottom" constant="20" id="U22-Fm-JVg"/>
+                            <constraint firstItem="vCj-tT-WZJ" firstAttribute="trailingMargin" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" constant="20" id="hxr-OR-Yoz"/>
+                            <constraint firstItem="vCj-tT-WZJ" firstAttribute="leadingMargin" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="20" id="koD-mU-qtj"/>
+                            <constraint firstItem="vCj-tT-WZJ" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="16" id="x7E-K9-ypD"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="AaS-7E-3lA"/>
+                                <exclude reference="hxr-OR-Yoz"/>
+                                <exclude reference="koD-mU-qtj"/>
+                                <exclude reference="CjJ-uE-vyb"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="label" destination="vCj-tT-WZJ" id="nRo-Yr-ijV"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+    </scenes>
+</document>
