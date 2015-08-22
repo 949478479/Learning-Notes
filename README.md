@@ -91,7 +91,7 @@ private func punchTextAtIndex(index: String.Index) {
 ```swift
 // 去掉 storyboard 中文本标签的内容 "Text", 或者直接去 storyboard 中删掉,就不用写这句了.
 label.text = ""
-// 往文本标签上拼接字符.
+// 调用此方法往文本标签上拼接字符.
 punchTextAtIndex(story.startIndex)
 ```
 
@@ -113,13 +113,15 @@ private func addButtonRing() {
     let button = CAShapeLayer()
 
     // 设置图层路径为圆形路径.
-    button.path = UIBezierPath(ovalInRect: CGRect(x: 0, y: 0, width: diameter, height: diameter)).CGPath
+    button.path = 
+        UIBezierPath(ovalInRect: CGRect(x: 0, y: 0, width: diameter, height: diameter)).CGPath
 
     // 将图层置于文本标签底部往上 20 点且水平居中.
     // CAShapeLayer 可以看做是一个点,由于圆形路径以该点为原点,所以 x 坐标需减去半径, y 坐标需减去直径方符合需求.
-    button.position = CGPoint(x: label.bounds.midX - diameter / 2, y: label.bounds.maxY - diameter - 20)
+    button.position = 
+        CGPoint(x: label.bounds.midX - diameter / 2, y: label.bounds.maxY - diameter - 20)
 
-    // 设置描边颜色,由于 mask 的特点,什么颜色不重要,只要不是透明的就行.
+    // 设置描边颜色,由于 mask 的特点,什么颜色不重要,只要不是完全透明的就行.
     button.strokeColor = UIColor.blackColor().CGColor
 
     // 清除填充颜色,否则由于 mask 的特点,背后的梯度图层会露出来.
@@ -136,9 +138,9 @@ private func addButtonRing() {
 然后在`punchTextAtIndex(_:)`方法中,故事讲完时,添加三个圆圈:
 
 ```swift
-delay(seconds: 0.1, addButtonRing)
-delay(seconds: 1.2, addButtonRing)
-delay(seconds: 2.4, addButtonRing)
+delay(seconds: 0.5, addButtonRing)
+delay(seconds: 1.0, addButtonRing)
+delay(seconds: 1.5, addButtonRing)
 ```
 
 效果如图:
