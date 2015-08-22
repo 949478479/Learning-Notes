@@ -78,7 +78,8 @@ private func punchTextAtIndex(index: String.Index) {
     // 拼接下一个字符,直到当前字符已经是最后一个字符.
     // 注意 endIndex 表示末尾索引的下一个索引, endIndex.predecessor() 才是末尾索引.
     if index < story.endIndex.predecessor() {
-        // 每隔 0.04s 拼接下一个字符.
+        // 每隔 0.04s 拼接下一个字符. 
+        // delay(seconds:_:) 函数是 dispatch_after(_:_:_:) 函数的封装,在 AppDelegate.swift 文件.
         delay(seconds: 0.04) {
             self.punchTextAtIndex(index.successor())
         }
