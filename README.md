@@ -6,6 +6,7 @@
 
 - [可以折叠的 ImageView](https://github.com/949478479/Animations-Study/tree/FoldingImageView)
 - [简易卡片动画](https://github.com/949478479/Animations-Study/tree/CardAnimation)
+- [利用 iCarousel 实现类似 iOS9 任务管理器效果动画](https://github.com/949478479/Animations-Study/tree/CardAnimationByiCarousel)
 - [圆圈缩放式过渡动画](https://github.com/949478479/Animations-Study/tree/PingTransition)
 - [创建一个非常酷的3D效果菜单动画](https://github.com/949478479/Animations-Study/tree/Taasky)
 - [利用 UIViewControllerAnimatedTransitioning 构建一个下滑菜单](https://github.com/949478479/Animations-Study/tree/SlideDownMenu)
