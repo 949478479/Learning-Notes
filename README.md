@@ -41,7 +41,9 @@ private func addGradientLayer() {
 接下来,在`addGradientLayer()`方法中,设置梯度图层的渐变颜色并将其显示出来:
 
 ```swift
-// 设置梯度图层的渐变颜色.数组元素分别表示起点和终点的颜色.注意这里要求是`CGColor`.
+// 设置梯度图层的渐变颜色.
+// 数组元素只有两个则分别表示起点和终点的颜色,当然也可以多来几个.另外不指定 locations 数组的话,默认是均匀渐变的.
+// 注意这里要求是 CGColor 类型.
 gradient.colors = [
     UIColor(red: 0,     green: 1,    blue: 0.752, alpha: 1).CGColor,
     UIColor(red: 0.949, green: 0.03, blue: 0.913, alpha: 1).CGColor
@@ -59,7 +61,7 @@ view.layer.addSublayer(gradient)
 
 ```swift
 // 将文本标签的图层用作梯度图层的 mask. 
-// 由于 mask 的特点,只有文本标签不透明的部分(也就是文字)才会露出背后的梯度图层.
+// 由于 mask 的特点,只有文本标签不是完全透明的部分(也就是文字)才会露出背后的梯度图层.
 gradient.mask = label.layer
 ```
 
