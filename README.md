@@ -1,6 +1,6 @@
 ## iOS Animations by Emails 学习系列
 
-- 2015.7 [Fun with Gradients and Masks](https://github.com/949478479/Animations-Study/tree/ColorIntroduction)
+- 2015.7 [CAGradientLayer 与 mask 动画](https://github.com/949478479/Animations-Study/tree/ColorIntroduction)
 
 ## 其他动画学习系列
 
