@@ -79,9 +79,6 @@
 			children = (
 				18CACDCB1B8B3C9B00E55EDF /* AppDelegate.swift */,
 				18CACDCD1B8B3C9B00E55EDF /* ViewController.swift */,
-				18CACDCF1B8B3C9B00E55EDF /* Main.storyboard */,
-				18CACDD21B8B3C9B00E55EDF /* Images.xcassets */,
-				18CACDD41B8B3C9B00E55EDF /* LaunchScreen.xib */,
 				18CACDC91B8B3C9B00E55EDF /* Supporting Files */,
 			);
 			path = AnimationsWithCAReplicatorLayer;
@@ -90,6 +87,9 @@
 		18CACDC91B8B3C9B00E55EDF /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				18CACDCF1B8B3C9B00E55EDF /* Main.storyboard */,
+				18CACDD21B8B3C9B00E55EDF /* Images.xcassets */,
+				18CACDD41B8B3C9B00E55EDF /* LaunchScreen.xib */,
 				18CACDCA1B8B3C9B00E55EDF /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -409,6 +409,7 @@
 				18CACDE71B8B3C9C00E55EDF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		18CACDE81B8B3C9C00E55EDF /* Build configuration list for PBXNativeTarget "AnimationsWithCAReplicatorLayerTests" */ = {
 			isa = XCConfigurationList;
@@ -417,6 +418,7 @@
 				18CACDEA1B8B3C9C00E55EDF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
