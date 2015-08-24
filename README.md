@@ -117,8 +117,8 @@ private func addButtonRing() {
     let button = CAShapeLayer()
 
     // 设置图层路径为圆形路径.
-    button.path = 
-        UIBezierPath(ovalInRect: CGRect(x: 0, y: 0, width: diameter, height: diameter)).CGPath
+    button.path = UIBezierPath(ovalInRect: 
+        CGRect(x: 0, y: 0, width: diameter, height: diameter)).CGPath
 
     // 将图层置于文本标签底部往上 20 点且水平居中.
     // 由于圆形路径以该 position 为原点,所以 x 坐标需减去半径, y 坐标需减去直径方符合需求.
