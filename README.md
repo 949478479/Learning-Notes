@@ -42,7 +42,8 @@ private func addGradientLayer() {
 
 ```swift
 // 设置梯度图层的渐变颜色.
-// 数组元素只有两个则分别表示起点和终点的颜色,当然也可以多来几个.另外不指定 locations 数组的话,默认是均匀渐变的.
+// 数组元素只有两个则分别表示起点和终点的颜色,当然也可以多来几个.
+// 另外不指定 locations 数组的话,默认是均匀渐变的.
 // 注意这里要求是 CGColor 类型.
 gradient.colors = [
     UIColor(red: 0,     green: 1,    blue: 0.752, alpha: 1).CGColor,
@@ -79,7 +80,7 @@ private func punchTextAtIndex(index: String.Index) {
     // 注意 endIndex 表示末尾索引的下一个索引, endIndex.predecessor() 才是末尾索引.
     if index < story.endIndex.predecessor() {
         // 每隔 0.04s 拼接下一个字符. 
-        // delay(seconds:_:) 函数是 dispatch_after(_:_:_:) 函数的封装,在 AppDelegate.swift 文件.
+        // delay(seconds:_:) 函数是 dispatch_after(_:_:_:) 函数的封装.
         delay(seconds: 0.04) {
             self.punchTextAtIndex(index.successor())
         }
@@ -120,9 +121,9 @@ private func addButtonRing() {
         UIBezierPath(ovalInRect: CGRect(x: 0, y: 0, width: diameter, height: diameter)).CGPath
 
     // 将图层置于文本标签底部往上 20 点且水平居中.
-    // CAShapeLayer 可以看做是一个点,由于圆形路径以该点为原点,所以 x 坐标需减去半径, y 坐标需减去直径方符合需求.
-    button.position = 
-        CGPoint(x: label.bounds.midX - diameter / 2, y: label.bounds.maxY - diameter - 20)
+    // 由于圆形路径以该 position 为原点,所以 x 坐标需减去半径, y 坐标需减去直径方符合需求.
+    button.position = CGPoint(x: label.bounds.midX - diameter / 2, 
+                              y: label.bounds.maxY - diameter - 20)
 
     // 设置描边颜色,由于 mask 的特点,什么颜色不重要,只要不是完全透明的就行.
     button.strokeColor = UIColor.blackColor().CGColor
