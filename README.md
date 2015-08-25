@@ -1,4 +1,4 @@
-## iOS Animations by Emails 学习系列
+## iOS Animations by Emails 翻译学习系列
 
 - 2015.3 [CAReplicatorLayer 动画](https://github.com/949478479/Animations-Study/tree/AnimationsWithCAReplicatorLayer)
 
