@@ -36,6 +36,8 @@
 - [WWDC 上的 UICollectionViewLayout 的 demo]
   (https://github.com/949478479/Learning-Notes/tree/CollectionViewLayoutDemo)
 
+- [瀑布流布局](https://github.com/949478479/Learning-Notes/tree/Pinterest)
+ 
 - [用 Flickr 搜索/浏览图片的简陋 demo... ⊙﹏⊙‖∣](https://github.com/949478479/Learning-Notes/tree/FlickrSearch)
 
 ## UIPickerView
