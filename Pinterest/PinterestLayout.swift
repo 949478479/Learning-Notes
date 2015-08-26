@@ -36,11 +36,11 @@ class PinterestLayout: UICollectionViewLayout {
 
     override func prepareLayout() {
 
-        contentWidth = collectionView!.bounds.width - collectionView!.contentInset.left
-            - collectionView!.contentInset.right
+        contentWidth = collectionView!.bounds.width -
+            collectionView!.contentInset.left - collectionView!.contentInset.right
 
-        let columnWidth = (contentWidth - CGFloat(numberOfColumns - 1) * cellPadding)
-            / CGFloat(numberOfColumns)
+        let columnWidth =
+            (contentWidth - CGFloat(numberOfColumns - 1) * cellPadding) / CGFloat(numberOfColumns)
         
         var yOffset = [CGFloat](count: numberOfColumns, repeatedValue: 0)
 

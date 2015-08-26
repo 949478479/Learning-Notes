@@ -35,8 +35,11 @@ class AnnotatedPhotoCell: UICollectionViewCell {
 
     override func applyLayoutAttributes(layoutAttributes: UICollectionViewLayoutAttributes!) {
 
-        super.applyLayoutAttributes(layoutAttributes) // 保证超类的原有属性得以应用.
+        // 作者指出需要调用超类实现使得 UICollectionViewLayoutAttributes 的原有属性得以应用.
+        // 文档没明确说明,试了下貌似不写也行.
+        super.applyLayoutAttributes(layoutAttributes)
 
-        imageViewHeightLayoutConstraint.constant = (layoutAttributes as! PinterestLayoutAttributes).photoHeight
+        imageViewHeightLayoutConstraint.constant =
+            (layoutAttributes as! PinterestLayoutAttributes).photoHeight
     }
 }

@@ -142,8 +142,8 @@
 		7B0AC7E11AAEF9CE00885D4A /* Storyboards & Xibs */ = {
 			isa = PBXGroup;
 			children = (
-				7B0AC7C41AAEF90000885D4A /* LaunchScreen.xib */,
 				7B0AC7BF1AAEF90000885D4A /* Main.storyboard */,
+				7B0AC7C41AAEF90000885D4A /* LaunchScreen.xib */,
 			);
 			name = "Storyboards & Xibs";
 			sourceTree = "<group>";
