@@ -5,4 +5,4 @@
 
 这里还有个中文翻译版 [iOS7 最佳实践：一个天气应用案例](http://blog.jobbole.com/62488/)
 
-![](https://github.com/949478479/SimpleWeather/blob/gif/SimpleWeather.gif)
+![](https://github.com/949478479/Learning-Notes/blob/master/SimpleWeather-screenshot/SimpleWeather.gif)
