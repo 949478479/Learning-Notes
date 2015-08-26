@@ -28,6 +28,9 @@
 
 - [简易卡片动画](https://github.com/949478479/Animations-Study/tree/CardAnimation)
 
+- [《Beginning iOS 8 Programming with Swift》小项目]
+  (https://github.com/949478479/Learning-Notes/tree/FoodPin)
+  
 ## UICollectionView
 
 - [WWDC 上的 UICollectionViewLayout 的 demo]
