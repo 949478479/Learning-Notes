@@ -38,6 +38,11 @@
 
 - [用 Flickr 搜索/浏览图片的简陋 demo... ⊙﹏⊙‖∣](https://github.com/949478479/Learning-Notes/tree/FlickrSearch)
 
+## UIPickerView
+
+- [UIPickerView 简单使用:实现一个老虎机]
+  (https://github.com/949478479/Learning-Notes/tree/SlotMachine)
+
 ## Swift
 
 - [RayWenderlich 出品的脑洞大开的 Swift 小题目]
