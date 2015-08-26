@@ -13,4 +13,4 @@
 
 [WWDC 2012 Session笔记——219 Advanced Collection Views and Building Custom Layouts](http://www.onevcat.com/2012/08/advanced-collection-view/)
 
-![](https://github.com/949478479/CollectionViewLayoutDemo/blob/gif/CollectionViewLayoutDemo.gif)
+![](https://github.com/949478479/Learning-Notes/blob/master/CollectionViewLayoutDemo-screenshot/CollectionViewLayoutDemo.gif)
