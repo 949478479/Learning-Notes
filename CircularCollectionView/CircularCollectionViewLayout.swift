@@ -19,23 +19,13 @@ class CircularCollectionViewLayout: UICollectionViewLayout {
     }
 
     /// cell 间夹角.
-    private var anglePerItem: CGFloat {
-        return atan(itemSize.width / radius)
-    }
+    private var anglePerItem: CGFloat = 0
 
-    /// 最大旋转角度,即将最后一个 cell 旋转至屏幕中间也就是初始 cell 的位置(向右拖动情况下).
-    private var angleAtExtreme: CGFloat {
-        let itemCount = collectionView!.numberOfItemsInSection(0)
-        return itemCount > 0 ? -CGFloat(itemCount - 1) * anglePerItem : 0
-    }
+    /// 最大旋转角度.即向右拖动将最后一个 cell 旋转至屏幕中间也就是初始 cell 的位置.
+    private var angleAtExtreme: CGFloat = 0
 
-    /// 当前旋转角度,为负数弧度,根据 collectionView 拖动位置计算.
-    private var currentAngle: CGFloat {
-        return  angleAtExtreme * collectionView!.contentOffset.x /
-            (collectionViewContentSize().width - collectionView!.bounds.width)
-    }
-
-    private var layoutAttributes = [CircularCollectionViewLayoutAttributes]()
+    /// 缓存布局属性.
+    private var layoutAttributes: [CircularCollectionViewLayoutAttributes]!
 
     // MARK: - 指定自定义布局属性类
 
@@ -49,32 +39,41 @@ class CircularCollectionViewLayout: UICollectionViewLayout {
 
         let itemCount = collectionView!.numberOfItemsInSection(0)
 
-        let centerX = collectionView!.contentOffset.x + collectionView!.bounds.width / 2
+        if itemCount == 0 { return }
+
+        // 可随意,只是这样计算比较方便,视觉效果也不错.
+        anglePerItem = atan(itemSize.width / radius)
+
+        angleAtExtreme = -anglePerItem * CGFloat(itemCount - 1)
+
+        // 当前旋转角度,为负数弧度,根据 collectionView 滚动位置计算.
+        let currentAngle = angleAtExtreme * collectionView!.contentOffset.x /
+            (collectionViewContentSize().width - collectionView!.bounds.width)
+
+        // 改变锚点,使旋转圆心在屏幕下方.
+        // 正常锚点 y = 0.5, 对应高度一半.现在要修改锚点到屏幕下方圆心处,即在高度一半基础是加上半径.
         let anchorPointY = (radius + itemSize.height / 2) / itemSize.height
+
+        // 让 cell 始终位于屏幕中心,再配合旋转造成轮子效果.
+        let centerX = collectionView!.contentOffset.x + collectionView!.bounds.width / 2
 
         // 圆心与屏幕左下角连线 与 过圆心直线 间的夹角.
         let θ = atan( (collectionView!.bounds.width / 2) /
             (radius + itemSize.height / 2 - collectionView!.bounds.height / 2) )
 
-        // currentAngle 是负数弧度, θ 是正数弧度.
-        // 轮子逆时针旋转弧度大小为 θ 时,此时第一个 cell 只有一小部分还在屏幕范围内,因为 cell 间是有一定间距的,
-        // 所以对于逆时针旋转弧度大小超过 θ 的 cell, 最多只有索引最大的那个 cell 还在屏幕范围,或者都不在.
-        // -currentAngle - θ 为弧度大小超过 θ 的部分,除以 anglePerItem, 整数部分即是屏幕范围外的 cell 个数,
-        // 小数部分(如果未整除)则对应还有部分在屏幕范围的 cell. 该整数值也正好是屏幕范围的那个 cell 的索引.
-        let startIndex = (currentAngle < -θ) ? Int((-currentAngle - θ) / anglePerItem) : 0
+        // 注意 currentAngle 是负数弧度, θ 是正数弧度.
+        // 轮子逆时针旋转弧度绝对值为 θ 时,此时第一个 cell 只有一小部分还在屏幕范围内,因为 cell 间是有一定间距的,
+        // 所以当一个 cell 逆时针旋转弧度绝对值为 θ 时, 它前面的 cell 肯定是在屏幕外的.
+        // -currentAngle - θ 为轮子逆时针旋转弧度超过 θ 的部分,除以 cell 间夹角,整数部分即是屏幕范围外的 cell 个数,
+        // 如果有小数部分,则说明有个 cell 只有部分还在屏幕范围.整数值也正好是该 cell 的索引.
+        let startIndex = (currentAngle < -θ) ? Int( (-currentAngle - θ) / anglePerItem ) : 0
 
         // 屏幕右侧,未旋转时, θ / anglePerItem 的整数部分刚好表示最右侧且完全在屏幕范围的 cell 的索引,
-        // 小数部分则对应最右侧但是只有部分在屏幕的 cell, 因此屏幕范围内的 cell 最大索引要用 ceil(_:) 函数上舍入.
-        // 轮子旋转时,需把旋转弧度加上,即 (-currentAngle + θ) / anglePerItem. 
+        // 如果有小数部分,则表示最右侧有个 cell 只有部分在屏幕范围,屏幕范围内的 cell 最大索引需用 ceil(_:) 上舍入.
+        // 轮子旋转时,需把旋转弧度加上,即 (-currentAngle + θ) / anglePerItem.
         // min 是为了防止越界,例如旋转到最大旋转角度时,计算所得索引为 itemCount.
-        // 当然这么计算出来的 cell 是没有考虑屏幕左边离屏的情况的,所以还需要配合 startIndex.
+        // 这么计算是没有考虑屏幕左边离屏的情况的,所以还需要配合 startIndex.
         let endIndex = min(itemCount - 1, Int(ceil( (-currentAngle + θ) / anglePerItem )))
-
-        // FIXME: -
-//        if (endIndex < startIndex) {
-//            endIndex = 0
-//            startIndex = 0
-//        }
 
         // 只计算屏幕范围内 cell 的的布局属性.
         layoutAttributes = (startIndex...endIndex).map {
@@ -86,8 +85,8 @@ class CircularCollectionViewLayout: UICollectionViewLayout {
             attributes.size        = self.itemSize
             attributes.zIndex      = $0
             attributes.center      = CGPoint(x: centerX, y: self.collectionView!.bounds.midY)
-            attributes.transform   = CGAffineTransformMakeRotation(self.anglePerItem * CGFloat($0) + self.currentAngle)
-            attributes.anchorPoint = CGPoint(x: 0.5, y: anchorPointY) // 改变锚点,使旋转圆心在屏幕下方.
+            attributes.transform   = CGAffineTransformMakeRotation(self.anglePerItem * CGFloat($0) + currentAngle)
+            attributes.anchorPoint = CGPoint(x: 0.5, y: anchorPointY)
 
             return attributes
         }
@@ -96,12 +95,11 @@ class CircularCollectionViewLayout: UICollectionViewLayout {
     // MARK: - 提供布局属性
 
     override func layoutAttributesForElementsInRect(rect: CGRect) -> [AnyObject]? {
-        return layoutAttributes.filter { CGRectIntersectsRect($0.frame, rect) }
+        return layoutAttributes
     }
 
     override func layoutAttributesForItemAtIndexPath(indexPath: NSIndexPath)
         -> UICollectionViewLayoutAttributes! {
-
         return layoutAttributes[indexPath.item]
     }
 
@@ -116,6 +114,27 @@ class CircularCollectionViewLayout: UICollectionViewLayout {
 
     override func shouldInvalidateLayoutForBoundsChange(newBounds: CGRect) -> Bool {
         return true
+    }
+
+    // MARK: - 设置滚动停止时位置
+
+    override func targetContentOffsetForProposedContentOffset(proposedContentOffset: CGPoint,
+        withScrollingVelocity velocity: CGPoint) -> CGPoint {
+
+        var proposedContentOffset = proposedContentOffset
+
+        // 每移动一点对应的旋转弧度,即 弧度/点.
+        let factor = angleAtExtreme / (collectionViewContentSize().width - collectionView!.bounds.width)
+
+        // 停止时的旋转弧度.
+        let proposedAngle = proposedContentOffset.x * factor
+
+        // 四舍五入求得整数倍的最终旋转夹角.
+        let finalAngle = round(proposedAngle / anglePerItem) * anglePerItem
+
+        proposedContentOffset.x = finalAngle / factor
+
+        return proposedContentOffset
     }
 }
 
