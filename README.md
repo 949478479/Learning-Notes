@@ -138,7 +138,7 @@ let θ = atan( (collectionView!.bounds.width / 2) /
 // 注意 currentAngle 是负数弧度, θ 是正数弧度.
 // 轮子逆时针旋转弧度绝对值为 θ 时,此时第一个 cell 只有一小部分还在屏幕范围内,
 // 因为 cell 间是有一定间距的,所以当一个 cell 逆时针旋转弧度绝对值为 θ 时, 它前面的 cell 肯定是在屏幕外的.
-// -currentAngle - θ 为轮子逆时针旋转弧度超过 θ 的部分,除以 cell 间夹角,整数部分即是屏幕范围外的 cell 个数,
+// -currentAngle - θ 为轮子逆时针旋转弧度超过 θ 的部分,除以 cell 间夹角,整数部分即是屏幕范围外的 cell 个数.
 // 如果有小数部分,则说明有个 cell 只有部分还在屏幕范围.整数值也正好是该 cell 的索引.
 let startIndex = (currentAngle < -θ) ? Int((-currentAngle - θ) / anglePerItem) : 0
 
