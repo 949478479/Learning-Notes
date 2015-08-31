@@ -50,9 +50,9 @@ override func prepareLayout() {
     let featuredHeight    = UltravisualLayoutConstants.Cell.featuredHeight
 
     /* Int(ceil( (height - featuredHeight) / standardHeight )) 为开始拖动时当前屏幕显示的
-    standardHeight 的 cell 数量.由于拖动中 featuredItemIndex 不会增长,直到下一个 standardHeight cell 
-    完全变为 featuredHeight. 所以需要 +1 将新滚入屏幕的 cell 算进去.向下拖动时, featuredItemIndex
-    会立即 -1, 这样和先前向上拖动时的索引区间是一样的,也不会多计算一个. */
+    standardCell 的数量.由于拖动中 featuredItemIndex 不会增长,直到一个 standardCell
+    完全过渡到 featuredCell .所以需要 +1 将新滚入屏幕的 standardCell 算进去.向下拖动时, 
+    featuredItemIndex 会立即 -1 ,这样和先前向上拖动时的索引区间是一样的,不会多计算一个. */
     let endIndex = min(
         Int(ceil( (height - featuredHeight) / standardHeight )) + 1 + featuredItemIndex,
         numberOfItems - 1
@@ -69,18 +69,18 @@ override func prepareLayout() {
 
         if indexPath.item == featuredItemIndex {
 
-            // 只要还是 featuredCell 就令高度保持为 featuredCellHeight.
+            // 只要还是 featuredCell 就令高度保持为 featuredCellHeight .
             height = featuredHeight
 
-            // 每拖动一个 dragOffset 距离, featuredCell 变为下一个 cell,下面的 standardCell 都上升一格.
+            // 每拖动一个 dragOffset , standardCell 过渡到 featuredCell ,下面的 standardCell 都上升一格.
             y = self.yOffset - standardHeight * self.nextItemPercentageOffset
 
         } else if indexPath.item == featuredItemIndex + 1 {
 
-            // 每次拖动距离达到 dragOffset 时, 变大的那个 cell 高度刚好变大至 featuredHeight.
-             height = standardHeight + self.dragOffset * self.nextItemPercentageOffset
+            // 每次拖动距离达到 dragOffset , 一个 standardCell 高度增长到 featuredHeight.
+            height = standardHeight + self.dragOffset * self.nextItemPercentageOffset
 
-            /* 先求得作为 standardCell 时底边 y 坐标,再减去此时实际高度作为实时 y 坐标. cell 变大过程中,
+            /* 先求得作为 standardCell 时底边 y 坐标,再减去此时实际高度作为实时 y 坐标.过渡过程中,
             底边 y 坐标不会额外改变,从而让后面的 standardCell 都能正常移动. */
             y = (y + standardHeight) - height
 
