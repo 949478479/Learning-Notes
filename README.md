@@ -40,6 +40,8 @@
 
 - [环形滚动布局](https://github.com/949478479/Learning-Notes/tree/CircularCollectionView)
 
+- [类似`Ultravisual`的视差效果布局](https://github.com/949478479/Learning-Notes/tree/Ultravisual)
+
 - [用 Flickr 搜索/浏览图片的简陋 demo... ⊙﹏⊙‖∣](https://github.com/949478479/Learning-Notes/tree/FlickrSearch)
 
 ## UIPickerView
