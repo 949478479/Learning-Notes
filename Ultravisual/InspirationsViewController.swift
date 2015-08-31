@@ -19,8 +19,8 @@ class InspirationsViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        view.backgroundColor = UIColor(patternImage: UIImage(named: "Pattern")!)
         collectionView!.decelerationRate = UIScrollViewDecelerationRateFast // 惯性滚动时更快减速到静止.
-        collectionView!.backgroundColor  = UIColor(patternImage: UIImage(named: "Pattern")!)
     }
 }
 

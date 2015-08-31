@@ -22,23 +22,22 @@ class UltravisualLayout: UICollectionViewLayout {
 
     // MARK: - 属性
 
-    /* The amount the user needs to scroll before the featured cell changes */
+    /// standardCell 过渡到 featuredCell 的拖动距离.
     let dragOffset: CGFloat = UltravisualLayoutConstants.Cell.featuredHeight -
-        UltravisualLayoutConstants.Cell.standardHeight
+                              UltravisualLayoutConstants.Cell.standardHeight
 
     private var yOffset: CGFloat {
         return collectionView!.contentOffset.y
     }
 
-    /* Returns the item index of the currently featured cell */
+    /// 当前 featuredCell 的索引,即 dragOffset 的整数倍.用 max(_:_:) 限制向上拖动时 yOffset 为负数的情况.
     private var featuredItemIndex: Int {
-        /* Use max to make sure the featureItemIndex is never < 0 */
         return max(0, Int(yOffset / dragOffset))
     }
 
-    /* Returns a value between 0 and 1 that represents how close the next cell is to becoming the featured cell */
+    /// standardCell 过渡到 featuredCell 的百分比,同样用 max(_:_:) 限制 yOffset 为负数的情况.
     private var nextItemPercentageOffset: CGFloat {
-        return max(0, yOffset / dragOffset - CGFloat(featuredItemIndex))
+        return max(0, modf(yOffset / dragOffset).1)
     }
 
     /* Returns the width of the collection view */
@@ -60,7 +59,8 @@ class UltravisualLayout: UICollectionViewLayout {
     
     // MARK: - 计算滚动范围
 
-    /* Return the size of all the content in the collection view */
+    /* 至少要能拖动 numberOfItems 个 dragOffset .
+    最后一个 featuredCell 显示在顶部时需凑足一页的范围,所以加上 height - dragOffset . */
     override func collectionViewContentSize() -> CGSize {
         let contentHeight = (CGFloat(numberOfItems) * dragOffset) + (height - dragOffset)
         return CGSize(width: width, height: contentHeight)
@@ -76,9 +76,9 @@ class UltravisualLayout: UICollectionViewLayout {
         let featuredHeight    = UltravisualLayoutConstants.Cell.featuredHeight
 
         /* Int(ceil( (height - featuredHeight) / standardHeight )) 为开始拖动时当前屏幕显示的
-        standardHeight 的 cell 数量.由于拖动中 featuredItemIndex 不会增长,直到下一个 standardHeight cell 
-        完全变为 featuredHeight. 所以需要 +1 将新滚入屏幕的 cell 算进去.向下拖动时, featuredItemIndex
-        会立即 -1, 这样和先前向上拖动时的索引区间是一样的,也不会多计算一个. */
+        standardCell 的数量.由于拖动中 featuredItemIndex 不会增长,直到一个 standardCell 完全过渡到
+        featuredCell .所以需要 +1 将新滚入屏幕的 standardCell 算进去.向下拖动时, featuredItemIndex 
+        会立即 -1 ,这样和先前向上拖动时的索引区间是一样的,不会多计算一个. */
         let endIndex = min(
             Int(ceil( (height - featuredHeight) / standardHeight )) + 1 + featuredItemIndex,
             numberOfItems - 1
@@ -95,19 +95,19 @@ class UltravisualLayout: UICollectionViewLayout {
 
             if indexPath.item == featuredItemIndex {
 
-                // 只要还是 featuredCell 就令高度保持为 featuredCellHeight.
+                // 只要还是 featuredCell 就令高度保持为 featuredHeight.
                 height = featuredHeight
 
-                // 每拖动一个 dragOffset 距离, featuredCell 变为下一个 cell,下面的 standardCell 都上升一格.
+                // 每拖动一个 dragOffset ,下面的 standardCell 都上升一格.
                 y = self.yOffset - standardHeight * self.nextItemPercentageOffset
 
             } else if indexPath.item == featuredItemIndex + 1 {
 
-                // 每次拖动距离达到 dragOffset 时, 变大的那个 cell 高度刚好变大至 featuredHeight.
+                // 每次拖动距离达到 dragOffset , 一个 standardCell 高度增长到 featuredHeight.
                 height = standardHeight + self.dragOffset * self.nextItemPercentageOffset
 
-                /* 先求得作为 standardCell 时底边 y 坐标,再减去此时实际高度作为实时 y 坐标. cell 变大过程中,
-                底边 y 坐标不会额外改变,从而让后面的 standardCell 都能正常移动. */
+                /* 先求得作为 standardCell 时底边 y 坐标,再减去此时实际高度作为实时 y 坐标.过渡时,底边 y 坐标
+                不会额外改变,从而让后面的 standardCell 都能正常移动. */
                 y = (y + standardHeight) - height
 
             } else {
@@ -144,7 +144,7 @@ class UltravisualLayout: UICollectionViewLayout {
 
     override func targetContentOffsetForProposedContentOffset(proposedContentOffset: CGPoint,
         withScrollingVelocity velocity: CGPoint) -> CGPoint {
-        // 每拖动一个 dragOffset 距离正好对应一个 cell 变为 featuredCell.
+        // 每拖动一个 dragOffset 对应一个 standardCell => featuredCell ,四舍五入求得整数个 dragOffset .
         return CGPoint(x: 0, y: round(proposedContentOffset.y / dragOffset) * dragOffset)
     }
 }
