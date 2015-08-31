@@ -70,7 +70,7 @@ override func prepareLayout() {
 
         if indexPath.item == featuredItemIndex {
 
-            // 只要还是 featuredCell 就令高度保持为 featuredCellHeight .
+            // 只要还是 featuredCell 就令高度保持为 featuredHeight .
             height = featuredHeight
 
             // 每拖动一个 dragOffset ,下面的 standardCell 都上升一格.
