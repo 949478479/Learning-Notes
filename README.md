@@ -26,7 +26,8 @@ let dragOffset: CGFloat = UltravisualLayoutConstants.Cell.featuredHeight -
 ```
 
 ```swift
-// 当前 featuredCell 的索引,即 dragOffset 的整数倍,用 max(_:_:) 限制向上拖动时 yOffset 为负数的情况.
+// 当前 featuredCell 的索引,即 dragOffset 的整数倍.
+// 用 max(_:_:) 限制向上拖动时 yOffset 为负数的情况.
 private var featuredItemIndex: Int {
     return max(0, Int(yOffset / dragOffset))
 }
@@ -44,7 +45,7 @@ private var nextItemPercentageOffset: CGFloat {
 ```swift
 override func prepareLayout() {
 
-    let width             = self.width // collectionView 宽度.类似的, height 为高度,为了方便定义的计算属性.
+    let width             = self.width // collectionView 宽度, height 则为高度.
     let featuredItemIndex = self.featuredItemIndex
     let standardHeight    = UltravisualLayoutConstants.Cell.standardHeight
     let featuredHeight    = UltravisualLayoutConstants.Cell.featuredHeight
@@ -72,7 +73,7 @@ override func prepareLayout() {
             // 只要还是 featuredCell 就令高度保持为 featuredCellHeight .
             height = featuredHeight
 
-            // 每拖动一个 dragOffset , standardCell 过渡到 featuredCell ,下面的 standardCell 都上升一格.
+            // 每拖动一个 dragOffset ,下面的 standardCell 都上升一格.
             y = self.yOffset - standardHeight * self.nextItemPercentageOffset
 
         } else if indexPath.item == featuredItemIndex + 1 {
@@ -80,7 +81,7 @@ override func prepareLayout() {
             // 每次拖动距离达到 dragOffset , 一个 standardCell 高度增长到 featuredHeight.
             height = standardHeight + self.dragOffset * self.nextItemPercentageOffset
 
-            /* 先求得作为 standardCell 时底边 y 坐标,再减去此时实际高度作为实时 y 坐标.过渡过程中,
+            /* 先求得作为 standardCell 时底边 y 坐标,再减去此时实际高度作为实时 y 坐标.过渡时,
             底边 y 坐标不会额外改变,从而让后面的 standardCell 都能正常移动. */
             y = (y + standardHeight) - height
 
@@ -100,7 +101,8 @@ override func prepareLayout() {
 ```
 
 ```swift
-// 至少要能拖动 numberOfItems 个 dragOffset ,最后一个时则需凑足一页所以加上 height - dragOffset .
+// 至少要能拖动 numberOfItems 个 dragOffset .
+// 最后一个 featuredCell 显示在顶部时需凑足一页的范围,所以加上 height - dragOffset .
 override func collectionViewContentSize() -> CGSize {
     let contentHeight = (CGFloat(numberOfItems) * dragOffset) + (height - dragOffset)
     return CGSize(width: width, height: contentHeight)
@@ -108,7 +110,8 @@ override func collectionViewContentSize() -> CGSize {
 ```
 
 ```swift
-// 自动分页.每拖动一个 dragOffset 对应一个 standardCell => featuredCell ,四舍五入求得整数个 dragOffset . 
+// 自动分页.
+// 每拖动一个 dragOffset 对应一个 standardCell => featuredCell ,四舍五入求得整数个 dragOffset . 
 override func targetContentOffsetForProposedContentOffset(proposedContentOffset: CGPoint,
     withScrollingVelocity velocity: CGPoint) -> CGPoint {
     return CGPoint(x: 0, y: round(proposedContentOffset.y / dragOffset) * dragOffset)
