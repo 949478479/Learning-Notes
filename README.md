@@ -28,7 +28,7 @@
 
 - [简易卡片动画](https://github.com/949478479/Animations-Study/tree/CardAnimation)
 
-- [下拉刷新](https://github.com/949478479/Animations-Study/tree/PullRefresh)
+- [继承自`UIRefreshControl`的自定义下拉刷新](https://github.com/949478479/Animations-Study/tree/PullRefresh)
 
 - [《Beginning iOS 8 Programming with Swift》小项目]
   (https://github.com/949478479/Learning-Notes/tree/FoodPin)
