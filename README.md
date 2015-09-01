@@ -29,16 +29,37 @@ override func layoutSubviews() {
 ```
 
 ```swift
+// 手动触发刷新不会调用 beginRefreshing() , refreshing 属性还不支持 KVO , 只好这样激活动画.
+private func addRefreshingHandle() {
+    addTarget(self, action: "animateRefreshStep1", forControlEvents: .ValueChanged)
+}
+```
+
+```swift
 override func beginRefreshing() {
     super.beginRefreshing()
 
 	// 代码触发刷新时居然不会自动下拉...还得自己设置下拉.其高度是固定的 60 点.
     if let superview = superview as? UIScrollView {
-        superview.setContentOffset(CGPoint(x: 0, y: superview.contentOffset.y - 60), animated: true)
+        superview.setContentOffset(
+        	CGPoint(x: 0, y: superview.contentOffset.y - 60), animated: true)
     }
     
     // 开始刷新动画.
     animateRefreshStep1()
+}
+```
+
+```swift
+override func endRefreshing() {
+    super.endRefreshing()
+
+    // 有时候可能是中途取消,所以重置下状态.
+    currentLabelIndex = 0
+    for label in labels {
+        label.transform = CGAffineTransformIdentity
+        label.textColor = UIColor.blackColor()
+    }
 }
 ```
 
@@ -108,20 +129,5 @@ private func animateRefreshStep2() {
             }
         })
     })
-}
-```
-
-有时候可能是中途取消,所以重置下状态:
-
-```swift
-override func endRefreshing() {
-    super.endRefreshing()
-
-    // 防止因为中途取消造成状态不对.
-    currentLabelIndex = 0
-    for label in labels {
-        label.transform = CGAffineTransformIdentity
-        label.textColor = UIColor.blackColor()
-    }
 }
 ```
