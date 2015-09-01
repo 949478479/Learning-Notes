@@ -15,7 +15,6 @@ class RefreshControl: UIRefreshControl {
     @IBOutlet private var labels: [UILabel]!
     private weak var refreshContents: UIView!
     private var currentLabelIndex = 0
-    private var height: CGFloat = 0
 
     // MARK: - 初始化
 
@@ -150,7 +149,7 @@ class RefreshControl: UIRefreshControl {
             })
         })
     }
-    
+
     // MARK: - 辅助方法
     
     private func getTextColor() -> UIColor {
