@@ -1,62 +1,27 @@
-## iOS Animations by Emails 翻译学习系列
+## PullRefresh
 
-- 2015.3 [CAReplicatorLayer 动画](https://github.com/949478479/Animations-Study/tree/AnimationsWithCAReplicatorLayer)
+受这篇教程启发 [如何加入自訂的下拉更新元件](http://www.appcoda.com.tw/custom-pull-to-refresh/?utm_source=sendy&utm_medium=email&utm_campaign=pull-to-refresh-control)
 
-- 2015.7 [CAGradientLayer 与 mask 动画](https://github.com/949478479/Animations-Study/tree/ColorIntroduction)
+![](https://github.com/949478479/Learning-Notes/blob/master/PullRefresh-screenshot/PullRefresh.gif)
 
-## 转场动画
+本来为了省事就直接往`UIRefreshControl`上覆盖自定义刷新控件,结果发现坑比较多,这里记录下.
 
-- [魔法移动式的转场动画](https://github.com/949478479/Animations-Study/tree/MagicMove)
+```swift
+// UIRefreshControl 貌似会进行判断,如果背景色为 nil ,其高度将是恒定的 60 ,而不是随着拖动变化.
+backgroundColor = backgroundColor ?? UIColor.clearColor()
+```
 
-- [圆圈缩放式转场动画](https://github.com/949478479/Animations-Study/tree/PingTransition)
+```swift
+override func layoutSubviews() {
+	super.layoutSubviews()
 
-- [翻页效果转场动画](https://github.com/949478479/Animations-Study/tree/FlipTransion)
-
-## 菜单效果
-
-- [创建一个非常酷的3D效果菜单动画](https://github.com/949478479/Animations-Study/tree/Taasky)
- 
-- [利用 iCarousel 实现类似 iOS9 任务管理器效果动画]
-  (https://github.com/949478479/Animations-Study/tree/CardAnimationByiCarousel)
-
-- [利用 UIViewControllerAnimatedTransitioning 构建一个下滑菜单]
-  (https://github.com/949478479/Animations-Study/tree/SlideDownMenu)
-
-## 其他
-
-- [可以折叠的 ImageView](https://github.com/949478479/Animations-Study/tree/FoldingImageView)
-
-- [简易卡片动画](https://github.com/949478479/Animations-Study/tree/CardAnimation)
-
-- [下拉刷新](https://github.com/949478479/Animations-Study/tree/PullRefresh)
-
-- [《Beginning iOS 8 Programming with Swift》小项目]
-  (https://github.com/949478479/Learning-Notes/tree/FoodPin)
-  
-## UICollectionView
-
-- [WWDC 上的 UICollectionViewLayout 的 demo]
-  (https://github.com/949478479/Learning-Notes/tree/CollectionViewLayoutDemo)
-
-- [瀑布流布局](https://github.com/949478479/Learning-Notes/tree/Pinterest)
-
-- [环形滚动布局](https://github.com/949478479/Learning-Notes/tree/CircularCollectionView)
-
-- [类似`Ultravisual`的视差效果布局](https://github.com/949478479/Learning-Notes/tree/Ultravisual)
-
-- [用 Flickr 搜索/浏览图片的简陋 demo... ⊙﹏⊙‖∣](https://github.com/949478479/Learning-Notes/tree/FlickrSearch)
-
-## UIPickerView
-
-- [UIPickerView 简单使用:实现一个老虎机]
-  (https://github.com/949478479/Learning-Notes/tree/SlotMachine)
-
-## Swift
-
-- [RayWenderlich 出品的脑洞大开的 Swift 小题目]
-  (https://github.com/949478479/Learning-Notes/tree/Are-You-a-Swift-Ninja)
-
-## ReactiveCocoa
-
-- [使用 ReactiveCocoa 构建一个简单的天气应用]
-  (https://github.com/949478479/Learning-Notes/tree/SimpleWeather)
+    /* 初始高度是 64 (有导航栏)或者 60 (刷新控件固定高度就是 60).
+    第一次下拉时,第一次触发此方法时高度一般是 64 或者 60 ,导致那一瞬间刷新控件底部会露出来,
+    当然如果 cell 高度够大,或者有其他东西能遮挡住刷新控件露出来的部分,就看不见了.
+    之后触发此方法时,高度基本等于 y 坐标的绝对值,可能会偏差 0.25~0.5 点.
+    初始拖动时只要不是太快 frame.minY 一般会比 -3 大,例如 -0.5 , -1 之类,这个时候如果高度 >=60 ,就隐藏. */
+    hidden = (bounds.height >= 60 && frame.minY > -3)
+    
+    refreshContents.frame = bounds
+}
+```

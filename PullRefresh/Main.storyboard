@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="UZC-TW-J5S">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
+    </dependencies>
+    <scenes>
+        <!--Table View Controller-->
+        <scene sceneID="hx6-AY-l74">
+            <objects>
+                <tableViewController id="YPW-ph-d8G" customClass="TableViewController" customModule="PullRefresh" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="nlx-4j-gMW">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <view key="tableFooterView" contentMode="scaleToFill" id="ACw-ul-8nn">
+                            <rect key="frame" x="0.0" y="108" width="600" height="0.0"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </view>
+                        <sections>
+                            <tableViewSection id="eWh-Ft-gJq">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="kd7-lP-NXg">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kd7-lP-NXg" id="qFE-p3-Lub">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A73-tD-N7G">
+                                                    <rect key="frame" x="310" y="7" width="30" height="30"/>
+                                                    <state key="normal" title="停止">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="endRefreshing" destination="YPW-ph-d8G" eventType="touchUpInside" id="qVI-vK-FVC"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4U0-d9-oQf">
+                                                    <rect key="frame" x="260" y="7" width="30" height="30"/>
+                                                    <state key="normal" title="开始">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="beginRefreshing" destination="YPW-ph-d8G" eventType="touchUpInside" id="EdQ-vo-G5m"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="centerY" secondItem="A73-tD-N7G" secondAttribute="centerY" id="4ir-4x-ydD"/>
+                                                <constraint firstAttribute="centerX" secondItem="4U0-d9-oQf" secondAttribute="trailing" constant="10" id="bpQ-4j-87R"/>
+                                                <constraint firstAttribute="centerX" secondItem="A73-tD-N7G" secondAttribute="leading" constant="-10" id="eqh-vb-Bzc"/>
+                                                <constraint firstAttribute="centerY" secondItem="4U0-d9-oQf" secondAttribute="centerY" id="pVT-Te-J7g"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="YPW-ph-d8G" id="5Sw-yp-eGW"/>
+                            <outlet property="delegate" destination="YPW-ph-d8G" id="rGr-b2-WzF"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="aOM-KI-M6d"/>
+                    <refreshControl key="refreshControl" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="3cK-Qm-bnJ" customClass="RefreshControl" customModule="PullRefresh" customModuleProvider="target">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </refreshControl>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MOS-kb-X0q" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1444" y="319"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="3L5-6k-2VY">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="UZC-TW-J5S" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="BwS-dT-pCa">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="YPW-ph-d8G" kind="relationship" relationship="rootViewController" id="AZ6-LC-ojX"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dai-r9-76U" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="632" y="319"/>
+        </scene>
+    </scenes>
+</document>
