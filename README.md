@@ -204,3 +204,115 @@ brian.address.fullAddress = "148 Tutorial Street"
 `Address`是一个`class`,是引用语义,因此从上述代码来看,访问两个人的`address`属性都是访问同一`Address`实例,即`headquarters`.
 
 更好的做法是将`Address`定义为`struct`类型,值传递语义在这种情况下更科学.
+
+### 中级
+
+#### 问题 #1 -- Swift 2.0 或更高版本
+
+思考下面代码:
+
+```swift
+var optional1: String? = nil
+var optional2: String? = .None
+```
+
+这里的`nil`和`.None`有什么区别吗?`optional1`和`optional2`有什么不同吗?
+
+##### 解决方案:
+
+没有区别.`Optional.None`是初始化一个可选类型的完整写法,而`nil`只是一种语法糖.
+
+实际上,下面这个语句结果为`true`:
+
+```swift
+nil == .None // 在 Swift 1.x 版本这无法通过编译,需要写成 Optional<Int>.None 这种.
+```
+
+记住,`Optional`实际上是个枚举:
+
+```swift
+enum Optional<T> {
+    case None
+    case Some(T)
+}
+```
+
+#### 问题 #2 -- Swift 1.0 或更高版本
+
+下面代码分别用`class`和`struct`表示温度计模型:
+
+```swift
+public class ThermometerClass {
+    private(set) var temperature: Double = 0.0
+    public func registerTemperature(temperature: Double) {
+        self.temperature = temperature
+    }
+}
+ 
+let thermometerClass = ThermometerClass()
+thermometerClass.registerTemperature(56.0)
+ 
+public struct ThermometerStruct {
+    private(set) var temperature: Double = 0.0
+    public mutating func registerTemperature(temperature: Double) {
+        self.temperature = temperature
+    }
+}
+ 
+let thermometerStruct = ThermometerStruct()
+thermometerStruct.registerTemperature(56.0)
+```
+
+这段代码会编译失败.错误在哪里呢?为什么?
+
+解决方案:
+
+错误出在最后一行.
+
+`ThermometerStruct`正确地将会改变内部变量`temperature`的方法`registerTemperature(_:)`用`mutating`关键字声明.但其实例`thermometerStruct`声明为`let`,是不可变的,所以不能调用会改变内部状态的`registerTemperature(_:)`方法.
+
+对于`struct`,改变内部状态的方法必须标记为`mutating`,不可变实例不能调用这种方法.
+
+#### 问题 #3 -- Swift 1.0 或更高版本
+
+下面这段代码会打印出什么?为什么?
+
+```swift
+var thing = "cars"
+ 
+let closure = { [thing] in
+    print("I love \(thing)")
+}
+ 
+thing = "airplanes"
+ 
+closure()
+```
+
+解决方案:
+
+会打印`I love cars`.
+
+由于创建闭包时声明了捕获列表,闭包将创建变量`thing`的拷贝,所以之后对闭包外的变量`thing`重新赋值,并不会影响闭包内部的`thing`.
+
+如果省略捕获列表,闭包将使用变量`thing`的引用而不是拷贝来的副本.这种情况下,改变闭包外部的变量`thing`会影响闭包内部的变量`thing`.
+
+```swift
+var thing = "cars"
+ 
+let closure = {    
+    print("I love \(thing)")
+}
+ 
+thing = "airplanes"
+ 
+closure() // 打印 "I love airplanes"
+```
+
+#### 问题 #4 -- Swift 2.0 或更高版本
+
+暂略...系统太旧用不了 Xcode 7 beta ...等出正式版了不行就升级系统- -
+
+#### 问题 #5 -- Swift 2.0 或更高版本
+
+暂略...
