@@ -61,7 +61,7 @@ tutorial2.difficulty = 2
 
 `tutorial1.difficulty`是 1 ,而`tutorial2.difficulty`是 2.
 
-`Swift`中,`struct`是值类型,其值在传递时被复制,而不是像`class`这种引用类型一样传递引用.
+`Swift`中,`struct`是值类型,传递的是自身值的拷贝,而不是像`class`这种引用类型一样传递自身的引用.
 
 下面的代码创建了`tutorial1`的副本赋值给`tutorial2`:
 
@@ -199,6 +199,8 @@ brian.address.fullAddress = "148 Tutorial Street"
 
 ##### 解决方案:
 
-`ray`也搬到了新房子!`Address`是一个`class`,是引用语义,因此从上述代码来看,访问两个人的`address`属性都是访问同一`Address`实例,即`headquarters`.
+`ray`也搬到了新房子!
 
-更好的做法是将`Address`定义为`struct`类型,值传递在这种情况下更科学.
+`Address`是一个`class`,是引用语义,因此从上述代码来看,访问两个人的`address`属性都是访问同一`Address`实例,即`headquarters`.
+
+更好的做法是将`Address`定义为`struct`类型,值传递语义在这种情况下更科学.
