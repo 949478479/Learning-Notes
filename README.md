@@ -13,11 +13,11 @@
 - 中级
 - 高级
 
-### 笔试问题
+## 笔试问题
 
-#### 初级
+### 初级
 
-##### 问题 #1 -- Swift 1.0 或更高版本
+#### 问题 #1 -- Swift 1.0 或更高版本
 
 下面的 for 循环有更好的写法吗?
 
@@ -27,7 +27,7 @@ for var i = 0; i < 5; i++ {
 }
 ```
 
-解决方案:
+##### 解决方案:
 
 ```swift
 for _ in 0...4 {
@@ -37,11 +37,11 @@ for _ in 0...4 {
 
 `Swift`提供了`...`和`..<`两个操作符.
 
-`...`是闭区间范围,例如`0...4`表示从0到4的整数范围.
+`...`表示闭区间范围,例如`0...4`表示从0到4的整数范围.
 
-而`..<`是前闭后开的区间范围,例如`0..<5`表示的才是从0到4的整数范围,而不包括5.
+而`..<`表示前闭后开的区间范围,例如`0..<5`表示的是从0到4的整数范围,不包括5.
 
-##### 问题 #2 -- Swift 1.0 或更高版本 
+#### 问题 #2 -- Swift 1.0 或更高版本 
 
 分析下面代码:
 
@@ -57,7 +57,7 @@ tutorial2.difficulty = 2
 
 最终`tutorial1.difficulty`和`tutorial2.difficulty`的值各是什么?如果`Tutorial`是`class`类型呢?
 
-解决方案:
+##### 解决方案:
 
 `tutorial1.difficulty`是 1 ,而`tutorial2.difficulty`是 2.
 
@@ -75,7 +75,7 @@ var tutorial2 = tutorial1
 
 `class`类型在`Swift`中是引用类型,操作`tutorial1`即是操作`tutorial2`,反之亦然.
 
-##### 问题 #3 -- Swift 1.0 或更高版本
+#### 问题 #3 -- Swift 1.0 或更高版本
 
 `view1`声明为`var`,`view2`声明为`let`.这里有什么区别呢?最后一行能通过编译吗?
 
@@ -89,7 +89,7 @@ let view2 = UIView()
 view2.alpha = 0.5 // 这一行能通过编译吗?
 ```
 
-解决方案:
+##### 解决方案:
 
 `view1`是一个变量,可以被重新分配一个新的`UIView`实例.
 
@@ -106,7 +106,7 @@ let view2 = UIView()
 view2.alpha = 0.5 // 完全没问题~
 ```
 
-##### 问题 #4 -- Swift 1.0 或更高版本
+#### 问题 #4 -- Swift 1.0 或更高版本
 
 这段代码按照字母顺序排序数组,这看上去有些啰嗦,试着简化写法.
 
@@ -117,7 +117,7 @@ let sortedAnimals = animals.sorted { (one: String, two: String) -> Bool in
 }
 ```
 
-解决方案:
+##### 解决方案:
 
 首先可以简化闭包的参数.由于类型推断,可以省略闭包的参数类型:
 
@@ -159,7 +159,7 @@ func <(lhs: String, rhs: String) -> Bool
 let sortedAnimals = animals.sorted(<)
 ```
 
-##### 问题 #5 -- Swift 1.0 或更高版本
+#### 问题 #5 -- Swift 1.0 或更高版本
 
 下面这段代码创建了两个类, `Address`和`Person`,`Person`会创建两个实例表示`Ray`和`Brian`这俩人。
 
@@ -197,7 +197,7 @@ brian.address.fullAddress = "148 Tutorial Street"
 
 这句代码会导致什么问题吗?
 
-解决方案:
+##### 解决方案:
 
 `ray`也搬到了新房子!`Address`是一个`class`,是引用语义,因此从上述代码来看,访问两个人的`address`属性都是访问同一`Address`实例,即`headquarters`.
 
