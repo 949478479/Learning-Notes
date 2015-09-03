@@ -6,6 +6,7 @@
 
 - [笔试问题](#Written Questions)
   ([初级](#Written Beginners) [中级](#Written Intermediate) [高级](#Written Advanced))
+
 - [面试问题](#Verbal Questions)
   ([初级](#Verbal Beginners) [中级](#Verbal Intermediate) [高级](#Verbal Advanced))
 
@@ -699,6 +700,96 @@ func showKitten(kitten: Kitten?) {
 
 <a name="Verbal Beginners"></a>
 ### 初级
+
+#### 问题 #1 -- Swift 1.0 或更高版本
+
+什么是可选?它能解决什么问题?
+
+##### 回答:
+
+可选能让某种类型的变量更好地应对"没有值"的情况.
+
+在`Objective-C`中,使用`nil`来表示一个引用类型的变量"没有值".而对于值类型,例如`int`,`float`之类,则没办法表示.
+
+`Swift`改善了这一问题,任何类型的可选形式的值都可以是有效值或者是`nil`.
+
+#### 问题 #2 -- Swift 1.0 或更高版本
+
+类和结构的使用时机和场合?
+
+##### 回答:
+
+这总是存在一定的争论.函数式编程倾向于值类型,而面向对象编程更热衷于类.
+
+在`Swift`,类和结构非常相似,但也有一些重要区别:
+
+- 类支持继承,而结构不可以
+- 类是引用类型,结构是值类型
+
+没有什么通用的规则来确定用哪个最好,,使用最低手段完成目的就是好的.
+
+比较好的经验法则是:尽量使用结构,除非你明确需要使用继承或是引用语义.
+
+> 注意性能:
+
+> 在运行时,结构的方法调用是静态绑定的,而类则是动态派发的.这或许是另一个使用结构而不是类的好理由.
+
+#### 问题 #3 -- Swift 1.0 或更高版本
+
+什么是泛型?泛型能解决什么问题?
+
+##### 回答:
+
+泛型能让一种算法安全地适用于不同类型.在`Swift`,泛型可以应用于函数,以及数据类型,例如类,结构,或者枚举.
+
+泛型还能解决代码重复的问题.常见的情况是,一个方法只接收某种类型的参数,如果想让它接收其他类型的参数,就不得不复制这个方法的代码做出对应修改.
+
+例如,下面代码的第二个函数是第一个函数的"克隆",它仅仅是将参数类型改为了`String`而不再是`Int`:
+
+```swift
+func areIntEqual(x: Int, _ y: Int) -> Bool {
+    return x == y
+}
+ 
+func areStringsEqual(x: String, _ y: String) -> Bool {
+    return x == y
+}
+ 
+areStringsEqual("ray", "ray") // true
+areIntEqual(1, 1) // true
+```
+
+一个`Objective-C`开发者可能会用`NSObject`解决这个问题:
+
+```Objective-C
+func areTheyEqual(x: NSObject, _ y: NSObject) -> Bool {
+    return x == y
+}
+ 
+areTheyEqual("ray", "ray") // true
+areTheyEqual(1, 1) // true
+```
+
+上面这段代码可以正常工作,但是在编译时并不安全.它允许比较字符串和整数,像这样:
+
+```swift
+areTheyEqual(1, "ray")
+```
+
+虽然应用程序不会崩溃,但是这样的比较结果往往并不是所期待的结果.
+
+采用泛型,就可以在合并这两个函数的同时保证类型安全:
+
+```swift
+func areTheyEqual<T: Equatable>(x: T, _ y: T) -> Bool {
+    return x == y
+}
+ 
+areTheyEqual("ray", "ray")
+areTheyEqual(1, 1)
+```
+
+因为需要测试等同性,所以对于任意类型的参数,必须符合`Equatable`协议.这个函数达到了预期目的,并防止了不同参数的传入.
 
 <a name="Verbal Intermediate"></a>
 ### 中级
