@@ -267,7 +267,7 @@ thermometerStruct.registerTemperature(56.0)
 
 这段代码会编译失败.错误在哪里呢?为什么?
 
-解决方案:
+##### 解决方案:
 
 错误出在最后一行.
 
@@ -291,7 +291,7 @@ thing = "airplanes"
 closure()
 ```
 
-解决方案:
+##### 解决方案:
 
 会打印`I love cars`.
 
@@ -338,7 +338,7 @@ countUniques([1, 2, 3, 3]) // 结果为 3 .
 [1, 2, 3, 3].countUniques()
 ```
 
-解决方案:
+##### 解决方案:
 
 在`Swift 2.0`中,泛型类型的扩展可以指定类型约束.如果其类型不满足约束条件,扩展是不可用的.
 
@@ -353,7 +353,7 @@ extension Array where Element: Comparable {
 }
 ```
 
-只有当元素实现了`Comparable`协议时,这个扩展方法才是可用的.例如这样编译器会报错指出`UIView`不符合`Comparable`协议:
+注意,只有当元素实现了`Comparable`协议时,这个扩展方法才是可用的.例如下面这种情况,编译器会报错指出`UIView`不符合`Comparable`协议:
 
 ```swift
 let a = [UIView(), UIView()]
@@ -361,4 +361,69 @@ a.countUniques()
 ```
 #### 问题 #5 -- Swift 2.0 或更高版本
 
-暂略...
+下面这个函数使用两个给定的`Double`类型的值进行除法运算,有三个先决条件:
+
+- 被除数不能为`nil`
+- 除数不能为`nil`
+- 除数不能为`0`
+
+```swift
+func divide(dividend: Double?, by divisor: Double?) -> Double? {
+    if dividend == .None {
+        return .None
+    }
+
+    if divisor == .None {
+        return .None
+    }
+
+    if divisor == 0 {
+        return .None
+    }
+
+    return dividend! / divisor!
+}
+```
+
+这个函数符合要求,但是有些不足:
+
+- 先决条件可以用`guard`语句
+- 使用了强制解包
+
+改善该函数,使用`guard`声明并避免使用强制解包.
+
+##### 解决方案:
+
+`Swift 2.0`新引入了`guard`语句,可提供不满足条件时的退出路径.这对于先决条件的检查是非常有用的,这可以让开发者更清晰地表达先决条件,而不是像以前那样使用大量嵌套`if`语句.例如下面这样:
+
+```swift
+guard dividend != .None else { return .None }
+```
+
+`guard`还可用于可选绑定,在`guard`语句之后也可以使用解包后的可选值:
+
+```swift
+guard let dividend = dividend else { return .None }
+```
+
+因此,上面的除法函数可以改写为下面这样:
+
+```swift
+func divide(dividend: Double?, by divisor: Double?) -> Double? {
+    guard let dividend = dividend else { return .None }
+    guard let divisor = divisor else { return .None }
+    guard divisor != 0 else { return .None }
+    return dividend / divisor
+}
+```
+
+注意,函数最后没有使用强制解包,因为`dividend`和`divisor`在之前的`guard`语句中已经通过可选绑定解包了.
+
+另外,`guard`语句还可以连起来使用:
+
+```swift
+func divide(dividend: Double?, by divisor: Double?) -> Double? {
+    guard let dividend = dividend, divisor = divisor where divisor != 0 else { return .None }
+    return dividend / divisor
+}
+```
