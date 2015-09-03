@@ -569,6 +569,7 @@ struct Lombardis: Pizzeria {
     func makePizza(ingredients: [String]) -> Pizza {
         return Pizza(ingredients: ingredients)
     }
+    
     func makeMargherita() -> Pizza {
         return makePizza(["tomato", "basil", "mozzarella"])
     }
@@ -606,3 +607,68 @@ extension Pizzeria {
 ```
 
 那么在这种情况下,只有`lombardis2`会做`basil`披萨,而`lombardis1`会去调用协议扩展中的方法.
+
+#### 问题 #5 -- Swift 2.0 或更高版本
+
+下面的代码编译出错,你能找出错误位置以及原因吗?
+
+```swift
+struct Kitten {
+    // ...
+}
+ 
+func showKitten(kitten: Kitten?) {
+    guard let k = kitten else {
+        print("There is no kitten")
+    }
+    print(k)
+}
+```
+
+提示:有三种方法可以解决这个问题.
+
+##### 解决方案:
+
+`guard`语句需要有退出路径,无论是使用`return`还是抛异常或是调用`@noreturn`.
+
+添加`return`的方案:
+
+```swift
+func showKitten(kitten: Kitten?) {
+    guard let k = kitten else {
+        print("There is no kitten")
+        return
+    }
+    print(k)
+}
+```
+
+抛出异常的方案:
+
+```swift
+enum KittenError: ErrorType {
+    case NoKitten
+}
+
+func showKitten(kitten: Kitten?) throws {
+    guard let k = kitten else {
+        print("There is no kitten")
+        throw KittenError.NoKitten
+    }
+    print(k)
+}
+
+try showKitten(nil)
+```
+
+通过调用`fatalError()`实现`@noreturn`的方案:
+
+```swift
+func showKitten(kitten: Kitten?) {
+    guard let k = kitten else {
+        print("There is no kitten")
+        fatalError()
+    }
+    print(k)
+}
+```
