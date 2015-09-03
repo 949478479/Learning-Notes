@@ -33,9 +33,9 @@ for _ in 0...4 {
 
 `Swift`提供了`...`和`..<`两个操作符.
 
-`...`表示闭区间范围,例如`0...4`表示从0到4的整数范围.
+`...`表示闭区间范围,例如`0...4`表示从 0 到 4 的整数范围.
 
-而`..<`表示前闭后开的区间范围,例如`0..<5`表示的是从0到4的整数范围,不包括5.
+而`..<`表示前闭后开的区间范围,例如`0..<5`表示的是从 0 到 4 的整数范围,不包括 5.
 
 #### 问题 #2 -- Swift 1.0 或更高版本 
 
@@ -51,7 +51,7 @@ var tutorial2 = tutorial1
 tutorial2.difficulty = 2
 ```
 
-最终`tutorial1.difficulty`和`tutorial2.difficulty`的值各是什么?如果`Tutorial`是`class`类型呢?
+`tutorial1.difficulty`和`tutorial2.difficulty`的值各是什么?如果`Tutorial`是`class`类型呢?
 
 ##### 解决方案:
 
@@ -132,7 +132,7 @@ let sortedAnimals = animals.sort { (one, two) in
 }
 ```
 
-使用`$0`,`$1`,`$2`这种形式可以分别表示第一个,第二个和第三个参数,以此类推.因此参数和`in`关键字也可以省略:
+使用`$0`,`$1`这种形式可以分别表示第一个和第二个参数,以此类推.因此参数和`in`关键字也可以省略:
 
 ```swift
 let sortedAnimals = animals.sort { return $0 < $1 }
@@ -144,7 +144,7 @@ let sortedAnimals = animals.sort { return $0 < $1 }
 let sortedAnimals = animals.sort { $0 < $1 }
 ```
 
-最后,对于`String`类型,其实现了一个比较函数,声明如下:
+最后,`String`类型实现了一个比较函数,声明如下:
 
 ```swift
 func <(lhs: String, rhs: String) -> Bool
@@ -198,7 +198,9 @@ brian.address.fullAddress = "148 Tutorial Street"
 
 `ray`也搬到了新房子!
 
-`Address`是一个`class`,是引用语义,因此从上述代码来看,访问两个人的`address`属性都是访问同一`Address`实例,即`headquarters`.
+`Address`是一个`class`,是引用语义.
+
+因此从上述代码来看,访问两个人的`address`属性都是访问同一`Address`实例,即`headquarters`.
 
 更好的做法是将`Address`定义为`struct`类型,值传递语义在这种情况下更科学.
 
@@ -218,12 +220,14 @@ var optional2: String? = .None
 
 ##### 解决方案:
 
-没有区别.`Optional.None`是初始化一个可选类型的完整写法,而`nil`只是一种语法糖.
+没有区别.
+
+`Optional.None`是初始化一个可选类型的完整写法,而`nil`只是一种语法糖.
 
 实际上,下面这个语句结果为`true`:
 
 ```swift
-nil == .None // 在 Swift 1.x 版本这无法通过编译,需要写成 Optional<Int>.None 这种.
+nil == .None // 在 Swift 1.x 版本这无法通过编译,需要写成 Optional<Int>.None 这种形式.
 ```
 
 记住,`Optional`实际上是个枚举:
@@ -268,7 +272,9 @@ thermometerStruct.registerTemperature(56.0)
 
 错误出在最后一行.
 
-`ThermometerStruct`正确地将会改变内部变量`temperature`的方法`registerTemperature(_:)`用`mutating`关键字声明.但其实例`thermometerStruct`声明为`let`,是不可变的,所以不能调用会改变内部状态的`registerTemperature(_:)`方法.
+方法`registerTemperature(_:)`会改变内部变量`temperature`,所以使用了`mutating`关键字进行声明.
+
+但其实例`thermometerStruct`声明为`let`,是不可变的,所以不能调用`registerTemperature(_:)`方法.
 
 对于`struct`,改变内部状态的方法必须标记为`mutating`,而不可变实例则不能调用这种方法.
 
@@ -294,7 +300,7 @@ closure()
 
 由于创建闭包时声明了捕获列表,闭包将创建变量`thing`的拷贝,所以之后对闭包外的变量`thing`重新赋值,并不会影响闭包内部的`thing`.
 
-如果省略捕获列表,闭包将使用变量`thing`的引用而不是拷贝来的副本.这种情况下,改变闭包外部的变量`thing`会影响闭包内部的变量`thing`.
+如果没有捕获列表,闭包将通过引用使用变量`thing`而不是使用拷贝来的副本.在这种情况下,改变闭包外部的变量`thing`会影响闭包内部的变量`thing`.
 
 ```swift
 var thing = "cars"
@@ -337,7 +343,7 @@ countUniques([1, 2, 3, 3]) // 结果为 3 .
 
 ##### 解决方案:
 
-在`Swift 2.0`中,泛型类型的扩展可以指定类型约束.如果其类型不满足约束条件,扩展是不可用的.
+在`Swift 2.0`中,泛型类型的扩展可以指定类型约束.如果其类型不满足约束条件,扩展是不可用的:
 
 ```swift
 extension Array where Element: Comparable {
@@ -350,7 +356,9 @@ extension Array where Element: Comparable {
 }
 ```
 
-注意,只有当元素实现了`Comparable`协议时,这个扩展方法才是可用的.例如下面这种情况,编译器会报错指出`UIView`不符合`Comparable`协议:
+注意,只有当元素实现了`Comparable`协议时,这个扩展才是可用的.
+
+例如下面这种情况,编译器会报错指出`UIView`不符合`Comparable`协议:
 
 ```swift
 let a = [UIView(), UIView()]
@@ -384,14 +392,16 @@ func divide(dividend: Double?, by divisor: Double?) -> Double? {
 
 这个函数符合要求,但是有些不足:
 
-- 先决条件可以用`guard`语句
-- 使用了强制解包
+- 最好使用`guard`语句检查先决条件
+- 最好避免使用强制解包
 
-改善该函数,使用`guard`声明并避免使用强制解包.
+改进该函数,使用`guard`语句并避免使用强制解包.
 
 ##### 解决方案:
 
-`Swift 2.0`新引入了`guard`语句,可提供不满足条件时的退出路径.这对于先决条件的检查是非常有用的,这可以让开发者更清晰地表达先决条件,而不是像以前那样使用大量嵌套`if`语句.例如下面这样:
+`Swift 2.0`新引入了`guard`语句,可提供不满足条件时的退出路径.这对于先决条件的检查十分有用,可以让开发者更清晰地表达先决条件,而不是像以前那样使用大量嵌套`if`语句.
+
+例如可以像下面这样:
 
 ```swift
 guard dividend != .None else { return .None }
@@ -414,13 +424,19 @@ func divide(dividend: Double?, by divisor: Double?) -> Double? {
 }
 ```
 
-注意,函数最后没有使用强制解包,因为`dividend`和`divisor`在之前的`guard`语句中已经通过可选绑定解包了.
+函数最后没有使用强制解包,因为`dividend`和`divisor`在之前的`guard`语句中已经用可选绑定解包了.
 
 另外,`guard`语句还可以连起来使用:
 
 ```swift
 func divide(dividend: Double?, by divisor: Double?) -> Double? {
-    guard let dividend = dividend, divisor = divisor where divisor != 0 else { return .None }
+    guard let
+        dividend = dividend,
+        divisor  = divisor where divisor != 0
+    else {
+        return .None
+    }
+    
     return dividend / divisor
 }
 ```
@@ -430,7 +446,7 @@ func divide(dividend: Double?, by divisor: Double?) -> Double? {
 
 #### 问题 #1 -- Swift 1.0 或更高版本
 
-思考下面的表示温度计的结构:
+分析下面这个表示温度计的结构:
 
 ```swift
 public struct Thermometer {
@@ -469,7 +485,9 @@ var t: Thermometer = 233.3
 - ArrayLiteralConvertible
 - DictionaryLiteralConvertible
 
-让某种类型遵循相应的协议并提供一个公共构造器,就可以通过相应字面量初始化.因此,让`Thermometer`实现`FloatLiteralConvertible`协议即可:
+让某种类型遵循相应的协议并提供一个公共构造器,就可以通过相应字面量初始化.
+
+因此,让`Thermometer`实现`FloatLiteralConvertible`协议即可:
 
 ```swift
 extension Thermometer: FloatLiteralConvertible {
@@ -481,17 +499,17 @@ extension Thermometer: FloatLiteralConvertible {
 
 #### 问题 #2 -- Swift 1.0 或更高版本
 
-`Swift`预定义了一系列运算符用于执行各种运算,例如算术或者逻辑运算,还可以创建自定义运算符,一元或者二元的都可以.
+`Swift`预定义了一系列运算符用于执行各种运算,例如算术或者逻辑运算,还可以创建自定义的一元或者二元运算符.
 
-定义并实现一个自定义的`^^`幂运算符并遵循以下规则:
+定义并实现一个自定义的幂运算符`^^`,并遵循以下规则:
 
-- 接收两个`Int`参数
+- 运算符接收两个`Int`参数
 - 第一个参数作为底数,第二个参数作为指数,返回运算结果
 - 可以不考虑潜在的溢出问题
 
 ##### 解决方案:
 
-自定义运算符分为声明和实现两步.
+自定义运算符的过程分为声明和实现两步.
 
 声明自定义运算符使用`operator`关键字,还需要指定是一元还是二元运算符,结合性以及优先级:
 
@@ -529,11 +547,14 @@ enum Edges: (Double, Double) {
 
 ##### 解决方案:
 
-这个真不能.枚举的原始值必须符合下列要求:
+这个真不能.
+
+枚举的原始值必须符合下列要求:
 
 - 符合`Equatable`协议
 - 可由字面量转换为下面类型:
     - Int
+    - Double
     - String
     - Character
 
@@ -541,7 +562,7 @@ enum Edges: (Double, Double) {
 
 #### 问题 #4 -- Swift 2.0 或更高版本
 
-下面代码定义了一个`Pizza`结构,一个`Pizzeria`协议以及包含`makeMargherita()`方法默认实现的协议扩展:
+这里定义了一个`Pizza`结构,一个`Pizzeria`协议和包含`makeMargherita()`方法默认实现的协议扩展:
 
 ```swift
 struct Pizza {
@@ -560,7 +581,7 @@ extension Pizzeria {
 }
 ```
 
-接着定义了一个餐厅`Lombardis`:
+接着定义了一个餐厅结构`Lombardis`:
 
 ```swift
 struct Lombardis: Pizzeria {
@@ -588,7 +609,7 @@ lombardis2.makeMargherita()
 
 都会做.
 
-`Pizzeria`协议声明了`makeMargherita()`方法并利用扩展提供了默认实现,该默认实现会被采纳协议的`Lombardis`中的实现覆盖.由于`Pizzeria`协议声明了`makeMargherita()`方法,因此`lombardis1`和`lombardis2`都会调用自己重写的实现.
+`Pizzeria`协议声明了`makeMargherita()`方法并利用协议扩展提供了默认实现,该默认实现会被采纳协议的`Lombardis`中提供的实现覆盖.由于`Pizzeria`协议声明了`makeMargherita()`方法,因此`lombardis1`和`lombardis2`都会调用`Lombardis`重写的实现.
 
 如果`Pizzeria`协议中未声明`makeMargherita()`方法,而只是在扩展中提供了默认实现:
 
@@ -623,13 +644,13 @@ func showKitten(kitten: Kitten?) {
 }
 ```
 
-提示:有三种方法可以解决这个问题.
+提示:有三种方案可以解决这个问题.
 
 ##### 解决方案:
 
 `guard`语句需要有退出路径,无论是使用`return`还是抛异常或是调用`@noreturn`.
 
-添加`return`的方案:
+使用`return`的方案:
 
 ```swift
 func showKitten(kitten: Kitten?) {
