@@ -4,13 +4,15 @@
 
 该篇教程讲解了一些`Swift`的面试题,分为两部分:
 
-- [笔试问题](#Written Questions) ([初级](#Beginners) [中级](#Intermediate) [高级](#Advanced))
-- [面试问题](#Verbal Questions) ([初级](#Beginners) [中级](#Intermediate) [高级](#Advanced))
+- [笔试问题](#Written Questions)
+  ([初级](#Written Beginners) [中级](#Written Intermediate) [高级](#Written Advanced))
+- [面试问题](#Verbal Questions)
+  ([初级](#Verbal Beginners) [中级](#Verbal Intermediate) [高级](#Verbal Advanced))
 
 <a name="Written Questions"></a>
 ## 笔试问题
 
-<a name="Beginners"></a>
+<a name="Written Beginners"></a>
 ### 初级
 
 #### 问题 #1 -- Swift 1.0 或更高版本
@@ -204,7 +206,7 @@ brian.address.fullAddress = "148 Tutorial Street"
 
 更好的做法是将`Address`定义为`struct`类型,值传递语义在这种情况下更科学.
 
-<a name="Intermediate"></a>
+<a name="Written Intermediate"></a>
 ### 中级
 
 #### 问题 #1 -- Swift 2.0 或更高版本
@@ -441,7 +443,7 @@ func divide(dividend: Double?, by divisor: Double?) -> Double? {
 }
 ```
 
-<a name="Advanced"></a>
+<a name="Written Advanced"></a>
 ### 高级
 
 #### 问题 #1 -- Swift 1.0 或更高版本
@@ -694,3 +696,12 @@ func showKitten(kitten: Kitten?) {
 
 <a name="Verbal Questions"></a>
 ## 面试问题
+
+<a name="Verbal Beginners"></a>
+### 初级
+
+<a name="Verbal Intermediate"></a>
+### 中级
+
+<a name="Verbal Advanced"></a>
+### 高级
