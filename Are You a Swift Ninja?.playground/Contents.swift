@@ -2,7 +2,7 @@ import Foundation
 
 // MARK: - 挑战#1
 
-func mySwap<T>(inout a: T, inout b:T) {
+func mySwap<T>(inout a: T, inout _ b: T) {
     (a, b) = (b, a)
 }
 
@@ -14,7 +14,7 @@ mySwap(&a, &b)
 
 // MARK: - 挑战#2
 
-func flexStrings(s1: String = "", s2: String = "") -> String {
+func flexStrings(s1 s1: String = "", s2: String = "") -> String {
     return s1 + s2 == "" ? "none" : s1 + s2
 }
 
@@ -40,8 +40,8 @@ func sumAny(anys: Any...) -> String {
                 return -10
 
             // 字符串能转为Int且大于0,返回转换后的值.
-            case let s as String where s.toInt() > 0:
-                return s.toInt()!
+            case let s as String where Int(s) > 0:
+                return Int(s)!
 
             // 匹配到Int,直接返回.
             case is Int:
@@ -59,7 +59,7 @@ func sumAny(anys: Any...) -> String {
 
 // MARK: - 挑战#4
 
-func countFrom(from: Int, #to: Int) {
+func countFrom(from: Int, to: Int) {
     print(from)
     if from < to {
         countFrom(from + 1, to: to)
@@ -79,12 +79,12 @@ func reverseString(input: String, output: String = "") -> String {
     }
 }
 
-println(reverseString("0123456789"))
+print(reverseString("0123456789"))
 
 // MARK: - 挑战#6
 
-func charMult(#char: Character, var #result: String, #length: Int) -> String {
-    if count(result) < length {
+func charMult(char char: Character, var result: String, length: Int) -> String {
+    if result.characters.count < length {
         result.append(char)
         return charMult(char: char, result: result, length: length)
     } else {
@@ -107,12 +107,12 @@ func doWork() -> Bool {
 }
 
 func reportTrue() -> Bool {
-    println("真")
+    print("真")
     return true
 }
 
 func reportFalse() -> Bool {
-    println("假")
+    print("假")
     return true
 }
 
