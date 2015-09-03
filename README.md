@@ -651,7 +651,7 @@ func showKitten(kitten: Kitten?) {
 
 ##### 解决方案:
 
-`guard`语句需要有退出路径,无论是使用`return`还是抛异常或是调用`@noreturn`.
+`guard`语句需要有退出路径,无论是使用`return`还是抛异常或是调用`@noreturn`函数.
 
 使用`return`的方案:
 
