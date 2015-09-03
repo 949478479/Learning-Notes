@@ -809,7 +809,7 @@ areTheyEqual(1, 1)
 
 #### 问题 #5 -- Swift 1.0 或更高版本
 
-解包一个可选的方法都有什么?如何评估其安全性?
+解包一个可选的方法都有什么?是否安全?
 
 提示:至少有七种方式.
 
@@ -825,6 +825,95 @@ areTheyEqual(1, 1)
 
 <a name="Verbal Intermediate"></a>
 ### 中级
+
+#### 问题 #1 -- Swift 1.0 或更高版本
+
+`Swift`是一种面向对象语言还是函数式语言?
+
+##### 回答:
+
+`Swift`是一种混合语言,同时支持两种范式.
+
+它体现了面向对象的三个基本准则:
+
+- 封装
+- 继承
+- 多态
+
+虽然`Swift`并不是严格意义上的函数式语言,但它具备函数式语言的一些基本特性.
+
+#### 问题 #2 -- Swift 1.0 或更高版本
+
+`Swift`包含下列哪些特性?
+
+1. 泛型类
+2. 泛型结构
+3. 泛型协议
+
+##### 回答:
+
+1 和 2 都包括.泛型可以用在类,结构,枚举,函数和方法.
+
+通过实现`typealias`,算是部分包含 3 .这不是泛型类型本身,只是一个占位名字.通常被称为`associated type`,在某一类型采纳协议时定义.
+
+#### 问题 #3 -- Swift 1.0 或更高版本
+
+在`Objective-C`中,一个常量可以这样声明:
+
+```objective-c
+const int number = 0;
+```
+
+在`Swift`中这样声明:
+
+```swift
+let number = 0
+```
+
+有什么区别吗?如果有,区别在哪里呢?
+
+##### 回答:
+
+常量是指在编译时被初始化的变量.
+
+`Swift`中使用`let`创建一个不可变量,这可以在运行时完成.它也可被一个静态或者动态表达式初始化,但只能被赋值一次.
+
+#### 问题 #4 -- Swift 1.0 或更高版本
+
+`Swift`中使用`static`修饰符声明一个静态属性或函数.例如这个结构:
+
+```swift
+struct Sun {
+    static func illuminate() {}
+}
+```
+
+对于类,除了`static`,还可以使用`class`修饰符,都能实现相同的目的,但实际上是有区别的,区别在哪里呢?
+
+##### 回答:
+
+对于类,使用`static`声明的静态属性或者方法,是不能被子类重写的.而使用`class`声明,则允许子类进行重写.
+
+当`static`应用于类,实际上是`class final`两个修饰符的别名.
+
+例如,对于下面这段代码,编译器会报错提示无法重写一个`final`修饰的类方法:
+
+```swift
+class Star {
+    class func spin() {}
+    static func illuminate() {}
+}
+
+class Sun: Star {
+    override class func spin() {
+        super.spin()
+    }
+
+    override static func illuminate() { // error: class method overrides a 'final' class method
+        super.illuminate()
+    }
+}
+```
 
 <a name="Verbal Advanced"></a>
 ### 高级
