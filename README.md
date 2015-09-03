@@ -111,8 +111,9 @@ view2.alpha = 0.5 // 完全没问题~
 这段代码按照字母顺序排序数组,这看上去有些啰嗦,试着简化写法.
 
 ```swift
+// Swift 2.0 中取消了 sorted(_:) 方法,统一用 sort(_:) 了.
 let animals = ["fish", "cat", "chicken", "dog"]
-let sortedAnimals = animals.sorted { (one: String, two: String) -> Bool in
+let sortedAnimals = animals.sort { (one: String, two: String) -> Bool in
     return one < two
 }
 ```
@@ -122,7 +123,7 @@ let sortedAnimals = animals.sorted { (one: String, two: String) -> Bool in
 首先可以简化闭包的参数.由于类型推断,可以省略闭包的参数类型:
 
 ```swift
-let sortedAnimals = animals.sorted { (one, two) -> Bool in
+let sortedAnimals = animals.sort { (one, two) -> Bool in
     return one < two 
 }
 ```
@@ -130,7 +131,7 @@ let sortedAnimals = animals.sorted { (one, two) -> Bool in
 闭包的返回类型也可以推断出来,也可以省略:
 
 ```swift
-let sortedAnimals = animals.sorted { (one, two) in 
+let sortedAnimals = animals.sort { (one, two) in 
     return one < two 
 }
 ```
@@ -138,13 +139,13 @@ let sortedAnimals = animals.sorted { (one, two) in
 使用`$0`,`$1`,`$2`这种形式可以分别表示第一个,第二个和第三个参数,以此类推.因此参数和`in`关键字也可以省略:
 
 ```swift
-let sortedAnimals = animals.sorted { return $0 < $1 }
+let sortedAnimals = animals.sort { return $0 < $1 }
 ```
 
 只有一句表达式的闭包可以省略`return`关键字,表达式的返回值会被推断为闭包的返回值:
 
 ```swift
-let sortedAnimals = animals.sorted { $0 < $1 }
+let sortedAnimals = animals.sort { $0 < $1 }
 ```
 
 最后,对于`String`类型,其实现了一个比较函数,声明如下:
@@ -153,10 +154,10 @@ let sortedAnimals = animals.sorted { $0 < $1 }
 func <(lhs: String, rhs: String) -> Bool
 ```
 
-`<`表示的函数完全符合上述闭包的要求,因此可以直接传入作为`sorted(_:)`的参数:
+`<`表示的函数完全符合上述闭包的要求,因此可以直接传入作为`sort(_:)`的参数:
 
 ```swift
-let sortedAnimals = animals.sorted(<)
+let sortedAnimals = animals.sort(<)
 ```
 
 #### 问题 #5 -- Swift 1.0 或更高版本
@@ -234,6 +235,7 @@ nil == .None // 在 Swift 1.x 版本这无法通过编译,需要写成 Optional<
 enum Optional<T> {
     case None
     case Some(T)
+    // 省略其余代码...
 }
 ```
 
@@ -271,7 +273,7 @@ thermometerStruct.registerTemperature(56.0)
 
 `ThermometerStruct`正确地将会改变内部变量`temperature`的方法`registerTemperature(_:)`用`mutating`关键字声明.但其实例`thermometerStruct`声明为`let`,是不可变的,所以不能调用会改变内部状态的`registerTemperature(_:)`方法.
 
-对于`struct`,改变内部状态的方法必须标记为`mutating`,不可变实例不能调用这种方法.
+对于`struct`,改变内部状态的方法必须标记为`mutating`,而不可变实例则不能调用这种方法.
 
 #### 问题 #3 -- Swift 1.0 或更高版本
 
@@ -311,8 +313,52 @@ closure() // 打印 "I love airplanes"
 
 #### 问题 #4 -- Swift 2.0 或更高版本
 
-暂略...系统太旧用不了 Xcode 7 beta ...等出正式版了不行就升级系统- -
+下面这个全局函数用来统计数组中每种元素出现的次数:
 
+```swift
+func countUniques<T: Comparable>(array: Array<T>) -> Int {
+    let sorted = array.sort(<)
+    let initial: (T?, Int) = (.None, 0)
+    let reduced = sorted.reduce(initial) { ($1, $0.0 == $1 ? $0.1 : $0.1 + 1) }
+    return reduced.1
+}
+```
+
+由于要用`<`和`==`操作符作比较,因此`T`类型必须符合`Comparable`协议.
+
+调用时是这样的:
+
+```swift
+countUniques([1, 2, 3, 3]) // 结果为 3 .
+```
+
+现在要求将该函数改写为`Array`的扩展方法,像这样调用:
+
+```swift
+[1, 2, 3, 3].countUniques()
+```
+
+解决方案:
+
+在`Swift 2.0`中,泛型类型的扩展可以指定类型约束.如果其类型不满足约束条件,扩展是不可用的.
+
+```swift
+extension Array where Element: Comparable {
+    public func countUniques() -> Int {
+        let sorted = sort(<)
+        let initial: (Element?, Int) = (.None, 0)
+        let reduced = sorted.reduce(initial) { ($1, $0.0 == $1 ? $0.1 : $0.1 + 1) }
+        return reduced.1
+    }
+}
+```
+
+只有当元素实现了`Comparable`协议时,这个扩展方法才是可用的.例如这样编译器会报错指出`UIView`不符合`Comparable`协议:
+
+```swift
+let a = [UIView(), UIView()]
+a.countUniques()
+```
 #### 问题 #5 -- Swift 2.0 或更高版本
 
 暂略...
