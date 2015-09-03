@@ -4,17 +4,13 @@
 
 该篇教程讲解了一些`Swift`的面试题,分为两部分:
 
-- 笔试问题
-- 面试问题 
+- [笔试问题](#Written Questions) ([初级](#Beginners) [中级](#Intermediate) [高级](#Advanced))
+- [面试问题](#Verbal Questions) ([初级](#Beginners) [中级](#Intermediate) [高级](#Advanced))
 
-每个部分又被分为三个层次:
-
-- 初级
-- 中级
-- 高级
-
+<a name="Written Questions"></a>
 ## 笔试问题
 
+<a name="Beginners"></a>
 ### 初级
 
 #### 问题 #1 -- Swift 1.0 或更高版本
@@ -206,6 +202,7 @@ brian.address.fullAddress = "148 Tutorial Street"
 
 更好的做法是将`Address`定义为`struct`类型,值传递语义在这种情况下更科学.
 
+<a name="Intermediate"></a>
 ### 中级
 
 #### 问题 #1 -- Swift 2.0 或更高版本
@@ -428,6 +425,7 @@ func divide(dividend: Double?, by divisor: Double?) -> Double? {
 }
 ```
 
+<a name="Advanced"></a>
 ### 高级
 
 #### 问题 #1 -- Swift 1.0 或更高版本
@@ -672,3 +670,6 @@ func showKitten(kitten: Kitten?) {
     print(k)
 }
 ```
+
+<a name="Verbal Questions"></a>
+## 面试问题
