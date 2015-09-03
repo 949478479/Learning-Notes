@@ -8,7 +8,7 @@
 
 ```swift
 
-func mySwap<T>(inout a: T, inout b:T) {
+func mySwap<T>(inout a: T, inout _ b: T) {
     (a, b) = (b, a)
 }
 
