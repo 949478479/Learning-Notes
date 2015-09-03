@@ -761,7 +761,7 @@ areIntEqual(1, 1) // true
 
 一个`Objective-C`开发者可能会用`NSObject`解决这个问题:
 
-```Objective-C
+```swift
 func areTheyEqual(x: NSObject, _ y: NSObject) -> Bool {
     return x == y
 }
@@ -915,5 +915,125 @@ class Sun: Star {
 }
 ```
 
+#### 问题 #5 -- Swift 1.0 或更高版本
+
+可以通过扩展添加存储属性吗?
+
+##### 回答:
+
+不可以.
+
+扩展可以用来添加新行为到现有类型,但不能改变类型本身或是接口.
+
+如果添加一个存储属性,就需要额外的内存空间来存储新值,扩展无法完成这样的任务.
+
 <a name="Verbal Advanced"></a>
 ### 高级
+
+#### 问题 #1 -- Swift 1.2 
+
+在`Swift 1.2`中,当枚举的关联值使用泛型时,会编译报错,例如像下面这样:
+
+```swift
+enum Either<T, V> {
+    case Left(T)
+    case Right(V)
+}
+```
+
+这会导致神秘报错`unimplemented IR generation feature non-fixed multi-payload enum layout`.
+
+能解释吗?
+
+##### 回答:
+
+问题在于枚举无法确定`T`类型占用的内存大小.
+
+最常用的解决办法是将泛型类型用引用类型进行包装.如下所示:
+
+```swift
+class Box<T> {
+    let value: T
+    init(_ value: T) {
+        self.value = value
+    }
+}
+ 
+enum Either<T, V> {
+    case Left(Box<T>)
+    case Right(Box<V>)
+}
+```
+
+这个问题只存在于`Swift 1.2`以及之前版本,`Swift 2.0`已解决此问题.
+
+#### 问题 #2 -- Swift 1.0 或更高版本 
+
+闭包时引用类型还是值类型?
+
+##### 回答:
+
+闭包时引用类型.如果一个闭包分配给某一变量,该变量又赋值给另一个变量,这两个变量均引用同一闭包.
+
+#### 问题 #3 -- Swift 1.0 或更高版本
+
+`UInt`用于存储无符号整数类型.它提供了这么个构造器:
+
+```swift
+init(_ value: Int)
+```
+
+如果提供一个负数做参数,就会报编译期错误:
+
+```swift
+let myNegative = UInt(-1)
+```
+
+负数在内存中用补码形式表示,如何将一个负数`Int`转换为`UInt`并保持其在内存中的二进制形式呢?
+
+##### 回答:
+
+`UInt`提供了一个初始化方法:
+
+```swift
+UInt(bitPattern: Int)
+
+let a = UInt(bitPattern: -1) // 18446744073709551615
+let b = UInt.max // 18446744073709551615
+```
+
+#### 问题 #4 -- Swift 1.0 或更高版本
+
+描述一个`Swift`中导致循环引用的场景,以及如何解决这个问题.
+
+##### 回答:
+
+当两个实例彼此强引用时,每个实例都没机会销毁,因为总有个强引用引用自己,陷入了死循环.
+
+可将其中一个引用声明为`weak`或者是`unowned`来避免强引用循环.
+
+#### 问题 #5 -- Swift 2.0 或更高版本
+
+`Swift 2.0`引入了个新关键字用来标记递归枚举.例如下面这个递归枚举:
+
+```swift
+enum List<T> {
+    case Node(T, List<T>)
+}
+```
+
+这个关键字是什么?
+
+##### 回答:
+
+```swift 
+indirect
+```
+
+该关键字用于标记递归枚举.例如:
+
+```swift
+enum List<T> {
+    indirect case Node(T, List<T>)
+}
+```
