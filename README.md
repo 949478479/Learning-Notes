@@ -480,3 +480,38 @@ extension Thermometer: FloatLiteralConvertible {
     }
 }
 ```
+
+#### 问题 #1 -- Swift 1.0 或更高版本
+
+`Swift`预定义了一系列运算符用于执行各种运算,例如算术或者逻辑运算,还可以创建自定义运算符,一元或者二元的都可以.
+
+定义并实现一个自定义的`^^`幂运算符并遵循以下规则:
+
+- 接收两个`Int`参数
+- 第一个参数作为底数,第二个参数作为指数,返回运算结果
+- 可以不考虑潜在的溢出问题
+
+##### 解决方案:
+
+自定义运算符分为声明和实现两步.
+
+声明自定义运算符使用`operator`关键字,还需要指定是一元还是二元运算符,结合性以及优先级:
+
+```swift
+infix operator ^^ {
+    associativity right
+    precedence 155
+}
+```
+
+上述代码声明`^^`为`inifx`即二元运算符,结合性为右结合,优先级为155(乘除法为150).
+
+运算符具体实现如下:
+
+```swift
+func ^^(lhs: Int, rhs: Int) -> Int {
+    return Int(pow( Double(lhs), Double(rhs) ))
+}
+```
+
+注意,这里并未考虑溢出的情况,如果运算结果大于`Int.max`,将会导致运行时错误.
