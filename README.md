@@ -427,3 +427,56 @@ func divide(dividend: Double?, by divisor: Double?) -> Double? {
     return dividend / divisor
 }
 ```
+
+### 高级
+
+#### 问题 #1 -- Swift 1.0 或更高版本
+
+思考下面的表示温度计的结构:
+
+```swift
+public struct Thermometer {
+    public var temperature: Double
+    public init(temperature: Double) {
+        self.temperature = temperature
+    }
+}
+```
+
+通常这样来创建一个实例:
+
+```swift
+var t = Thermometer(temperature: 233.3)
+```
+
+但如果能这么写就更省事了:
+
+```swift
+var t: Thermometer = 233.3
+```
+
+这样能做到吗?
+
+##### 解决方案:
+
+`Swift`定义了以下协议,允许通过字面量赋值初始化一种类型:
+
+- NilLiteralConvertible
+- BooleanLiteralConvertible
+- IntegerLiteralConvertible
+- FloatLiteralConvertible
+- UnicodeScalarLiteralConvertible
+- ExtendedGraphemeClusterLiteralConvertible
+- StringLiteralConvertible
+- ArrayLiteralConvertible
+- DictionaryLiteralConvertible
+
+让某种类型遵循相应的协议并提供一个公共构造器,就可以通过相应字面量初始化.因此,让`Thermometer`实现`FloatLiteralConvertible`协议即可:
+
+```swift
+extension Thermometer: FloatLiteralConvertible {
+    public init(floatLiteral value: Double) {
+        self.init(temperature: value)
+    }
+}
+```
