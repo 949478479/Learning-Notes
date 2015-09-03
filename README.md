@@ -481,7 +481,7 @@ extension Thermometer: FloatLiteralConvertible {
 }
 ```
 
-#### 问题 #1 -- Swift 1.0 或更高版本
+#### 问题 #2 -- Swift 1.0 或更高版本
 
 `Swift`预定义了一系列运算符用于执行各种运算,例如算术或者逻辑运算,还可以创建自定义运算符,一元或者二元的都可以.
 
@@ -504,7 +504,7 @@ infix operator ^^ {
 }
 ```
 
-上述代码声明`^^`为`inifx`即二元运算符,结合性为右结合,优先级为155(乘除法为150).
+上述代码声明`^^`为`inifx`即二元运算符,结合性为右结合,优先级为 155 (乘除法为 150 ).
 
 运算符具体实现如下:
 
@@ -515,3 +515,94 @@ func ^^(lhs: Int, rhs: Int) -> Int {
 ```
 
 注意,这里并未考虑溢出的情况,如果运算结果大于`Int.max`,将会导致运行时错误.
+
+#### 问题 #3 -- Swift 1.0 或更高版本
+
+你能定义一个原始值为元组的枚举吗?
+
+```swift
+enum Edges: (Double, Double) {
+    case TopLeft = (0.0, 0.0)
+    case TopRight = (1.0, 0.0)
+    case BottomLeft = (0.0, 1.0)
+    case BottomRight = (1.0, 1.0)
+}
+```
+
+##### 解决方案:
+
+这个真不能.枚举的原始值必须符合下列要求:
+
+- 符合`Equatable`协议
+- 可由字面量转换为下面类型:
+    - Int
+    - String
+    - Character
+
+而元组类型并不能满足上面的要求.
+
+#### 问题 #4 -- Swift 2.0 或更高版本
+
+下面代码定义了一个`Pizza`结构,一个`Pizzeria`协议以及包含`makeMargherita()`方法默认实现的协议扩展:
+
+```swift
+struct Pizza {
+    let ingredients: [String]
+}
+
+protocol Pizzeria {
+    func makePizza(ingredients: [String]) -> Pizza
+    func makeMargherita() -> Pizza
+}
+
+extension Pizzeria {
+    func makeMargherita() -> Pizza {
+        return makePizza(["tomato", "mozzarella"])
+    }
+}
+```
+
+接着定义了一个餐厅`Lombardis`:
+
+```swift
+struct Lombardis: Pizzeria {
+    func makePizza(ingredients: [String]) -> Pizza {
+        return Pizza(ingredients: ingredients)
+    }
+    func makeMargherita() -> Pizza {
+        return makePizza(["tomato", "basil", "mozzarella"])
+    }
+}
+```
+
+最后创建了两个`Lombardis`实例.那么哪一个餐厅会制作`basil`披萨呢?
+
+```swift
+let lombardis1: Pizzeria = Lombardis()
+let lombardis2: Lombardis = Lombardis()
+ 
+lombardis1.makeMargherita()
+lombardis2.makeMargherita()
+```
+
+##### 解决方案:
+
+都会做.
+
+`Pizzeria`协议声明了`makeMargherita()`方法并利用扩展提供了默认实现,该默认实现会被采纳协议的`Lombardis`中的实现覆盖.由于`Pizzeria`协议声明了`makeMargherita()`方法,因此`lombardis1`和`lombardis2`都会调用自己重写的实现.
+
+如果`Pizzeria`协议中未声明`makeMargherita()`方法,而只是在扩展中提供了默认实现:
+
+```swift
+protocol Pizzeria {
+    func makePizza(ingredients: [String]) -> Pizza
+}
+
+extension Pizzeria {
+    func makeMargherita() -> Pizza {
+        return makePizza(["tomato", "mozzarella"])
+    }
+}
+```
+
+那么在这种情况下,只有`lombardis2`会做`basil`披萨,而`lombardis1`会去调用协议扩展中的方法.
