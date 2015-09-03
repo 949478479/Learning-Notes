@@ -801,11 +801,27 @@ areTheyEqual(1, 1)
 
 1. 当一个属性不是`nil`,也不能在实例化时就初始化.一个典型的例子就是 Interface Builder 中的`@IBOutlet`,它们总是在所有者被初始化后才被初始化.假设在 Interface Builder 中配置正确,那么可以保证它们在使用时具有有效值.
 
-2. 为了解决强引用循环问题.这常发生在两个实例互相引用对方,并要求引用为非`nil`值的情况下.在这种情况下,一方的引用标记为`unowned`,另一方使用隐式解包可选.详情参看《The Swift Programming Language 中文版》中的 [解决实例之间的循环强引用](http://wiki.jikexueyuan.com/project/swift/chapter2/16_Automatic_Reference_Counting.html#resolving_strong_reference_cycles_between_class_instances) 中的`无主引用以及隐式解析可选属性`部分.
+2. 为了解决强引用循环问题.这常发生在两个实例互相引用对方,并要求引用为非`nil`值的情况下.在这种情况下,一方的属性标记为`unowned`,另一方的属性使用隐式解包可选.详情参看《The Swift Programming Language 中文版》中的 [解决实例之间的循环强引用](http://wiki.jikexueyuan.com/project/swift/chapter2/16_Automatic_Reference_Counting.html#resolving_strong_reference_cycles_between_class_instances) 中的`无主引用以及隐式解析可选属性`部分.
 
 > 提示:
 
 > 除非必要,不要使用隐式解包可选.使用不当会增加运行时崩溃的可能,虽然在某些情况下,可能会故意引发崩溃,但有更好的方式达到此效果,例如使用`fatalError()`.
+
+#### 问题 #5 -- Swift 1.0 或更高版本
+
+解包一个可选的方法都有什么?如何评估其安全性?
+
+提示:至少有七种方式.
+
+##### 回答:
+
+- 使用`!`运算符强制解包.不安全.
+- 使用隐式解包.不安全.
+- 使用可选绑定.安全.
+- 使用可选链接.安全
+- 使用`??`运算符.安全.
+- 使用`guard`语句.安全.(`Swift 2.0`)
+- 使用可选模式匹配.安全.(`Swift 2.0`)
 
 <a name="Verbal Intermediate"></a>
 ### 中级
