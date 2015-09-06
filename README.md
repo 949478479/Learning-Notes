@@ -172,10 +172,22 @@ override func targetContentOffsetForProposedContentOffset(proposedContentOffset:
     // 停止时的旋转弧度.
     let proposedAngle = proposedContentOffset.x * factor
 
-    // 四舍五入求得整数倍的最终旋转夹角.
-    let finalAngle = round(proposedAngle / anglePerItem) * anglePerItem
+    // 停止时的旋转弧度对应多少个 cell.
+	let multiple = proposedAngle / anglePerItem
 
-    proposedContentOffset.x = finalAngle / factor
+	// 根据滚动方向取整数.
+	let integralMultiple: CGFloat
+
+	if velocity.x > 0 {
+    	integralMultiple = ceil(multiple)
+	} else if velocity.x < 0 {
+    	integralMultiple = floor(multiple)
+	} else {
+    	integralMultiple = round(multiple)
+	}
+
+	// "总弧度" ÷ "弧度/点" = "滚动距离".
+	proposedContentOffset.x = (integralMultiple * anglePerItem) / factor
 
     return proposedContentOffset
 }

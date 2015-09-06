@@ -129,17 +129,22 @@ class CircularCollectionViewLayout: UICollectionViewLayout {
         // 停止时的旋转弧度.
         let proposedAngle = proposedContentOffset.x * factor
 
-        // 根据滚动方向求得整数倍的最终旋转夹角.
-        let finalAngle: CGFloat
+        // 停止时的旋转弧度对应多少个 cell.
+        let multiple = proposedAngle / anglePerItem
+
+        // 根据滚动方向取整数.
+        let integralMultiple: CGFloat
+
         if velocity.x > 0 {
-            finalAngle = ceil(proposedAngle / anglePerItem) * anglePerItem
+            integralMultiple = ceil(multiple)
         } else if velocity.x < 0 {
-            finalAngle = floor(proposedAngle / anglePerItem) * anglePerItem
+            integralMultiple = floor(multiple)
         } else {
-            finalAngle = round(proposedAngle / anglePerItem) * anglePerItem
+            integralMultiple = round(multiple)
         }
 
-        proposedContentOffset.x = finalAngle / factor
+        // "总弧度" ÷ "弧度/点" = "滚动距离".
+        proposedContentOffset.x = (integralMultiple * anglePerItem) / factor
 
         return proposedContentOffset
     }
