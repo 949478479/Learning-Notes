@@ -32,7 +32,9 @@ extension UIImage {
 func heightForComment(font: UIFont, width: CGFloat) -> CGFloat {
 
     let rect = comment.boundingRectWithSize(CGSize(width: width, height: CGFloat.max),
-        options: .UsesLineFragmentOrigin, attributes: [NSFontAttributeName: font], context: nil)
+        options: .UsesLineFragmentOrigin, 
+        attributes: [NSFontAttributeName: font], 
+        context: nil)
 
     return ceil(rect.height) 
 }
@@ -42,7 +44,8 @@ func heightForComment(font: UIFont, width: CGFloat) -> CGFloat {
 
 ```swift
 func collectionView(collectionView: UICollectionView,
-    heightForPhotoAtIndexPath indexPath: NSIndexPath, withWidth width: CGFloat) -> CGFloat {
+    heightForPhotoAtIndexPath indexPath: NSIndexPath, 
+    withWidth width: CGFloat) -> CGFloat {
 
     let aspectRatio  = photos[indexPath.item].image.size
     let boundingRect = CGRect(x: 0, y: 0, width: width, height: CGFloat.max)
