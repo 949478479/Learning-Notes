@@ -22,6 +22,10 @@
 - [利用 UIViewControllerAnimatedTransitioning 构建一个下滑菜单]
   (https://github.com/949478479/Animations-Study/tree/SlideDownMenu)
 
+## loading 动画
+
+- [如何用 Swift 创建一个复杂的 loading 动画](https://github.com/949478479/Learning-Notes/tree/SBLoader)
+
 ## 其他
 
 - [可以折叠的 ImageView](https://github.com/949478479/Animations-Study/tree/FoldingImageView)
