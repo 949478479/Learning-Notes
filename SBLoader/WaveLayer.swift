@@ -35,16 +35,16 @@ extension WaveLayer {
         let waveAnimation = CAKeyframeAnimation(keyPath: "path")
         waveAnimation.duration = duration
         waveAnimation.values = [
-            arcPathPre,
-            arcPathStarting,
-            arcPathLow,
-            arcPathMid,
-            arcPathHigh,
-            arcPathComplete]
+            wavePathPre,
+            wavePathStarting,
+            wavePathLow,
+            wavePathMid,
+            wavePathHigh,
+            wavePathComplete]
         waveAnimation.addDelegate(self, withCompletion: completion)
 
         addAnimation(waveAnimation, forKey: nil)
-        path = arcPathComplete
+        path = wavePathComplete
     }
 }
 
@@ -60,83 +60,83 @@ private extension WaveLayer {
         return bounds.width * 2 / 3
     }
 
-    var arcPathPre: CGPath {
-        let arcPath = UIBezierPath()
-        arcPath.moveToPoint(CGPoint(x: 0, y: bounds.height))
-        arcPath.addLineToPoint(CGPoint(x: 0, y: bounds.height - 1))
-        arcPath.addLineToPoint(CGPoint(x: bounds.width, y: bounds.height - 1))
-        arcPath.addLineToPoint(CGPoint(x: bounds.width, y: bounds.height))
-        arcPath.closePath()
-        return arcPath.CGPath
+    var wavePathPre: CGPath {
+        let wavePath = UIBezierPath()
+        wavePath.moveToPoint(CGPoint(x: 0, y: bounds.height))
+        wavePath.addLineToPoint(CGPoint(x: 0, y: bounds.height - 1))
+        wavePath.addLineToPoint(CGPoint(x: bounds.width, y: bounds.height - 1))
+        wavePath.addLineToPoint(CGPoint(x: bounds.width, y: bounds.height))
+        wavePath.closePath()
+        return wavePath.CGPath
     }
 
-    var arcPathStarting: CGPath {
+    var wavePathStarting: CGPath {
 
         let waterSurfaceY = bounds.height * 0.8
 
-        let arcPath = UIBezierPath()
-        arcPath.moveToPoint(CGPoint(x: 0, y: bounds.height))
-        arcPath.addLineToPoint(CGPoint(x: 0, y: waterSurfaceY))
-        arcPath.addCurveToPoint(CGPoint(x: bounds.width, y: waterSurfaceY),
+        let wavePath = UIBezierPath()
+        wavePath.moveToPoint(CGPoint(x: 0, y: bounds.height))
+        wavePath.addLineToPoint(CGPoint(x: 0, y: waterSurfaceY))
+        wavePath.addCurveToPoint(CGPoint(x: bounds.width, y: waterSurfaceY),
             controlPoint1: CGPoint(x: controlPoint1X, y: waterSurfaceY - waveHeight),
             controlPoint2: CGPoint(x: controlPoint2X, y: waterSurfaceY + waveHeight))
-        arcPath.addLineToPoint(CGPoint(x: bounds.width, y: bounds.height))
-        arcPath.closePath()
-        return arcPath.CGPath
+        wavePath.addLineToPoint(CGPoint(x: bounds.width, y: bounds.height))
+        wavePath.closePath()
+        return wavePath.CGPath
     }
 
-    var arcPathLow: CGPath {
+    var wavePathLow: CGPath {
 
         let waterSurfaceY = bounds.height * 0.6
 
-        let arcPath = UIBezierPath()
-        arcPath.moveToPoint(CGPoint(x: 0, y: bounds.height))
-        arcPath.addLineToPoint(CGPoint(x: 0, y: waterSurfaceY))
-        arcPath.addCurveToPoint(CGPoint(x: bounds.width, y: waterSurfaceY),
+        let wavePath = UIBezierPath()
+        wavePath.moveToPoint(CGPoint(x: 0, y: bounds.height))
+        wavePath.addLineToPoint(CGPoint(x: 0, y: waterSurfaceY))
+        wavePath.addCurveToPoint(CGPoint(x: bounds.width, y: waterSurfaceY),
             controlPoint1: CGPoint(x: controlPoint1X, y: waterSurfaceY + waveHeight),
             controlPoint2: CGPoint(x: controlPoint2X, y: waterSurfaceY - waveHeight))
-        arcPath.addLineToPoint(CGPoint(x: bounds.width, y: bounds.height))
-        arcPath.closePath()
-        return arcPath.CGPath
+        wavePath.addLineToPoint(CGPoint(x: bounds.width, y: bounds.height))
+        wavePath.closePath()
+        return wavePath.CGPath
     }
 
-    var arcPathMid: CGPath {
+    var wavePathMid: CGPath {
 
         let waterSurfaceY = bounds.height * 0.4
 
-        let arcPath = UIBezierPath()
-        arcPath.moveToPoint(CGPoint(x: 0, y: bounds.height))
-        arcPath.addLineToPoint(CGPoint(x: 0, y: waterSurfaceY))
-        arcPath.addCurveToPoint(CGPoint(x: bounds.width, y: waterSurfaceY),
+        let wavePath = UIBezierPath()
+        wavePath.moveToPoint(CGPoint(x: 0, y: bounds.height))
+        wavePath.addLineToPoint(CGPoint(x: 0, y: waterSurfaceY))
+        wavePath.addCurveToPoint(CGPoint(x: bounds.width, y: waterSurfaceY),
             controlPoint1: CGPoint(x: controlPoint1X, y: waterSurfaceY - waveHeight),
             controlPoint2: CGPoint(x: controlPoint2X, y: waterSurfaceY + waveHeight))
-        arcPath.addLineToPoint(CGPoint(x: bounds.width, y: bounds.height))
-        arcPath.closePath()
-        return arcPath.CGPath
+        wavePath.addLineToPoint(CGPoint(x: bounds.width, y: bounds.height))
+        wavePath.closePath()
+        return wavePath.CGPath
     }
 
-    var arcPathHigh: CGPath {
+    var wavePathHigh: CGPath {
 
         let waterSurfaceY = bounds.height * 0.2
 
-        let arcPath = UIBezierPath()
-        arcPath.moveToPoint(CGPoint(x: 0, y: bounds.height))
-        arcPath.addLineToPoint(CGPoint(x: 0, y: waterSurfaceY))
-        arcPath.addCurveToPoint(CGPoint(x: bounds.width, y: waterSurfaceY),
+        let wavePath = UIBezierPath()
+        wavePath.moveToPoint(CGPoint(x: 0, y: bounds.height))
+        wavePath.addLineToPoint(CGPoint(x: 0, y: waterSurfaceY))
+        wavePath.addCurveToPoint(CGPoint(x: bounds.width, y: waterSurfaceY),
             controlPoint1: CGPoint(x: controlPoint1X, y: waterSurfaceY + waveHeight),
             controlPoint2: CGPoint(x: controlPoint2X, y: waterSurfaceY - waveHeight))
-        arcPath.addLineToPoint(CGPoint(x: bounds.width, y: bounds.height))
-        arcPath.closePath()
-        return arcPath.CGPath
+        wavePath.addLineToPoint(CGPoint(x: bounds.width, y: bounds.height))
+        wavePath.closePath()
+        return wavePath.CGPath
     }
 
-    var arcPathComplete: CGPath {
-        let arcPath = UIBezierPath()
-        arcPath.moveToPoint(CGPoint(x: 0, y: bounds.height))
-        arcPath.addLineToPoint(CGPointZero)
-        arcPath.addLineToPoint(CGPoint(x: bounds.width, y: 0))
-        arcPath.addLineToPoint(CGPoint(x: bounds.width, y: bounds.height))
-        arcPath.closePath()
-        return arcPath.CGPath
+    var wavePathComplete: CGPath {
+        let wavePath = UIBezierPath()
+        wavePath.moveToPoint(CGPoint(x: 0, y: bounds.height))
+        wavePath.addLineToPoint(CGPointZero)
+        wavePath.addLineToPoint(CGPoint(x: bounds.width, y: 0))
+        wavePath.addLineToPoint(CGPoint(x: bounds.width, y: bounds.height))
+        wavePath.closePath()
+        return wavePath.CGPath
     }
 }

@@ -12,7 +12,7 @@ class RectangleLayer: CAShapeLayer {
 
     // MARK: - 属性
 
-    var sideLength: CGFloat = 0 { didSet { path = rectanglePathFull } }
+    var sideLength: CGFloat = 0
 
     private var rectanglePathFull: CGPath {
         let length = sideLength / 2 + lineWidth / 2
@@ -58,5 +58,6 @@ class RectangleLayer: CAShapeLayer {
         strokeAnimation.addDelegate(self, withCompletion: completion)
 
         addAnimation(strokeAnimation, forKey: nil)
+        path = rectanglePathFull
     }
 }

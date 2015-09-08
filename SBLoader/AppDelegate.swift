@@ -33,3 +33,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 }
+
+private extension NSObject {
+    @objc func lx_animationDidStop(anim: CAAnimation!, finished flag: Bool) {
+        if let completion: AnyObject = anim.valueForKey(CompletionBlockKey) {
+            unsafeBitCast(completion, CompletionBlock.self)(flag)
+        }
+    }
+}

@@ -12,7 +12,7 @@
 		EC96D8221ABBCA2D00395CB5 /* TriangleLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC96D8211ABBCA2D00395CB5 /* TriangleLayer.swift */; };
 		ECAE25201ABCE6830068649B /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECAE251F1ABCE6830068649B /* Colors.swift */; };
 		ECD4E1EB1ABBFE3100D93496 /* RectangleLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD4E1EA1ABBFE3100D93496 /* RectangleLayer.swift */; };
-		ECD4E1ED1ABC094700D93496 /* ArcLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD4E1EC1ABC094700D93496 /* ArcLayer.swift */; };
+		ECD4E1ED1ABC094700D93496 /* WaveLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD4E1EC1ABC094700D93496 /* WaveLayer.swift */; };
 		ECF30DE01AB7D422000144ED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF30DDF1AB7D422000144ED /* AppDelegate.swift */; };
 		ECF30DE21AB7D422000144ED /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF30DE11AB7D422000144ED /* ViewController.swift */; };
 		ECF30DE51AB7D422000144ED /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ECF30DE31AB7D422000144ED /* Main.storyboard */; };
@@ -38,7 +38,7 @@
 		EC96D8211ABBCA2D00395CB5 /* TriangleLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TriangleLayer.swift; sourceTree = "<group>"; };
 		ECAE251F1ABCE6830068649B /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		ECD4E1EA1ABBFE3100D93496 /* RectangleLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RectangleLayer.swift; sourceTree = "<group>"; };
-		ECD4E1EC1ABC094700D93496 /* ArcLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArcLayer.swift; sourceTree = "<group>"; };
+		ECD4E1EC1ABC094700D93496 /* WaveLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaveLayer.swift; sourceTree = "<group>"; };
 		ECF30DDA1AB7D422000144ED /* SBLoader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SBLoader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECF30DDE1AB7D422000144ED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ECF30DDF1AB7D422000144ED /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -119,7 +119,7 @@
 				EC96D81C1ABBAA6000395CB5 /* OvalLayer.swift */,
 				EC96D8211ABBCA2D00395CB5 /* TriangleLayer.swift */,
 				ECD4E1EA1ABBFE3100D93496 /* RectangleLayer.swift */,
-				ECD4E1EC1ABC094700D93496 /* ArcLayer.swift */,
+				ECD4E1EC1ABC094700D93496 /* WaveLayer.swift */,
 			);
 			name = Layers;
 			sourceTree = "<group>";
@@ -288,7 +288,7 @@
 				EC96D8221ABBCA2D00395CB5 /* TriangleLayer.swift in Sources */,
 				EC96D81D1ABBAA6000395CB5 /* OvalLayer.swift in Sources */,
 				ECF30DE21AB7D422000144ED /* ViewController.swift in Sources */,
-				ECD4E1ED1ABC094700D93496 /* ArcLayer.swift in Sources */,
+				ECD4E1ED1ABC094700D93496 /* WaveLayer.swift in Sources */,
 				ECF30DE01AB7D422000144ED /* AppDelegate.swift in Sources */,
 				ECD4E1EB1ABBFE3100D93496 /* RectangleLayer.swift in Sources */,
 			);
