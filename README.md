@@ -80,7 +80,31 @@ path = wavePathComplete
 
 #### 其他
 
-为了在一个动画结束时能得到通知,为`NSObject`添加了`animationDidStop(_:finished:)`的实现:
+为了在动画结束时能得到通知,为`CAAnimation`添加了扩展方法,绑定一个闭包在动画结束的代理方法中调用:
+
+```swift
+let CompletionBlockKey = "completion"
+
+typealias CompletionBlock = @objc_block Bool -> Void
+
+extension CAAnimation {
+    func addDelegate(delegate: NSObject, withCompletion completion: CompletionBlock?) {
+        if let completion = completion {
+            self.delegate = delegate
+            setValue(unsafeBitCast(completion as CompletionBlock, AnyObject.self),
+                forKey: CompletionBlockKey)
+        }
+    }
+}
+```
+
+在设置动画时可以绑定一个闭包:
+
+```swift
+animation.addDelegate(self, withCompletion: completion)
+```
+
+最后为`NSObject`添加了`animationDidStop(_:finished:)`代理方法的默认实现,子类就不用实现了:
 
 ```swift
 func application(application: UIApplication,
@@ -101,6 +125,8 @@ func application(application: UIApplication,
 }
 ```
 
+在动画结束时从动画对象中取出闭包调用:
+
 ```swift
 private extension NSObject {
     @objc func lx_animationDidStop(anim: CAAnimation!, finished flag: Bool) {
@@ -109,28 +135,4 @@ private extension NSObject {
         }
     }
 }
-```
-
-然后为`CAAnimation`添加了扩展方法,为动画绑定一个闭包作为结束时的回调:
-
-```swift
-let CompletionBlockKey = "completion"
-
-typealias CompletionBlock = @objc_block Bool -> Void
-
-extension CAAnimation {
-    func addDelegate(delegate: NSObject, withCompletion completion: CompletionBlock?) {
-        if let completion = completion {
-            self.delegate = delegate
-            setValue(unsafeBitCast(completion as CompletionBlock, AnyObject.self),
-                forKey: CompletionBlockKey)
-        }
-    }
-}
-```
-
-这样设置动画时就比较方便了,调用时可以传递一个闭包作为完成时的回调:
-
-```swift
-animation.addDelegate(self, withCompletion: completion)
 ```
