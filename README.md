@@ -7,9 +7,9 @@
 
 ![](https://github.com/949478479/Learning-Notes/blob/master/SBLoader-screenshot/SBLoader.gif)
 
-基本上就是各种形状的`CAShapeLayer`配合`CABasicAnimation`和`CAKeyframeAnimation`,麻烦在绘制`path`.
+基本上就是各种形状的`CAShapeLayer`配合`CABasicAnimation`和`CAKeyframeAnimation`.
 
-#### 小球的弹性动画
+#### 小球弹性动画
 
 改变矩形宽高来压缩小球成椭圆,利用`CAKeyframeAnimation`在不同压缩状态的`path`间做动画.
 
@@ -44,7 +44,7 @@ path = trianglePathTopExtension
         
 #### 描线动画
 
-对`strokeEnd`属性做动画即可:
+对`strokeEnd`属性做动画即可.
 
 ```swift
 let strokeAnimation = CABasicAnimation(keyPath: "strokeEnd")
@@ -52,6 +52,7 @@ strokeAnimation.fromValue = 0
 strokeAnimation.toValue   = 1
 strokeAnimation.duration  = duration
 addAnimation(strokeAnimation, forKey: nil)
+path = rectanglePathFull
 ```
 
 #### 灌水动画
@@ -76,3 +77,62 @@ path = wavePathComplete
 #### Apple logo 动画
 
 把`LoaderView`动画放大到屏幕大小,结束后添加一个等大的`UILabel`,字体设置的很大,让`UILabel`由缩小状态恢复到正常大小,配合弹性动画即可.
+
+#### 其他
+
+为了在动画结束时能得到通知,为`CAAnimation`添加了扩展方法,绑定一个闭包在动画结束的代理方法中调用:
+
+```swift
+let CompletionBlockKey = "completion"
+
+typealias CompletionBlock = @objc_block Bool -> Void
+
+extension CAAnimation {
+    func addDelegate(delegate: NSObject, withCompletion completion: CompletionBlock?) {
+        if let completion = completion {
+            self.delegate = delegate
+            setValue(unsafeBitCast(completion as CompletionBlock, AnyObject.self),
+                forKey: CompletionBlockKey)
+        }
+    }
+}
+```
+
+在设置动画时可以绑定一个闭包:
+
+```swift
+animation.addDelegate(self, withCompletion: completion)
+```
+
+最后为`NSObject`添加了`animationDidStop(_:finished:)`代理方法的默认实现,子类就不用实现了:
+
+```swift
+func application(application: UIApplication,
+    didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+
+    struct Static { static var onceToken: dispatch_once_t = 0 }
+    dispatch_once(&Static.onceToken) {
+
+        let method = class_getInstanceMethod(NSObject.self, "lx_animationDidStop:finished:")
+        let imp    = method_getImplementation(method)
+        let type   = method_getTypeEncoding(method)
+            
+        // "animationDidStop:finished:" 应该属于用分类声明的非正式协议方法,基类并没有实现.
+        class_addMethod(NSObject.self, "animationDidStop:finished:", imp, type)
+    }
+
+    return true
+}
+```
+
+在动画结束时从动画对象中取出闭包调用:
+
+```swift
+private extension NSObject {
+    @objc func lx_animationDidStop(anim: CAAnimation!, finished flag: Bool) {
+        if let completion: AnyObject = anim.valueForKey(CompletionBlockKey) {
+            unsafeBitCast(completion, CompletionBlock.self)(flag)
+        }
+    }
+}
+```
