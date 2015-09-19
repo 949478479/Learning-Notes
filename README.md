@@ -26,7 +26,7 @@
 
 - [如何用 Swift 创建一个复杂的 loading 动画](https://github.com/949478479/Learning-Notes/tree/SBLoader)
 
-## 其他
+## 其他 Demo
 
 - [可以折叠的 ImageView](https://github.com/949478479/Animations-Study/tree/FoldingImageView)
 
@@ -36,6 +36,8 @@
 
 - [《Beginning iOS 8 Programming with Swift》小项目]
   (https://github.com/949478479/Learning-Notes/tree/FoodPin)
+  
+- [简易聊天界面](https://github.com/949478479/Learning-Notes/tree/ChatUIDemo)
   
 ## UICollectionView
 
