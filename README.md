@@ -37,7 +37,7 @@
 - [《Beginning iOS 8 Programming with Swift》小项目]
   (https://github.com/949478479/Learning-Notes/tree/FoodPin)
   
-- [简易聊天界面](https://github.com/949478479/Learning-Notes/tree/ChatUIDemo)
+- [简易聊天气泡和多行输入框](https://github.com/949478479/Learning-Notes/tree/ChatUIDemo)
   
 ## UICollectionView
 
