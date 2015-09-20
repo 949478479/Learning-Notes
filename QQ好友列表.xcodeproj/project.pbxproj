@@ -13,18 +13,13 @@
 		18DA7F5F1A6204FC00D3D97B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18DA7F5D1A6204FC00D3D97B /* Main.storyboard */; };
 		18DA7F611A6204FC00D3D97B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18DA7F601A6204FC00D3D97B /* Images.xcassets */; };
 		18DA7F641A6204FC00D3D97B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18DA7F621A6204FC00D3D97B /* LaunchScreen.xib */; };
-		18DA7F701A6204FC00D3D97B /* QQ____Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DA7F6F1A6204FC00D3D97B /* QQ____Tests.m */; };
+		18DA7F7F1A6205D300D3D97B /* LXGroupModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DA7F7E1A6205D300D3D97B /* LXGroupModel.m */; };
+		18DA7F811A62060900D3D97B /* friends.plist in Resources */ = {isa = PBXBuildFile; fileRef = 18DA7F801A62060900D3D97B /* friends.plist */; };
+		18DA7F841A62086E00D3D97B /* LXFriendModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DA7F831A62086E00D3D97B /* LXFriendModel.m */; };
+		18DA7F871A620F4000D3D97B /* LXFriendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DA7F861A620F4000D3D97B /* LXFriendCell.m */; };
+		18DA7F8A1A6218D700D3D97B /* LXHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DA7F891A6218D700D3D97B /* LXHeaderView.m */; };
+		18E360501BADC03E0022837A /* LXHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18E3604F1BADC03E0022837A /* LXHeaderView.xib */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		18DA7F6A1A6204FC00D3D97B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 18DA7F481A6204FC00D3D97B /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 18DA7F4F1A6204FC00D3D97B;
-			remoteInfo = "QQ好友列表";
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		18DA7F501A6204FC00D3D97B /* QQ好友列表.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "QQ好友列表.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -37,20 +32,20 @@
 		18DA7F5E1A6204FC00D3D97B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		18DA7F601A6204FC00D3D97B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		18DA7F631A6204FC00D3D97B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		18DA7F691A6204FC00D3D97B /* QQ好友列表Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "QQ好友列表Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		18DA7F6E1A6204FC00D3D97B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		18DA7F6F1A6204FC00D3D97B /* QQ____Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "QQ____Tests.m"; sourceTree = "<group>"; };
+		18DA7F7D1A6205D300D3D97B /* LXGroupModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXGroupModel.h; sourceTree = "<group>"; };
+		18DA7F7E1A6205D300D3D97B /* LXGroupModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXGroupModel.m; sourceTree = "<group>"; };
+		18DA7F801A62060900D3D97B /* friends.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = friends.plist; sourceTree = "<group>"; };
+		18DA7F821A62086E00D3D97B /* LXFriendModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXFriendModel.h; sourceTree = "<group>"; };
+		18DA7F831A62086E00D3D97B /* LXFriendModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXFriendModel.m; sourceTree = "<group>"; };
+		18DA7F851A620F4000D3D97B /* LXFriendCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXFriendCell.h; sourceTree = "<group>"; };
+		18DA7F861A620F4000D3D97B /* LXFriendCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXFriendCell.m; sourceTree = "<group>"; };
+		18DA7F881A6218D700D3D97B /* LXHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXHeaderView.h; sourceTree = "<group>"; };
+		18DA7F891A6218D700D3D97B /* LXHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXHeaderView.m; sourceTree = "<group>"; };
+		18E3604F1BADC03E0022837A /* LXHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LXHeaderView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		18DA7F4D1A6204FC00D3D97B /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		18DA7F661A6204FC00D3D97B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -64,7 +59,6 @@
 			isa = PBXGroup;
 			children = (
 				18DA7F521A6204FC00D3D97B /* QQ好友列表 */,
-				18DA7F6C1A6204FC00D3D97B /* QQ好友列表Tests */,
 				18DA7F511A6204FC00D3D97B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -73,7 +67,6 @@
 			isa = PBXGroup;
 			children = (
 				18DA7F501A6204FC00D3D97B /* QQ好友列表.app */,
-				18DA7F691A6204FC00D3D97B /* QQ好友列表Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -81,13 +74,10 @@
 		18DA7F521A6204FC00D3D97B /* QQ好友列表 */ = {
 			isa = PBXGroup;
 			children = (
-				18DA7F571A6204FC00D3D97B /* AppDelegate.h */,
-				18DA7F581A6204FC00D3D97B /* AppDelegate.m */,
-				18DA7F5A1A6204FC00D3D97B /* ViewController.h */,
-				18DA7F5B1A6204FC00D3D97B /* ViewController.m */,
-				18DA7F5D1A6204FC00D3D97B /* Main.storyboard */,
-				18DA7F601A6204FC00D3D97B /* Images.xcassets */,
-				18DA7F621A6204FC00D3D97B /* LaunchScreen.xib */,
+				18DA7F7A1A62059D00D3D97B /* Model */,
+				18DA7F7B1A6205A400D3D97B /* View */,
+				18DA7F7C1A6205A900D3D97B /* Controller */,
+				18DA7F791A62059200D3D97B /* Other */,
 				18DA7F531A6204FC00D3D97B /* Supporting Files */,
 			);
 			path = "QQ好友列表";
@@ -96,27 +86,55 @@
 		18DA7F531A6204FC00D3D97B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				18DA7F621A6204FC00D3D97B /* LaunchScreen.xib */,
+				18DA7F601A6204FC00D3D97B /* Images.xcassets */,
 				18DA7F541A6204FC00D3D97B /* Info.plist */,
+				18DA7F801A62060900D3D97B /* friends.plist */,
 				18DA7F551A6204FC00D3D97B /* main.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		18DA7F6C1A6204FC00D3D97B /* QQ好友列表Tests */ = {
+		18DA7F791A62059200D3D97B /* Other */ = {
 			isa = PBXGroup;
 			children = (
-				18DA7F6F1A6204FC00D3D97B /* QQ____Tests.m */,
-				18DA7F6D1A6204FC00D3D97B /* Supporting Files */,
+				18DA7F571A6204FC00D3D97B /* AppDelegate.h */,
+				18DA7F581A6204FC00D3D97B /* AppDelegate.m */,
 			);
-			path = "QQ好友列表Tests";
+			name = Other;
 			sourceTree = "<group>";
 		};
-		18DA7F6D1A6204FC00D3D97B /* Supporting Files */ = {
+		18DA7F7A1A62059D00D3D97B /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				18DA7F6E1A6204FC00D3D97B /* Info.plist */,
+				18DA7F7D1A6205D300D3D97B /* LXGroupModel.h */,
+				18DA7F7E1A6205D300D3D97B /* LXGroupModel.m */,
+				18DA7F821A62086E00D3D97B /* LXFriendModel.h */,
+				18DA7F831A62086E00D3D97B /* LXFriendModel.m */,
 			);
-			name = "Supporting Files";
+			name = Model;
+			sourceTree = "<group>";
+		};
+		18DA7F7B1A6205A400D3D97B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				18DA7F5D1A6204FC00D3D97B /* Main.storyboard */,
+				18DA7F851A620F4000D3D97B /* LXFriendCell.h */,
+				18DA7F861A620F4000D3D97B /* LXFriendCell.m */,
+				18DA7F881A6218D700D3D97B /* LXHeaderView.h */,
+				18DA7F891A6218D700D3D97B /* LXHeaderView.m */,
+				18E3604F1BADC03E0022837A /* LXHeaderView.xib */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		18DA7F7C1A6205A900D3D97B /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				18DA7F5A1A6204FC00D3D97B /* ViewController.h */,
+				18DA7F5B1A6204FC00D3D97B /* ViewController.m */,
+			);
+			name = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -139,39 +157,17 @@
 			productReference = 18DA7F501A6204FC00D3D97B /* QQ好友列表.app */;
 			productType = "com.apple.product-type.application";
 		};
-		18DA7F681A6204FC00D3D97B /* QQ好友列表Tests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 18DA7F761A6204FC00D3D97B /* Build configuration list for PBXNativeTarget "QQ好友列表Tests" */;
-			buildPhases = (
-				18DA7F651A6204FC00D3D97B /* Sources */,
-				18DA7F661A6204FC00D3D97B /* Frameworks */,
-				18DA7F671A6204FC00D3D97B /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				18DA7F6B1A6204FC00D3D97B /* PBXTargetDependency */,
-			);
-			name = "QQ好友列表Tests";
-			productName = "QQ好友列表Tests";
-			productReference = 18DA7F691A6204FC00D3D97B /* QQ好友列表Tests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		18DA7F481A6204FC00D3D97B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0610;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = apple;
 				TargetAttributes = {
 					18DA7F4F1A6204FC00D3D97B = {
 						CreatedOnToolsVersion = 6.1.1;
-					};
-					18DA7F681A6204FC00D3D97B = {
-						CreatedOnToolsVersion = 6.1.1;
-						TestTargetID = 18DA7F4F1A6204FC00D3D97B;
 					};
 				};
 			};
@@ -189,7 +185,6 @@
 			projectRoot = "";
 			targets = (
 				18DA7F4F1A6204FC00D3D97B /* QQ好友列表 */,
-				18DA7F681A6204FC00D3D97B /* QQ好友列表Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -200,15 +195,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				18DA7F5F1A6204FC00D3D97B /* Main.storyboard in Resources */,
+				18E360501BADC03E0022837A /* LXHeaderView.xib in Resources */,
 				18DA7F641A6204FC00D3D97B /* LaunchScreen.xib in Resources */,
+				18DA7F811A62060900D3D97B /* friends.plist in Resources */,
 				18DA7F611A6204FC00D3D97B /* Images.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		18DA7F671A6204FC00D3D97B /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -219,29 +209,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18DA7F8A1A6218D700D3D97B /* LXHeaderView.m in Sources */,
 				18DA7F5C1A6204FC00D3D97B /* ViewController.m in Sources */,
 				18DA7F591A6204FC00D3D97B /* AppDelegate.m in Sources */,
+				18DA7F841A62086E00D3D97B /* LXFriendModel.m in Sources */,
+				18DA7F871A620F4000D3D97B /* LXFriendCell.m in Sources */,
 				18DA7F561A6204FC00D3D97B /* main.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		18DA7F651A6204FC00D3D97B /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				18DA7F701A6204FC00D3D97B /* QQ____Tests.m in Sources */,
+				18DA7F7F1A6205D300D3D97B /* LXGroupModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		18DA7F6B1A6204FC00D3D97B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 18DA7F4F1A6204FC00D3D97B /* QQ好友列表 */;
-			targetProxy = 18DA7F6A1A6204FC00D3D97B /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		18DA7F5D1A6204FC00D3D97B /* Main.storyboard */ = {
@@ -283,6 +261,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -345,6 +324,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "QQ好友列表/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "apple.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -355,41 +335,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "QQ好友列表/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "apple.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
-		18DA7F771A6204FC00D3D97B /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "QQ好友列表Tests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/QQ好友列表.app/QQ好友列表";
-			};
-			name = Debug;
-		};
-		18DA7F781A6204FC00D3D97B /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "QQ好友列表Tests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/QQ好友列表.app/QQ好友列表";
 			};
 			name = Release;
 		};
@@ -412,14 +359,7 @@
 				18DA7F751A6204FC00D3D97B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-		};
-		18DA7F761A6204FC00D3D97B /* Build configuration list for PBXNativeTarget "QQ好友列表Tests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				18DA7F771A6204FC00D3D97B /* Debug */,
-				18DA7F781A6204FC00D3D97B /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

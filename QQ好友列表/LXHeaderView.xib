@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="LXHeaderView">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ejZ-G0-TtU">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <inset key="titleEdgeInsets" minX="13" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    <inset key="imageEdgeInsets" minX="8" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    <state key="normal" title="我是分组标题" image="buddy_header_arrow" backgroundImage="buddy_header_bg">
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="highlighted" backgroundImage="buddy_header_bg_highlighted"/>
+                    <connections>
+                        <action selector="buttonDidTapped:" destination="iN0-l3-epB" eventType="touchUpInside" id="c1s-0b-XWR"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="233/250" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LFz-Fe-43d">
+                    <rect key="frame" x="300" y="0.0" width="67" height="44"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="LFz-Fe-43d" secondAttribute="trailing" constant="8" id="3CG-b7-5Zr"/>
+                <constraint firstAttribute="bottom" secondItem="ejZ-G0-TtU" secondAttribute="bottom" id="BeK-c7-MgO"/>
+                <constraint firstItem="LFz-Fe-43d" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="c2z-Yh-bq5"/>
+                <constraint firstItem="ejZ-G0-TtU" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="kGB-z7-vpX"/>
+                <constraint firstAttribute="trailing" secondItem="ejZ-G0-TtU" secondAttribute="trailing" id="mzX-Hd-DG7"/>
+                <constraint firstAttribute="bottom" secondItem="LFz-Fe-43d" secondAttribute="bottom" id="wEn-h6-h5B"/>
+                <constraint firstItem="ejZ-G0-TtU" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="xg2-2O-cQ1"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="button" destination="ejZ-G0-TtU" id="Qox-Wa-ckQ"/>
+                <outlet property="label" destination="LFz-Fe-43d" id="BDx-Eb-EHA"/>
+            </connections>
+            <point key="canvasLocation" x="280.5" y="499"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="buddy_header_arrow" width="7" height="11"/>
+        <image name="buddy_header_bg" width="2" height="89"/>
+        <image name="buddy_header_bg_highlighted" width="2" height="89"/>
+    </resources>
+</document>
