@@ -22,7 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		18DA7F501A6204FC00D3D97B /* QQ好友列表.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "QQ好友列表.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		18DA7F501A6204FC00D3D97B /* QQFriendListDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QQFriendListDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18DA7F541A6204FC00D3D97B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		18DA7F551A6204FC00D3D97B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		18DA7F571A6204FC00D3D97B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -58,7 +58,7 @@
 		18DA7F471A6204FC00D3D97B = {
 			isa = PBXGroup;
 			children = (
-				18DA7F521A6204FC00D3D97B /* QQ好友列表 */,
+				18DA7F521A6204FC00D3D97B /* QQFriendListDemo */,
 				18DA7F511A6204FC00D3D97B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -66,12 +66,12 @@
 		18DA7F511A6204FC00D3D97B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				18DA7F501A6204FC00D3D97B /* QQ好友列表.app */,
+				18DA7F501A6204FC00D3D97B /* QQFriendListDemo.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		18DA7F521A6204FC00D3D97B /* QQ好友列表 */ = {
+		18DA7F521A6204FC00D3D97B /* QQFriendListDemo */ = {
 			isa = PBXGroup;
 			children = (
 				18DA7F7A1A62059D00D3D97B /* Model */,
@@ -80,7 +80,7 @@
 				18DA7F791A62059200D3D97B /* Other */,
 				18DA7F531A6204FC00D3D97B /* Supporting Files */,
 			);
-			path = "QQ好友列表";
+			path = QQFriendListDemo;
 			sourceTree = "<group>";
 		};
 		18DA7F531A6204FC00D3D97B /* Supporting Files */ = {
@@ -140,9 +140,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		18DA7F4F1A6204FC00D3D97B /* QQ好友列表 */ = {
+		18DA7F4F1A6204FC00D3D97B /* QQFriendListDemo */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 18DA7F731A6204FC00D3D97B /* Build configuration list for PBXNativeTarget "QQ好友列表" */;
+			buildConfigurationList = 18DA7F731A6204FC00D3D97B /* Build configuration list for PBXNativeTarget "QQFriendListDemo" */;
 			buildPhases = (
 				18DA7F4C1A6204FC00D3D97B /* Sources */,
 				18DA7F4D1A6204FC00D3D97B /* Frameworks */,
@@ -152,9 +152,9 @@
 			);
 			dependencies = (
 			);
-			name = "QQ好友列表";
+			name = QQFriendListDemo;
 			productName = "QQ好友列表";
-			productReference = 18DA7F501A6204FC00D3D97B /* QQ好友列表.app */;
+			productReference = 18DA7F501A6204FC00D3D97B /* QQFriendListDemo.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -171,7 +171,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 18DA7F4B1A6204FC00D3D97B /* Build configuration list for PBXProject "QQ好友列表" */;
+			buildConfigurationList = 18DA7F4B1A6204FC00D3D97B /* Build configuration list for PBXProject "QQFriendListDemo" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -184,7 +184,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				18DA7F4F1A6204FC00D3D97B /* QQ好友列表 */,
+				18DA7F4F1A6204FC00D3D97B /* QQFriendListDemo */,
 			);
 		};
 /* End PBXProject section */
@@ -322,10 +322,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = "QQ好友列表/Info.plist";
+				INFOPLIST_FILE = QQFriendListDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "apple.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = QQFriendListDemo;
 			};
 			name = Debug;
 		};
@@ -333,17 +333,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = "QQ好友列表/Info.plist";
+				INFOPLIST_FILE = QQFriendListDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "apple.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = QQFriendListDemo;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		18DA7F4B1A6204FC00D3D97B /* Build configuration list for PBXProject "QQ好友列表" */ = {
+		18DA7F4B1A6204FC00D3D97B /* Build configuration list for PBXProject "QQFriendListDemo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				18DA7F711A6204FC00D3D97B /* Debug */,
@@ -352,7 +352,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		18DA7F731A6204FC00D3D97B /* Build configuration list for PBXNativeTarget "QQ好友列表" */ = {
+		18DA7F731A6204FC00D3D97B /* Build configuration list for PBXNativeTarget "QQFriendListDemo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				18DA7F741A6204FC00D3D97B /* Debug */,
