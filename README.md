@@ -38,7 +38,9 @@
   (https://github.com/949478479/Learning-Notes/tree/FoodPin)
   
 - [简易聊天气泡和多行输入框](https://github.com/949478479/Learning-Notes/tree/ChatUIDemo)
-  
+
+- [QQ好友下拉列表](https://github.com/949478479/Learning-Notes/tree/QQFriendListDemo)
+
 ## UICollectionView
 
 - [WWDC 上的 UICollectionViewLayout 的 demo]
