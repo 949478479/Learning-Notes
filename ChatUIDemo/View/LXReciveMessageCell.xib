@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ReciveMessageCell" id="9cm-lT-7of" customClass="LXMessageCell">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="150"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9cm-lT-7of" id="Ngj-61-j24">
+                <rect key="frame" x="0.0" y="0.0" width="600" height="149"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="other" translatesAutoresizingMaskIntoConstraints="NO" id="Pl1-L8-OG0">
+                        <rect key="frame" x="20" y="20" width="50" height="50"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="50" id="JYY-4k-L2N"/>
+                            <constraint firstAttribute="height" constant="50" id="PiV-R4-uHh"/>
+                        </constraints>
+                    </imageView>
+                    <imageView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chat_recive_nor" highlightedImage="chat_recive_press_pic" translatesAutoresizingMaskIntoConstraints="NO" id="GQt-Bu-vYe">
+                        <rect key="frame" x="78" y="20" width="431" height="109"/>
+                    </imageView>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我是聊天内容我是聊天内容我是聊天内容我是聊天内容我是聊天内容我是聊天内容我是聊天内容我是聊天内容我是聊天内容我是聊天内容我是聊天内容我是聊天内容" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="erx-yt-T9e">
+                        <rect key="frame" x="98" y="40" width="391" height="69"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Pl1-L8-OG0" firstAttribute="leading" secondItem="Ngj-61-j24" secondAttribute="leading" constant="20" symbolic="YES" id="7er-zR-1Kn"/>
+                    <constraint firstItem="GQt-Bu-vYe" firstAttribute="leading" secondItem="Pl1-L8-OG0" secondAttribute="trailing" constant="8" symbolic="YES" id="Fu5-c9-Igt"/>
+                    <constraint firstItem="erx-yt-T9e" firstAttribute="bottom" secondItem="GQt-Bu-vYe" secondAttribute="bottom" constant="-20" id="GaL-FX-r8g"/>
+                    <constraint firstItem="Pl1-L8-OG0" firstAttribute="top" secondItem="Ngj-61-j24" secondAttribute="top" constant="20" symbolic="YES" id="Gnh-EZ-9Le"/>
+                    <constraint firstItem="GQt-Bu-vYe" firstAttribute="top" secondItem="Ngj-61-j24" secondAttribute="top" constant="20" symbolic="YES" id="VKC-38-NIG"/>
+                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="erx-yt-T9e" secondAttribute="trailing" constant="98" id="aKR-Qd-VQw"/>
+                    <constraint firstItem="erx-yt-T9e" firstAttribute="leading" secondItem="Ngj-61-j24" secondAttribute="leading" constant="98" id="c8e-Ot-0H8"/>
+                    <constraint firstItem="erx-yt-T9e" firstAttribute="top" secondItem="GQt-Bu-vYe" secondAttribute="top" constant="20" id="jPK-Jj-FNz"/>
+                    <constraint firstItem="erx-yt-T9e" firstAttribute="trailing" secondItem="GQt-Bu-vYe" secondAttribute="trailing" constant="-20" id="mIa-Xa-CV3"/>
+                    <constraint firstAttribute="bottom" secondItem="GQt-Bu-vYe" secondAttribute="bottom" constant="20" symbolic="YES" id="vq4-t8-Xla"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" red="0.87843137250000003" green="0.87843137250000003" blue="0.87843137250000003" alpha="1" colorSpace="calibratedRGB"/>
+            <connections>
+                <outlet property="avatarView" destination="Pl1-L8-OG0" id="vdj-py-zzO"/>
+                <outlet property="bubbleView" destination="GQt-Bu-vYe" id="k4g-Ww-iiu"/>
+                <outlet property="contentLabel" destination="erx-yt-T9e" id="hVi-Sq-7WQ"/>
+                <outlet property="labelLeadingConstraint" destination="c8e-Ot-0H8" id="pNm-yb-CXP"/>
+            </connections>
+            <point key="canvasLocation" x="212" y="119"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="chat_recive_nor" width="64" height="56"/>
+        <image name="chat_recive_press_pic" width="64" height="56"/>
+        <image name="other" width="50" height="50"/>
+    </resources>
+</document>

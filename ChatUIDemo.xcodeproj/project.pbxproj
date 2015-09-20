@@ -1,0 +1,457 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		18D51E681BAF5D620077B0AB /* NSObject+DLIntrospection.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D51CF11BAF5D610077B0AB /* NSObject+DLIntrospection.m */; settings = {ASSET_TAGS = (); }; };
+		18D51E691BAF5D620077B0AB /* LXUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D51CF31BAF5D610077B0AB /* LXUtilities.m */; settings = {ASSET_TAGS = (); }; };
+		18D51E6B1BAF5D620077B0AB /* MBProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 18D51CF71BAF5D610077B0AB /* MBProgressHUD.bundle */; settings = {ASSET_TAGS = (); }; };
+		18D51E6C1BAF5D620077B0AB /* NSNotificationCenter+LXExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D51CF91BAF5D610077B0AB /* NSNotificationCenter+LXExtension.m */; settings = {ASSET_TAGS = (); }; };
+		18D51E6D1BAF5D620077B0AB /* NSObject+LXExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D51CFB1BAF5D610077B0AB /* NSObject+LXExtension.m */; settings = {ASSET_TAGS = (); }; };
+		18D51E6E1BAF5D620077B0AB /* NSString+LXExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D51CFD1BAF5D610077B0AB /* NSString+LXExtension.m */; settings = {ASSET_TAGS = (); }; };
+		18D51E6F1BAF5D620077B0AB /* UIImage+LXExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D51CFF1BAF5D610077B0AB /* UIImage+LXExtension.m */; settings = {ASSET_TAGS = (); }; };
+		18D51E701BAF5D620077B0AB /* UIStoryboard+LXExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D51D011BAF5D610077B0AB /* UIStoryboard+LXExtension.m */; settings = {ASSET_TAGS = (); }; };
+		18D51E711BAF5D620077B0AB /* UITextField+LXExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D51D031BAF5D610077B0AB /* UITextField+LXExtension.m */; settings = {ASSET_TAGS = (); }; };
+		18D51E721BAF5D620077B0AB /* UIView+LXExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D51D051BAF5D610077B0AB /* UIView+LXExtension.m */; settings = {ASSET_TAGS = (); }; };
+		18D51E991BAF5F890077B0AB /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D51E801BAF5F890077B0AB /* ViewController.m */; settings = {ASSET_TAGS = (); }; };
+		18D51E9A1BAF5F890077B0AB /* XXNibBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D51E841BAF5F890077B0AB /* XXNibBridge.m */; settings = {ASSET_TAGS = (); }; };
+		18D51E9B1BAF5F890077B0AB /* XXNibConvention.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D51E861BAF5F890077B0AB /* XXNibConvention.m */; settings = {ASSET_TAGS = (); }; };
+		18D51E9C1BAF5F890077B0AB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D51E891BAF5F890077B0AB /* AppDelegate.m */; settings = {ASSET_TAGS = (); }; };
+		18D51E9E1BAF5F890077B0AB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D51E8B1BAF5F890077B0AB /* main.m */; settings = {ASSET_TAGS = (); }; };
+		18D51E9F1BAF5F890077B0AB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18D51E8D1BAF5F890077B0AB /* Assets.xcassets */; settings = {ASSET_TAGS = (); }; };
+		18D51EA01BAF5F890077B0AB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18D51E8F1BAF5F890077B0AB /* LaunchScreen.storyboard */; settings = {ASSET_TAGS = (); }; };
+		18D51EA11BAF5F890077B0AB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18D51E901BAF5F890077B0AB /* Main.storyboard */; settings = {ASSET_TAGS = (); }; };
+		18D51EA21BAF5F890077B0AB /* LXInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D51E931BAF5F890077B0AB /* LXInputView.m */; settings = {ASSET_TAGS = (); }; };
+		18D51EA31BAF5F890077B0AB /* LXInputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D51E941BAF5F890077B0AB /* LXInputView.xib */; settings = {ASSET_TAGS = (); }; };
+		18D51EA41BAF5F890077B0AB /* LXMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D51E961BAF5F890077B0AB /* LXMessageCell.m */; settings = {ASSET_TAGS = (); }; };
+		18D51EA51BAF5F890077B0AB /* LXReciveMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D51E971BAF5F890077B0AB /* LXReciveMessageCell.xib */; settings = {ASSET_TAGS = (); }; };
+		18D51EA61BAF5F890077B0AB /* LXSendMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D51E981BAF5F890077B0AB /* LXSendMessageCell.xib */; settings = {ASSET_TAGS = (); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		18D51A301BAF5CFD0077B0AB /* ChatUIDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChatUIDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		18D51CF01BAF5D610077B0AB /* NSObject+DLIntrospection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+DLIntrospection.h"; sourceTree = "<group>"; };
+		18D51CF11BAF5D610077B0AB /* NSObject+DLIntrospection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+DLIntrospection.m"; sourceTree = "<group>"; };
+		18D51CF21BAF5D610077B0AB /* LXUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXUtilities.h; sourceTree = "<group>"; };
+		18D51CF31BAF5D610077B0AB /* LXUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXUtilities.m; sourceTree = "<group>"; };
+		18D51CF51BAF5D610077B0AB /* MBProgressHUD+LXExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+LXExtension.h"; sourceTree = "<group>"; };
+		18D51CF61BAF5D610077B0AB /* MBProgressHUD+LXExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+LXExtension.m"; sourceTree = "<group>"; };
+		18D51CF71BAF5D610077B0AB /* MBProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MBProgressHUD.bundle; sourceTree = "<group>"; };
+		18D51CF81BAF5D610077B0AB /* NSNotificationCenter+LXExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNotificationCenter+LXExtension.h"; sourceTree = "<group>"; };
+		18D51CF91BAF5D610077B0AB /* NSNotificationCenter+LXExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNotificationCenter+LXExtension.m"; sourceTree = "<group>"; };
+		18D51CFA1BAF5D610077B0AB /* NSObject+LXExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+LXExtension.h"; sourceTree = "<group>"; };
+		18D51CFB1BAF5D610077B0AB /* NSObject+LXExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+LXExtension.m"; sourceTree = "<group>"; };
+		18D51CFC1BAF5D610077B0AB /* NSString+LXExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+LXExtension.h"; sourceTree = "<group>"; };
+		18D51CFD1BAF5D610077B0AB /* NSString+LXExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+LXExtension.m"; sourceTree = "<group>"; };
+		18D51CFE1BAF5D610077B0AB /* UIImage+LXExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+LXExtension.h"; sourceTree = "<group>"; };
+		18D51CFF1BAF5D610077B0AB /* UIImage+LXExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+LXExtension.m"; sourceTree = "<group>"; };
+		18D51D001BAF5D610077B0AB /* UIStoryboard+LXExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIStoryboard+LXExtension.h"; sourceTree = "<group>"; };
+		18D51D011BAF5D610077B0AB /* UIStoryboard+LXExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIStoryboard+LXExtension.m"; sourceTree = "<group>"; };
+		18D51D021BAF5D610077B0AB /* UITextField+LXExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+LXExtension.h"; sourceTree = "<group>"; };
+		18D51D031BAF5D610077B0AB /* UITextField+LXExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+LXExtension.m"; sourceTree = "<group>"; };
+		18D51D041BAF5D610077B0AB /* UIView+LXExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+LXExtension.h"; sourceTree = "<group>"; };
+		18D51D051BAF5D610077B0AB /* UIView+LXExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+LXExtension.m"; sourceTree = "<group>"; };
+		18D51E7F1BAF5F890077B0AB /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		18D51E801BAF5F890077B0AB /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		18D51E831BAF5F890077B0AB /* XXNibBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXNibBridge.h; sourceTree = "<group>"; };
+		18D51E841BAF5F890077B0AB /* XXNibBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXNibBridge.m; sourceTree = "<group>"; };
+		18D51E851BAF5F890077B0AB /* XXNibConvention.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXNibConvention.h; sourceTree = "<group>"; };
+		18D51E861BAF5F890077B0AB /* XXNibConvention.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXNibConvention.m; sourceTree = "<group>"; };
+		18D51E881BAF5F890077B0AB /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		18D51E891BAF5F890077B0AB /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		18D51E8A1BAF5F890077B0AB /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		18D51E8B1BAF5F890077B0AB /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		18D51E8D1BAF5F890077B0AB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		18D51E8F1BAF5F890077B0AB /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		18D51E901BAF5F890077B0AB /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		18D51E921BAF5F890077B0AB /* LXInputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXInputView.h; sourceTree = "<group>"; };
+		18D51E931BAF5F890077B0AB /* LXInputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXInputView.m; sourceTree = "<group>"; };
+		18D51E941BAF5F890077B0AB /* LXInputView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LXInputView.xib; sourceTree = "<group>"; };
+		18D51E951BAF5F890077B0AB /* LXMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXMessageCell.h; sourceTree = "<group>"; };
+		18D51E961BAF5F890077B0AB /* LXMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXMessageCell.m; sourceTree = "<group>"; };
+		18D51E971BAF5F890077B0AB /* LXReciveMessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LXReciveMessageCell.xib; sourceTree = "<group>"; };
+		18D51E981BAF5F890077B0AB /* LXSendMessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LXSendMessageCell.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		18D51A2D1BAF5CFD0077B0AB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		18D51A271BAF5CFD0077B0AB = {
+			isa = PBXGroup;
+			children = (
+				18D51A321BAF5CFD0077B0AB /* ChatUIDemo */,
+				18D51A311BAF5CFD0077B0AB /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		18D51A311BAF5CFD0077B0AB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				18D51A301BAF5CFD0077B0AB /* ChatUIDemo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		18D51A321BAF5CFD0077B0AB /* ChatUIDemo */ = {
+			isa = PBXGroup;
+			children = (
+				18D51E871BAF5F890077B0AB /* Other */,
+				18D51E811BAF5F890077B0AB /* Lib */,
+				18D51CEE1BAF5D610077B0AB /* Extension  */,
+				18D51E8C1BAF5F890077B0AB /* Resource */,
+				18D51E8E1BAF5F890077B0AB /* Storyboard */,
+				18D51E7E1BAF5F890077B0AB /* Controller */,
+				18D51E911BAF5F890077B0AB /* View */,
+			);
+			path = ChatUIDemo;
+			sourceTree = "<group>";
+		};
+		18D51CEE1BAF5D610077B0AB /* Extension  */ = {
+			isa = PBXGroup;
+			children = (
+				18D51CEF1BAF5D610077B0AB /* DLIntrospection */,
+				18D51CF21BAF5D610077B0AB /* LXUtilities.h */,
+				18D51CF31BAF5D610077B0AB /* LXUtilities.m */,
+				18D51CF41BAF5D610077B0AB /* MBProgressHUD+LXExtension */,
+				18D51CF81BAF5D610077B0AB /* NSNotificationCenter+LXExtension.h */,
+				18D51CF91BAF5D610077B0AB /* NSNotificationCenter+LXExtension.m */,
+				18D51CFA1BAF5D610077B0AB /* NSObject+LXExtension.h */,
+				18D51CFB1BAF5D610077B0AB /* NSObject+LXExtension.m */,
+				18D51CFC1BAF5D610077B0AB /* NSString+LXExtension.h */,
+				18D51CFD1BAF5D610077B0AB /* NSString+LXExtension.m */,
+				18D51CFE1BAF5D610077B0AB /* UIImage+LXExtension.h */,
+				18D51CFF1BAF5D610077B0AB /* UIImage+LXExtension.m */,
+				18D51D001BAF5D610077B0AB /* UIStoryboard+LXExtension.h */,
+				18D51D011BAF5D610077B0AB /* UIStoryboard+LXExtension.m */,
+				18D51D021BAF5D610077B0AB /* UITextField+LXExtension.h */,
+				18D51D031BAF5D610077B0AB /* UITextField+LXExtension.m */,
+				18D51D041BAF5D610077B0AB /* UIView+LXExtension.h */,
+				18D51D051BAF5D610077B0AB /* UIView+LXExtension.m */,
+			);
+			path = "Extension ";
+			sourceTree = "<group>";
+		};
+		18D51CEF1BAF5D610077B0AB /* DLIntrospection */ = {
+			isa = PBXGroup;
+			children = (
+				18D51CF01BAF5D610077B0AB /* NSObject+DLIntrospection.h */,
+				18D51CF11BAF5D610077B0AB /* NSObject+DLIntrospection.m */,
+			);
+			path = DLIntrospection;
+			sourceTree = "<group>";
+		};
+		18D51CF41BAF5D610077B0AB /* MBProgressHUD+LXExtension */ = {
+			isa = PBXGroup;
+			children = (
+				18D51CF51BAF5D610077B0AB /* MBProgressHUD+LXExtension.h */,
+				18D51CF61BAF5D610077B0AB /* MBProgressHUD+LXExtension.m */,
+				18D51CF71BAF5D610077B0AB /* MBProgressHUD.bundle */,
+			);
+			path = "MBProgressHUD+LXExtension";
+			sourceTree = "<group>";
+		};
+		18D51E7E1BAF5F890077B0AB /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				18D51E7F1BAF5F890077B0AB /* ViewController.h */,
+				18D51E801BAF5F890077B0AB /* ViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		18D51E811BAF5F890077B0AB /* Lib */ = {
+			isa = PBXGroup;
+			children = (
+				18D51E821BAF5F890077B0AB /* XXNibBridge */,
+			);
+			path = Lib;
+			sourceTree = "<group>";
+		};
+		18D51E821BAF5F890077B0AB /* XXNibBridge */ = {
+			isa = PBXGroup;
+			children = (
+				18D51E831BAF5F890077B0AB /* XXNibBridge.h */,
+				18D51E841BAF5F890077B0AB /* XXNibBridge.m */,
+				18D51E851BAF5F890077B0AB /* XXNibConvention.h */,
+				18D51E861BAF5F890077B0AB /* XXNibConvention.m */,
+			);
+			path = XXNibBridge;
+			sourceTree = "<group>";
+		};
+		18D51E871BAF5F890077B0AB /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				18D51E881BAF5F890077B0AB /* AppDelegate.h */,
+				18D51E891BAF5F890077B0AB /* AppDelegate.m */,
+				18D51E8A1BAF5F890077B0AB /* Info.plist */,
+				18D51E8B1BAF5F890077B0AB /* main.m */,
+			);
+			path = Other;
+			sourceTree = "<group>";
+		};
+		18D51E8C1BAF5F890077B0AB /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				18D51E8D1BAF5F890077B0AB /* Assets.xcassets */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		18D51E8E1BAF5F890077B0AB /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				18D51E8F1BAF5F890077B0AB /* LaunchScreen.storyboard */,
+				18D51E901BAF5F890077B0AB /* Main.storyboard */,
+			);
+			path = Storyboard;
+			sourceTree = "<group>";
+		};
+		18D51E911BAF5F890077B0AB /* View */ = {
+			isa = PBXGroup;
+			children = (
+				18D51E921BAF5F890077B0AB /* LXInputView.h */,
+				18D51E931BAF5F890077B0AB /* LXInputView.m */,
+				18D51E941BAF5F890077B0AB /* LXInputView.xib */,
+				18D51E951BAF5F890077B0AB /* LXMessageCell.h */,
+				18D51E961BAF5F890077B0AB /* LXMessageCell.m */,
+				18D51E971BAF5F890077B0AB /* LXReciveMessageCell.xib */,
+				18D51E981BAF5F890077B0AB /* LXSendMessageCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		18D51A2F1BAF5CFD0077B0AB /* ChatUIDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 18D51A471BAF5CFD0077B0AB /* Build configuration list for PBXNativeTarget "ChatUIDemo" */;
+			buildPhases = (
+				18D51A2C1BAF5CFD0077B0AB /* Sources */,
+				18D51A2D1BAF5CFD0077B0AB /* Frameworks */,
+				18D51A2E1BAF5CFD0077B0AB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ChatUIDemo;
+			productName = ChatUIDemo;
+			productReference = 18D51A301BAF5CFD0077B0AB /* ChatUIDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		18D51A281BAF5CFD0077B0AB /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0700;
+				ORGANIZATIONNAME = "从今以后";
+				TargetAttributes = {
+					18D51A2F1BAF5CFD0077B0AB = {
+						CreatedOnToolsVersion = 7.0;
+						DevelopmentTeam = 39XM8MX49W;
+					};
+				};
+			};
+			buildConfigurationList = 18D51A2B1BAF5CFD0077B0AB /* Build configuration list for PBXProject "ChatUIDemo" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 18D51A271BAF5CFD0077B0AB;
+			productRefGroup = 18D51A311BAF5CFD0077B0AB /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				18D51A2F1BAF5CFD0077B0AB /* ChatUIDemo */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		18D51A2E1BAF5CFD0077B0AB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				18D51EA61BAF5F890077B0AB /* LXSendMessageCell.xib in Resources */,
+				18D51EA11BAF5F890077B0AB /* Main.storyboard in Resources */,
+				18D51EA01BAF5F890077B0AB /* LaunchScreen.storyboard in Resources */,
+				18D51EA31BAF5F890077B0AB /* LXInputView.xib in Resources */,
+				18D51EA51BAF5F890077B0AB /* LXReciveMessageCell.xib in Resources */,
+				18D51E9F1BAF5F890077B0AB /* Assets.xcassets in Resources */,
+				18D51E6B1BAF5D620077B0AB /* MBProgressHUD.bundle in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		18D51A2C1BAF5CFD0077B0AB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				18D51E701BAF5D620077B0AB /* UIStoryboard+LXExtension.m in Sources */,
+				18D51E711BAF5D620077B0AB /* UITextField+LXExtension.m in Sources */,
+				18D51E721BAF5D620077B0AB /* UIView+LXExtension.m in Sources */,
+				18D51EA41BAF5F890077B0AB /* LXMessageCell.m in Sources */,
+				18D51E9A1BAF5F890077B0AB /* XXNibBridge.m in Sources */,
+				18D51E9B1BAF5F890077B0AB /* XXNibConvention.m in Sources */,
+				18D51E6F1BAF5D620077B0AB /* UIImage+LXExtension.m in Sources */,
+				18D51E991BAF5F890077B0AB /* ViewController.m in Sources */,
+				18D51EA21BAF5F890077B0AB /* LXInputView.m in Sources */,
+				18D51E9C1BAF5F890077B0AB /* AppDelegate.m in Sources */,
+				18D51E691BAF5D620077B0AB /* LXUtilities.m in Sources */,
+				18D51E681BAF5D620077B0AB /* NSObject+DLIntrospection.m in Sources */,
+				18D51E6E1BAF5D620077B0AB /* NSString+LXExtension.m in Sources */,
+				18D51E6C1BAF5D620077B0AB /* NSNotificationCenter+LXExtension.m in Sources */,
+				18D51E9E1BAF5F890077B0AB /* main.m in Sources */,
+				18D51E6D1BAF5D620077B0AB /* NSObject+LXExtension.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		18D51A451BAF5CFD0077B0AB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		18D51A461BAF5CFD0077B0AB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		18D51A481BAF5CFD0077B0AB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = ChatUIDemo/Other/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.cjyh.ChatUIDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		18D51A491BAF5CFD0077B0AB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = ChatUIDemo/Other/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.cjyh.ChatUIDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		18D51A2B1BAF5CFD0077B0AB /* Build configuration list for PBXProject "ChatUIDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				18D51A451BAF5CFD0077B0AB /* Debug */,
+				18D51A461BAF5CFD0077B0AB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		18D51A471BAF5CFD0077B0AB /* Build configuration list for PBXNativeTarget "ChatUIDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				18D51A481BAF5CFD0077B0AB /* Debug */,
+				18D51A491BAF5CFD0077B0AB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 18D51A281BAF5CFD0077B0AB /* Project object */;
+}
