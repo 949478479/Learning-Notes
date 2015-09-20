@@ -45,11 +45,7 @@
 }
 ```
 
-<<<<<<< HEAD
-## 其他 Demo
-=======
 然后在`UITableViewDelegate`方法中用模板 cell 根据`AutoLayout`计算并返回高度:
->>>>>>> 3873a70e5c3b9dbc7b92c132eec3d79b8428260e
 
 ```objective-c
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -76,16 +72,7 @@
 }
 ```
 
-<<<<<<< HEAD
-- [《Beginning iOS 8 Programming with Swift》小项目]
-  (https://github.com/949478479/Learning-Notes/tree/FoodPin)
-  
-- [简易聊天气泡和多行输入框](https://github.com/949478479/Learning-Notes/tree/ChatUIDemo)
-  
-## UICollectionView
-=======
 这个学习自这两篇博客:
->>>>>>> 3873a70e5c3b9dbc7b92c132eec3d79b8428260e
 
 [使用Autolayout实现UITableView的Cell动态布局和高度动态改变](http://www.imooc.com/wenda/detail/245446)
 
