@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MK4-Ez-CFc" customClass="LXInputView">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chat_bottom_bg" translatesAutoresizingMaskIntoConstraints="NO" id="Drf-8l-5UG" userLabel="Background View">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                </imageView>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TCJ-P6-Tfe" customClass="LXTextView">
+                    <rect key="frame" x="40" y="8" width="499" height="28"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="28" id="aFB-Du-0SZ"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="5"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                            <color key="value" red="0.63137254899999995" green="0.63137254899999995" blue="0.63137254899999995" alpha="1" colorSpace="calibratedRGB"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                            <real key="value" value="1"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <outlet property="delegate" destination="MK4-Ez-CFc" id="GnG-d3-jMC"/>
+                    </connections>
+                </textView>
+                <button clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MfL-i3-w8R">
+                    <rect key="frame" x="547" y="8" width="45" height="28"/>
+                    <color key="backgroundColor" red="0.19376453760000001" green="0.50850099329999998" blue="0.85232251879999998" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="28" id="SC6-b7-KOy"/>
+                        <constraint firstAttribute="width" constant="45" id="TeQ-px-1hU"/>
+                    </constraints>
+                    <state key="normal" title="发送">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="disabled">
+                        <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="5"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="sendButtonDidTapped:" destination="MK4-Ez-CFc" eventType="touchUpInside" id="I9f-Cx-lKV"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rm5-Jx-KRF">
+                    <rect key="frame" x="8" y="10" width="24" height="24"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="24" id="35A-ff-zTA"/>
+                        <constraint firstAttribute="width" constant="24" id="oo5-jB-Vvx"/>
+                    </constraints>
+                    <state key="normal" backgroundImage="chat_keyboardbutton_background"/>
+                    <state key="selected">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="keyboardButtonDidTapped:" destination="MK4-Ez-CFc" eventType="touchUpInside" id="ps8-f7-vVg"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="TCJ-P6-Tfe" firstAttribute="top" secondItem="MK4-Ez-CFc" secondAttribute="top" constant="8" id="2A5-vE-gXL"/>
+                <constraint firstAttribute="bottom" secondItem="Rm5-Jx-KRF" secondAttribute="bottom" constant="10" id="73U-82-dAh"/>
+                <constraint firstAttribute="bottom" secondItem="Drf-8l-5UG" secondAttribute="bottom" id="Cyn-Rz-4Aj"/>
+                <constraint firstAttribute="trailing" secondItem="MfL-i3-w8R" secondAttribute="trailing" constant="8" id="My3-hR-HFs"/>
+                <constraint firstItem="Drf-8l-5UG" firstAttribute="leading" secondItem="MK4-Ez-CFc" secondAttribute="leading" id="Vab-H6-tzg"/>
+                <constraint firstItem="MfL-i3-w8R" firstAttribute="leading" secondItem="TCJ-P6-Tfe" secondAttribute="trailing" constant="8" id="epA-8F-me3"/>
+                <constraint firstAttribute="bottom" secondItem="TCJ-P6-Tfe" secondAttribute="bottom" constant="8" id="iMR-X0-com"/>
+                <constraint firstAttribute="bottom" secondItem="MfL-i3-w8R" secondAttribute="bottom" constant="8" id="q42-z8-Rtl"/>
+                <constraint firstItem="TCJ-P6-Tfe" firstAttribute="leading" secondItem="Rm5-Jx-KRF" secondAttribute="trailing" constant="8" id="tFT-bB-Wyz"/>
+                <constraint firstItem="Rm5-Jx-KRF" firstAttribute="leading" secondItem="MK4-Ez-CFc" secondAttribute="leading" constant="8" id="xGZ-I7-n14"/>
+                <constraint firstItem="Drf-8l-5UG" firstAttribute="top" secondItem="MK4-Ez-CFc" secondAttribute="top" id="y6M-PE-CYK"/>
+                <constraint firstAttribute="trailing" secondItem="Drf-8l-5UG" secondAttribute="trailing" id="yrN-uo-wug"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="keyboardButton" destination="Rm5-Jx-KRF" id="doS-Eq-4oE"/>
+                <outlet property="keyboardButtonBottomConstraint" destination="73U-82-dAh" id="6GD-FR-av6"/>
+                <outlet property="sendButton" destination="MfL-i3-w8R" id="Smt-hL-1xK"/>
+                <outlet property="sendButtonBottomConstraint" destination="q42-z8-Rtl" id="bW9-CF-Ieq"/>
+                <outlet property="textView" destination="TCJ-P6-Tfe" id="eJE-uc-txt"/>
+                <outlet property="textViewHeightConstraint" destination="aFB-Du-0SZ" id="AgG-VI-GjY"/>
+            </connections>
+            <point key="canvasLocation" x="346" y="357"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="chat_bottom_bg" width="10" height="42"/>
+        <image name="chat_keyboardbutton_background" width="24" height="24"/>
+    </resources>
+</document>
