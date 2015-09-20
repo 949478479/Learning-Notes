@@ -1,3 +1,0 @@
-切换到当前文件夹,使用终端指令运行小服务器:
-
-python chatserver.py
