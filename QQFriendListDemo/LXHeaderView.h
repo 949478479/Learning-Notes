@@ -19,9 +19,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LXHeaderView : UITableViewHeaderFooterView
 
-@property (nonatomic, strong) LXGroupModel *groupModel;
+@property (nonatomic, readonly, strong) LXGroupModel *groupModel;
 
 @property (nonatomic, weak) id<LXHeaderViewDelegate> delegate;
+
+- (void)configureWithGroupModel:(LXGroupModel *)groupModel;
 
 @end
 

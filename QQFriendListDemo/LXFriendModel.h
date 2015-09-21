@@ -12,13 +12,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LXFriendModel : NSObject
 
-@property (nonatomic, copy) NSString *icon;
+@property (nonatomic, readonly, copy) NSString *icon;
 
-@property (nonatomic, copy) NSString *name;
+@property (nonatomic, readonly, copy) NSString *name;
 
-@property (nonatomic, copy) NSString *intro;
+@property (nonatomic, readonly, copy) NSString *intro;
 
-@property (nonatomic, assign, getter=isVip) BOOL vip;
+@property (nonatomic, readonly, assign, getter=isVip) BOOL vip;
+
+- (instancetype)initWithDictionary:(NSDictionary *)dict NS_DESIGNATED_INITIALIZER;
 
 + (instancetype)friendModelWithDictionary:(NSDictionary *)dict;
 

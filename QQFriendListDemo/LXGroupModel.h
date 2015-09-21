@@ -13,13 +13,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LXGroupModel : NSObject
 
-@property (nonatomic, strong) NSNumber *section;
 @property (nonatomic, assign, getter=isOpen) BOOL open;
+@property (nonatomic, readonly, strong) NSNumber *section;
 
-@property (nonatomic, copy)   NSString *name;
-@property (nonatomic, strong) NSNumber *online;
+@property (nonatomic, readonly, copy)   NSString *name;
+@property (nonatomic, readonly, strong) NSNumber *online;
 
-@property (nonatomic, strong) NSArray<LXFriendModel *> *friendModels;
+@property (nonatomic, readonly, strong) NSArray<LXFriendModel *> *friendModels;
+
+- (instancetype)initWithDictionary:(NSDictionary *)dict NS_DESIGNATED_INITIALIZER;
 
 + (instancetype)groupModelWithDictionary:(NSDictionary *)dict;
 

@@ -11,7 +11,7 @@
 
 @implementation LXFriendCell
 
-- (void)setFriendModel:(LXFriendModel *)friendModel
+- (void)configureWithFriendModel:(LXFriendModel *)friendModel
 {
     _friendModel = friendModel;
 

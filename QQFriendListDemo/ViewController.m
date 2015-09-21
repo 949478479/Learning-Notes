@@ -72,8 +72,8 @@ static NSString * const kLXHeaderViewIdentifier = @"LXHeaderView";
 
     LXGroupModel *groupModel   = self.groupModels[indexPath.section];
     LXFriendModel *friendModel = groupModel.friendModels[indexPath.row];
-    
-    cell.friendModel = friendModel;
+
+    [cell configureWithFriendModel:friendModel];
     
     return cell;
 }
@@ -84,8 +84,9 @@ static NSString * const kLXHeaderViewIdentifier = @"LXHeaderView";
 {
     LXHeaderView *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:kLXHeaderViewIdentifier];
 
-    headerView.delegate   = self;
-    headerView.groupModel = self.groupModels[section];
+    headerView.delegate = self;
+
+    [headerView configureWithGroupModel:self.groupModels[section]];
 
     return headerView;
 }

@@ -26,7 +26,7 @@
 
 ```objective-c
 // 模型类 LXGroupModel
-@property (nonatomic, strong) NSNumber *section;
+@property (nonatomic, readonly, strong) NSNumber *section;
 @property (nonatomic, assign, getter=isOpen) BOOL open;
 ```
 
@@ -37,8 +37,9 @@
 {
     LXHeaderView *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:kLXHeaderViewIdentifier];
 
-    headerView.delegate   = self;
-    headerView.groupModel = self.groupModels[section];
+    headerView.delegate = self;
+    
+    [headerView configureWithGroupModel:self.groupModels[section]];
 
     return headerView;
 }

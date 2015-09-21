@@ -13,7 +13,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LXFriendCell : UITableViewCell
 
-@property (nonatomic, strong) LXFriendModel *friendModel;
+@property (nonatomic, readonly, strong) LXFriendModel *friendModel;
+
+- (void)configureWithFriendModel:(LXFriendModel *)friendModel;
 
 @end
 

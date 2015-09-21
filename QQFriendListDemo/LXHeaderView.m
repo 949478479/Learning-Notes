@@ -18,6 +18,8 @@
 
 @implementation LXHeaderView
 
+#pragma mark - 初始设置
+
 - (void)awakeFromNib
 {
     [super awakeFromNib];
@@ -28,9 +30,9 @@
     _button.imageView.contentMode = UIViewContentModeCenter;
 }
 
-#pragma mark - Setter
+#pragma mark - 配置
 
-- (void)setGroupModel:(LXGroupModel *)groupModel
+- (void)configureWithGroupModel:(LXGroupModel *)groupModel
 {
     _groupModel = groupModel;
 
