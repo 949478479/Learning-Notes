@@ -22,20 +22,21 @@
 - (void)headerViewDidTapped:(LXHeaderView *)headerView;
 ```
 
-为了标识出具体是哪一组,定义了个一个`section`属性:
+使用模型`LXGroupModel`的`section`和`open`属性来记录不同分组的展开状态:
 
 ```objective-c
-@property (nonatomic, assign) NSInteger section;
+// 模型类 LXGroupModel
+@property (nonatomic, strong) NSNumber *section;
+@property (nonatomic, assign, getter=isOpen) BOOL open;
 ```
 
-在`UITableView`的代理方法中,提供自定义的`headerView`,设置代理,并绑定对应的`section`:
+在`UITableView`的代理方法中,提供自定义的`headerView`,设置代理,并绑定对应的`LXGroupModel`分组模型:
 
 ```objective-c
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     LXHeaderView *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:kLXHeaderViewIdentifier];
 
-    headerView.section    = section;
     headerView.delegate   = self;
     headerView.groupModel = self.groupModels[section];
 
@@ -52,7 +53,7 @@
 
 ```objective-c
 [UIView animateWithDuration:0.25 animations:^{
-    _button.imageView.transform = CGAffineTransformMakeRotation(_groupModel.open ? M_PI_2 : 0);
+    _button.imageView.transform = CGAffineTransformMakeRotation(_groupModel.isOpen ? M_PI_2 : 0);
 }];
 
 if ([_delegate respondsToSelector:@selector(headerViewDidTapped:)]) {
@@ -76,7 +77,7 @@ _button.imageView.contentMode = UIViewContentModeCenter;
 代理收到`headerView`被点击的回调后,就可以让`tableView`刷新该组:
 
 ```objective-c
-[self.tableView reloadSections:[NSIndexSet indexSetWithIndex:headerView.section]
+[self.tableView reloadSections:[NSIndexSet indexSetWithIndex:headerView.groupModel.section.integerValue]
               withRowAnimation:UITableViewRowAnimationAutomatic];
 ```
 
@@ -89,9 +90,8 @@ _button.imageView.contentMode = UIViewContentModeCenter;
 ```objective-c
 - (BOOL)touchesShouldCancelInContentView:(UIView *)view
 {
-    /* 
-     此方法默认实现为若 view 为 UIControll, 则返回 NO.
-     这将导致在 headerView 上滑动时, tableView 会转发消息给 button 而自己无法滑动. */
+    // 若 view 为 UIControll, 则此方法的默认实现会返回 NO.
+    // 这将导致在 headerView 上滑动时, tableView 会转发消息给 button 而自己无法滑动.
     return YES;
 }
 ```
