@@ -36,7 +36,7 @@
 
     [_button setTitle:groupModel.name forState:UIControlStateNormal];
 
-    _button.imageView.transform = CGAffineTransformMakeRotation(groupModel.open ? M_PI_2 : 0);
+    _button.imageView.transform = CGAffineTransformMakeRotation(groupModel.isOpen ? M_PI_2 : 0);
 
     _label.text = [NSString stringWithFormat:@"%@/%lu",
                    groupModel.online, (unsigned long)groupModel.friendModels.count];
@@ -49,7 +49,7 @@
     _groupModel.open = !_groupModel.isOpen;
 
     [UIView animateWithDuration:0.25 animations:^{
-        _button.imageView.transform = CGAffineTransformMakeRotation(_groupModel.open ? M_PI_2 : 0);
+        _button.imageView.transform = CGAffineTransformMakeRotation(_groupModel.isOpen ? M_PI_2 : 0);
     }];
 
     if ([_delegate respondsToSelector:@selector(headerViewDidTapped:)]) {

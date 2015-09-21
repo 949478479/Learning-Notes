@@ -84,7 +84,6 @@ static NSString * const kLXHeaderViewIdentifier = @"LXHeaderView";
 {
     LXHeaderView *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:kLXHeaderViewIdentifier];
 
-    headerView.section    = section;
     headerView.delegate   = self;
     headerView.groupModel = self.groupModels[section];
 
@@ -100,7 +99,7 @@ static NSString * const kLXHeaderViewIdentifier = @"LXHeaderView";
 
 - (void)headerViewDidTapped:(LXHeaderView *)headerView
 {
-    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:headerView.section]
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:headerView.groupModel.section.integerValue]
                   withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 

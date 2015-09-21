@@ -110,6 +110,8 @@
 		<string>我的好友</string>
 		<key>online</key>
 		<integer>3</integer>
+		<key>section</key>
+		<integer>0</integer>
 	</dict>
 	<dict>
 		<key>friends</key>
@@ -169,6 +171,8 @@
 		<string>小学</string>
 		<key>online</key>
 		<integer>0</integer>
+		<key>section</key>
+		<integer>1</integer>
 	</dict>
 	<dict>
 		<key>friends</key>
@@ -258,6 +262,8 @@
 		<string>初中</string>
 		<key>online</key>
 		<integer>1</integer>
+		<key>section</key>
+		<integer>2</integer>
 	</dict>
 	<dict>
 		<key>friends</key>
@@ -417,6 +423,8 @@
 		<string>高中</string>
 		<key>online</key>
 		<integer>11</integer>
+		<key>section</key>
+		<integer>3</integer>
 	</dict>
 	<dict>
 		<key>friends</key>
@@ -686,6 +694,8 @@
 		<string>大学</string>
 		<key>online</key>
 		<integer>19</integer>
+		<key>section</key>
+		<integer>4</integer>
 	</dict>
 	<dict>
 		<key>friends</key>
@@ -815,6 +825,8 @@
 		<string>亲戚</string>
 		<key>online</key>
 		<integer>0</integer>
+		<key>section</key>
+		<integer>5</integer>
 	</dict>
 	<dict>
 		<key>friends</key>
@@ -854,6 +866,8 @@
 		<string>欠我钱的</string>
 		<key>online</key>
 		<integer>3</integer>
+		<key>section</key>
+		<integer>6</integer>
 	</dict>
 	<dict>
 		<key>friends</key>
@@ -1003,6 +1017,8 @@
 		<string>蛋疼的</string>
 		<key>online</key>
 		<integer>6</integer>
+		<key>section</key>
+		<integer>7</integer>
 	</dict>
 	<dict>
 		<key>friends</key>
@@ -1072,6 +1088,8 @@
 		<string>有病的</string>
 		<key>online</key>
 		<integer>6</integer>
+		<key>section</key>
+		<integer>8</integer>
 	</dict>
 	<dict>
 		<key>friends</key>
@@ -1151,6 +1169,8 @@
 		<string>傻B</string>
 		<key>online</key>
 		<integer>5</integer>
+		<key>section</key>
+		<integer>9</integer>
 	</dict>
 	<dict>
 		<key>friends</key>
@@ -1210,6 +1230,8 @@
 		<string>2B</string>
 		<key>online</key>
 		<integer>2</integer>
+		<key>section</key>
+		<integer>10</integer>
 	</dict>
 </array>
 </plist>

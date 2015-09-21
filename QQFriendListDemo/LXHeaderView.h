@@ -17,8 +17,6 @@
 
 @interface LXHeaderView : UITableViewHeaderFooterView
 
-@property (nonatomic, assign) NSInteger section;
-
 @property (nonatomic, strong) LXGroupModel *groupModel;
 
 @property (nonatomic, weak) id<LXHeaderViewDelegate> delegate;

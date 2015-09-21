@@ -10,13 +10,13 @@
 
 @interface LXGroupModel : NSObject
 
-@property (nonatomic, copy) NSString *name;
+@property (nonatomic, strong) NSNumber *section;
+@property (nonatomic, assign, getter=isOpen) BOOL open;
 
-@property (nonatomic, copy) NSString *online;
+@property (nonatomic, copy)   NSString *name;
+@property (nonatomic, strong) NSNumber *online;
 
 @property (nonatomic, strong) NSArray *friendModels;
-
-@property (nonatomic, assign, getter=isOpen) BOOL open;
 
 + (instancetype)groupModelWithDictionary:(NSDictionary *)dict;
 
