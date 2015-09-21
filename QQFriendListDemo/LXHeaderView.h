@@ -9,6 +9,8 @@
 @import UIKit;
 @class LXGroupModel, LXHeaderView;
 
+NS_ASSUME_NONNULL_BEGIN
+
 @protocol LXHeaderViewDelegate <NSObject>
 @optional
 - (void)headerViewDidTapped:(LXHeaderView *)headerView;
@@ -22,3 +24,5 @@
 @property (nonatomic, weak) id<LXHeaderViewDelegate> delegate;
 
 @end
+
+NS_ASSUME_NONNULL_END

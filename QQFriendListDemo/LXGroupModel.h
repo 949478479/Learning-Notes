@@ -7,6 +7,9 @@
 //
 
 @import Foundation;
+@class LXFriendModel;
+
+NS_ASSUME_NONNULL_BEGIN
 
 @interface LXGroupModel : NSObject
 
@@ -16,8 +19,10 @@
 @property (nonatomic, copy)   NSString *name;
 @property (nonatomic, strong) NSNumber *online;
 
-@property (nonatomic, strong) NSArray *friendModels;
+@property (nonatomic, strong) NSArray<LXFriendModel *> *friendModels;
 
 + (instancetype)groupModelWithDictionary:(NSDictionary *)dict;
 
 @end
+
+NS_ASSUME_NONNULL_END

@@ -8,6 +8,8 @@
 
 @import Foundation;
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface LXFriendModel : NSObject
 
 @property (nonatomic, copy) NSString *icon;
@@ -21,3 +23,5 @@
 + (instancetype)friendModelWithDictionary:(NSDictionary *)dict;
 
 @end
+
+NS_ASSUME_NONNULL_END

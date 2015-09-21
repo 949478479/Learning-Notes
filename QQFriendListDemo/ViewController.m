@@ -19,7 +19,7 @@ static NSString * const kLXHeaderViewIdentifier = @"LXHeaderView";
 
 @interface ViewController () <LXHeaderViewDelegate>
 
-@property (nonatomic, strong) NSArray *groupModels;
+@property (nonatomic, strong) NSArray<LXGroupModel *> *groupModels;
 
 @end
 
@@ -37,11 +37,11 @@ static NSString * const kLXHeaderViewIdentifier = @"LXHeaderView";
 
 #pragma mark - 懒加载模型文件
 
-- (NSArray *)groupModels
+- (NSArray<LXGroupModel *> *)groupModels
 {
     if (!_groupModels) {
-        NSString *fullPath = [[NSBundle mainBundle] pathForResource:@"friends.plist" ofType:nil];
-        NSArray *dictArray = [NSArray arrayWithContentsOfFile:fullPath];
+        NSString *fullPath     = [[NSBundle mainBundle] pathForResource:@"friends.plist" ofType:nil];
+        NSArray *dictArray     = [NSArray arrayWithContentsOfFile:fullPath];
         NSMutableArray *models = [NSMutableArray arrayWithCapacity:dictArray.count];
         for (NSDictionary *dict in dictArray) {
             [models addObject:[LXGroupModel groupModelWithDictionary:dict]];

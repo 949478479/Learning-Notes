@@ -326,6 +326,12 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "apple.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = QQFriendListDemo;
+				WARNING_CFLAGS = (
+					"-Weverything",
+					"-Wno-objc-missing-property-synthesis",
+					"-Wno-direct-ivar-access",
+					"-Wno-implicit-retain-self",
+				);
 			};
 			name = Debug;
 		};
@@ -337,6 +343,12 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "apple.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = QQFriendListDemo;
+				WARNING_CFLAGS = (
+					"-Weverything",
+					"-Wno-objc-missing-property-synthesis",
+					"-Wno-direct-ivar-access",
+					"-Wno-implicit-retain-self",
+				);
 			};
 			name = Release;
 		};

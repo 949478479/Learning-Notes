@@ -9,8 +9,12 @@
 @import UIKit;
 @class LXFriendModel;
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface LXFriendCell : UITableViewCell
 
 @property (nonatomic, strong) LXFriendModel *friendModel;
 
 @end
+
+NS_ASSUME_NONNULL_END

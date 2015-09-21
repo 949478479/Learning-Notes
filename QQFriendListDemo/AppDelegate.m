@@ -14,11 +14,10 @@
 
 @implementation AppDelegate
 
-
 - (BOOL)application:(UIApplication *)application
     didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
-    UIUserNotificationType type = UIUserNotificationTypeBadge | UIUserNotificationTypeAlert;
+    UIUserNotificationType type = (UIUserNotificationType)(UIUserNotificationTypeBadge | UIUserNotificationTypeAlert);
     UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:type
                                                                              categories:nil];
     [[UIApplication sharedApplication] registerUserNotificationSettings:settings];

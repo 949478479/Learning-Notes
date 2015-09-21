@@ -19,7 +19,7 @@
     return self;
 }
 
-+ (instancetype)friendModelWithDictionary:(NSDictionary *)dict;
++ (instancetype)friendModelWithDictionary:(NSDictionary *)dict
 {
     return [[self alloc] initWithDictionary:dict];
 }
