@@ -99,7 +99,9 @@ templateCell.lx_width = self.tableView.lx_width;
 _contentLabel.preferredMaxLayoutWidth = _contentLabel.lx_width;
 ```
 
-这种里应外合的方式还是比较麻烦的,`UITableView-FDTemplateLayoutCell`这个库采用的方案是为 cell 的`contentView`临时加一个宽度约束,然后调用`systemLayoutSizeFittingSize:`方法计算出高度后再移除约束:
+这种里应外合的方式还是比较麻烦的.后来发现在代理方法中,对模板`cell`调用完`layoutIfNeeded`后直接设置`label`的`preferredMaxLayoutWidth`为`label`的宽度,可以免去重写`cell`的`layoutSubviews`方法,也就是不用调用`contentView`的`layoutIfNeeded`方法.
+
+`UITableView-FDTemplateLayoutCell`这个库采用的方案是为 cell 的`contentView`临时加一个宽度约束,然后调用`systemLayoutSizeFittingSize:`方法计算出高度后再移除约束:
 
 ```objective-c
 NSLayoutConstraint *tempWidthConstraint =
