@@ -186,10 +186,10 @@ _textView.textContainerInset = UIEdgeInsetsMake(kLXLineSpacing, 0, kLXLineSpacin
 }
 ```
 
-关于输入框最大高度,经过试验发现,每换一行高度增加`round(font.lineHeight + kLXLineSpacing)`.个别情况可能会偏差一个点,所以干脆用`ceil`上舍入好了:
+关于输入框最大高度,经过试验发现,在设置了行间距的情况下,每换一行高度增加`round(font.lineHeight + kLXLineSpacing)`.个别情况可能会偏差一个点,所以干脆用`ceil`上舍入好了:
 
 ```objective-c
-_maxHeight = height + round(_textView.font.lineHeight) * (kLXMaxCountOfRows - 1);
+_maxHeight = height + ceil(_textView.font.lineHeight + kLXLineSpacing) * (kLXMaxCountOfRows - 1);
 ```
 
 在`UITextView`的代理方法`textViewDidChange:`中对`contentSize.height`进行判断,一旦和高度约束不一样,就更新高度约束.而一旦超过了最大高度,就不再更新,从而进入滚动状态:
