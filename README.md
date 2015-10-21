@@ -2,15 +2,15 @@
 
 这几天学习`XMPP`框架就试着弄了个聊天气泡和多行输入框...在这里记录下一些思路.
 
-![](https://github.com/949478479/Study-Notes/tree/ChatUIDemo/Screenshot/%E6%88%AA%E5%9B%BE1.gif)
+![](https://github.com/949478479/Study-Notes/blob/ChatUIDemo/Screenshot/%E6%88%AA%E5%9B%BE1.gif)
 
-![](https://github.com/949478479/Study-Notes/tree/ChatUIDemo/Screenshot/%E6%88%AA%E5%9B%BE2.gif)
+![](https://github.com/949478479/Study-Notes/blob/ChatUIDemo/Screenshot/%E6%88%AA%E5%9B%BE2.gif)
 
 ## 聊天气泡
 
 这个用的是`UILabel`展示文字配合`UIImageView`展示气泡背景图片.貌似也有用`UIbutton`的,不过自动布局老是算不好就放弃这个方案了- -.
 
-![](https://github.com/949478479/Study-Notes/tree/ChatUIDemo/Screenshot/cell%20%E7%BA%A6%E6%9D%9F%E6%88%AA%E5%9B%BE.png)
+![](https://github.com/949478479/Study-Notes/blob/ChatUIDemo/Screenshot/cell%20%E7%BA%A6%E6%9D%9F%E6%88%AA%E5%9B%BE.png)
 
 指定`UILabel`的`preferredMaxLayoutWidth`,就能根据文本内容算出高度了.进而可以确定`UIImageView`以及 cell 的行高.
 
@@ -133,9 +133,9 @@ self.tableView.rowHeight= UITableViewAutomaticDimension;
 
 输入框使用的是`UITextView`.由于无法设置图片,就设置的`layer`的边框圆角,宽度,颜色,效果还不错...
 
-![](https://github.com/949478479/Study-Notes/tree/ChatUIDemo/Screenshot/UITextView%E8%BE%B9%E6%A1%86%E8%AE%BE%E7%BD%AE%E6%88%AA%E5%9B%BE.png)
+![](https://github.com/949478479/Study-Notes/blob/ChatUIDemo/Screenshot/UITextView%E8%BE%B9%E6%A1%86%E8%AE%BE%E7%BD%AE%E6%88%AA%E5%9B%BE.png)
 
-![](https://github.com/949478479/Study-Notes/tree/ChatUIDemo/Screenshot/%E8%BE%93%E5%85%A5%E6%A1%86%E5%A4%96%E8%A7%82%E6%88%AA%E5%9B%BE.png)
+![](https://github.com/949478479/Study-Notes/blob/ChatUIDemo/Screenshot/%E8%BE%93%E5%85%A5%E6%A1%86%E5%A4%96%E8%A7%82%E6%88%AA%E5%9B%BE.png)
 
 #### 输入框高度
 
@@ -170,8 +170,8 @@ _textView.textContainerInset = UIEdgeInsetsMake(kLXLineSpacing, 0, kLXLineSpacin
 
 换行效果如下:
 
-![](https://github.com/949478479/Study-Notes/tree/ChatUIDemo/Screenshot/%E6%8D%A2%E8%A1%8C%E6%88%AA%E5%9B%BE1.png)
-![](https://github.com/949478479/Study-Notes/tree/ChatUIDemo/Screenshot/%E6%8D%A2%E8%A1%8C%E6%88%AA%E5%9B%BE2.png)
+![](https://github.com/949478479/Study-Notes/blob/ChatUIDemo/Screenshot/%E6%8D%A2%E8%A1%8C%E6%88%AA%E5%9B%BE1.png)
+![](https://github.com/949478479/Study-Notes/blob/ChatUIDemo/Screenshot/%E6%8D%A2%E8%A1%8C%E6%88%AA%E5%9B%BE2.png)
 
 另一个问题是进入滚动模式时,自动换行无法完全滚至最底部,有点难看,手动按换行键则不存在这个问题.
 
