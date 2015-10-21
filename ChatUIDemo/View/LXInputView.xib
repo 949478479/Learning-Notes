@@ -12,7 +12,7 @@
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chat_bottom_bg" translatesAutoresizingMaskIntoConstraints="NO" id="Drf-8l-5UG" userLabel="Background View">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                 </imageView>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TCJ-P6-Tfe" customClass="LXTextView">
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TCJ-P6-Tfe" customClass="LXTextView">
                     <rect key="frame" x="40" y="8" width="499" height="28"/>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
