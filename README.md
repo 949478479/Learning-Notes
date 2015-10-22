@@ -5,7 +5,7 @@
 
 该教程讲解了如何实现类似`Ultravisual`的视差效果,这里整理下重点.
 
-![](https://github.com/949478479/Learning-Notes/blob/master/Ultravisual-screenshot/Finalstep.gif)
+![](https://github.com/949478479/Learning-Notes/blob/Ultravisual/Screenshot/Finalstep.gif)
 
 ##### 关键的常量和属性:
 
