@@ -5,4 +5,4 @@
 
 附上 [叶孤城中文翻译版传送门](http://www.jianshu.com/p/a7f5cab17395)
 
-![](https://github.com/949478479/Animations-Study/blob/master/Taasky-screenshot/taasky.gif)
+![](https://github.com/949478479/Study-Notes/tree/Taasky/Screenshot/taasky.gif)
