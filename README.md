@@ -30,7 +30,7 @@
 - (LXMessageCell *)templateCell
 {
     if (!_templateCell) {
-        // 老外说这样获取 cell 由于没有返回会造成内存泄漏,暂时还没发现.
+        // 老外说这样获取 cell 由于没有返回会造成内存泄漏,暂时还没发现.而且对重用貌似也没影响.
         _templateCell = [_tableView dequeueReusableCellWithIdentifier:@"MessageCell"];
     }
     return _templateCell;
@@ -99,7 +99,9 @@ templateCell.lx_width = self.tableView.lx_width;
 _contentLabel.preferredMaxLayoutWidth = _contentLabel.lx_width;
 ```
 
-这种里应外合的方式还是比较麻烦的.后来发现在代理方法中,对模板`cell`调用完`layoutIfNeeded`后直接设置`label`的`preferredMaxLayoutWidth`为`label`的宽度,可以免去重写`cell`的`layoutSubviews`方法,也就是不用调用`contentView`的`layoutIfNeeded`方法.
+这种里应外合的方式还是比较麻烦的.
+
+如果`cell`暴露了`label`属性,那么在代理方法中,对模板`cell`调用完`layoutIfNeeded`后,可直接设置`label`的`preferredMaxLayoutWidth`为`label`的宽度,这样可以免去重写`cell`的`layoutSubviews`方法,也就是不用调用`contentView`的`layoutIfNeeded`方法.
 
 `UITableView-FDTemplateLayoutCell`这个库采用的方案是为 cell 的`contentView`临时加一个宽度约束,然后调用`systemLayoutSizeFittingSize:`方法计算出高度后再移除约束:
 
@@ -125,7 +127,7 @@ self.tableView.estimatedRowHeight = 233;
 self.tableView.rowHeight= UITableViewAutomaticDimension;
 ```
 
-结果发现这样会导致发送多行消息时气泡出来时偶尔会变形一下,猜测是预估行高和实际行高的差异造成的.
+结果发现这样会导致发送多行消息时气泡出来时偶尔会变形一下,猜测是预估行高和实际行高的差异较大造成的.
 
 ## 多行输入框
 
@@ -141,7 +143,11 @@ self.tableView.rowHeight= UITableViewAutomaticDimension;
 
 每当`UITextView`的`contentSize.height`变化,动画更新高度约束即可.
 
-打印发现`UITextView`创建出来时`contentSize.height`只有`20`,开始输入后才会变为正常.经过试验,发现`contentSize.height`刚好等于`ceil(font.lineHeight + textContainerInset.top + textContainerInset.bottom)`.
+打印发现`UITextView`创建出来时`contentSize.height`只有`20`,开始输入后才会变为正常.
+
+经过试验,发现`contentSize.height`刚好等于:
+
+`ceil(font.lineHeight + textContainerInset.top + textContainerInset.bottom)`.
 
 这样在`awakeFromNib`方法中修改`UITextView`的高度约束即可,光标也会随之垂直居中显示了:
 
@@ -168,6 +174,8 @@ _textView.typingAttributes = attributes;
 _textView.textContainerInset = UIEdgeInsetsMake(kLXLineSpacing, 0, kLXLineSpacing, 0);
 ```
 
+当然,还需将`UITextView`高度约束的值改为`ceil(_textView.font.lineHeight + 2 * kLXLineSpacing)`.
+
 换行效果如下:
 
 ![](https://github.com/949478479/Study-Notes/blob/ChatUIDemo/Screenshot/%E6%8D%A2%E8%A1%8C%E6%88%AA%E5%9B%BE1.png)
@@ -186,42 +194,56 @@ _textView.textContainerInset = UIEdgeInsetsMake(kLXLineSpacing, 0, kLXLineSpacin
 }
 ```
 
-关于输入框最大高度,经过试验发现,在设置了行间距的情况下,每换一行高度增加`round(font.lineHeight + kLXLineSpacing)`.个别情况可能会偏差一个点,所以干脆用`ceil`上舍入好了:
+关于输入框最大高度,经过试验发现,在设置了行间距的情况下,每换一行高度增加:
+
+`round(font.lineHeight + kLXLineSpacing)`.
+
+个别情况可能会偏差一个点,所以干脆用`ceil`上舍入好了:
 
 ```objective-c
 _maxHeight = height + ceil(_textView.font.lineHeight + kLXLineSpacing) * (kLXMaxCountOfRows - 1);
 ```
 
-在`UITextView`的代理方法`textViewDidChange:`中对`contentSize.height`进行判断,一旦和高度约束不一样,就更新高度约束.而一旦超过了最大高度,就不再更新,从而进入滚动状态:
+然后在`UITextView`的代理方法`textViewDidChange:`中对`contentSize.height`进行判断,一旦和高度约束不一样,就更新高度约束.而一旦超过了最大高度,就不再更新,从而进入滚动状态:
 
 ```objective-c
-- (void)textViewDidBeginEditing:(UITextView *)textView
+- (void)updateHeightWithAnimationAndSendMessageIfNeed
 {
     CGFloat contentSizeHeight = _textView.contentSize.height;
     CGFloat delta = contentSizeHeight - _textViewHeightConstraint.constant;
 
-    // 尚未达到最大高度,且高度发生了变化.(达到最大高度后会进入滚动模式,高度不再增大,只可能减小.)
-    if (contentSizeHeight <= _maxHeight && ABS(delta))
-    {
+    // 尚未达到最大高度(达到最大高度后会进入滚动模式,高度不再增大,只可能减小.),且高度发生了变化.
+    if (contentSizeHeight <= _maxHeight && ABS(delta)) {
+
         _textViewHeightConstraint.constant = contentSizeHeight;
+        
         [UIView animateWithDuration:kLXAnimationDuration animations:^{
-            // 如果代理不实现就自己调用 layoutIfNeeded.
-            if ([_delegate respondsToSelector:@selector(inputView:changeHeight:)]) {
-                [_delegate inputView:self changeHeight:contentSizeHeight];
-            } else {
-                [self layoutIfNeeded];
+
+            // 通知代理输入框高度发生变化.
+            if ([_delegate respondsToSelector:@selector(inputView:didChangeHeightWithIncrement:)]) {
+                [_delegate inputView:self didChangeHeightWithIncrement:delta];
             }
+
+            [self layoutIfNeeded];
+
+        } completion:^(BOOL finished) {
+            // 通知代理发送按钮被点击,为了避免和刷新表格动画冲突,动画结束后再通知代理.
+            [self notifyDelegateSendMessageIfNeed];
         }];
+
+    } else {
+        // 输入框高度未变化,直接通知代理发送按钮被点击.
+        [self notifyDelegateSendMessageIfNeed];
     }
 }
 ```
 
 #### 输入框高度变化的影响
 
-由于输入框高度可能会变化,所以定义了这个代理方法来通知代理更新布局:
+由于输入框高度可能会变化,所以定义了这个代理方法来通知代理更新布局,此方法会在动画块中调用.
 
 ```objective-c
-- (void)inputView:(LXInputView *)inputView changeHeight:(CGFloat)height
+- (void)inputView:(LXInputView *)inputView didChangeHeightWithIncrement:(CGFloat)increment;
 ```
 
 代理在此方法中根据需要更新布局,在这里是让 tableView 在输入框高度改变时滚到最后一行,否则会因为高度变化被遮挡:
@@ -230,10 +252,14 @@ _maxHeight = height + ceil(_textView.font.lineHeight + kLXLineSpacing) * (kLXMax
 - (void)inputView:(LXInputView *)inputView changeHeight:(CGFloat)height
 {
     // 滚动到最底部时才随着输入框高度变化滚动.不然输入框高度变化可能会导致从上面滚到底部,体验不好.
-    // 由于该判断涉及到 tableView 高度,所以需放在 layoutIfNeeded 前面.
+    // 该判断依赖于 contentInset.bottom, 因此需要在修改 contentInset 之前处理.
     BOOL shouldScroll = [self isTableViewAtBottom];
-
-    [self.view layoutIfNeeded];
+    
+    _tableView.contentInset = ({
+        UIEdgeInsets contentInset = _tableView.contentInset;
+        contentInset.bottom += increment;
+        contentInset;
+    });
 
     if (shouldScroll && _messages.count) {
         // 这里没有选择开启动画,因为和输入框高度动画不同步.由于变化幅度比较小,不加动画反而效果更好.
@@ -244,24 +270,11 @@ _maxHeight = height + ceil(_textView.font.lineHeight + kLXLineSpacing) * (kLXMax
 }
 ```
 
-还有个细节就是发送按钮按下时通知代理的时机.我定义了这个代理方法:
-
-```objective-c
-- (void)inputView:(LXInputView *)inputView sendMessage:(NSString *)message;
-```
-
-在发送按钮按下时代理会在该方法中发送消息并刷新表格之类的.但是由于`UITableView`底部约束加在了输入框的顶部,导致发送多行消息时,由于输入框内容被清空导致高度变化,从而影响`UITableView`的高度,这个动画和刷新表格的动画同时发生时效果很不自然.
-
-最后采取的办法是单行时直接通知代理,多行时等输入框高度变化的动画结束时再通知代理.
-
 ## 键盘处理
 
-因为 tableView 的底部和输入框的顶部约束在了一起,所以键盘弹出时,更改输入框底部距离屏幕底部的约束为键盘高度即可, tableView 会随之上移.
+键盘处理最开始采取的方案是修改 tableView 的底部约束,使之上移.在这个过程还需要让 tableView 滚动至最后一行,否则高度的减小会导致 cell 被遮挡.但是这两个动画重叠后导致效果有些不自然.
 
-在这个过程还需要让 tableView 滚动至最后一行,否则高度的减小会导致 cell 被遮挡.这高度动画和滚动动画的重叠导致效果有些不自然.
-
-经过试验,当 tableView 已经位于最后一行时,就不要使用动画滚动,这样的效果就是 tableView 好像直接平移上来一样.
-而当 tableView 未处于最后一行时,则使用动画滚动,效果差强人意.
+最后采取了修改 tableView 的`contentInset`使之内容上移的方法,效果就好多了.
 
 ```objective-c
 - (void)keyboardWillShowHandle:(NSNotification *)notification
@@ -270,14 +283,20 @@ _maxHeight = height + ceil(_textView.font.lineHeight + kLXLineSpacing) * (kLXMax
     NSTimeInterval duration = [userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
     CGFloat keyboardHeight  = CGRectGetHeight([userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue]);
 
-    // 由于该判断涉及到 tableView 高度,所以需放在 layoutIfNeeded 前面.
-    BOOL animated = ![self isTableViewAtBottom];
-
+    // 修改输入框的底部约束,使之随键盘弹出而上移.
     _inputViewbottomLayoutConstraint.constant = keyboardHeight;
+
     [UIView animateWithDuration:duration animations:^{
-        [self.view layoutIfNeeded];
+        // 修改 contentInset, 使内容随键盘弹出上移.
+        _tableView.contentInset = ({
+            UIEdgeInsets contentInset = _tableView.contentInset;
+            contentInset.bottom += keyboardHeight;
+            contentInset;
+        });
+        [_inputView layoutIfNeeded];
     }];
 
+    // 滚动至最后一行.
     if (_messages.count > 0) {
         [_tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:_messages.count - 1 inSection:0]
                           atScrollPosition:UITableViewScrollPositionBottom
