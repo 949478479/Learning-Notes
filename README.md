@@ -8,7 +8,48 @@
 
 ## 聊天气泡
 
-这个用的是`UILabel`展示文字配合`UIImageView`展示气泡背景图片.貌似也有用`UIbutton`的,不过自动布局老是算不好就放弃这个方案了- -.
+#### 方式一: 使用 UIButton 实现
+
+通过子类化`UIButton`实现,非常简洁:
+
+```objective-c
+- (void)awakeFromNib
+{
+    [super awakeFromNib];
+
+    // 水平或者垂直方向上的总内切距离.
+    _sizeIncrement = 2 * kMessageButtonTitleInset;
+    // 确定 label 的最大允许宽度, 屏幕宽度即是 cell 宽度,然后减去按钮两侧间距以及 label 的两侧内切距离.
+    _titleLabelMaxWidth = LXScreenSize().width - 2 * (kMessageButtonPadding + kMessageButtonTitleInset);
+
+    // 设置 label 多行显示.
+    self.titleLabel.numberOfLines = 0;
+    // 设置标题内切,这个需根据具体的背景图片来调整,这里设置为 18.
+    self.titleEdgeInsets = UIEdgeInsetsMake(kMessageButtonTitleInset,
+                                            kMessageButtonTitleInset,
+                                            kMessageButtonTitleInset,
+                                            kMessageButtonTitleInset);
+}
+
+- (CGSize)intrinsicContentSize
+{
+    // 计算 label 的尺寸,然后加上内切距离,将其作为按钮的固有尺寸.
+    CGSize size = [self.titleLabel.text lx_sizeWithBoundingSize:(CGSize){_titleLabelMaxWidth, CGFLOAT_MAX}
+                                                           font:self.titleLabel.font];
+    size.width  += _sizeIncrement;
+    size.height += _sizeIncrement;
+
+    return size;
+}
+```
+
+cell 上的约束如下图所示:
+
+![](https://github.com/949478479/Study-Notes/blob/ChatUIDemo/Screenshot/MessageButton.png)
+
+#### 方式二: 自定义 UIView
+
+其实最开始没有想到这种方法,因此用的是`UILabel`展示文字配合`UIImageView`展示气泡背景图片,不仅布局繁琐,还得自己处理点击事件.
 
 ![](https://github.com/949478479/Study-Notes/blob/ChatUIDemo/Screenshot/cell%20%E7%BA%A6%E6%9D%9F%E6%88%AA%E5%9B%BE.png)
 
@@ -19,10 +60,12 @@
 {
     [super awakeFromNib];
     
-    _contentLabel.preferredMaxLayoutWidth =
-        LXKeyWindow().lx_width - _labelLeadingConstraint.constant * 2;
+    // 在多行显示的情况下,确定 UILabel 的 preferredMaxLayoutWidth 是计算其尺寸的关键.
+    _contentLabel.preferredMaxLayoutWidth = LXScreenSize().width - _labelLeadingConstraint.constant * 2;
 }
 ```
+
+#### 行高计算
 
 为了计算行高,引入了一个模板 cell 以及缓存行高的数组:
 
@@ -59,10 +102,8 @@
     // 将文本内容设置给 cell 的 label, 根据约束计算高度.
     LXMessageCell *templateCell = self.templateCell;
     templateCell.message = _messages[index];
-    
-    // 触发约束以及布局过程.
-    [templateCell layoutIfNeeded];
-    // 获取根据约束算出的高度.
+
+    // 获取根据约束算出的高度.注意,如果显示分隔线,此高度一定要 +1.
     CGFloat rowHeight = [templateCell.contentView
                          systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
     // 将高度缓存
@@ -72,7 +113,7 @@
 }
 ```
 
-这个学习自这两篇博客:
+可以参阅这两篇博客:
 
 [使用Autolayout实现UITableView的Cell动态布局和高度动态改变](http://www.imooc.com/wenda/detail/245446)
 
@@ -82,9 +123,9 @@
 
 [UITableView-FDTemplateLayoutCell](https://github.com/forkingdog/UITableView-FDTemplateLayoutCell)
 
-关键在于`UILabel`必须能确定自己的宽度,我这里是一开始就手动指明了`preferredMaxLayoutWidth`.
+如果一开始`UILabel`不能确定其`preferredMaxLayoutWidth`,就会麻烦很多:
 
-否则就需要在代理方法中设置 cell 的宽度:
+首先需要在代理方法中设置 cell 的宽度:
 
 ```objective-c
 templateCell.lx_width = self.tableView.lx_width;
@@ -99,9 +140,7 @@ templateCell.lx_width = self.tableView.lx_width;
 _contentLabel.preferredMaxLayoutWidth = _contentLabel.lx_width;
 ```
 
-这种里应外合的方式还是比较麻烦的.
-
-如果`cell`暴露了`label`属性,那么在代理方法中,对模板`cell`调用完`layoutIfNeeded`后,可直接设置`label`的`preferredMaxLayoutWidth`为`label`的宽度,这样可以免去重写`cell`的`layoutSubviews`方法,也就是不用调用`contentView`的`layoutIfNeeded`方法.
+如果`cell`暴露了`label`属性,那么在代理方法中,对模板`cell`调用完`layoutIfNeeded`后,`label`的宽度已是正确的值了,可直接设置`label`的`preferredMaxLayoutWidth`为`label`的宽度,然后对`cell`的`contentView`调用`systemLayoutSizeFittingSize:`方法计算高度即可.
 
 `UITableView-FDTemplateLayoutCell`这个库采用的方案是为 cell 的`contentView`临时加一个宽度约束,然后调用`systemLayoutSizeFittingSize:`方法计算出高度后再移除约束:
 
@@ -120,14 +159,14 @@ fittingSize = [cell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompr
 [cell.contentView removeConstraint:tempWidthConstraint];
 ```
 
-其实最开始用的是动态行高:
+其实最开始用的是动态行高,仅需两行代码:
 
 ```objective-c
-self.tableView.estimatedRowHeight = 233;
+self.tableView.estimatedRowHeight = 233; // 这个值要和实际行高尽量接近,差异过大滚动时容易发生"跳跃".
 self.tableView.rowHeight= UITableViewAutomaticDimension;
 ```
 
-结果发现这样会导致发送多行消息时气泡出来时偶尔会变形一下,猜测是预估行高和实际行高的差异较大造成的.
+但是发现这样会导致发送多行消息时气泡出来时偶尔会变形一下,猜测是预估行高和实际行高的差异较大造成的.
 
 ## 多行输入框
 
