@@ -227,12 +227,13 @@ _maxHeight = height + ceil(_textView.font.lineHeight + kLXLineSpacing) * (kLXMax
             [self layoutIfNeeded];
 
         } completion:^(BOOL finished) {
-            // 通知代理发送按钮被点击,为了避免和刷新表格动画冲突,动画结束后再通知代理.
+            // 除了换行,点击发送按钮会清空输入框内容,导致高度变化,因此根据发送按钮是否被点击决定是否通知代理.
+            // 为了避免和刷新表格动画冲突,动画结束后再执行此方法.
             [self notifyDelegateSendMessageIfNeed];
         }];
 
     } else {
-        // 输入框高度未变化,直接通知代理发送按钮被点击.
+        // 输入框高度未变化,直接根据发送按钮是否被点击决定是否通知代理.
         [self notifyDelegateSendMessageIfNeed];
     }
 }
