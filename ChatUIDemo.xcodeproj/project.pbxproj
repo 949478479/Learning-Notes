@@ -7,29 +7,29 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		18D51E681BAF5D620077B0AB /* NSObject+DLIntrospection.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D51CF11BAF5D610077B0AB /* NSObject+DLIntrospection.m */; settings = {ASSET_TAGS = (); }; };
-		18D51E691BAF5D620077B0AB /* LXUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D51CF31BAF5D610077B0AB /* LXUtilities.m */; settings = {ASSET_TAGS = (); }; };
-		18D51E6B1BAF5D620077B0AB /* MBProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 18D51CF71BAF5D610077B0AB /* MBProgressHUD.bundle */; settings = {ASSET_TAGS = (); }; };
-		18D51E6C1BAF5D620077B0AB /* NSNotificationCenter+LXExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D51CF91BAF5D610077B0AB /* NSNotificationCenter+LXExtension.m */; settings = {ASSET_TAGS = (); }; };
-		18D51E6D1BAF5D620077B0AB /* NSObject+LXExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D51CFB1BAF5D610077B0AB /* NSObject+LXExtension.m */; settings = {ASSET_TAGS = (); }; };
-		18D51E6E1BAF5D620077B0AB /* NSString+LXExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D51CFD1BAF5D610077B0AB /* NSString+LXExtension.m */; settings = {ASSET_TAGS = (); }; };
-		18D51E6F1BAF5D620077B0AB /* UIImage+LXExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D51CFF1BAF5D610077B0AB /* UIImage+LXExtension.m */; settings = {ASSET_TAGS = (); }; };
-		18D51E701BAF5D620077B0AB /* UIStoryboard+LXExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D51D011BAF5D610077B0AB /* UIStoryboard+LXExtension.m */; settings = {ASSET_TAGS = (); }; };
-		18D51E711BAF5D620077B0AB /* UITextField+LXExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D51D031BAF5D610077B0AB /* UITextField+LXExtension.m */; settings = {ASSET_TAGS = (); }; };
-		18D51E721BAF5D620077B0AB /* UIView+LXExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D51D051BAF5D610077B0AB /* UIView+LXExtension.m */; settings = {ASSET_TAGS = (); }; };
-		18D51E991BAF5F890077B0AB /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D51E801BAF5F890077B0AB /* ViewController.m */; settings = {ASSET_TAGS = (); }; };
-		18D51E9A1BAF5F890077B0AB /* XXNibBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D51E841BAF5F890077B0AB /* XXNibBridge.m */; settings = {ASSET_TAGS = (); }; };
-		18D51E9B1BAF5F890077B0AB /* XXNibConvention.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D51E861BAF5F890077B0AB /* XXNibConvention.m */; settings = {ASSET_TAGS = (); }; };
-		18D51E9C1BAF5F890077B0AB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D51E891BAF5F890077B0AB /* AppDelegate.m */; settings = {ASSET_TAGS = (); }; };
-		18D51E9E1BAF5F890077B0AB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D51E8B1BAF5F890077B0AB /* main.m */; settings = {ASSET_TAGS = (); }; };
-		18D51E9F1BAF5F890077B0AB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18D51E8D1BAF5F890077B0AB /* Assets.xcassets */; settings = {ASSET_TAGS = (); }; };
-		18D51EA01BAF5F890077B0AB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18D51E8F1BAF5F890077B0AB /* LaunchScreen.storyboard */; settings = {ASSET_TAGS = (); }; };
-		18D51EA11BAF5F890077B0AB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18D51E901BAF5F890077B0AB /* Main.storyboard */; settings = {ASSET_TAGS = (); }; };
-		18D51EA21BAF5F890077B0AB /* LXInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D51E931BAF5F890077B0AB /* LXInputView.m */; settings = {ASSET_TAGS = (); }; };
-		18D51EA31BAF5F890077B0AB /* LXInputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D51E941BAF5F890077B0AB /* LXInputView.xib */; settings = {ASSET_TAGS = (); }; };
-		18D51EA41BAF5F890077B0AB /* LXMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D51E961BAF5F890077B0AB /* LXMessageCell.m */; settings = {ASSET_TAGS = (); }; };
-		18D51EA51BAF5F890077B0AB /* LXReciveMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D51E971BAF5F890077B0AB /* LXReciveMessageCell.xib */; settings = {ASSET_TAGS = (); }; };
-		18D51EA61BAF5F890077B0AB /* LXSendMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D51E981BAF5F890077B0AB /* LXSendMessageCell.xib */; settings = {ASSET_TAGS = (); }; };
+		18D51E681BAF5D620077B0AB /* NSObject+DLIntrospection.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D51CF11BAF5D610077B0AB /* NSObject+DLIntrospection.m */; };
+		18D51E691BAF5D620077B0AB /* LXUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D51CF31BAF5D610077B0AB /* LXUtilities.m */; };
+		18D51E6B1BAF5D620077B0AB /* MBProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 18D51CF71BAF5D610077B0AB /* MBProgressHUD.bundle */; };
+		18D51E6C1BAF5D620077B0AB /* NSNotificationCenter+LXExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D51CF91BAF5D610077B0AB /* NSNotificationCenter+LXExtension.m */; };
+		18D51E6D1BAF5D620077B0AB /* NSObject+LXExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D51CFB1BAF5D610077B0AB /* NSObject+LXExtension.m */; };
+		18D51E6E1BAF5D620077B0AB /* NSString+LXExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D51CFD1BAF5D610077B0AB /* NSString+LXExtension.m */; };
+		18D51E6F1BAF5D620077B0AB /* UIImage+LXExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D51CFF1BAF5D610077B0AB /* UIImage+LXExtension.m */; };
+		18D51E701BAF5D620077B0AB /* UIStoryboard+LXExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D51D011BAF5D610077B0AB /* UIStoryboard+LXExtension.m */; };
+		18D51E711BAF5D620077B0AB /* UITextField+LXExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D51D031BAF5D610077B0AB /* UITextField+LXExtension.m */; };
+		18D51E721BAF5D620077B0AB /* UIView+LXExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D51D051BAF5D610077B0AB /* UIView+LXExtension.m */; };
+		18D51E991BAF5F890077B0AB /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D51E801BAF5F890077B0AB /* ViewController.m */; };
+		18D51E9A1BAF5F890077B0AB /* XXNibBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D51E841BAF5F890077B0AB /* XXNibBridge.m */; };
+		18D51E9B1BAF5F890077B0AB /* XXNibConvention.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D51E861BAF5F890077B0AB /* XXNibConvention.m */; };
+		18D51E9C1BAF5F890077B0AB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D51E891BAF5F890077B0AB /* AppDelegate.m */; };
+		18D51E9E1BAF5F890077B0AB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D51E8B1BAF5F890077B0AB /* main.m */; };
+		18D51E9F1BAF5F890077B0AB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18D51E8D1BAF5F890077B0AB /* Assets.xcassets */; };
+		18D51EA01BAF5F890077B0AB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18D51E8F1BAF5F890077B0AB /* LaunchScreen.storyboard */; };
+		18D51EA11BAF5F890077B0AB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18D51E901BAF5F890077B0AB /* Main.storyboard */; };
+		18D51EA21BAF5F890077B0AB /* LXInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D51E931BAF5F890077B0AB /* LXInputView.m */; };
+		18D51EA31BAF5F890077B0AB /* LXInputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D51E941BAF5F890077B0AB /* LXInputView.xib */; };
+		18D51EA41BAF5F890077B0AB /* LXMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D51E961BAF5F890077B0AB /* LXMessageCell.m */; };
+		18D51EA51BAF5F890077B0AB /* LXReciveMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D51E971BAF5F890077B0AB /* LXReciveMessageCell.xib */; };
+		18D51EA61BAF5F890077B0AB /* LXSendMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D51E981BAF5F890077B0AB /* LXSendMessageCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -417,6 +417,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cjyh.ChatUIDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				WARNING_CFLAGS = "";
 			};
 			name = Debug;
 		};
@@ -428,6 +429,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cjyh.ChatUIDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				WARNING_CFLAGS = "";
 			};
 			name = Release;
 		};
@@ -450,6 +452,7 @@
 				18D51A491BAF5CFD0077B0AB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

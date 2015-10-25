@@ -10,10 +10,11 @@
 #import "LXInputView.h"
 #import "XXNibBridge.h"
 
+static const CGFloat kLXLineSpacing = 5;
 static const NSUInteger kLXMaxCountOfRows = 7;
 static const NSTimeInterval kLXAnimationDuration = 0.25;
 
-static const CGFloat kLXLineSpacing = 5;
+NS_ASSUME_NONNULL_BEGIN
 
 @interface LXInputView () <XXNibBridge, UITextViewDelegate>
 
@@ -58,7 +59,7 @@ static const CGFloat kLXLineSpacing = 5;
 
     // 修正 textView 的高度约束为 contentSize.height, 这样光标就居中了.另外还需调整俩按钮的位置,使之垂直居中.
     {
-        CGFloat delta  = height - _textViewHeightConstraint.constant;
+        CGFloat delta = height - _textViewHeightConstraint.constant;
 
         _textViewHeightConstraint.constant       = height;
         _sendButtonBottomConstraint.constant     += delta / 2;
@@ -80,7 +81,7 @@ static const CGFloat kLXLineSpacing = 5;
 
     // 清空输入框,如果当前有多行则恢复单行高度.
     _textView.text = nil;
-    [self textViewDidChange:(UITextView *)_textView];
+    [self textViewDidChange:_textView];
 }
 
 - (IBAction)keyboardButtonDidTapped:(UIButton *)sender
@@ -123,20 +124,22 @@ static const CGFloat kLXLineSpacing = 5;
     CGFloat delta = contentSizeHeight - _textViewHeightConstraint.constant;
 
     // 尚未达到最大高度(达到最大高度后会进入滚动模式,高度不再增大,只可能减小.),且高度发生了变化.
-    if (contentSizeHeight <= _maxHeight && ABS(delta))
-    {
+    if (contentSizeHeight <= _maxHeight && ABS(delta)) {
+
         _textViewHeightConstraint.constant = contentSizeHeight;
+        
         [UIView animateWithDuration:kLXAnimationDuration animations:^{
-            // 如果代理不实现就自己调用 layoutIfNeeded.
-            if ([_delegate respondsToSelector:@selector(inputView:changeHeight:)]) {
-                [_delegate inputView:self changeHeight:contentSizeHeight];
-            } else {
-                [self layoutIfNeeded];
+
+            if ([_delegate respondsToSelector:@selector(inputView:didChangeHeightWithIncrement:)]) {
+                [_delegate inputView:self didChangeHeightWithIncrement:delta];
             }
+
+            [self layoutIfNeeded];
+
         } completion:^(BOOL finished) {
-            // 动画结束后再发消息,避免和刷新表格动画冲突.
-            [self notifyDelegateSendMessageIfNeed];
+            [self notifyDelegateSendMessageIfNeed]; // 动画结束后再发消息,避免和刷新表格动画冲突.
         }];
+
     } else {
         [self notifyDelegateSendMessageIfNeed];
     }
@@ -146,9 +149,9 @@ static const CGFloat kLXLineSpacing = 5;
 
 - (void)notifyDelegateSendMessageIfNeed
 {
-    if (_shouldSend && [_delegate respondsToSelector:@selector(inputView:sendMessage:)]) {
+    if (_shouldSend && [_delegate respondsToSelector:@selector(inputView:didSendMessage:)]) {
         _shouldSend = NO;
-        [_delegate inputView:self sendMessage:_message];
+        [_delegate inputView:self didSendMessage:_message];
     }
 }
 
@@ -167,3 +170,5 @@ static const CGFloat kLXLineSpacing = 5;
 }
 
 @end
+
+NS_ASSUME_NONNULL_END

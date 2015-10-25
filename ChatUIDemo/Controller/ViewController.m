@@ -11,6 +11,8 @@
 #import "LXMessageCell.h"
 #import "ViewController.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface ViewController () <NSStreamDelegate, UITableViewDataSource, UITableViewDelegate, LXInputViewDelegate>
 
 @property (nonatomic, strong) NSInputStream *inputStream;
@@ -24,7 +26,6 @@
 @property (nonatomic, weak) IBOutlet LXInputView *inputView;
 
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *inputViewbottomLayoutConstraint;
-@property (nonatomic, weak) IBOutlet NSLayoutConstraint *tableViewBottonLayoutConstraint;
 
 @end
 
@@ -76,26 +77,34 @@
     NSTimeInterval duration = [userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
     CGFloat keyboardHeight  = CGRectGetHeight([userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue]);
 
-    // 经过反复试验发现 tableView 处于底部时不要使用动画滚动,处于中间时使用动画滚动,效果较好.
-    // 由于该判断涉及到 tableView 高度,所以需放在 layoutIfNeeded 前面.
-    BOOL animated = ![self isTableViewAtBottom];
-
     _inputViewbottomLayoutConstraint.constant = keyboardHeight;
+
     [UIView animateWithDuration:duration animations:^{
-        [self.view layoutIfNeeded];
+        _tableView.contentInset = ({
+            UIEdgeInsets contentInset = _tableView.contentInset;
+            contentInset.bottom += keyboardHeight;
+            contentInset;
+        });
+        [_inputView layoutIfNeeded];
     }];
 
-    [self tableViewScrollToBottomIfNeedWithAnimated:animated];
+    [self tableViewScrollToBottomIfNeedWithAnimated:YES];
 }
 
 - (void)keyboardWillHideHandle:(NSNotification *)notification
 {
     NSDictionary *userInfo  = notification.userInfo;
     NSTimeInterval duration = [userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+    CGFloat keyboardHeight  = CGRectGetHeight([userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue]);
 
     _inputViewbottomLayoutConstraint.constant = 0;
     [UIView animateWithDuration:duration animations:^{
-        [self.view layoutIfNeeded];
+        _tableView.contentInset = ({
+            UIEdgeInsets contentInset = _tableView.contentInset;
+            contentInset.bottom -= keyboardHeight;
+            contentInset;
+        });
+        [_inputView layoutIfNeeded];
     }];
 }
 
@@ -103,23 +112,19 @@
 
 - (BOOL)isTableViewAtBottom
 {
-    NSInteger num1 = round(_tableView.contentOffset.y + _tableView.lx_height);
+    NSInteger num1 = round(_tableView.contentOffset.y - _tableView.contentInset.bottom + _tableView.lx_height);
     NSInteger num2 = round(_tableView.contentSize.height);
-
-    if (num1 == num2 || _tableView.contentSize.height <= _tableView.lx_height) {
-        return YES;
-    }
-    return NO;
+    NSInteger num3 = round(_tableView.lx_height - _tableView.contentInset.top - _tableView.contentInset.bottom);
+    return (num1 == num2) || (num2 <= num3);
 }
 
 - (void)tableViewScrollToBottomIfNeedWithAnimated:(BOOL)animated
 {
     NSUInteger count = [_tableView numberOfRowsInSection:0];
-    if (count > 0) {
-        [_tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:count - 1 inSection:0]
-                          atScrollPosition:UITableViewScrollPositionBottom
-                                  animated:animated];
-    }
+    if (count == 0) { return; }
+    [_tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:count - 1 inSection:0]
+                      atScrollPosition:UITableViewScrollPositionBottom
+                              animated:animated];
 }
 
 #pragma mark - 消息处理
@@ -194,19 +199,24 @@
 
 #pragma mark - LXInputViewDelegate
 
-- (void)inputView:(LXInputView *)inputView sendMessage:(NSString *)message
+- (void)inputView:(LXInputView *)inputView didSendMessage:(nonnull NSString *)message
 {
     [self writeDataWithMessage:[NSString stringWithFormat:@"msg:%@", message]];
 }
 
-- (void)inputView:(LXInputView *)inputView changeHeight:(CGFloat)height
+- (void)inputView:(LXInputView *)inputView didChangeHeightWithIncrement:(CGFloat)increment
 {
     // 滚动到最底部时才随着输入框高度变化滚动.不然输入框高度变化可能会导致从上面滚到底部,体验不好.
-    BOOL shouldScroll = [self isTableViewAtBottom];
+    // 该判断依赖于 contentInset.bottom, 因此需要在修改 contentInset 之前处理.
+    BOOL shouldScrollToBottom = [self isTableViewAtBottom];
 
-    [self.view layoutIfNeeded];
+    _tableView.contentInset = ({
+        UIEdgeInsets contentInset = _tableView.contentInset;
+        contentInset.bottom += increment;
+        contentInset;
+    });
 
-    if (shouldScroll && _messages.count) {
+    if (shouldScrollToBottom) {
         // 这里没有选择开启动画,因为和输入框高度动画不同步.由于幅度比较小,不加动画反而效果更好.
         [self tableViewScrollToBottomIfNeedWithAnimated:NO];
     }
@@ -303,3 +313,5 @@
 }
 
 @end
+
+NS_ASSUME_NONNULL_END

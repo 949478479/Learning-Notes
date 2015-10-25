@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="6Zw-kY-UbB">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="6Zw-kY-UbB">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
     </dependencies>
     <scenes>
         <!--Chat-->
@@ -138,9 +138,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="bottom" secondItem="NWb-lV-HnP" secondAttribute="bottom" constant="44" id="8kq-7Q-Jg7"/>
                             <constraint firstItem="NWb-lV-HnP" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="HR7-eO-eqF"/>
                             <constraint firstAttribute="bottom" secondItem="hiC-tV-Quu" secondAttribute="bottom" id="OKm-6l-xbk"/>
-                            <constraint firstItem="hiC-tV-Quu" firstAttribute="top" secondItem="NWb-lV-HnP" secondAttribute="bottom" id="Pjd-cX-2Ks"/>
                             <constraint firstItem="hiC-tV-Quu" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="XOv-JU-AUg"/>
                             <constraint firstAttribute="trailing" secondItem="hiC-tV-Quu" secondAttribute="trailing" id="fBO-Pr-1j2"/>
                             <constraint firstAttribute="trailing" secondItem="NWb-lV-HnP" secondAttribute="trailing" id="h4a-nc-GDx"/>
@@ -163,7 +163,6 @@
                         <outlet property="inputView" destination="hiC-tV-Quu" id="Fdy-qv-vbA"/>
                         <outlet property="inputViewbottomLayoutConstraint" destination="OKm-6l-xbk" id="b0D-Pj-OZ9"/>
                         <outlet property="tableView" destination="NWb-lV-HnP" id="e5x-tz-qIO"/>
-                        <outlet property="tableViewBottonLayoutConstraint" destination="Pjd-cX-2Ks" id="Iq8-QS-8dL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
