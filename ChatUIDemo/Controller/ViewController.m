@@ -270,8 +270,6 @@ NS_ASSUME_NONNULL_BEGIN
     LXMessageCell *templateCell = self.templateCell;
     templateCell.message = _messages[index];
 
-    // 触发约束以及布局过程.
-    [templateCell layoutIfNeeded];
     // 获取根据约束算出的高度.
     CGFloat rowHeight = [templateCell.contentView
                          systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;

@@ -7,16 +7,30 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		18D51E681BAF5D620077B0AB /* NSObject+DLIntrospection.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D51CF11BAF5D610077B0AB /* NSObject+DLIntrospection.m */; };
-		18D51E691BAF5D620077B0AB /* LXUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D51CF31BAF5D610077B0AB /* LXUtilities.m */; };
-		18D51E6B1BAF5D620077B0AB /* MBProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 18D51CF71BAF5D610077B0AB /* MBProgressHUD.bundle */; };
-		18D51E6C1BAF5D620077B0AB /* NSNotificationCenter+LXExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D51CF91BAF5D610077B0AB /* NSNotificationCenter+LXExtension.m */; };
-		18D51E6D1BAF5D620077B0AB /* NSObject+LXExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D51CFB1BAF5D610077B0AB /* NSObject+LXExtension.m */; };
-		18D51E6E1BAF5D620077B0AB /* NSString+LXExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D51CFD1BAF5D610077B0AB /* NSString+LXExtension.m */; };
-		18D51E6F1BAF5D620077B0AB /* UIImage+LXExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D51CFF1BAF5D610077B0AB /* UIImage+LXExtension.m */; };
-		18D51E701BAF5D620077B0AB /* UIStoryboard+LXExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D51D011BAF5D610077B0AB /* UIStoryboard+LXExtension.m */; };
-		18D51E711BAF5D620077B0AB /* UITextField+LXExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D51D031BAF5D610077B0AB /* UITextField+LXExtension.m */; };
-		18D51E721BAF5D620077B0AB /* UIView+LXExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D51D051BAF5D610077B0AB /* UIView+LXExtension.m */; };
+		1876106C1BDD5125002C7735 /* CALayer+LXAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 187610391BDD5125002C7735 /* CALayer+LXAdditions.m */; };
+		1876106D1BDD5125002C7735 /* NSObject+DLIntrospection.m in Sources */ = {isa = PBXBuildFile; fileRef = 1876103C1BDD5125002C7735 /* NSObject+DLIntrospection.m */; };
+		1876106F1BDD5125002C7735 /* MBProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 187610401BDD5125002C7735 /* MBProgressHUD.bundle */; };
+		187610701BDD5125002C7735 /* NSArray+LXAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 187610421BDD5125002C7735 /* NSArray+LXAdditions.m */; };
+		187610711BDD5125002C7735 /* NSAttributedString+LXAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 187610441BDD5125002C7735 /* NSAttributedString+LXAdditions.m */; };
+		187610721BDD5125002C7735 /* NSDate+LXAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 187610461BDD5125002C7735 /* NSDate+LXAdditions.m */; };
+		187610731BDD5125002C7735 /* NSDictionary+LXAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 187610481BDD5125002C7735 /* NSDictionary+LXAdditions.m */; };
+		187610741BDD5125002C7735 /* NSFileManager+LXAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1876104A1BDD5125002C7735 /* NSFileManager+LXAdditions.m */; };
+		187610751BDD5125002C7735 /* NSNotificationCenter+LXAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1876104C1BDD5125002C7735 /* NSNotificationCenter+LXAdditions.m */; };
+		187610761BDD5125002C7735 /* NSObject+LXAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1876104E1BDD5125002C7735 /* NSObject+LXAdditions.m */; };
+		187610771BDD5125002C7735 /* NSString+LXAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 187610501BDD5125002C7735 /* NSString+LXAdditions.m */; };
+		187610781BDD5125002C7735 /* NSUserDefaults+LXAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 187610521BDD5125002C7735 /* NSUserDefaults+LXAdditions.m */; };
+		187610791BDD5125002C7735 /* UIButton+LXAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 187610541BDD5125002C7735 /* UIButton+LXAdditions.m */; };
+		1876107A1BDD5125002C7735 /* UIColor+LXAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 187610561BDD5125002C7735 /* UIColor+LXAdditions.m */; };
+		1876107B1BDD5125002C7735 /* UIImage+LXAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 187610581BDD5125002C7735 /* UIImage+LXAdditions.m */; };
+		1876107C1BDD5125002C7735 /* UIStoryboard+LXAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1876105A1BDD5125002C7735 /* UIStoryboard+LXAdditions.m */; };
+		1876107D1BDD5125002C7735 /* UITextField+LXAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1876105C1BDD5125002C7735 /* UITextField+LXAdditions.m */; };
+		1876107E1BDD5125002C7735 /* UITextView+LXAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1876105E1BDD5125002C7735 /* UITextView+LXAdditions.m */; };
+		1876107F1BDD5125002C7735 /* UIView+LXAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 187610601BDD5125002C7735 /* UIView+LXAdditions.m */; };
+		187610801BDD5125002C7735 /* UIViewController+LXAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 187610621BDD5125002C7735 /* UIViewController+LXAdditions.m */; };
+		187610811BDD5125002C7735 /* LXImagePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 187610641BDD5125002C7735 /* LXImagePicker.m */; };
+		187610821BDD5125002C7735 /* LXKeyboardSpacingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 187610661BDD5125002C7735 /* LXKeyboardSpacingView.m */; };
+		187610831BDD5125002C7735 /* LXMulticastDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 187610691BDD5125002C7735 /* LXMulticastDelegate.m */; };
+		187610841BDD5125002C7735 /* LXUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 1876106B1BDD5125002C7735 /* LXUtilities.m */; };
 		18D51E991BAF5F890077B0AB /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D51E801BAF5F890077B0AB /* ViewController.m */; };
 		18D51E9A1BAF5F890077B0AB /* XXNibBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D51E841BAF5F890077B0AB /* XXNibBridge.m */; };
 		18D51E9B1BAF5F890077B0AB /* XXNibConvention.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D51E861BAF5F890077B0AB /* XXNibConvention.m */; };
@@ -33,28 +47,57 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		187610381BDD5125002C7735 /* CALayer+LXAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+LXAdditions.h"; sourceTree = "<group>"; };
+		187610391BDD5125002C7735 /* CALayer+LXAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+LXAdditions.m"; sourceTree = "<group>"; };
+		1876103B1BDD5125002C7735 /* NSObject+DLIntrospection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+DLIntrospection.h"; sourceTree = "<group>"; };
+		1876103C1BDD5125002C7735 /* NSObject+DLIntrospection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+DLIntrospection.m"; sourceTree = "<group>"; };
+		1876103E1BDD5125002C7735 /* MBProgressHUD+LXAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+LXAdditions.h"; sourceTree = "<group>"; };
+		1876103F1BDD5125002C7735 /* MBProgressHUD+LXAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+LXAdditions.m"; sourceTree = "<group>"; };
+		187610401BDD5125002C7735 /* MBProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MBProgressHUD.bundle; sourceTree = "<group>"; };
+		187610411BDD5125002C7735 /* NSArray+LXAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+LXAdditions.h"; sourceTree = "<group>"; };
+		187610421BDD5125002C7735 /* NSArray+LXAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+LXAdditions.m"; sourceTree = "<group>"; };
+		187610431BDD5125002C7735 /* NSAttributedString+LXAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+LXAdditions.h"; sourceTree = "<group>"; };
+		187610441BDD5125002C7735 /* NSAttributedString+LXAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAttributedString+LXAdditions.m"; sourceTree = "<group>"; };
+		187610451BDD5125002C7735 /* NSDate+LXAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+LXAdditions.h"; sourceTree = "<group>"; };
+		187610461BDD5125002C7735 /* NSDate+LXAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+LXAdditions.m"; sourceTree = "<group>"; };
+		187610471BDD5125002C7735 /* NSDictionary+LXAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+LXAdditions.h"; sourceTree = "<group>"; };
+		187610481BDD5125002C7735 /* NSDictionary+LXAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+LXAdditions.m"; sourceTree = "<group>"; };
+		187610491BDD5125002C7735 /* NSFileManager+LXAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+LXAdditions.h"; sourceTree = "<group>"; };
+		1876104A1BDD5125002C7735 /* NSFileManager+LXAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+LXAdditions.m"; sourceTree = "<group>"; };
+		1876104B1BDD5125002C7735 /* NSNotificationCenter+LXAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNotificationCenter+LXAdditions.h"; sourceTree = "<group>"; };
+		1876104C1BDD5125002C7735 /* NSNotificationCenter+LXAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNotificationCenter+LXAdditions.m"; sourceTree = "<group>"; };
+		1876104D1BDD5125002C7735 /* NSObject+LXAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+LXAdditions.h"; sourceTree = "<group>"; };
+		1876104E1BDD5125002C7735 /* NSObject+LXAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+LXAdditions.m"; sourceTree = "<group>"; };
+		1876104F1BDD5125002C7735 /* NSString+LXAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+LXAdditions.h"; sourceTree = "<group>"; };
+		187610501BDD5125002C7735 /* NSString+LXAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+LXAdditions.m"; sourceTree = "<group>"; };
+		187610511BDD5125002C7735 /* NSUserDefaults+LXAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSUserDefaults+LXAdditions.h"; sourceTree = "<group>"; };
+		187610521BDD5125002C7735 /* NSUserDefaults+LXAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSUserDefaults+LXAdditions.m"; sourceTree = "<group>"; };
+		187610531BDD5125002C7735 /* UIButton+LXAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+LXAdditions.h"; sourceTree = "<group>"; };
+		187610541BDD5125002C7735 /* UIButton+LXAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+LXAdditions.m"; sourceTree = "<group>"; };
+		187610551BDD5125002C7735 /* UIColor+LXAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+LXAdditions.h"; sourceTree = "<group>"; };
+		187610561BDD5125002C7735 /* UIColor+LXAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+LXAdditions.m"; sourceTree = "<group>"; };
+		187610571BDD5125002C7735 /* UIImage+LXAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+LXAdditions.h"; sourceTree = "<group>"; };
+		187610581BDD5125002C7735 /* UIImage+LXAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+LXAdditions.m"; sourceTree = "<group>"; };
+		187610591BDD5125002C7735 /* UIStoryboard+LXAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIStoryboard+LXAdditions.h"; sourceTree = "<group>"; };
+		1876105A1BDD5125002C7735 /* UIStoryboard+LXAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIStoryboard+LXAdditions.m"; sourceTree = "<group>"; };
+		1876105B1BDD5125002C7735 /* UITextField+LXAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+LXAdditions.h"; sourceTree = "<group>"; };
+		1876105C1BDD5125002C7735 /* UITextField+LXAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+LXAdditions.m"; sourceTree = "<group>"; };
+		1876105D1BDD5125002C7735 /* UITextView+LXAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+LXAdditions.h"; sourceTree = "<group>"; };
+		1876105E1BDD5125002C7735 /* UITextView+LXAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+LXAdditions.m"; sourceTree = "<group>"; };
+		1876105F1BDD5125002C7735 /* UIView+LXAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+LXAdditions.h"; sourceTree = "<group>"; };
+		187610601BDD5125002C7735 /* UIView+LXAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+LXAdditions.m"; sourceTree = "<group>"; };
+		187610611BDD5125002C7735 /* UIViewController+LXAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+LXAdditions.h"; sourceTree = "<group>"; };
+		187610621BDD5125002C7735 /* UIViewController+LXAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+LXAdditions.m"; sourceTree = "<group>"; };
+		187610631BDD5125002C7735 /* LXImagePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXImagePicker.h; sourceTree = "<group>"; };
+		187610641BDD5125002C7735 /* LXImagePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXImagePicker.m; sourceTree = "<group>"; };
+		187610651BDD5125002C7735 /* LXKeyboardSpacingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXKeyboardSpacingView.h; sourceTree = "<group>"; };
+		187610661BDD5125002C7735 /* LXKeyboardSpacingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXKeyboardSpacingView.m; sourceTree = "<group>"; };
+		187610671BDD5125002C7735 /* LXMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXMacro.h; sourceTree = "<group>"; };
+		187610681BDD5125002C7735 /* LXMulticastDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXMulticastDelegate.h; sourceTree = "<group>"; };
+		187610691BDD5125002C7735 /* LXMulticastDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXMulticastDelegate.m; sourceTree = "<group>"; };
+		1876106A1BDD5125002C7735 /* LXUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXUtilities.h; sourceTree = "<group>"; };
+		1876106B1BDD5125002C7735 /* LXUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXUtilities.m; sourceTree = "<group>"; };
 		18D51A301BAF5CFD0077B0AB /* ChatUIDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChatUIDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		18D51CF01BAF5D610077B0AB /* NSObject+DLIntrospection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+DLIntrospection.h"; sourceTree = "<group>"; };
-		18D51CF11BAF5D610077B0AB /* NSObject+DLIntrospection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+DLIntrospection.m"; sourceTree = "<group>"; };
-		18D51CF21BAF5D610077B0AB /* LXUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXUtilities.h; sourceTree = "<group>"; };
-		18D51CF31BAF5D610077B0AB /* LXUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXUtilities.m; sourceTree = "<group>"; };
-		18D51CF51BAF5D610077B0AB /* MBProgressHUD+LXExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+LXExtension.h"; sourceTree = "<group>"; };
-		18D51CF61BAF5D610077B0AB /* MBProgressHUD+LXExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+LXExtension.m"; sourceTree = "<group>"; };
-		18D51CF71BAF5D610077B0AB /* MBProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MBProgressHUD.bundle; sourceTree = "<group>"; };
-		18D51CF81BAF5D610077B0AB /* NSNotificationCenter+LXExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNotificationCenter+LXExtension.h"; sourceTree = "<group>"; };
-		18D51CF91BAF5D610077B0AB /* NSNotificationCenter+LXExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNotificationCenter+LXExtension.m"; sourceTree = "<group>"; };
-		18D51CFA1BAF5D610077B0AB /* NSObject+LXExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+LXExtension.h"; sourceTree = "<group>"; };
-		18D51CFB1BAF5D610077B0AB /* NSObject+LXExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+LXExtension.m"; sourceTree = "<group>"; };
-		18D51CFC1BAF5D610077B0AB /* NSString+LXExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+LXExtension.h"; sourceTree = "<group>"; };
-		18D51CFD1BAF5D610077B0AB /* NSString+LXExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+LXExtension.m"; sourceTree = "<group>"; };
-		18D51CFE1BAF5D610077B0AB /* UIImage+LXExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+LXExtension.h"; sourceTree = "<group>"; };
-		18D51CFF1BAF5D610077B0AB /* UIImage+LXExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+LXExtension.m"; sourceTree = "<group>"; };
-		18D51D001BAF5D610077B0AB /* UIStoryboard+LXExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIStoryboard+LXExtension.h"; sourceTree = "<group>"; };
-		18D51D011BAF5D610077B0AB /* UIStoryboard+LXExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIStoryboard+LXExtension.m"; sourceTree = "<group>"; };
-		18D51D021BAF5D610077B0AB /* UITextField+LXExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+LXExtension.h"; sourceTree = "<group>"; };
-		18D51D031BAF5D610077B0AB /* UITextField+LXExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+LXExtension.m"; sourceTree = "<group>"; };
-		18D51D041BAF5D610077B0AB /* UIView+LXExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+LXExtension.h"; sourceTree = "<group>"; };
-		18D51D051BAF5D610077B0AB /* UIView+LXExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+LXExtension.m"; sourceTree = "<group>"; };
 		18D51E7F1BAF5F890077B0AB /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		18D51E801BAF5F890077B0AB /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		18D51E831BAF5F890077B0AB /* XXNibBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXNibBridge.h; sourceTree = "<group>"; };
@@ -88,6 +131,95 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		187610351BDD5125002C7735 /* Extension  */ = {
+			isa = PBXGroup;
+			children = (
+				187610361BDD5125002C7735 /* LXUtilities */,
+			);
+			path = "Extension ";
+			sourceTree = "<group>";
+		};
+		187610361BDD5125002C7735 /* LXUtilities */ = {
+			isa = PBXGroup;
+			children = (
+				187610371BDD5125002C7735 /* LXAdditions */,
+				187610631BDD5125002C7735 /* LXImagePicker.h */,
+				187610641BDD5125002C7735 /* LXImagePicker.m */,
+				187610651BDD5125002C7735 /* LXKeyboardSpacingView.h */,
+				187610661BDD5125002C7735 /* LXKeyboardSpacingView.m */,
+				187610671BDD5125002C7735 /* LXMacro.h */,
+				187610681BDD5125002C7735 /* LXMulticastDelegate.h */,
+				187610691BDD5125002C7735 /* LXMulticastDelegate.m */,
+				1876106A1BDD5125002C7735 /* LXUtilities.h */,
+				1876106B1BDD5125002C7735 /* LXUtilities.m */,
+			);
+			path = LXUtilities;
+			sourceTree = "<group>";
+		};
+		187610371BDD5125002C7735 /* LXAdditions */ = {
+			isa = PBXGroup;
+			children = (
+				187610381BDD5125002C7735 /* CALayer+LXAdditions.h */,
+				187610391BDD5125002C7735 /* CALayer+LXAdditions.m */,
+				1876103A1BDD5125002C7735 /* DLIntrospection */,
+				1876103D1BDD5125002C7735 /* MBProgressHUD+LXAdditions */,
+				187610411BDD5125002C7735 /* NSArray+LXAdditions.h */,
+				187610421BDD5125002C7735 /* NSArray+LXAdditions.m */,
+				187610431BDD5125002C7735 /* NSAttributedString+LXAdditions.h */,
+				187610441BDD5125002C7735 /* NSAttributedString+LXAdditions.m */,
+				187610451BDD5125002C7735 /* NSDate+LXAdditions.h */,
+				187610461BDD5125002C7735 /* NSDate+LXAdditions.m */,
+				187610471BDD5125002C7735 /* NSDictionary+LXAdditions.h */,
+				187610481BDD5125002C7735 /* NSDictionary+LXAdditions.m */,
+				187610491BDD5125002C7735 /* NSFileManager+LXAdditions.h */,
+				1876104A1BDD5125002C7735 /* NSFileManager+LXAdditions.m */,
+				1876104B1BDD5125002C7735 /* NSNotificationCenter+LXAdditions.h */,
+				1876104C1BDD5125002C7735 /* NSNotificationCenter+LXAdditions.m */,
+				1876104D1BDD5125002C7735 /* NSObject+LXAdditions.h */,
+				1876104E1BDD5125002C7735 /* NSObject+LXAdditions.m */,
+				1876104F1BDD5125002C7735 /* NSString+LXAdditions.h */,
+				187610501BDD5125002C7735 /* NSString+LXAdditions.m */,
+				187610511BDD5125002C7735 /* NSUserDefaults+LXAdditions.h */,
+				187610521BDD5125002C7735 /* NSUserDefaults+LXAdditions.m */,
+				187610531BDD5125002C7735 /* UIButton+LXAdditions.h */,
+				187610541BDD5125002C7735 /* UIButton+LXAdditions.m */,
+				187610551BDD5125002C7735 /* UIColor+LXAdditions.h */,
+				187610561BDD5125002C7735 /* UIColor+LXAdditions.m */,
+				187610571BDD5125002C7735 /* UIImage+LXAdditions.h */,
+				187610581BDD5125002C7735 /* UIImage+LXAdditions.m */,
+				187610591BDD5125002C7735 /* UIStoryboard+LXAdditions.h */,
+				1876105A1BDD5125002C7735 /* UIStoryboard+LXAdditions.m */,
+				1876105B1BDD5125002C7735 /* UITextField+LXAdditions.h */,
+				1876105C1BDD5125002C7735 /* UITextField+LXAdditions.m */,
+				1876105D1BDD5125002C7735 /* UITextView+LXAdditions.h */,
+				1876105E1BDD5125002C7735 /* UITextView+LXAdditions.m */,
+				1876105F1BDD5125002C7735 /* UIView+LXAdditions.h */,
+				187610601BDD5125002C7735 /* UIView+LXAdditions.m */,
+				187610611BDD5125002C7735 /* UIViewController+LXAdditions.h */,
+				187610621BDD5125002C7735 /* UIViewController+LXAdditions.m */,
+			);
+			path = LXAdditions;
+			sourceTree = "<group>";
+		};
+		1876103A1BDD5125002C7735 /* DLIntrospection */ = {
+			isa = PBXGroup;
+			children = (
+				1876103B1BDD5125002C7735 /* NSObject+DLIntrospection.h */,
+				1876103C1BDD5125002C7735 /* NSObject+DLIntrospection.m */,
+			);
+			path = DLIntrospection;
+			sourceTree = "<group>";
+		};
+		1876103D1BDD5125002C7735 /* MBProgressHUD+LXAdditions */ = {
+			isa = PBXGroup;
+			children = (
+				1876103E1BDD5125002C7735 /* MBProgressHUD+LXAdditions.h */,
+				1876103F1BDD5125002C7735 /* MBProgressHUD+LXAdditions.m */,
+				187610401BDD5125002C7735 /* MBProgressHUD.bundle */,
+			);
+			path = "MBProgressHUD+LXAdditions";
+			sourceTree = "<group>";
+		};
 		18D51A271BAF5CFD0077B0AB = {
 			isa = PBXGroup;
 			children = (
@@ -109,57 +241,13 @@
 			children = (
 				18D51E871BAF5F890077B0AB /* Other */,
 				18D51E811BAF5F890077B0AB /* Lib */,
-				18D51CEE1BAF5D610077B0AB /* Extension  */,
 				18D51E8C1BAF5F890077B0AB /* Resource */,
+				187610351BDD5125002C7735 /* Extension  */,
 				18D51E8E1BAF5F890077B0AB /* Storyboard */,
 				18D51E7E1BAF5F890077B0AB /* Controller */,
 				18D51E911BAF5F890077B0AB /* View */,
 			);
 			path = ChatUIDemo;
-			sourceTree = "<group>";
-		};
-		18D51CEE1BAF5D610077B0AB /* Extension  */ = {
-			isa = PBXGroup;
-			children = (
-				18D51CEF1BAF5D610077B0AB /* DLIntrospection */,
-				18D51CF21BAF5D610077B0AB /* LXUtilities.h */,
-				18D51CF31BAF5D610077B0AB /* LXUtilities.m */,
-				18D51CF41BAF5D610077B0AB /* MBProgressHUD+LXExtension */,
-				18D51CF81BAF5D610077B0AB /* NSNotificationCenter+LXExtension.h */,
-				18D51CF91BAF5D610077B0AB /* NSNotificationCenter+LXExtension.m */,
-				18D51CFA1BAF5D610077B0AB /* NSObject+LXExtension.h */,
-				18D51CFB1BAF5D610077B0AB /* NSObject+LXExtension.m */,
-				18D51CFC1BAF5D610077B0AB /* NSString+LXExtension.h */,
-				18D51CFD1BAF5D610077B0AB /* NSString+LXExtension.m */,
-				18D51CFE1BAF5D610077B0AB /* UIImage+LXExtension.h */,
-				18D51CFF1BAF5D610077B0AB /* UIImage+LXExtension.m */,
-				18D51D001BAF5D610077B0AB /* UIStoryboard+LXExtension.h */,
-				18D51D011BAF5D610077B0AB /* UIStoryboard+LXExtension.m */,
-				18D51D021BAF5D610077B0AB /* UITextField+LXExtension.h */,
-				18D51D031BAF5D610077B0AB /* UITextField+LXExtension.m */,
-				18D51D041BAF5D610077B0AB /* UIView+LXExtension.h */,
-				18D51D051BAF5D610077B0AB /* UIView+LXExtension.m */,
-			);
-			path = "Extension ";
-			sourceTree = "<group>";
-		};
-		18D51CEF1BAF5D610077B0AB /* DLIntrospection */ = {
-			isa = PBXGroup;
-			children = (
-				18D51CF01BAF5D610077B0AB /* NSObject+DLIntrospection.h */,
-				18D51CF11BAF5D610077B0AB /* NSObject+DLIntrospection.m */,
-			);
-			path = DLIntrospection;
-			sourceTree = "<group>";
-		};
-		18D51CF41BAF5D610077B0AB /* MBProgressHUD+LXExtension */ = {
-			isa = PBXGroup;
-			children = (
-				18D51CF51BAF5D610077B0AB /* MBProgressHUD+LXExtension.h */,
-				18D51CF61BAF5D610077B0AB /* MBProgressHUD+LXExtension.m */,
-				18D51CF71BAF5D610077B0AB /* MBProgressHUD.bundle */,
-			);
-			path = "MBProgressHUD+LXExtension";
 			sourceTree = "<group>";
 		};
 		18D51E7E1BAF5F890077B0AB /* Controller */ = {
@@ -296,7 +384,7 @@
 				18D51EA31BAF5F890077B0AB /* LXInputView.xib in Resources */,
 				18D51EA51BAF5F890077B0AB /* LXReciveMessageCell.xib in Resources */,
 				18D51E9F1BAF5F890077B0AB /* Assets.xcassets in Resources */,
-				18D51E6B1BAF5D620077B0AB /* MBProgressHUD.bundle in Resources */,
+				1876106F1BDD5125002C7735 /* MBProgressHUD.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -307,22 +395,36 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				18D51E701BAF5D620077B0AB /* UIStoryboard+LXExtension.m in Sources */,
-				18D51E711BAF5D620077B0AB /* UITextField+LXExtension.m in Sources */,
-				18D51E721BAF5D620077B0AB /* UIView+LXExtension.m in Sources */,
+				187610721BDD5125002C7735 /* NSDate+LXAdditions.m in Sources */,
+				1876107D1BDD5125002C7735 /* UITextField+LXAdditions.m in Sources */,
+				187610791BDD5125002C7735 /* UIButton+LXAdditions.m in Sources */,
+				187610761BDD5125002C7735 /* NSObject+LXAdditions.m in Sources */,
 				18D51EA41BAF5F890077B0AB /* LXMessageCell.m in Sources */,
+				187610801BDD5125002C7735 /* UIViewController+LXAdditions.m in Sources */,
+				187610781BDD5125002C7735 /* NSUserDefaults+LXAdditions.m in Sources */,
+				1876107A1BDD5125002C7735 /* UIColor+LXAdditions.m in Sources */,
+				1876107F1BDD5125002C7735 /* UIView+LXAdditions.m in Sources */,
+				1876107E1BDD5125002C7735 /* UITextView+LXAdditions.m in Sources */,
+				1876107C1BDD5125002C7735 /* UIStoryboard+LXAdditions.m in Sources */,
 				18D51E9A1BAF5F890077B0AB /* XXNibBridge.m in Sources */,
+				187610751BDD5125002C7735 /* NSNotificationCenter+LXAdditions.m in Sources */,
 				18D51E9B1BAF5F890077B0AB /* XXNibConvention.m in Sources */,
-				18D51E6F1BAF5D620077B0AB /* UIImage+LXExtension.m in Sources */,
+				187610811BDD5125002C7735 /* LXImagePicker.m in Sources */,
+				1876106D1BDD5125002C7735 /* NSObject+DLIntrospection.m in Sources */,
+				187610741BDD5125002C7735 /* NSFileManager+LXAdditions.m in Sources */,
+				187610771BDD5125002C7735 /* NSString+LXAdditions.m in Sources */,
+				187610701BDD5125002C7735 /* NSArray+LXAdditions.m in Sources */,
+				187610711BDD5125002C7735 /* NSAttributedString+LXAdditions.m in Sources */,
+				1876107B1BDD5125002C7735 /* UIImage+LXAdditions.m in Sources */,
+				187610821BDD5125002C7735 /* LXKeyboardSpacingView.m in Sources */,
 				18D51E991BAF5F890077B0AB /* ViewController.m in Sources */,
 				18D51EA21BAF5F890077B0AB /* LXInputView.m in Sources */,
+				187610831BDD5125002C7735 /* LXMulticastDelegate.m in Sources */,
 				18D51E9C1BAF5F890077B0AB /* AppDelegate.m in Sources */,
-				18D51E691BAF5D620077B0AB /* LXUtilities.m in Sources */,
-				18D51E681BAF5D620077B0AB /* NSObject+DLIntrospection.m in Sources */,
-				18D51E6E1BAF5D620077B0AB /* NSString+LXExtension.m in Sources */,
-				18D51E6C1BAF5D620077B0AB /* NSNotificationCenter+LXExtension.m in Sources */,
 				18D51E9E1BAF5F890077B0AB /* main.m in Sources */,
-				18D51E6D1BAF5D620077B0AB /* NSObject+LXExtension.m in Sources */,
+				187610841BDD5125002C7735 /* LXUtilities.m in Sources */,
+				187610731BDD5125002C7735 /* NSDictionary+LXAdditions.m in Sources */,
+				1876106C1BDD5125002C7735 /* CALayer+LXAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

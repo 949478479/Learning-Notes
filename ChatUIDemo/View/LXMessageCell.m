@@ -12,50 +12,55 @@
 @interface LXMessageCell ()
 
 @property (nonatomic, weak) IBOutlet UIImageView *avatarView;
-@property (nonatomic, weak) IBOutlet UIImageView *bubbleView;
-@property (nonatomic, weak) IBOutlet UILabel     *contentLabel;
-
-@property (nonatomic, weak) IBOutlet NSLayoutConstraint *labelLeadingConstraint;
+@property (nonatomic, weak) IBOutlet UIButton *messageButton;
 
 @end
 
 @implementation LXMessageCell
 
+- (void)setMessage:(NSString *)message
+{
+    _message = message;
+
+    _messageButton.lx_normalTitle = message;
+}
+
+@end
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+static const CGFloat kMessageButtonPadding = 78;
+static const CGFloat kMessageButtonTitleInset = 18;
+
+@interface LXMessageButton : UIButton
+@property (nonatomic, assign) CGFloat sizeIncrement;
+@property (nonatomic, assign) CGFloat titleLabelMaxWidth;
+@end
+
+@implementation LXMessageButton
+
 - (void)awakeFromNib
 {
     [super awakeFromNib];
 
-    _contentLabel.preferredMaxLayoutWidth =
-        LXKeyWindow().lx_width - _labelLeadingConstraint.constant * 2;
+    _sizeIncrement = 2 * kMessageButtonTitleInset;
+    _titleLabelMaxWidth = LXScreenSize().width - 2 * (kMessageButtonPadding + kMessageButtonTitleInset);
+
+    self.titleLabel.numberOfLines = 0;
+    self.titleEdgeInsets = UIEdgeInsetsMake(kMessageButtonTitleInset,
+                                            kMessageButtonTitleInset,
+                                            kMessageButtonTitleInset,
+                                            kMessageButtonTitleInset);
 }
 
-- (void)setMessage:(NSString *)message
+- (CGSize)intrinsicContentSize
 {
-    _message = message;
-    _contentLabel.text = message;
-}
+    CGSize size = [self.titleLabel.text lx_sizeWithBoundingSize:(CGSize){_titleLabelMaxWidth, CGFLOAT_MAX}
+                                                           font:self.titleLabel.font];
+    size.width  += _sizeIncrement;
+    size.height += _sizeIncrement;
 
-#pragma mark - 点击事件处理
-
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
-{
-    _bubbleView.highlighted = [_bubbleView pointInside:[touches.anyObject locationInView:_bubbleView]
-                                             withEvent:event];
-    [super touchesBegan:touches withEvent:event];
-}
-
-- (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
-{
-    _bubbleView.highlighted = NO;
-
-    [super touchesEnded:touches withEvent:event];
-}
-
-- (void)touchesCancelled:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
-{
-    _bubbleView.highlighted = NO;
-    
-    [super touchesCancelled:touches withEvent:event];
+    return size;
 }
 
 @end

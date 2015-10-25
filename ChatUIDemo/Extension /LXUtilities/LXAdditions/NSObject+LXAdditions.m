@@ -1,15 +1,28 @@
 //
-//  NSObject+LXExtension.m
+//  NSObject+LXAdditions.m
 //
 //  Created by 从今以后 on 15/9/14.
 //  Copyright © 2015年 从今以后. All rights reserved.
 //
 
 @import ObjectiveC.runtime;
-#import "NSObject+LXExtension.h"
+#import "LXUtilities.h"
+#import "NSObject+LXAdditions.h"
 #import "NSObject+DLIntrospection.h"
 
-@implementation NSObject (LXExtension)
+@implementation NSObject (LXAdditions)
+
+#pragma mark - 方法交换
+
+#ifdef DEBUG
++ (void)load
+{
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        LXMethodSwizzling(self, @selector(description), @selector(lx_description));
+    });
+}
+#endif
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -17,18 +30,6 @@
 
 + (void)lx_printIvars
 {
-    /*
-    Class class = [self class];
-    uint outCount = 0;
-    Ivar *ivars = class_copyIvarList(class, &outCount);
-    for (uint i = 0; i < outCount; ++i) {
-        Ivar ivar = ivars[i];
-        if (i == 0) {
-            printf("%s 实例变量如下: \n\n", class_getName(class));
-        }
-        printf("%s : %s \n\n", ivar_getName(ivar), ivar_getTypeEncoding(ivar));
-    }
-    free(ivars);*/
     NSLog(@"%@", [self dl_instanceVariables]);
 }
 
@@ -43,18 +44,6 @@
 
 + (void)lx_printProperties
 {
-    /*
-    Class class = [self class];
-    uint outCount = 0;
-    objc_property_t *properties = class_copyPropertyList(class, &outCount);
-    for (uint i = 0; i < outCount; ++i) {
-        objc_property_t property = properties[i];
-        if (i == 0) {
-            printf("%s 属性如下: \n\n", class_getName(class));
-        }
-        printf("%s : %s \n\n", property_getName(property),  property_getAttributes(property));
-    }
-    free(properties);*/
     NSLog(@"%@", [self dl_properties]);
 }
 
@@ -121,6 +110,47 @@
 - (NSArray<NSString *> *)lx_variables
 {
     return [[self class] lx_variables];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+#pragma mark - 调试
+
+#ifdef DEBUG
+- (NSString *)lx_description
+{
+    if (![self conformsToProtocol:@protocol(LXDescription)]) {
+        return [self lx_description];
+    }
+
+    NSMutableDictionary *varInfo = [NSMutableDictionary new];
+    for (NSString *varName in self.lx_variables) {
+        id value = [self valueForKey:varName] ?: @"nil";
+        if ([value class] == objc_lookUpClass("__NSCFBoolean")) { // 私有类,仅仅在 debug 模式下用用.
+            value = [value boolValue] ? @"YES" : @"NO";
+        }
+        varInfo[varName] = value;
+    }
+    return [NSString stringWithFormat:@"<%@: %p>\n%@", self.class, self, varInfo];
+}
+#endif
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+#pragma mark - 关联对象
+
+- (void)lx_setValue:(id)value forKey:(NSString *)key
+{
+    NSAssert(key.length, @"参数 key 为空字符串或 nil.");
+
+    objc_setAssociatedObject(self, NSSelectorFromString(key), value, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (id)lx_valueForKey:(NSString *)key
+{
+    NSAssert(key.length, @"参数 key 为空字符串或 nil.");
+    
+    return objc_getAssociatedObject(self, NSSelectorFromString(key));
 }
 
 @end

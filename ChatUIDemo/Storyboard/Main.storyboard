@@ -20,106 +20,78 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="556"/>
                                 <color key="backgroundColor" red="0.87843137250000003" green="0.87843137250000003" blue="0.87843137250000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SendMessageCell" rowHeight="150" id="2qJ-jh-YyP" customClass="LXMessageCell">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ReciveMessageCell" rowHeight="150" id="RpK-ee-K0L" customClass="LXMessageCell">
                                         <rect key="frame" x="0.0" y="92" width="600" height="150"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2qJ-jh-YyP" id="7uK-9O-WZk">
+                                        <tableViewCellContentView key="contentView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="RpK-ee-K0L" id="jSu-fs-1Or">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="150"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chat_send_nor" highlightedImage="chat_send_press_pic" translatesAutoresizingMaskIntoConstraints="NO" id="EiV-Pw-0eL">
-                                                    <rect key="frame" x="91" y="20" width="431" height="110"/>
-                                                </imageView>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我是聊天内容我是聊天内容我是聊天内容我是聊天内容我是聊天内容我是聊天内容我是聊天内容我是聊天内容我是聊天内容我是聊天内容我是聊天内容我是聊天内容" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oqi-ZU-D8X">
-                                                    <rect key="frame" x="111" y="40" width="391" height="70"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="me" translatesAutoresizingMaskIntoConstraints="NO" id="y2G-88-xUl">
-                                                    <rect key="frame" x="530" y="20" width="50" height="50"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="50" id="IZd-3K-VV9"/>
-                                                        <constraint firstAttribute="height" constant="50" id="PM4-e4-8Ob"/>
-                                                    </constraints>
-                                                </imageView>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="Oqi-ZU-D8X" firstAttribute="leading" secondItem="EiV-Pw-0eL" secondAttribute="leading" constant="20" id="3NB-56-ZBW"/>
-                                                <constraint firstAttribute="trailing" secondItem="y2G-88-xUl" secondAttribute="trailing" constant="20" symbolic="YES" id="7nn-u7-I6S"/>
-                                                <constraint firstItem="EiV-Pw-0eL" firstAttribute="leading" secondItem="7uK-9O-WZk" secondAttribute="leading" constant="78" id="CLf-U5-D4s"/>
-                                                <constraint firstAttribute="bottom" secondItem="EiV-Pw-0eL" secondAttribute="bottom" constant="20" symbolic="YES" id="Isy-dI-PNy"/>
-                                                <constraint firstItem="y2G-88-xUl" firstAttribute="top" secondItem="7uK-9O-WZk" secondAttribute="top" constant="20" symbolic="YES" id="LV0-2u-Fp8"/>
-                                                <constraint firstItem="y2G-88-xUl" firstAttribute="leading" secondItem="EiV-Pw-0eL" secondAttribute="trailing" constant="8" id="OYz-Xd-BxD"/>
-                                                <constraint firstAttribute="trailing" secondItem="Oqi-ZU-D8X" secondAttribute="trailing" constant="98" id="afP-St-llX"/>
-                                                <constraint firstItem="Oqi-ZU-D8X" firstAttribute="top" secondItem="EiV-Pw-0eL" secondAttribute="top" constant="20" id="oJY-96-5uF"/>
-                                                <constraint firstItem="Oqi-ZU-D8X" firstAttribute="bottom" secondItem="EiV-Pw-0eL" secondAttribute="bottom" constant="-20" id="qT1-1x-fRc"/>
-                                                <constraint firstItem="EiV-Pw-0eL" firstAttribute="top" secondItem="7uK-9O-WZk" secondAttribute="top" constant="20" symbolic="YES" id="rAi-da-OMe"/>
-                                                <constraint firstItem="Oqi-ZU-D8X" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="7uK-9O-WZk" secondAttribute="leading" constant="98" id="uBJ-RW-yKD"/>
-                                            </constraints>
-                                            <variation key="default">
-                                                <mask key="constraints">
-                                                    <exclude reference="CLf-U5-D4s"/>
-                                                </mask>
-                                            </variation>
-                                        </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.87843137250000003" green="0.87843137250000003" blue="0.87843137250000003" alpha="1" colorSpace="calibratedRGB"/>
-                                        <connections>
-                                            <outlet property="avatarView" destination="y2G-88-xUl" id="l6W-K6-zNM"/>
-                                            <outlet property="bubbleView" destination="EiV-Pw-0eL" id="uT2-eA-Fh7"/>
-                                            <outlet property="contentLabel" destination="Oqi-ZU-D8X" id="DCd-dc-3mr"/>
-                                            <outlet property="labelLeadingConstraint" destination="afP-St-llX" id="tog-oM-Uuw"/>
-                                        </connections>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ReciveMessageCell" rowHeight="150" id="UpE-jD-k73" customClass="LXMessageCell">
-                                        <rect key="frame" x="0.0" y="242" width="600" height="150"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UpE-jD-k73" id="xL5-aR-qmD">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="150"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chat_recive_nor" highlightedImage="chat_recive_press_pic" translatesAutoresizingMaskIntoConstraints="NO" id="6sy-j4-j17">
-                                                    <rect key="frame" x="78" y="20" width="431" height="110"/>
-                                                </imageView>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我是聊天内容我是聊天内容我是聊天内容我是聊天内容我是聊天内容我是聊天内容我是聊天内容我是聊天内容我是聊天内容我是聊天内容我是聊天内容我是聊天内容" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KO3-v4-j8B">
-                                                    <rect key="frame" x="98" y="40" width="391" height="70"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="other" translatesAutoresizingMaskIntoConstraints="NO" id="ckZ-6g-jn4">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="other" translatesAutoresizingMaskIntoConstraints="NO" id="bAn-ki-gMv">
                                                     <rect key="frame" x="20" y="20" width="50" height="50"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="50" id="5JP-Zc-f7M"/>
-                                                        <constraint firstAttribute="height" constant="50" id="BL1-ei-e20"/>
+                                                        <constraint firstAttribute="height" constant="50" id="927-Ui-Iyl"/>
+                                                        <constraint firstAttribute="width" constant="50" id="bAZ-3I-o9c"/>
                                                     </constraints>
                                                 </imageView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="luW-8U-oGM" customClass="LXMessageButton">
+                                                    <rect key="frame" x="78" y="20" width="64" height="110"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <state key="normal" backgroundImage="chat_recive_nor">
+                                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <state key="highlighted" backgroundImage="chat_recive_press_pic"/>
+                                                </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="6sy-j4-j17" firstAttribute="top" secondItem="xL5-aR-qmD" secondAttribute="top" constant="20" symbolic="YES" id="5rE-mA-U8w"/>
-                                                <constraint firstAttribute="bottom" secondItem="6sy-j4-j17" secondAttribute="bottom" constant="20" symbolic="YES" id="76v-oJ-yyL"/>
-                                                <constraint firstItem="6sy-j4-j17" firstAttribute="leading" secondItem="ckZ-6g-jn4" secondAttribute="trailing" constant="8" symbolic="YES" id="7ig-IA-o0X"/>
-                                                <constraint firstItem="KO3-v4-j8B" firstAttribute="top" secondItem="6sy-j4-j17" secondAttribute="top" constant="20" id="MP1-LG-BWM"/>
-                                                <constraint firstItem="KO3-v4-j8B" firstAttribute="bottom" secondItem="6sy-j4-j17" secondAttribute="bottom" constant="-20" id="OxO-bj-KFf"/>
-                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="KO3-v4-j8B" secondAttribute="trailing" constant="98" id="SJ8-9z-VRM"/>
-                                                <constraint firstItem="ckZ-6g-jn4" firstAttribute="top" secondItem="xL5-aR-qmD" secondAttribute="top" constant="20" symbolic="YES" id="U7o-Rp-fFe"/>
-                                                <constraint firstItem="ckZ-6g-jn4" firstAttribute="leading" secondItem="xL5-aR-qmD" secondAttribute="leading" constant="20" symbolic="YES" id="Zem-9s-Irn"/>
-                                                <constraint firstItem="KO3-v4-j8B" firstAttribute="leading" secondItem="6sy-j4-j17" secondAttribute="leading" constant="20" id="hSd-ZP-LJF"/>
-                                                <constraint firstItem="KO3-v4-j8B" firstAttribute="leading" secondItem="xL5-aR-qmD" secondAttribute="leading" constant="98" id="pwg-fs-Krn"/>
-                                                <constraint firstItem="KO3-v4-j8B" firstAttribute="trailing" secondItem="6sy-j4-j17" secondAttribute="trailing" constant="-20" id="zfc-kj-dtC"/>
+                                                <constraint firstItem="bAn-ki-gMv" firstAttribute="leading" secondItem="jSu-fs-1Or" secondAttribute="leading" constant="20" symbolic="YES" id="OXW-Ek-pmz"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="luW-8U-oGM" secondAttribute="trailing" constant="78" id="fhz-4u-Nz0"/>
+                                                <constraint firstItem="luW-8U-oGM" firstAttribute="top" secondItem="jSu-fs-1Or" secondAttribute="top" constant="20" symbolic="YES" id="gOe-2b-l58"/>
+                                                <constraint firstAttribute="bottom" secondItem="luW-8U-oGM" secondAttribute="bottom" constant="20" symbolic="YES" id="hmV-bA-LCt"/>
+                                                <constraint firstItem="bAn-ki-gMv" firstAttribute="top" secondItem="jSu-fs-1Or" secondAttribute="top" constant="20" symbolic="YES" id="kof-xz-Pnw"/>
+                                                <constraint firstItem="luW-8U-oGM" firstAttribute="leading" secondItem="bAn-ki-gMv" secondAttribute="trailing" constant="8" symbolic="YES" id="qhI-k6-Xve"/>
                                             </constraints>
-                                            <variation key="default">
-                                                <mask key="constraints">
-                                                    <exclude reference="hSd-ZP-LJF"/>
-                                                </mask>
-                                            </variation>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.87843137250000003" green="0.87843137250000003" blue="0.87843137250000003" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
-                                            <outlet property="avatarView" destination="ckZ-6g-jn4" id="H7B-D9-hyU"/>
-                                            <outlet property="bubbleView" destination="6sy-j4-j17" id="dCS-Xc-uTg"/>
-                                            <outlet property="contentLabel" destination="KO3-v4-j8B" id="fCq-EW-ymD"/>
-                                            <outlet property="labelLeadingConstraint" destination="pwg-fs-Krn" id="22Y-sR-3bI"/>
+                                            <outlet property="avatarView" destination="bAn-ki-gMv" id="VYZ-1G-iP2"/>
+                                            <outlet property="messageButton" destination="luW-8U-oGM" id="7AR-rO-u0b"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SendMessageCell" rowHeight="150" id="gdO-6e-CM9" customClass="LXMessageCell">
+                                        <rect key="frame" x="0.0" y="242" width="600" height="150"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gdO-6e-CM9" id="4d8-fb-Olo">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="150"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="me" translatesAutoresizingMaskIntoConstraints="NO" id="bWq-lC-8f0">
+                                                    <rect key="frame" x="530" y="20" width="50" height="50"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="50" id="5zb-uV-AhI"/>
+                                                        <constraint firstAttribute="height" constant="50" id="w1V-aW-hov"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="a8k-1T-Ig8" customClass="LXMessageButton">
+                                                    <rect key="frame" x="458" y="20" width="64" height="110"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <state key="normal" backgroundImage="chat_send_nor"/>
+                                                    <state key="highlighted" backgroundImage="chat_send_press_pic"/>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="bWq-lC-8f0" firstAttribute="top" secondItem="4d8-fb-Olo" secondAttribute="top" constant="20" symbolic="YES" id="A6j-If-bh6"/>
+                                                <constraint firstItem="a8k-1T-Ig8" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="4d8-fb-Olo" secondAttribute="leading" constant="78" id="Lf2-ls-PCb"/>
+                                                <constraint firstAttribute="trailing" secondItem="bWq-lC-8f0" secondAttribute="trailing" constant="20" symbolic="YES" id="Tly-PR-4VJ"/>
+                                                <constraint firstItem="a8k-1T-Ig8" firstAttribute="top" secondItem="4d8-fb-Olo" secondAttribute="top" constant="20" symbolic="YES" id="XNC-Nc-efJ"/>
+                                                <constraint firstItem="bWq-lC-8f0" firstAttribute="leading" secondItem="a8k-1T-Ig8" secondAttribute="trailing" constant="8" symbolic="YES" id="eD7-2K-hl8"/>
+                                                <constraint firstAttribute="bottom" secondItem="a8k-1T-Ig8" secondAttribute="bottom" constant="20" symbolic="YES" id="y4M-9j-5N5"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.87843137250000003" green="0.87843137250000003" blue="0.87843137250000003" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <outlet property="avatarView" destination="bWq-lC-8f0" id="yJD-kV-VLe"/>
+                                            <outlet property="messageButton" destination="a8k-1T-Ig8" id="LIE-2D-Se5"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
