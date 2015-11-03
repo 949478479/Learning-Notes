@@ -1,73 +1,90 @@
-## iOS Animations by Emails 翻译学习系列
+## 利用 mask 实现注水动画
 
-- 2015.3 [CAReplicatorLayer 动画](https://github.com/949478479/Animations-Study/tree/AnimationsWithCAReplicatorLayer)
+![](./Screenshot/commtonFinal.gif)
 
-- 2015.7 [CAGradientLayer 与 mask 动画](https://github.com/949478479/Animations-Study/tree/ColorIntroduction)
+思路来自此篇博客 [使用CALayer的mask动画](http://wuwen1030.github.io/blog/2014/11/17/shi-yong-calayerde-maskdong-hua/)。
 
-## 转场动画
+最开始是在 CocoaChina 上看到的，感觉没有配图不好理解，于是自己结合配图总结了一下，最后才发现作者原文里给了配图。 -_-#
 
-- [魔法移动式的转场动画](https://github.com/949478479/Animations-Study/tree/MagicMove)
+## mask 属性介绍
 
-- [圆圈缩放式转场动画](https://github.com/949478479/Animations-Study/tree/PingTransition)
+`CALayer`有个`mask`属性：
 
-- [翻页效果转场动画](https://github.com/949478479/Animations-Study/tree/FlipTransion)
+```swift
+var mask: CALayer?
+```
 
-## 菜单效果
+为一个图层设置了`mask`，可以理解为将作为`mask`的图层遮盖在该图层上。然而，`mask`图层是不可见的，无论`mask`图层的背景色是否透明，其本身都是“透明”的。而且，对于被遮盖的图层 ，只有被`mask`图层背景色不透明或者半透明的部分所遮盖的部分，才是可见的；而被背景色完全透明部分所遮盖的部分，也将是透明的。另外，`mask`图层所在的坐标系是被遮盖图层的本地坐标系，也就是说，要让`mask`图层和被遮盖图层完全重合，需将`mask`图层的`frame`设置为被遮盖图层的`bounds`。
 
-- [创建一个非常酷的3D效果菜单动画](https://github.com/949478479/Animations-Study/tree/Taasky)
- 
-- [利用 iCarousel 实现类似 iOS9 任务管理器效果动画]
-  (https://github.com/949478479/Animations-Study/tree/CardAnimationByiCarousel)
+## mask 动画实现思路
 
-- [利用 UIViewControllerAnimatedTransitioning 构建一个下滑菜单]
-  (https://github.com/949478479/Animations-Study/tree/SlideDownMenu)
+如下图所示，这里使用了两个重叠的`UIImageView`来呈现图片，这种图片除了图案部分都是透明的：
 
-## loading 动画
+![](./Screenshot/hierarchy1.png)
 
-- [如何用 Swift 创建一个复杂的 loading 动画](https://github.com/949478479/Learning-Notes/tree/SBLoader)
+一般情况下，下层的灰色图片会被上层的绿色图片遮挡住，可以为上层`UIImageView`的图层设置`mask`而让其透明或者部分透明。
 
-## 其他 Demo
+如下代码为上层绿色图片的`UIImageView`设置了完全重合的`mask`，由于`CALayer`的`backgroundColor`默认为`nil`，也就是说图层默认是完全透明的，正如前面对`mask`的介绍，此时`greenImageView`会因为完全透明的`mask`而完全透明。
 
-- [可以折叠的 ImageView](https://github.com/949478479/Animations-Study/tree/FoldingImageView)
+```swift
+let mask = CALayer()
+mask.frame = greenImageView.bounds
+greenImageView.layer.mask = mask
+```
 
-- [简易卡片动画](https://github.com/949478479/Animations-Study/tree/CardAnimation)
+接下来，为`mask`图层添加两个子图层，这两个子图层是`path`为圆形的`CAShapeLayer`，其尺寸和`greenImageView`相同。
 
-- [继承自`UIRefreshControl`的自定义下拉刷新](https://github.com/949478479/Animations-Study/tree/PullRefresh)
+```swift
+let bounds = greenImageView.bounds
 
-- [《Beginning iOS 8 Programming with Swift》小项目]
-  (https://github.com/949478479/Learning-Notes/tree/FoodPin)
-  
-- [简易聊天气泡和多行输入框](https://github.com/949478479/Learning-Notes/tree/ChatUIDemo)
+let upperLeftLayer = CAShapeLayer()
+upperLeftLayer.bounds = bounds
+upperLeftLayer.position = CGPoint(x: -10, y: -10)
+upperLeftLayer.path = UIBezierPath(ovalInRect: bounds).CGPath
+mask.addSublayer(upperLeftLayer)
 
-- [QQ 好友下拉列表](https://github.com/949478479/Learning-Notes/tree/QQFriendListDemo)
+let bottomRightLayer = CAShapeLayer()
+bottomRightLayer.bounds = bounds
+bottomRightLayer.position = CGPoint(x: bounds.maxX + 10, y: bounds.maxY + 10)
+bottomRightLayer.path = UIBezierPath(ovalInRect: bounds).CGPath
+mask.addSublayer(bottomRightLayer)
+```
 
-## UICollectionView
+它们之间的位置关系类似下图所示：
 
-- [WWDC 上的 UICollectionViewLayout 的 demo]
-  (https://github.com/949478479/Learning-Notes/tree/CollectionViewLayoutDemo)
+![](./Screenshot/mask.png)
 
-- [瀑布流布局](https://github.com/949478479/Learning-Notes/tree/Pinterest)
+中间的方块是`greenImageView`以及`mask`图层所处的位置，它们是完全重合的。两个圆形则是`mask`图层的两个子图层的位置，由于调整了`position`，它们超出了父图层的范围。
 
-- [环形滚动布局](https://github.com/949478479/Learning-Notes/tree/CircularCollectionView)
+`CAShapeLayer`的`fillColor`默认是不透明的黑色，此时对于`mask`图层来说，不透明的部分就是两个圆形和正方形相交的部分。
 
-- [类似`Ultravisual`的视差效果布局](https://github.com/949478479/Learning-Notes/tree/Ultravisual)
+因此，此时`greenImageView`的绿色图案部分正好被`mask`图层的透明部分遮挡，依旧是透明的，只能看到下层的灰色图片。
 
-- [用 Flickr 搜索/浏览图片的简陋 demo... ⊙﹏⊙‖∣](https://github.com/949478479/Learning-Notes/tree/FlickrSearch)
+如果此时对两个圆形的子图层做动画，使其向中心靠拢，如下所示：
 
-## UIPickerView
+![](./Screenshot/maskAnimation.gif)
 
-- [UIPickerView 简单使用:实现一个老虎机]
-  (https://github.com/949478479/Learning-Notes/tree/SlotMachine)
+随着圆形区域的移动，`greenImageView`被圆形区域遮盖的部分也将可见，最终就是如下效果：
 
-## Swift
+![](./Screenshot/maskFinal.gif)
 
-- [RayWenderlich 出品的脑洞大开的 Swift 小题目]
-  (https://github.com/949478479/Learning-Notes/tree/Are-You-a-Swift-Ninja)
+## 环形指示器实现思路
 
-- [RayWenderlich 出品的 Swift 面试题 & 答案]
-  (https://github.com/949478479/Learning-Notes/tree/Swift-Interview-Questions-and-Answers)
+这个就非常简单了，依靠图片即可实现，并未用到`mask`。`SVProgressHUD`则是使用图片配合`mask`实现的，可以看一下。
 
-## ReactiveCocoa
+![](./Screenshot/hierarchy2.png)
 
-- [使用 ReactiveCocoa 构建一个简单的天气应用]
-  (https://github.com/949478479/Learning-Notes/tree/SimpleWeather)
+依旧是两个重叠的`UIImageView`，上层是个环形的图片，两个图片除了图案部分都是透明的。
+
+然后，对上层的`UIImageView`的图层做无限旋转动画就行了。
+
+```swift
+let animation = CABasicAnimation(keyPath: "transform.rotation.z")
+animation.byValue = 2 * M_PI
+animation.duration = 1
+animation.repeatCount = Float.infinity
+ringImageView.layer.addAnimation(animation, forKey: nil)
+```
+
+![](./Screenshot/ringIndicator.gif)
+

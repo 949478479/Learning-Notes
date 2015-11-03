@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="MaskAnimationDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bull_head_gray" translatesAutoresizingMaskIntoConstraints="NO" id="ROi-YM-Zso">
+                                <rect key="frame" x="270" y="320" width="60" height="60"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bull_head_green" translatesAutoresizingMaskIntoConstraints="NO" id="cNN-kX-3lV">
+                                <rect key="frame" x="270" y="320" width="60" height="60"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loading_logo" translatesAutoresizingMaskIntoConstraints="NO" id="3Qs-Wp-4ve">
+                                <rect key="frame" x="270" y="220" width="60" height="60"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loading_indicator" translatesAutoresizingMaskIntoConstraints="NO" id="KQh-lh-ZPk">
+                                <rect key="frame" x="270" y="220" width="60" height="60"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="cNN-kX-3lV" firstAttribute="centerY" secondItem="ROi-YM-Zso" secondAttribute="centerY" id="3iU-YP-et0"/>
+                            <constraint firstItem="KQh-lh-ZPk" firstAttribute="centerY" secondItem="3Qs-Wp-4ve" secondAttribute="centerY" id="DLd-9q-RGa"/>
+                            <constraint firstItem="ROi-YM-Zso" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Ne5-UT-bJP"/>
+                            <constraint firstItem="KQh-lh-ZPk" firstAttribute="centerX" secondItem="3Qs-Wp-4ve" secondAttribute="centerX" id="R35-Nn-naM"/>
+                            <constraint firstItem="3Qs-Wp-4ve" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-50" id="bXi-UT-eQL"/>
+                            <constraint firstItem="cNN-kX-3lV" firstAttribute="centerX" secondItem="ROi-YM-Zso" secondAttribute="centerX" id="dMi-a7-XKF"/>
+                            <constraint firstItem="ROi-YM-Zso" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="50" id="eRe-WK-rwn"/>
+                            <constraint firstItem="3Qs-Wp-4ve" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="faD-9w-bza"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="grayHeadImageView" destination="ROi-YM-Zso" id="JGq-Aa-bO1"/>
+                        <outlet property="greenHeadImageView" destination="cNN-kX-3lV" id="hX3-nZ-yxO"/>
+                        <outlet property="ringImageView" destination="KQh-lh-ZPk" id="kfC-cG-kGz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="bull_head_gray" width="60" height="60"/>
+        <image name="bull_head_green" width="60" height="60"/>
+        <image name="loading_indicator" width="60" height="60"/>
+        <image name="loading_logo" width="60" height="60"/>
+    </resources>
+</document>
