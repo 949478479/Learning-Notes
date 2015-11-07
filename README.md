@@ -1,6 +1,6 @@
 # Swift and Objective-C Interoperability
 
-整理自 [WWDC Session 401 Swift and Objective-C Interoperability](https://developer.apple.com/videos/play/wwdc2015-401/) 的 PPT。。。
+整理自 [WWDC 2015 Session 401 Swift and Objective-C Interoperability](https://developer.apple.com/videos/play/wwdc2015-401/) 的 PPT。。。
 
 - [Swift 接口如何暴露给 Objective-C](#Working with Objective-C)
 - [错误处理](#Error Handling)
