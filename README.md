@@ -1,14 +1,14 @@
 ## Swift Interview Questions and Answers
 
-总结自`RayWenderlich`教程团队推出的这篇教程 [Swift Interview Questions and Answers](http://www.raywenderlich.com/110982/swift-interview-questions-answers).
+总结自`RayWenderlich`教程团队推出的这篇教程 [Swift Interview Questions and Answers](http://www.raywenderlich.com/110982/swift-interview-questions-answers)。
 
 该篇教程讲解了一些`Swift`的面试题，分为两部分：
 
 - [笔试问题](#Written Questions)
-  ([初级](#Written Beginners) [中级](#Written Intermediate) [高级](#Written Advanced))
+  （[初级](#Written Beginners) [中级](#Written Intermediate) [高级](#Written Advanced)）
 
 - [面试问题](#Verbal Questions)
-  ([初级](#Verbal Beginners) [中级](#Verbal Intermediate) [高级](#Verbal Advanced))
+  （[初级](#Verbal Beginners) [中级](#Verbal Intermediate) [高级](#Verbal Advanced)）
 
 <a name="Written Questions"></a>
 ## 笔试问题
@@ -34,9 +34,9 @@ for _ in 0...4 {
 }
 ```
 
-`Swift`提供了`...`和`..<`两个操作符.
+`Swift`提供了`...`和`..<`两个操作符。
 
-`...`表示闭区间范围，例如`0...4`表示从 0 到 4 的整数范围.
+`...`表示闭区间范围，例如`0...4`表示从 0 到 4 的整数范围。
 
 而`..<`表示前闭后开的区间范围，例如`0..<5`表示的是从 0 到 4 的整数范围，不包括 5.
 
@@ -60,7 +60,7 @@ tutorial2.difficulty = 2
 
 `tutorial1.difficulty`是 1，而`tutorial2.difficulty`是 2.
 
-`Swift`中，`struct`是值类型，传递的是自身值的拷贝，而不是像`class`这种引用类型一样传递自身的引用.
+`Swift`中，`struct`是值类型，传递的是自身值的拷贝，而不是像`class`这种引用类型一样传递自身的引用。
 
 下面的代码创建了`tutorial1`的副本赋值给`tutorial2`：
 
@@ -70,9 +70,9 @@ var tutorial2 = tutorial1
 
 在这之后，对`tutorial2`的任何操作都不会影响`tutorial1`.
 
-而如果`Tutorial`是`class`类型，`tutorial1.difficulty`和`tutorial2.difficulty`将都会是 2.
+而如果`Tutorial`是`class`类型，`tutorial1.difficulty`和`tutorial2.difficulty`将都会是 2。
 
-`class`类型在`Swift`中是引用类型，操作`tutorial1`即是操作`tutorial2`，反之亦然.
+`class`类型在`Swift`中是引用类型，操作`tutorial1`即是操作`tutorial2`，反之亦然。
 
 #### 问题 #3 -- Swift 1.0 或更高版本
 
@@ -90,12 +90,12 @@ view2.alpha = 0.5 // 这一行能通过编译吗？
 
 ##### 解决方案：
 
-`view1`是一个变量，可以被重新分配一个新的`UIView`实例.
+`view1`是一个变量，可以被重新分配一个新的`UIView`实例。
 
 而`let`是常量，只允许被赋值一次，所以下面的代码不能通过编译：
 
 ```swift
-view2 = view1 // 错误，view2 不可变.
+view2 = view1 // 错误，view2 不可变。
 ```
 
 然而，`UIView`是`class`类型，是引用语义，所以可以改变`view2`的属性，也就是最后一行可以通过编译：
@@ -107,7 +107,7 @@ view2.alpha = 0.5 // 完全没问题~
 
 #### 问题 #4 -- Swift 1.0 或更高版本
 
-这段代码按照字母顺序排序数组，这看上去有些啰嗦，试着简化写法.
+这段代码按照字母顺序排序数组，这看上去有些啰嗦，试着简化写法。
 
 ```swift
 let animals = ["fish", "cat", "chicken", "dog"]
@@ -118,7 +118,7 @@ let sortedAnimals = animals.sort { (one: String, two: String) -> Bool in
 
 ##### 解决方案：
 
-首先可以简化闭包的参数.由于类型推断，可以省略闭包的参数类型：
+首先可以简化闭包的参数。由于类型推断，可以省略闭包的参数类型：
 
 ```swift
 let sortedAnimals = animals.sort { (one, two) -> Bool in
@@ -134,7 +134,7 @@ let sortedAnimals = animals.sort { (one, two) in
 }
 ```
 
-使用`$0`，`$1`这种形式可以分别表示第一个和第二个参数，以此类推.因此参数和`in`关键字也可以省略：
+使用`$0`，`$1`这种形式可以分别表示第一个和第二个参数，以此类推。因此参数和`in`关键字也可以省略：
 
 ```swift
 let sortedAnimals = animals.sort { return $0 < $1 }
@@ -522,7 +522,7 @@ infix operator ^^ {
 }
 ```
 
-上述代码声明`^^`为`inifx`即二元运算符，结合性为右结合，优先级为 155 (乘除法为 150 )。
+上述代码声明`^^`为`inifx`即二元运算符，结合性为右结合，优先级为 155（乘除法为 150）。
 
 运算符具体实现如下：
 
@@ -830,7 +830,7 @@ areTheyEqual(1, 1)
 
 ##### 回答：
 
-`Swift`是一种混合语言，同时支持两种范式.
+`Swift`是一种混合语言，同时支持两种范式。
 
 它体现了面向对象的三个基本准则：
 
