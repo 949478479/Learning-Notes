@@ -66,7 +66,7 @@ tutorial2.difficulty = 2
 var tutorial2 = tutorial1
 ```
 
-在这之后，对`tutorial2`的任何操作都不会影响`tutorial1`.
+在这之后，对`tutorial2`的任何操作都不会影响`tutorial1`。
 
 而如果`Tutorial`是`class`类型，`tutorial1.difficulty`和`tutorial2.difficulty`将都会是 2。
 
@@ -158,7 +158,7 @@ let sortedAnimals = animals.sort(<)
 
 #### 问题 #5 -- Swift 1.0 或更高版本
 
-下面这段代码创建了两个类， `Address`和`Person`，`Person`会创建两个实例表示`Ray`和`Brian`这俩人。
+下面这段代码创建了两个类，`Address`和`Person`，`Person`会创建两个实例表示`Ray`和`Brian`这俩人。
 
 ```swift
 class Address {
