@@ -4,11 +4,9 @@
 
 该篇教程讲解了一些`Swift`的面试题，分为两部分：
 
-- [笔试问题](#Written Questions)
-  （[初级](#Written Beginners) [中级](#Written Intermediate) [高级](#Written Advanced)）
+- [笔试问题](#Written Questions)（[初级](#Written Beginners) [中级](#Written Intermediate) [高级](#Written Advanced)）
 
-- [面试问题](#Verbal Questions)
-  （[初级](#Verbal Beginners) [中级](#Verbal Intermediate) [高级](#Verbal Advanced)）
+- [面试问题](#Verbal Questions)（[初级](#Verbal Beginners) [中级](#Verbal Intermediate) [高级](#Verbal Advanced)）
 
 <a name="Written Questions"></a>
 ## 笔试问题
