@@ -26,7 +26,7 @@
 
 - [可以折叠的 ImageView](https://github.com/949478479/Animations-Study/tree/FoldingImageView)
 - [简易卡片动画](https://github.com/949478479/Animations-Study/tree/CardAnimation)
-- [继承自`UIRefreshControl`的自定义下拉刷新](https://github.com/949478479/Animations-Study/tree/PullRefresh)
+- [继承自 UIRefreshControl 的自定义下拉刷新](https://github.com/949478479/Animations-Study/tree/PullRefresh)
 - [《Beginning iOS 8 Programming with Swift》小项目]
   (https://github.com/949478479/Learning-Notes/tree/FoodPin)
 - [简易聊天气泡和多行输入框](https://github.com/949478479/Learning-Notes/tree/ChatUIDemo)
@@ -38,7 +38,7 @@
   (https://github.com/949478479/Learning-Notes/tree/CollectionViewLayoutDemo)
 - [瀑布流布局](https://github.com/949478479/Learning-Notes/tree/Pinterest)
 - [环形滚动布局](https://github.com/949478479/Learning-Notes/tree/CircularCollectionView)
-- [类似`Ultravisual`的视差效果布局](https://github.com/949478479/Learning-Notes/tree/Ultravisual)
+- [类似 Ultravisual 的视差效果布局](https://github.com/949478479/Learning-Notes/tree/Ultravisual)
 - [用 Flickr 搜索/浏览图片的简陋 demo... ⊙﹏⊙‖∣](https://github.com/949478479/Learning-Notes/tree/FlickrSearch)
 
 ## UIPickerView
