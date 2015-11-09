@@ -5,7 +5,7 @@
 
 附上`CocoaChina`翻译版[【实例教程】你会用swift创建复杂的加载动画吗](www.cocoachina.com/swift/20150906/13327.html)
 
-![](https://github.com/949478479/Learning-Notes/blob/master/SBLoader-screenshot/SBLoader.gif)
+![](./Screenshot/SBLoader.gif)
 
 基本上就是各种形状的`CAShapeLayer`配合`CABasicAnimation`和`CAKeyframeAnimation`.
 
