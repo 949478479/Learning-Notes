@@ -52,7 +52,7 @@
   (https://github.com/949478479/Learning-Notes/tree/Are-You-a-Swift-Ninja)
 - [RayWenderlich 出品的 Swift 面试题 & 答案]
   (https://github.com/949478479/Learning-Notes/tree/Swift-Interview-Questions-and-Answers)
-- [What's New in Swift 2.0](./tree/WWDC-2015-Session-106-What%E2%80%99s-New-in-Swift)
+- [What's New in Swift 2.0](https://github.com/949478479/Study-Notes/tree/WWDC-2015-Session-106-What%E2%80%99s-New-in-Swift)
 - [WWDC 2015 Session 401 Swift and Objective C Interoperability](https://github.com/949478479/Study-Notes/tree/WWDC-2015-Session-401-Swift-and-Objective-C-Interoperability)
 
 ## ReactiveCocoa
