@@ -2,19 +2,19 @@
 
 仿 QQ 好友下拉列表...
 
-![](https://github.com/949478479/Learning-Notes/blob/master/QQFriendListDemo-screenshot/screenshot.gif)
+![](Screenshot/screenshot.gif)
 
 思路是子类化`UITableViewHeaderFooterView`,提供自定义的`headerView`.
 
 使用一个等大的按钮作为其子控件,并设置相应图片即可.最右侧则是一个`UILabel`.如图所示:
 
-![](https://github.com/949478479/Learning-Notes/blob/master/QQFriendListDemo-screenshot/headerView.png)
+![](Screenshot/headerView.png)
 
 设置按钮的内容左对齐,并适当调整`image`和`title`的内切距离.
 
-![](https://github.com/949478479/Learning-Notes/blob/master/QQFriendListDemo-screenshot/buttonAlignment.png)
-![](https://github.com/949478479/Learning-Notes/blob/master/QQFriendListDemo-screenshot/imageInset.png)
-![](https://github.com/949478479/Learning-Notes/blob/master/QQFriendListDemo-screenshot/titleInset.png)
+![](Screenshot/buttonAlignment.png)
+![](Screenshot/imageInset.png)
+![](Screenshot/titleInset.png)
 
 为了在`headerView`被点击时能得到通知,定义了一个代理方法:
 
@@ -64,7 +64,7 @@ if ([_delegate respondsToSelector:@selector(headerViewDidTapped:)]) {
 
 这里有个问题就是`button`的`imageView`旋转后,小三角图片两侧会超出范围.如图:
 
-![](https://github.com/949478479/Learning-Notes/blob/master/QQFriendListDemo-screenshot/buttonImageView.png)
+![](Screenshot/buttonImageView.png)
 
 因此还需要对`button`进行如下设置:
 
@@ -84,7 +84,7 @@ _button.imageView.contentMode = UIViewContentModeCenter;
 
 最后还有个细节就是快速点击`headerView`时按钮不会呈现高亮状态,这个可以通过关闭`UIScrollView`的`delaysContentTouches`解决:
 
-![](https://github.com/949478479/Learning-Notes/blob/master/QQFriendListDemo-screenshot/delayTouch.png)
+![](Screenshot/delayTouch.png)
 
 但是这样也会导致触摸点在`headerView`上也就是`UIButton`上时无法滚动`tableView`,所以还需要继承`UITableView`,重写下面这个方法:
 
