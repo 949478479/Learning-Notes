@@ -1,63 +1,177 @@
-## iOS Animations by Emails 翻译学习系列
+# DropdownMenu
 
-- 2015.3 [CAReplicatorLayer 动画](https://github.com/949478479/Animations-Study/tree/AnimationsWithCAReplicatorLayer)
-- 2015.7 [CAGradientLayer 与 mask 动画](https://github.com/949478479/Animations-Study/tree/ColorIntroduction)
+![](./Screenshot/DropdownMenu.gif)
 
-## 转场动画
+模仿自 [BTNavigationDropdownMenu](https://github.com/PhamBaTho/BTNavigationDropdownMenu) 。
 
-- [圆圈缩放式转场动画](https://github.com/949478479/Animations-Study/tree/PingTransition)
-- [翻页效果转场动画](https://github.com/949478479/Animations-Study/tree/FlipTransion)
-- [魔法移动式的转场动画](https://github.com/949478479/Animations-Study/tree/MagicMove)
+使用方式如下：
 
-## 菜单效果
+```swift
+let dropdownMenu = DropdownMenu.dropdownMenu()
 
-- [创建一个非常酷的3D效果菜单动画](https://github.com/949478479/Animations-Study/tree/Taasky)
-- [利用 iCarousel 实现类似 iOS9 任务管理器效果动画]
-  (https://github.com/949478479/Animations-Study/tree/CardAnimationByiCarousel)
-- [利用 UIViewControllerAnimatedTransitioning 构建一个下滑菜单]
-  (https://github.com/949478479/Animations-Study/tree/SlideDownMenu)
+dropdownMenu.items = ["Most Popular", "Latest", "Trending", "Nearest", "Top Picks"]
+dropdownMenu.selectedItem = 3
+dropdownMenu.didSelectItemAtIndexHandler = {
+    print("selectedItem: \($0), index: \($1)")
+}
 
-## 图层动画
+dropdownMenu.menuWidth = 300
+dropdownMenu.menuTextFont = UIFont.boldSystemFontOfSize(15)
+dropdownMenu.menuTextColor = UIColor.whiteColor()
+dropdownMenu.menuTitleColor = UIColor.whiteColor()
+dropdownMenu.separatorColor = UIColor(red: 0.78, green: 0.78, blue: 0.8, alpha: 1.0)
+dropdownMenu.menuCheckmarkColor = UIColor.whiteColor()
+dropdownMenu.menuBackgroundColor = navigationController!.navigationBar.barTintColor
 
-- [如何用 Swift 创建一个复杂的 loading 动画](https://github.com/949478479/Learning-Notes/tree/SBLoader)
-- [利用 mask 实现注水动画](https://github.com/949478479/Study-Notes/tree/MaskAnimationDemo)
+navigationItem.titleView = dropdownMenu
+```
 
-## 其他
+## 思路
 
-- [可以折叠的 ImageView](https://github.com/949478479/Animations-Study/tree/FoldingImageView)
-- [简易卡片动画](https://github.com/949478479/Animations-Study/tree/CardAnimation)
-- [继承自 UIRefreshControl 的自定义下拉刷新](https://github.com/949478479/Animations-Study/tree/PullRefresh)
-- [《Beginning iOS 8 Programming with Swift》小项目]
-  (https://github.com/949478479/Learning-Notes/tree/FoodPin)
-- [简易聊天气泡和多行输入框](https://github.com/949478479/Learning-Notes/tree/ChatUIDemo)
-- [QQ 好友下拉列表](https://github.com/949478479/Learning-Notes/tree/QQFriendListDemo)
+### 层级关系处理
 
-## UICollectionView
+![](./Screenshot/Hierarchy.png)
 
-- [WWDC 上的 UICollectionViewLayout 的 demo]
-  (https://github.com/949478479/Learning-Notes/tree/CollectionViewLayoutDemo)
-- [瀑布流布局](https://github.com/949478479/Learning-Notes/tree/Pinterest)
-- [环形滚动布局](https://github.com/949478479/Learning-Notes/tree/CircularCollectionView)
-- [类似 Ultravisual 的视差效果布局](https://github.com/949478479/Learning-Notes/tree/Ultravisual)
-- [用 Flickr 搜索/浏览图片的简陋 demo... ⊙﹏⊙‖∣](https://github.com/949478479/Learning-Notes/tree/FlickrSearch)
+如上图所示，`dropdownMenu`其实只是导航栏上的`titleView`那一小块。
 
-## UIPickerView
+实际的菜单是单独添加到窗口上的，和窗口等大小。
 
-- [UIPickerView 简单使用:实现一个老虎机]
-  (https://github.com/949478479/Learning-Notes/tree/SlotMachine)
+`_MenuBackgroundView`和`_MenuTableView`被添加到`_MenuWrapperView`上，顶部紧贴导航栏底部。
 
-## Swift
+关于菜单视图的添加与移除，有两点需要明确：
 
-- [RayWenderlich 出品的脑洞大开的 Swift 小题目]
-  (https://github.com/949478479/Learning-Notes/tree/Are-You-a-Swift-Ninja)
-- [RayWenderlich 出品的 Swift 面试题 & 答案]
-  (https://github.com/949478479/Learning-Notes/tree/Swift-Interview-Questions-and-Answers)
-- [WWDC 2015 Session 106 What's New in Swift 2.0]
-  (https://github.com/949478479/Study-Notes/tree/WWDC-2015-Session-106-What%E2%80%99s-New-in-Swift)
-- [WWDC 2015 Session 401 Swift and Objective C Interoperability]
-  (https://github.com/949478479/Study-Notes/tree/WWDC-2015-Session-401-Swift-and-Objective-C-Interoperability)
+1. 在`dropdownMenu`被设置为`navigationItem.titleView`后，它会被添加到导航栏上，`navigationBar`即是它的父视图。如果导航控制器`push`或者`pop`到其他控制器，由于导航栏是公用的，`dropdownMenu`会从导航栏移除，自然也会从窗口移除。
 
-## ReactiveCocoa
+2. 如果使用了`UITabBarController`，切换标签页后，整个导航控制器视图层级都会从窗口移除，但是`dropdownMenu`不会从导航栏移除。
 
-- [使用 ReactiveCocoa 构建一个简单的天气应用]
-  (https://github.com/949478479/Learning-Notes/tree/SimpleWeather)
+结合以上两点，可以看出`DropdownMenu`的`didMoveToWindow()`方法非常适合处理菜单视图的添加和移除操作：
+
+```swift
+override func didMoveToWindow() {
+    if let window = window {
+    	// 一些其他设置
+    	menuTitleView.titleColor = menuTitleColor
+        menuTableView.contentInset.top = menuTableViewContentInsetTop
+        menuTableView.tableHeaderView?.backgroundColor = menuBackgroundColor
+        // 添加菜单视图到窗口，并设置约束
+        window.addSubview(menuWrapperView)
+        setupMenuViewConstraintsIfNeedWithNavigationBar(superview!)
+        NSLayoutConstraint.activateConstraints(menuViewConstraints)
+    } else {
+        menuWrapperView.removeFromSuperview()
+    }
+}
+```
+
+### 动画效果处理
+
+动画效果代码如下：
+
+```swift
+func performAnimation() {
+    isAnimating = true // 标记动画过程开始
+    if isOpen { menuWrapperView.hidden = false } // 菜单打开则显示 menuWrapperView
+    UIView.animateWithDuration(1.0,
+        delay: 0,
+        usingSpringWithDamping: 0.7,
+        initialSpringVelocity: 0,
+        options: [],
+        animations: {
+            self.menuBackgroundView.alpha = self.backgroundViewAlpha
+            self.menuTableView.contentInset.top = self.menuTableViewContentInsetTop
+            self.menuTitleView.arrowImageView.transform = self.arrowImageViewTransform
+        }, completion: { _ in
+            self.isAnimating = false // 标记动画过程结束
+            if !self.isOpen { self.menuWrapperView.hidden = true } // 菜单关闭则隐藏 menuWrapperView
+    })
+}
+```
+
+上述代码在动画块中根据菜单打开还是关闭调整了蒙版`menuBackgroundView`的`alpha`，`menuTitleView`右侧的小箭头的方向，以及`menuTableView`的`contentInset.top`。
+
+之前是通过调整`menuTableView`的约束使之整体上下移动，但是效果不太好，改为调整`contentInset.top`后就好多了，约束也无需改动了。
+
+`menuTableViewContentInsetTop`计算方式如下：
+
+```swift
+var menuTableViewContentInsetTop: CGFloat {
+    let tableHeaderViewHeight = menuTableView.tableHeaderViewHeight
+    return isOpen ?
+        -tableHeaderViewHeight :
+        -(menuTableView.rowHeight * CGFloat(itemCount) + tableHeaderViewHeight)
+}
+```
+
+为了防止`menuTableView`向下拖动时露出背后的背景，为其添加了一个足够高的`tableHeaderView`，并将其背景色设置为菜单的背景色。
+
+菜单打开时，令`contentInset.top`为`-tableHeaderViewHeight`，即`tableHeaderView`的高度，这样`tableHeaderView`就在可见区域上方了。
+
+菜单关闭时，将`contentInset.top`再加上所有行的行高之和，这样`menuTableView`的所有 cell 也都会跑到可见区域上方了。
+
+### 触摸事件处理
+
+菜单打开时，导航栏上除了`DropdownMenu`，其他部分都不响应触摸，`_MenuTableView`可正常拖动，点击周围的蒙版区域即`_MenuBackgroundView`则会关闭菜单。
+
+`_MenuWrapperView`是`_MenuBackgroundView`和`_MenuTableView`的父视图，方便控制触摸事件的传递。
+
+因此在`_MenuWrapperView`中，实现了下面这个方法来控制触摸事件的响应者：
+
+```swift
+override func hitTest(point: CGPoint, withEvent event: UIEvent?) -> UIView? {
+    // 隐藏即菜单处于关闭状态，自身及其子视图放弃处理此次事件
+    guard !hidden else {
+        return nil
+    }
+
+    // 点击点位于 DropdownMenu 上，让其处理此次点击事件
+    if dropdownMenu.bounds.contains(dropdownMenu.convertPoint(point, fromView: self)) {
+        return dropdownMenu
+    }
+
+    // 点击不在 DropdownMenu 上，但是在导航栏上（包括状态栏），不做处理，单纯拦截掉此次事件
+    if point.y < menuTableView.frame.minY {
+        return self
+    }
+
+    // 点击点位于 _MenuTableView 的内容范围内，让其处理此次事件
+    let contentX      = menuTableView.frame.minX
+    let contentY      = menuTableView.frame.minY
+    let contentWidth  = menuTableView.bounds.width
+    let contentHeight = menuTableView.contentSize.height - menuTableView.tableHeaderViewHeight
+    let contentFrame  = CGRect(x: contentX, y: contentY, width: contentWidth, height: contentHeight)
+    if contentFrame.contains(point) { return menuTableView }
+
+    // 点击点位于 _MenuTableView 的内容范围外的 _MenuBackgroundView 区域，让 DropdownMenu 处理，即关闭菜单
+    return dropdownMenu
+}
+```
+
+### cell 的处理
+
+由于最后一行的 cell 有分隔线不好看，因此隐藏了分隔线，自己单独绘制。
+
+```swift
+override func drawRect(rect: CGRect) {
+    guard !hiddenSeparator else { return }
+
+    let lineWidth = 1 / traitCollection.displayScale
+    let y = round(rect.height) - lineWidth / 2.0 // 偏移 0.5 个像素对应的点，防止出现像素模糊
+
+    let context = UIGraphicsGetCurrentContext()
+    CGContextMoveToPoint(context, 10, y)
+    CGContextAddLineToPoint(context, rect.width - 10, y)
+    CGContextSetLineWidth(context, lineWidth)
+    CGContextSetStrokeColorWithColor(context, separatorColor?.CGColor)
+    CGContextStrokePath(context)
+}
+```
+
+另外发现使用`Default`风格的 cell 时，`textLabel`很大，直接盖住了分隔线，因此需要使用其他风格。
+
+右侧的小箭头使用辅助视图即可：
+
+```swift
+override func setSelected(selected: Bool, animated: Bool) {
+    accessoryType = selected ? .Checkmark : .None
+}
+```
