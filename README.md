@@ -2,6 +2,8 @@
 
 ![](./Screenshot/DropdownMenu.gif)
 
+## 介绍
+
 模仿自 [BTNavigationDropdownMenu](https://github.com/PhamBaTho/BTNavigationDropdownMenu)，只是用于学习，使用了 iOS 9 的布局 API，不兼容低版本。
 
 另外这篇博客 [使用Masonry创建一个下拉式菜单（全）](http://www.jianshu.com/p/1d9feb588899) 比较详细地介绍了具体思路，并且是用 OC 写的。 
