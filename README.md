@@ -2,7 +2,9 @@
 
 ![](./Screenshot/DropdownMenu.gif)
 
-模仿自 [BTNavigationDropdownMenu](https://github.com/PhamBaTho/BTNavigationDropdownMenu) 。
+模仿自 [BTNavigationDropdownMenu](https://github.com/PhamBaTho/BTNavigationDropdownMenu)，只是用于学习，使用了 iOS 9 的布局 API，不兼容低版本。
+
+另外这篇博客 [使用Masonry创建一个下拉式菜单（全）](http://www.jianshu.com/p/1d9feb588899) 比较详细地介绍了具体思路，并且是用 OC 写的。 
 
 使用方式如下：
 
@@ -34,7 +36,7 @@ navigationItem.titleView = dropdownMenu
 
 如上图所示，`dropdownMenu`其实只是导航栏上的`titleView`那一小块。
 
-实际的菜单是单独添加到窗口上的，和窗口等大小。
+`_MenuWrapperView`是添加到窗口上的，和窗口等大小。
 
 `_MenuBackgroundView`和`_MenuTableView`被添加到`_MenuWrapperView`上，顶部紧贴导航栏底部。
 
@@ -70,7 +72,7 @@ override func didMoveToWindow() {
 ```swift
 func performAnimation() {
     isAnimating = true // 标记动画过程开始
-    if isOpen { menuWrapperView.hidden = false } // 菜单打开则显示 menuWrapperView
+    if isOpen { menuWrapperView.hidden = false } // 菜单打开则显示 _MenuWrapperView
     UIView.animateWithDuration(1.0,
         delay: 0,
         usingSpringWithDamping: 0.7,
@@ -82,14 +84,14 @@ func performAnimation() {
             self.menuTitleView.arrowImageView.transform = self.arrowImageViewTransform
         }, completion: { _ in
             self.isAnimating = false // 标记动画过程结束
-            if !self.isOpen { self.menuWrapperView.hidden = true } // 菜单关闭则隐藏 menuWrapperView
+            if !self.isOpen { self.menuWrapperView.hidden = true } // 菜单关闭则隐藏 _MenuWrapperView
     })
 }
 ```
 
-上述代码在动画块中根据菜单打开还是关闭调整了蒙版`menuBackgroundView`的`alpha`，`menuTitleView`右侧的小箭头的方向，以及`menuTableView`的`contentInset.top`。
+上述代码在动画块中根据菜单打开还是关闭调整了蒙版`_MenuBackgroundView`的`alpha`，导航栏`titleView`上的`_MenuTitleView`右侧的小箭头的方向，以及`_MenuTableView`的`contentInset.top`。
 
-之前是通过调整`menuTableView`的约束使之整体上下移动，但是效果不太好，改为调整`contentInset.top`后就好多了，约束也无需改动了。
+之前是通过调整`_MenuTableView`的约束使之整体上下移动，但是效果不太好，改为调整`contentInset.top`后就好多了，约束也无需改动了。
 
 `menuTableViewContentInsetTop`计算方式如下：
 
@@ -102,23 +104,23 @@ var menuTableViewContentInsetTop: CGFloat {
 }
 ```
 
-为了防止`menuTableView`向下拖动时露出背后的背景，为其添加了一个足够高的`tableHeaderView`，并将其背景色设置为菜单的背景色。
+为了防止`_MenuTableView`向下拖动时露出背后的背景，为其添加了一个足够高的`tableHeaderView`，并将其背景色设置为菜单的背景色。
 
 菜单打开时，令`contentInset.top`为`-tableHeaderViewHeight`，即`tableHeaderView`的高度，这样`tableHeaderView`就在可见区域上方了。
 
-菜单关闭时，将`contentInset.top`再加上所有行的行高之和，这样`menuTableView`的所有 cell 也都会跑到可见区域上方了。
+菜单关闭时，将`contentInset.top`再加上所有行的行高之和，这样`_MenuTableView`的所有单元格也都会跑到可见区域上方了。
 
 ### 触摸事件处理
 
 菜单打开时，导航栏上除了`DropdownMenu`，其他部分都不响应触摸，`_MenuTableView`可正常拖动，点击周围的蒙版区域即`_MenuBackgroundView`则会关闭菜单。
 
-`_MenuWrapperView`是`_MenuBackgroundView`和`_MenuTableView`的父视图，方便控制触摸事件的传递。
+`_MenuWrapperView`是`_MenuBackgroundView`和`_MenuTableView`的父视图，非常方便控制触摸事件的响应者。
 
-因此在`_MenuWrapperView`中，实现了下面这个方法来控制触摸事件的响应者：
+因此在`_MenuWrapperView`中，实现了下面这个方法来决定触摸事件的响应者：
 
 ```swift
 override func hitTest(point: CGPoint, withEvent event: UIEvent?) -> UIView? {
-    // 隐藏即菜单处于关闭状态，自身及其子视图放弃处理此次事件
+    // 隐藏即菜单处于关闭状态，自身及其子视图放弃处理此次事件，窗口上位于 _MenuWrapperView 下层的视图层级有机会处理事件
     guard !hidden else {
         return nil
     }
@@ -146,9 +148,9 @@ override func hitTest(point: CGPoint, withEvent event: UIEvent?) -> UIView? {
 }
 ```
 
-### cell 的处理
+### 单元格的处理
 
-由于最后一行的 cell 有分隔线不好看，因此隐藏了分隔线，自己单独绘制。
+由于最后一行的单元格有分隔线不好看，因此隐藏了分隔线，自己单独绘制。
 
 ```swift
 override func drawRect(rect: CGRect) {
@@ -166,7 +168,7 @@ override func drawRect(rect: CGRect) {
 }
 ```
 
-另外发现使用`Default`风格的 cell 时，`textLabel`很大，直接盖住了分隔线，因此需要使用其他风格。
+另外发现使用`Default`风格的单元格时，`textLabel`很大，直接盖住了分隔线，因此需要使用其他风格。
 
 右侧的小箭头使用辅助视图即可：
 
