@@ -16,6 +16,7 @@
   (https://github.com/949478479/Animations-Study/tree/CardAnimationByiCarousel)
 - [利用 UIViewControllerAnimatedTransitioning 构建一个下滑菜单]
   (https://github.com/949478479/Animations-Study/tree/SlideDownMenu)
+- [类似新浪微博的下拉式菜单](https://github.com/949478479/Study-Notes/tree/DropdownMenu)
 
 ## 图层动画
 
