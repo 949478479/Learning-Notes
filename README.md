@@ -40,8 +40,8 @@
 ## 转场动画
 
 - [圆圈缩放式转场动画](https://github.com/949478479/Learning-Notes/tree/PingTransitionAnimation)
-- [翻页效果转场动画](https://github.com/949478479/Animations-Study/tree/FlipTransion)
-- [魔法移动式的转场动画](https://github.com/949478479/Animations-Study/tree/MagicMove)
+- [翻页效果转场动画](https://github.com/949478479/Learning-Notes/tree/FlipTransionAnimation)
+- [魔法移动式的转场动画](https://github.com/949478479/Learning-Notes/tree/MagicMoveAnimation)
 
 <a name="Menu"></a>
 ## 菜单效果
