@@ -1,12 +1,11 @@
 # Pinterest
 
 学习自`RayWenderlich`的教程 
-[UICollectionView Custom Layout Tutorial: Pinterest]
-(http://www.raywenderlich.com/107439/uicollectionview-custom-layout-tutorial-pinterest)
+[UICollectionView Custom Layout Tutorial: Pinterest](http://www.raywenderlich.com/107439/uicollectionview-custom-layout-tutorial-pinterest)
 
 好像是他们开会的照片 (⊙_⊙).
 
-![](https://github.com/949478479/Learning-Notes/blob/master/Pinterest-screenshot/QQ20150827-1%402x.png)
+![](Screenshot/QQ20150827-1%402x.png)
 
 这里总结下一些收获理解:
 
