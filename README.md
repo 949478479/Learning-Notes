@@ -39,7 +39,7 @@
 <a name="TransitionAnimation"></a>
 ## 转场动画
 
-- [圆圈缩放式转场动画](https://github.com/949478479/Animations-Study/tree/PingTransition)
+- [圆圈缩放式转场动画](https://github.com/949478479/Learning-Notes/tree/PingTransitionAnimation)
 - [翻页效果转场动画](https://github.com/949478479/Animations-Study/tree/FlipTransion)
 - [魔法移动式的转场动画](https://github.com/949478479/Animations-Study/tree/MagicMove)
 
@@ -66,7 +66,7 @@
 ## UICollectionView
 
 - [WWDC 上的 UICollectionViewLayout 的 demo](https://github.com/949478479/Learning-Notes/tree/CollectionViewLayoutDemo)
-- [瀑布流布局](https://github.com/949478479/Learning-Notes/tree/Pinterest)
+- [瀑布流布局](https://github.com/949478479/Learning-Notes/tree/UICollectionView-Custom-Layout-Tutorial-Pinterest)
 - [环形滚动布局](https://github.com/949478479/Learning-Notes/tree/CircularCollectionView)
 - [类似 Ultravisual 的视差效果布局](https://github.com/949478479/Learning-Notes/tree/Ultravisual)
 - [用 Flickr 搜索/浏览图片的简陋 demo](https://github.com/949478479/Learning-Notes/tree/FlickrSearch)
