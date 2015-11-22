@@ -1,9 +1,9 @@
-## PullRefresh
+# 继承 UIRefreshControl 的自定义下拉刷新控件
 
 思路来自台版`AppCoda`的这篇教程 [如何加入自訂的下拉更新元件]
 (http://www.appcoda.com.tw/custom-pull-to-refresh/?utm_source=sendy&utm_medium=email&utm_campaign=pull-to-refresh-control)
 
-![](https://github.com/949478479/Learning-Notes/blob/master/PullRefresh-screenshot/PullRefresh.gif)
+![](Screenshot/PullRefresh.gif)
 
 为了省事就直接继承`UIRefreshControl`,然后往上覆盖自定义视图,结果发现坑比较多,这里记录下:
 
