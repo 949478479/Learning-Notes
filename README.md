@@ -27,7 +27,7 @@
 
 - [可以折叠的 ImageView](https://github.com/949478479/Animations-Study/tree/FoldingImageView)
 - [简易卡片动画](https://github.com/949478479/Animations-Study/tree/CardAnimation)
-- [继承自 UIRefreshControl 的自定义下拉刷新](https://github.com/949478479/Animations-Study/tree/PullRefresh)
+- [继承 UIRefreshControl 的自定义下拉刷新控件](https://github.com/949478479/Study-Notes/tree/Building-a-Custom-Pull-To-Refresh-Control)
 - [《Beginning iOS 8 Programming with Swift》小项目]
   (https://github.com/949478479/Learning-Notes/tree/FoodPin)
 - [简易聊天气泡和多行输入框](https://github.com/949478479/Learning-Notes/tree/ChatUIDemo)
@@ -62,3 +62,7 @@
 
 - [使用 ReactiveCocoa 构建一个简单的天气应用]
   (https://github.com/949478479/Learning-Notes/tree/SimpleWeather)
+  
+## iOS 9
+
+- [初窥 iOS 9 Contacts Framework](https://github.com/949478479/Learning-Notes/tree/A-First-Look-at-Contacts-Framework-in-iOS-9)
