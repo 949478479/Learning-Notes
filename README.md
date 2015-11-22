@@ -1,4 +1,4 @@
-# Pinterest
+# UICollectionViewLayout 瀑布流布局
 
 学习自`RayWenderlich`的教程 
 [UICollectionView Custom Layout Tutorial: Pinterest](http://www.raywenderlich.com/107439/uicollectionview-custom-layout-tutorial-pinterest)
