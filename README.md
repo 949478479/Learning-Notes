@@ -58,7 +58,7 @@
 - [可以折叠的 ImageView](https://github.com/949478479/Animations-Study/tree/FoldingImageView)
 - [简易卡片动画](https://github.com/949478479/Animations-Study/tree/CardAnimation)
 - [继承 UIRefreshControl 的自定义下拉刷新控件](https://github.com/949478479/Learning-Notes/tree/Building-a-Custom-Pull-To-Refresh-Control)
-- [Beginning iOS 8 Programming with Swift 小项目](https://github.com/949478479/Learning-Notes/tree/FoodPin)
+- [Beginning iOS 8 Programming with Swift 小项目](https://github.com/949478479/Learning-Notes/tree/Beginning-iOS-8-Programming-with-Swift)
 - [简易聊天气泡和多行输入框](https://github.com/949478479/Learning-Notes/tree/ChatUIDemo)
 - [QQ 好友下拉列表](https://github.com/949478479/Learning-Notes/tree/QQFriendListDemo)
 
