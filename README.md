@@ -1,4 +1,4 @@
-# AnimationsWithCAReplicatorLayer
+# Creating animations with CAReplicatorLayer
 
 学习自 [iOS Animations by Emails](http://www.ios-animations-by-emails.com/)
 三月的教程 [Creating animations with CAReplicatorLayer]
@@ -6,9 +6,9 @@
 
 这一期讲解了`CAReplicatorLayer`的简单使用.最终将实现下面三个动画效果:
 
-![](https://github.com/949478479/Animations-Study/blob/master/AnimationsWithCAReplicatorLayer-image/music-app-playing.gif)
-![](https://github.com/949478479/Animations-Study/blob/master/AnimationsWithCAReplicatorLayer-image/activity-final.gif)
-![](https://github.com/949478479/Animations-Study/blob/master/AnimationsWithCAReplicatorLayer-image/rw-logo.gif)
+![](Screenshot/music-app-playing.gif)
+![](Screenshot/activity-final.gif)
+![](Screenshot/rw-logo.gif)
 
 ## 基本的复制器动画
 
@@ -18,7 +18,7 @@
 
 首先来实现下面这个效果:
 
-![](https://github.com/949478479/Animations-Study/blob/master/AnimationsWithCAReplicatorLayer-image/music-app-playing.gif)
+![](Screenshot/music-app-playing.gif)
 
 这个动画有一个上下移动的红色小条,另外两个小条是它的两个副本,它们三个之间存在位置和时间的偏移.
 
@@ -45,7 +45,7 @@ view.layer.addSublayer(replicator)
 
 然后在`viewDidLoad()`方法中调用`animation1()`方法,运行一下,效果大概这样:
 
-![](https://github.com/949478479/Animations-Study/blob/master/AnimationsWithCAReplicatorLayer-image/gray-view.png)
+![](Screenshot/gray-view.png)
 
 接下来创建第一个红色小条,继续在该方法中添加以下代码:
 
@@ -61,7 +61,7 @@ replicator.addSublayer(bar)
 
 上面代码创建了一个带圆角的红色小条,并添加为`CAReplicatorLayer`的子图层.运行效果如下:
 
-![](https://github.com/949478479/Animations-Study/blob/master/AnimationsWithCAReplicatorLayer-image/red-bar.png)
+![](Screenshot/red-bar.png)
 
 红色小条出现在灰色图层底部,因为接下来要为其添加动画让它向上动起来.继续在该方法中添加以下代码:
 
@@ -95,7 +95,7 @@ replicator.instanceTransform = CATransform3DMakeTranslation(20, 0, 0)
 
 每个红色小条相对于上一个都会在水平方向上向右偏移 20 点距离.运行效果大致如下:
 
-![](https://github.com/949478479/Animations-Study/blob/master/AnimationsWithCAReplicatorLayer-image/3-red-bars.png)
+![](Screenshot/3-red-bars.png)
 
 三个红色小条整齐地上下运动着,所以还需要给小条的动画加点时间差,添加下面代码:
 
@@ -115,7 +115,7 @@ replicator.masksToBounds = true
 
 这样,红色小条就只有运动到原先的灰色方块内部才可见了.最终效果如下:
 
-![](https://github.com/949478479/Animations-Study/blob/master/AnimationsWithCAReplicatorLayer-image/red-bars-final.gif)
+![](Screenshot/red-bars-final.gif)
 
 ## 活动指示器动画
 
@@ -151,7 +151,7 @@ replicator.addSublayer(dot)
 
 运行效果如下(记得在`viewDidLoad()`方法中调用`animation2()`方法):
 
-![](https://github.com/949478479/Animations-Study/blob/master/AnimationsWithCAReplicatorLayer-image/gray-rect.png)
+![](Screenshot/gray-rect.png)
 
 接下来设置`CAReplicatorLayer`属性,总共显示 15 个小方块,每个小方块间偏移一定角度,均匀排布一圈:
 
@@ -163,11 +163,11 @@ replicator.instanceTransform = CATransform3DMakeRotation(CGFloat(2 * M_PI) / CGF
 
 运行程序,效果如下:
 
-![](https://github.com/949478479/Animations-Study/blob/master/AnimationsWithCAReplicatorLayer-image/activity-1.png)
+![](Screenshot/activity-1.png)
 
 如果调整`nrDots`的值,效果可能会是这样,这样,以及这样:
 
-![](https://github.com/949478479/Animations-Study/blob/master/AnimationsWithCAReplicatorLayer-image/variations.png)
+![](Screenshot/variations.png)
 
 下面为小方块添加无限重复的缩小动画:
 
@@ -199,7 +199,7 @@ dot.transform = CATransform3DMakeScale(0.01, 0.01, 0.01)
 
 运行程序,最终效果如下:
 
-![](https://github.com/949478479/Animations-Study/blob/master/AnimationsWithCAReplicatorLayer-image/activity-final.gif)
+![](Screenshot/activity-final.gif)
 
 ## 跟随动画
 
@@ -280,7 +280,7 @@ replicator.instanceDelay = 0.1
 
 运行程序,效果已经很好了:
 
-![](https://github.com/949478479/Animations-Study/blob/master/AnimationsWithCAReplicatorLayer-image/rw-1.gif)
+![](Screenshot/rw-1.gif)
 
 为了更像`RayWenderlich`网站的 logo, 添加下面代码修改小圆为绿色(当然也可以选择直接改动原始小圆的颜色):
 
@@ -296,4 +296,4 @@ replicator.instanceGreenOffset = -0.03
 
 这将导致每个小圆相对于上一个会减少 0.03 的绿色成分.最后动画看起来是这样的:
 
-![](https://github.com/949478479/Animations-Study/blob/master/AnimationsWithCAReplicatorLayer-image/rw-logo.gif)
+![](Screenshot/rw-logo.gif)
