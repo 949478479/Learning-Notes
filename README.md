@@ -1,9 +1,9 @@
-# FoodPin
+# Beginning iOS 8 Programming with Swift
 
-学习自`AppCoda`出品的图书《Beginning iOS 8 Programming with Swift》
+学习自 `AppCoda` 出品的图书 *Beginning iOS 8 Programming with Swift* 。
 
-![](https://github.com/949478479/Learning-Notes/blob/master/FoodPin-screenshot/1.gif)
-![](https://github.com/949478479/Learning-Notes/blob/master/FoodPin-screenshot/2.gif)
+![](Screenshot/1.gif)
+![](Screenshot/2.gif)
 
-![](https://github.com/949478479/Learning-Notes/blob/master/FoodPin-screenshot/3.gif)
-![](https://github.com/949478479/Learning-Notes/blob/master/FoodPin-screenshot/4.gif)
+![](Screenshot/3.gif)
+![](Screenshot/4.gif)
