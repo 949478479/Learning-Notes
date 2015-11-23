@@ -27,8 +27,8 @@
 <a name="iOS Animations by Emails"></a>
 ## iOS Animations by Emails 系列
 
-- 2015.3 [CAReplicatorLayer 动画](https://github.com/949478479/Animations-Study/tree/AnimationsWithCAReplicatorLayer)
-- 2015.7 [CAGradientLayer 与 mask 动画](https://github.com/949478479/Animations-Study/tree/ColorIntroduction)
+- 2015.3 [CAReplicatorLayer 动画](https://github.com/949478479/Learning-Notes/tree/Creating-animations-with-CAReplicatorLayer)
+- 2015.7 [CAGradientLayer 与 mask 动画](https://github.com/949478479/Learning-Notes/tree/Fun-with-Gradients-and-Masks)
 
 <a name="LayerAnimation"></a>
 ## 图层动画
