@@ -1,15 +1,14 @@
-## CircularCollectionView
+# CircularCollectionView
  
-学习自`RayWenderlich`的教程 [UICollectionView Custom Layout Tutorial: A Spinning Wheel]
-(http://www.raywenderlich.com/107687/uicollectionview-custom-layout-tutorial-spinning-wheel)
+学习自 `RayWenderlich` 的教程 [UICollectionView Custom Layout Tutorial: A Spinning Wheel](http://www.raywenderlich.com/107687/uicollectionview-custom-layout-tutorial-spinning-wheel) 。
  
 用`UICollectionView`自定义布局实现这么个轮子滚动效果:
 
-![](https://github.com/949478479/Learning-Notes/blob/master/CircularCollectionView-screenshot/final-scrolling.gif)
+![](Screenshot/final-scrolling.gif)
 
 基本的思路如下图:
 
-![](https://github.com/949478479/Learning-Notes/blob/master/CircularCollectionView-screenshot/Screenshot-2015-06-01-14.11.42.png)
+![](Screenshot/Screenshot-2015-06-01-14.11.42.png)
 
 cell 间的夹角,基本可以随意指定,为了方便可以这么算,效果还不错:
 
@@ -39,7 +38,7 @@ class CircularCollectionViewLayoutAttributes: UICollectionViewLayoutAttributes {
 
 计算布局属性时,需修改锚点,从而让旋转中心跑到屏幕下方,而不是在 cell 中心,如下图:
 
-![](https://github.com/949478479/Learning-Notes/blob/master/CircularCollectionView-screenshot/Screenshot-2015-06-01-16.22.12-192x500.png)
+![](Screenshot/Screenshot-2015-06-01-16.22.12-192x500.png)
 
 ```swift
 // 正常锚点 y = 0.5, 对应高度一半.现在要修改锚点到屏幕下方圆心处,即在高度一半基础上加上半径. 
@@ -57,7 +56,7 @@ attributes.transform   = CGAffineTransformMakeRotation(anglePerItem * CGFloat(in
 
 如果不改锚点,就会变成下面这种堆叠的样子:
 
-![](https://github.com/949478479/Learning-Notes/blob/master/CircularCollectionView-screenshot/Screenshot-2015-05-27-17.56.29-700x417.png)
+![](Screenshot/Screenshot-2015-05-27-17.56.29-700x417.png)
 
 而一旦改动了锚点, cell 的位置就会跑到屏幕上面去,所以还需要修正位置.
 
@@ -78,7 +77,7 @@ override func applyLayoutAttributes(layoutAttributes: UICollectionViewLayoutAttr
 
 此时效果将会是这样:
 
-![](https://github.com/949478479/Learning-Notes/blob/master/CircularCollectionView-screenshot/scrolling-off.gif)
+![](Screenshot/scrolling-off.gif)
 
 可以看到 cell 角度对了,但是都沿水平方向滚跑了.在滚动时,需要不断的刷新布局,让 cell 的中点始终处于屏幕中心,
 再配合旋转,组合起来就是绕圆心滚动的轮子效果.
@@ -93,7 +92,7 @@ override func shouldInvalidateLayoutForBoundsChange(newBounds: CGRect) -> Bool {
 
 滚动起点和滚动终点的情况,如下图所示:
 
-![](https://github.com/949478479/Learning-Notes/blob/master/CircularCollectionView-screenshot/combined-700x391.png)
+![](Screenshot/combined-700x391.png)
 
 仔细数一数,发现将最后一个 cell 滚动至屏幕中心时,这个滚动弧度(负数)刚好是 cell 间夹角乘上 cell 总数 - 1, 即:
 
@@ -119,14 +118,14 @@ attributes.transform = CGAffineTransformMakeRotation(
 
 这样就完成了滚动中实时计算,效果如下:
 
-![](https://github.com/949478479/Learning-Notes/blob/master/CircularCollectionView-screenshot/final-scrolling.gif)
+![](Screenshot/final-scrolling.gif)
 
 接下来是性能优化部分,避免计算屏幕范围外的 cell 的布局属性.
 
 示意图如下:
 
-![](https://github.com/949478479/Learning-Notes/blob/master/CircularCollectionView-screenshot/Screenshot-2015-06-01-17.46.48-508x500.png)
-![](https://github.com/949478479/Learning-Notes/blob/master/CircularCollectionView-screenshot/Screenshot-2015-06-01-18.23.05-465x500.png)
+![](Screenshot/Screenshot-2015-06-01-17.46.48-508x500.png)
+![](Screenshot/Screenshot-2015-06-01-18.23.05-465x500.png)
 
 需要计算出屏幕范围的 cell 的索引:
 
