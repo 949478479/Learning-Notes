@@ -1,86 +1,143 @@
-# 目录
+# 地图与位置相关 API 的新特性
 
-- [iOS 9](#iOS 9)
-- [Swift](#Swift)
-- [iOS Animations by Emails 系列](#iOS Animations by Emails)
-- [图层动画](#LayerAnimation)
-- [转场动画](#TransitionAnimation)
-- [菜单效果](#Menu)
-- [其他效果](#Other)
-- [UICollectionView](#UICollectionView)
-- [UIPickerView](#UIPickerView)
-- [ReactiveCocoa](#ReactiveCocoa)
+学习自 *iOS 9 by Tutorials*，这里记录些笔记。
 
-<a name="iOS 9"></a>
-## iOS 9
+## 地图外观
 
-- [初窥 iOS 9 Contacts Framework](https://github.com/949478479/Learning-Notes/tree/A-First-Look-at-Contacts-Framework-in-iOS-9)
+关于地图外观，iOS 9 中新增了如下三个属性：
 
-<a name="Swift"></a>
-## Swift
+```swift
+var showsScale: Bool   // 显示比例尺。
+var showsCompass: Bool // 显示指南针。
+var showsTraffic: Bool // 显示交通状况，只对 .Standard 和 .Hybrid 类型的地图有效。
+```
 
-- [RayWenderlich 出品的脑洞大开的 Swift 小题目](https://github.com/949478479/Learning-Notes/tree/Are-You-a-Swift-Ninja)
-- [RayWenderlich 出品的 Swift 面试题 & 答案](https://github.com/949478479/Learning-Notes/tree/Swift-Interview-Questions-and-Answers)
-- [WWDC 2015 Session 106 What's New in Swift 2.0](https://github.com/949478479/Learning-Notes/tree/WWDC-2015-Session-106-What%E2%80%99s-New-in-Swift)
-- [WWDC 2015 Session 401 Swift and Objective C Interoperability](https://github.com/949478479/Learning-Notes/tree/WWDC-2015-Session-401-Swift-and-Objective-C-Interoperability)
+全部开启后将类似下图这样：
 
-<a name="iOS Animations by Emails"></a>
-## iOS Animations by Emails 系列
+![MapAppearance](Screenshot/MapAppearance.png)
 
-- 2015.3 [CAReplicatorLayer 动画](https://github.com/949478479/Learning-Notes/tree/Creating-animations-with-CAReplicatorLayer)
-- 2015.7 [CAGradientLayer 与 mask 动画](https://github.com/949478479/Learning-Notes/tree/Fun-with-Gradients-and-Masks)
+## 大头针颜色
 
-<a name="LayerAnimation"></a>
-## 图层动画
+在 iOS 9 之前，大头针，也就是 `MKPinAnnotationView`，只有有限的三种颜色。
 
-- [如何用 Swift 创建一个复杂的 loading 动画](https://github.com/949478479/Learning-Notes/tree/SBLoader)
-- [利用 mask 实现注水动画](https://github.com/949478479/Learning-Notes/tree/MaskAnimationDemo)
+从 iOS 9 开始，`pinColor` 属性被弃用，改用 `pinTintColor` 属性替代，从而可以方便地设置各种各样的颜色了：
 
-<a name="TransitionAnimation"></a>
-## 转场动画
+```swift
+@available(iOS 9.0, *)
+var pinTintColor: UIColor!
 
-- [圆圈缩放效果](https://github.com/949478479/Learning-Notes/tree/PingTransitionAnimation)
-- [翻页效果](https://github.com/949478479/Learning-Notes/tree/FlipTransionAnimation)
-- [魔法移动效果](https://github.com/949478479/Learning-Notes/tree/MagicMoveAnimation)
+@available(iOS, introduced=3.0, deprecated=9.0, message="Use pinTintColor instead")
+var pinColor: MKPinAnnotationColor
+```
 
-<a name="Menu"></a>
-## 菜单效果
+## 自定义 MKAnnotationView 的辅助视图
 
-- [创建一个非常酷的3D效果菜单动画](https://github.com/949478479/Animations-Study/tree/Taasky)
-- [利用 iCarousel 实现类似 iOS9 任务管理器效果动画](https://github.com/949478479/Animations-Study/tree/CardAnimationByiCarousel)
-- [利用 UIViewControllerAnimatedTransitioning 构建一个下滑菜单](https://github.com/949478479/Animations-Study/tree/SlideDownMenu)
-- [类似新浪微博的下拉式菜单](https://github.com/949478479/Learning-Notes/tree/DropdownMenu)
+在 iOS 9 之前，添加比较复杂的自定义辅助视图还是比较麻烦的。
 
+在 iOS 9，`MKAnnotationView` 新引入了 `detailCalloutAccessoryView` 属性，将其设置为自定义的视图即可。
 
-<a name="Other"></a>
-## 其他效果
+需要注意的是，自定义视图需实现 `intrinsicContentSize()` 方法，返回适当的固有尺寸，从而指导 `MKAnnotationView` 进行相关的布局。如果自定义视图使用 `Auto Layout`，就不用自己实现此方法了。
 
-- [可以折叠的 ImageView](https://github.com/949478479/Animations-Study/tree/FoldingImageView)
-- [简易卡片动画](https://github.com/949478479/Animations-Study/tree/CardAnimation)
-- [继承 UIRefreshControl 的自定义下拉刷新控件](https://github.com/949478479/Learning-Notes/tree/Building-a-Custom-Pull-To-Refresh-Control)
-- [Beginning iOS 8 Programming with Swift 小项目](https://github.com/949478479/Learning-Notes/tree/Beginning-iOS-8-Programming-with-Swift)
-- [简易聊天气泡和多行输入框](https://github.com/949478479/Learning-Notes/tree/ChatUIDemo)
-- [QQ 好友下拉列表](https://github.com/949478479/Learning-Notes/tree/QQFriendListDemo)
+下图这种辅助视图（图中绿色部分）即是使用 `xib` 配合 `Auto Layout` 构建的，实例化视图后，直接赋值给 `detailCalloutAccessoryView` 属性即可：
 
-<a name="UICollectionView"></a>
-## UICollectionView
+![AnnotationCalloutsXib](Screenshot/AnnotationCalloutsXib.png)
+![AnnotationCallouts](Screenshot/AnnotationCallouts.png)
 
-- [WWDC 上的 UICollectionViewLayout 的 demo](https://github.com/949478479/Learning-Notes/tree/CollectionViewLayoutDemo)
-- [瀑布流布局](https://github.com/949478479/Learning-Notes/tree/UICollectionView-Custom-Layout-Tutorial-Pinterest)
-- [环形滚动布局](https://github.com/949478479/Learning-Notes/tree/CircularCollectionView)
-- [类似 Ultravisual 的视差效果布局](https://github.com/949478479/Learning-Notes/tree/Ultravisual)
-- [用 Flickr 搜索/浏览图片的简陋 demo](https://github.com/949478479/Learning-Notes/tree/FlickrSearch)
+## 时区支持
 
-<a name="UIPickerView"></a>
-## UIPickerView
+在 iOS 9，`CLPlacemark` 新增了 `timeZone` 属性，这样在进行地理编码或者反编码时，可以方便地获取对应的时区：
 
-- [UIPickerView 简单使用:实现一个老虎机](https://github.com/949478479/Learning-Notes/tree/SlotMachine)
+```swift
+@available(iOS 9.0, *)
+@NSCopying var timeZone: NSTimeZone? { get }
+```
 
+## 单次获取位置信息
 
+在 iOS 9，`CLLocationManager` 引入了新方法 `requestLocation()`，可以非常方便地获取位置信息，它使用和连续更新一样的代理方法，在发送完期望精度的位置信息后，会自动将定位功能关闭：
 
-<a name="ReactiveCocoa"></a>
-## ReactiveCocoa
+```swift
+class ViewController: UIViewController, CLLocationManagerDelegate {
+    let locationManager = CLLocationManager()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
 
-- [使用 ReactiveCocoa 构建一个简单的天气应用](https://github.com/949478479/Learning-Notes/tree/SimpleWeather)
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+        locationManager.requestLocation()
+    }
 
+   // MARK: - CLLocationManagerDelegate
 
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let location = locations.first {
+            print("当前位置：\(location)")
+        }
+    }
+
+    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+        print("获取位置失败：\(error.localizedDescription)")
+    }
+}
+```
+
+## 使用官方地图导航
+
+在 iOS 9，`MKMapItem` 新增了 `MKLaunchOptionsDirectionsModeTransit` 常量，可以非常方便地使用官方地图进行导航，使用方式如下：
+
+```swift
+let placemark = MKPlacemark(coordinate: aCoordinate, addressDictionary: ["street" : "Four Barrel Coffee"])
+let mapItem = MKMapItem(placemark: placemark)
+let launchOptions = [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeTransit]
+mapItem.openInMapsWithLaunchOptions(launchOptions)
+```
+
+效果如下图所示：
+
+![](Screenshot/TransitDirection.png)
+
+## 计算出发与到达时间
+
+早在 iOS 7，就可以通过 `MKDirections` 的 `calculateETAWithCompletionHandler(_:)` 方法计算行程时间，该方法异步执行，最后会通过回调闭包传递一个 `MKETAResponse` 对象：
+
+```swift
+@available(iOS 7.0, *)
+class MKETAResponse : NSObject {
+    // Source and destination may be filled with additional details compared to the request object.
+    var source: MKMapItem { get }
+    var destination: MKMapItem { get }
+    var expectedTravelTime: NSTimeInterval { get } // 行程时间
+    @available(iOS 9.0, *)
+    var distance: CLLocationDistance { get } // 总路程，单位是米
+    @available(iOS 9.0, *)
+    var expectedArrivalDate: NSDate { get } // 到达时间
+    @available(iOS 9.0, *)
+    var expectedDepartureDate: NSDate { get } // 出发时间
+    @available(iOS 9.0, *)
+    var transportType: MKDirectionsTransportType { get }
+}
+```
+
+可以看到，在 iOS 9，`MKETAResponse` 增加了对“总路程”、“出发时间”、“到达时间”的新支持。
+
+使用方法类似下面这样：
+
+```swift
+let request = MKDirectionsRequest()
+
+let source = MKMapItem(placemark: MKPlacemark(coordinate: /* 出发地坐标 */, addressDictionary: nil))
+let destination = MKMapItem(placemark: MKPlacemark(coordinate: /* 目的地坐标 */, addressDictionary: nil))
+
+request.source = source
+request.destination = destination
+request.transportType = .Transit // iOS 9 新增的枚举值
+
+MKDirections(request: request).calculateETAWithCompletionHandler { response, error in
+    if let error = error {
+        print(error.localizedDescription)
+    } else {
+        // 在这里做些时间处理工作
+    }
+}
+```

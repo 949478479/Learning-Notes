@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>name</key>
+		<string>CoffeeShop</string>
+		<key>details</key>
+		<string>Locally-roasted organic coffees &amp; other brewed drinks are served alongside baked goods at this shop.</string>
+		<key>priceGuide</key>
+		<integer>2</integer>
+		<key>rating</key>
+		<real>4.7</real>
+		<key>latitude</key>
+		<real>37.747008</real>
+		<key>longitude</key>
+		<real>-122.418719</real>
+		<key>phone</key>
+		<string>14153683802</string>
+		<key>yelpWebsite</key>
+		<string>http://www.yelp.com/biz/coffeeshop-san-francisco</string>
+		<key>openTime</key>
+		<date>2015-06-26T10:30:00Z</date>
+		<key>closeTime</key>
+		<date>2015-06-27T22:00:00Z</date>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>Coffee Bar</string>
+		<key>details</key>
+		<string>Coffee made from locally roasted beans, pastries &amp; light bites in a modern setting.</string>
+		<key>priceGuide</key>
+		<integer>2</integer>
+		<key>rating</key>
+		<integer>3</integer>
+		<key>latitude</key>
+		<real>37.763214</real>
+		<key>longitude</key>
+		<real>-122.410983</real>
+		<key>phone</key>
+		<string>4155518100</string>
+		<key>yelpWebsite</key>
+		<string>http://www.yelp.com/biz/coffee-bar-san-francisco</string>
+		<key>openTime</key>
+		<date>2015-06-26T11:00:00Z</date>
+		<key>closeTime</key>
+		<date>2015-06-28T21:30:00Z</date>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>Jane</string>
+		<key>details</key>
+		<string>Upscale, light-filled cafe brewing fair-trade coffee &amp; whipping up housemade baked goods.</string>
+		<key>priceGuide</key>
+		<integer>3</integer>
+		<key>rating</key>
+		<integer>5</integer>
+		<key>latitude</key>
+		<real>37.789344</real>
+		<key>longitude</key>
+		<real>-122.434044</real>
+		<key>phone</key>
+		<string>4159315263</string>
+		<key>yelpWebsite</key>
+		<string>http://www.yelp.com/biz/jane-on-fillmore-san-francisco</string>
+		<key>openTime</key>
+		<date>2015-06-26T11:00:00Z</date>
+		<key>closeTime</key>
+		<date>2015-06-27T22:00:00Z</date>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>Bernie&apos;s</string>
+		<key>details</key>
+		<string>Casual neighborhood cafe offering Tully&apos;s coffee, pastries &amp; some savory dishes, plus free WiFi.</string>
+		<key>priceGuide</key>
+		<integer>1</integer>
+		<key>rating</key>
+		<integer>3</integer>
+		<key>latitude</key>
+		<real>37.751352</real>
+		<key>longitude</key>
+		<real>-122.431247</real>
+		<key>phone</key>
+		<string>4156421192</string>
+		<key>yelpWebsite</key>
+		<string>http://www.yelp.com/biz/bernies-san-francisco</string>
+		<key>openTime</key>
+		<date>2015-06-26T09:30:00Z</date>
+		<key>closeTime</key>
+		<date>2015-06-27T21:30:00Z</date>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>Four Barrel Coffee</string>
+		<key>details</key>
+		<string>Exposed beams create a sleek &amp; rustic ambiance for this Mission cafe specializing in drip coffee.</string>
+		<key>priceGuide</key>
+		<integer>1</integer>
+		<key>rating</key>
+		<integer>5</integer>
+		<key>latitude</key>
+		<real>37.766683</real>
+		<key>longitude</key>
+		<real>-122.421802</real>
+		<key>phone</key>
+		<string>4158964289</string>
+		<key>yelpWebsite</key>
+		<string>http://www.yelp.com/biz/four-barrel-coffee-san-francisco</string>
+		<key>openTime</key>
+		<date>2015-06-26T11:00:00Z</date>
+		<key>closeTime</key>
+		<date>2015-06-28T22:00:00Z</date>
+	</dict>
+</array>
+</plist>

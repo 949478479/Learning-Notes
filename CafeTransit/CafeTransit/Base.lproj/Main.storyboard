@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="9pY-O0-aIf">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="qvi-Cl-szI">
+            <objects>
+                <navigationController id="9pY-O0-aIf" sceneMemberID="viewController">
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="uND-tQ-ssw">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="eCV-tv-Jy5" kind="relationship" relationship="rootViewController" id="jLU-iE-SZ5"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="B21-Ab-Nfc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="104" y="277"/>
+        </scene>
+        <!--Café Transit-->
+        <scene sceneID="j7p-JY-XPU">
+            <objects>
+                <viewController id="eCV-tv-Jy5" customClass="ViewController" customModule="CafeTransit" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="zCD-fu-FCX"/>
+                        <viewControllerLayoutGuide type="bottom" id="UoM-ad-GBV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="MY7-W8-0U5">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gPG-26-adM">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <connections>
+                                    <outlet property="delegate" destination="eCV-tv-Jy5" id="PoG-HL-GnM"/>
+                                </connections>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="gPG-26-adM" firstAttribute="top" secondItem="MY7-W8-0U5" secondAttribute="top" id="Gal-f6-dxv"/>
+                            <constraint firstItem="gPG-26-adM" firstAttribute="leading" secondItem="MY7-W8-0U5" secondAttribute="leading" id="I3w-Vf-GfZ"/>
+                            <constraint firstItem="gPG-26-adM" firstAttribute="bottom" secondItem="UoM-ad-GBV" secondAttribute="top" id="JaV-ZH-HLD"/>
+                            <constraint firstAttribute="trailing" secondItem="gPG-26-adM" secondAttribute="trailing" id="gCb-3v-usz"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Café Transit" id="uTu-b9-cCu"/>
+                    <connections>
+                        <outlet property="mapView" destination="gPG-26-adM" id="1UW-iZ-CfB"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MNF-gf-zdZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="503" y="277"/>
+        </scene>
+    </scenes>
+</document>

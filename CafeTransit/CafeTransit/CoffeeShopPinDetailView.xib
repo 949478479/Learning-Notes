@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="HelveticaNeue.ttc">
+            <string>HelveticaNeue</string>
+        </mutableArray>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="uH7-e3-t5d" customClass="CoffeeShopPinDetailView" customModule="CafeTransit" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="240" height="196"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="13" translatesAutoresizingMaskIntoConstraints="NO" id="1Jh-7j-92u">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="196"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" spacing="11" translatesAutoresizingMaskIntoConstraints="NO" id="gkp-xl-qZX">
+                            <rect key="frame" x="0.0" y="0.0" width="154" height="16"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="6:00 AM - 5:00 PM" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ed9-Co-CDP">
+                                    <rect key="frame" x="0.0" y="0.0" width="110" height="16"/>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
+                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" misplaced="YES" image="cafetransit_icon_open" translatesAutoresizingMaskIntoConstraints="NO" id="BwZ-Jf-nea">
+                                    <rect key="frame" x="121" y="0.0" width="33" height="16"/>
+                                </imageView>
+                            </subviews>
+                        </stackView>
+                        <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" distribution="fillProportionally" spacing="17" translatesAutoresizingMaskIntoConstraints="NO" id="N3N-QI-0wR">
+                            <rect key="frame" x="0.0" y="29" width="165" height="17"/>
+                            <subviews>
+                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="MFp-bt-OEf">
+                                    <rect key="frame" x="0.0" y="0.0" width="90" height="17"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cafetransit_icon_star_on" translatesAutoresizingMaskIntoConstraints="NO" id="JI2-RD-gh2">
+                                            <rect key="frame" x="0.0" y="0.0" width="18" height="17"/>
+                                        </imageView>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cafetransit_icon_star_on" translatesAutoresizingMaskIntoConstraints="NO" id="kcw-mQ-0u0">
+                                            <rect key="frame" x="18" y="0.0" width="18" height="17"/>
+                                        </imageView>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cafetransit_icon_star_on" translatesAutoresizingMaskIntoConstraints="NO" id="4yH-Rw-a8b">
+                                            <rect key="frame" x="36" y="0.0" width="18" height="17"/>
+                                        </imageView>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cafetransit_icon_star_on" translatesAutoresizingMaskIntoConstraints="NO" id="M4e-h5-s9l">
+                                            <rect key="frame" x="54" y="0.0" width="18" height="17"/>
+                                        </imageView>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cafetransit_icon_star_on" translatesAutoresizingMaskIntoConstraints="NO" id="ZnC-ZI-EKd">
+                                            <rect key="frame" x="72" y="0.0" width="18" height="17"/>
+                                        </imageView>
+                                    </subviews>
+                                </stackView>
+                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="C6F-ca-8sr">
+                                    <rect key="frame" x="107" y="0.0" width="58" height="17"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cafetransit_icon_price" translatesAutoresizingMaskIntoConstraints="NO" id="xRH-iT-aei">
+                                            <rect key="frame" x="0.0" y="0.0" width="16" height="17"/>
+                                        </imageView>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cafetransit_icon_price" translatesAutoresizingMaskIntoConstraints="NO" id="mts-fa-rY0">
+                                            <rect key="frame" x="21" y="0.0" width="16" height="17"/>
+                                        </imageView>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cafetransit_icon_price" translatesAutoresizingMaskIntoConstraints="NO" id="Fmg-xB-xbQ">
+                                            <rect key="frame" x="42" y="0.0" width="16" height="17"/>
+                                        </imageView>
+                                    </subviews>
+                                </stackView>
+                            </subviews>
+                        </stackView>
+                        <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="2ph-pb-10v">
+                            <rect key="frame" x="0.0" y="59" width="240" height="137"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Locally-roasted organic coffees &amp; other brewed drinks are served alongside baked goods at this shop." lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="240" translatesAutoresizingMaskIntoConstraints="NO" id="oeT-iA-4Vm">
+                                    <rect key="frame" x="0.0" y="0.0" width="240" height="43"/>
+                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
+                                    <color key="textColor" red="0.56470588235294117" green="0.56470588235294117" blue="0.56470588235294117" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <stackView opaque="NO" contentMode="scaleAspectFit" distribution="equalSpacing" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="2CP-mZ-JRX">
+                                    <rect key="frame" x="33" y="58" width="174" height="30"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="9ct-tK-6bQ">
+                                            <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                            <state key="normal" image="cafetransit_icon_call_off"/>
+                                            <connections>
+                                                <action selector="phoneTapped" destination="uH7-e3-t5d" eventType="touchUpInside" id="8L3-QP-tv0"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="ZUK-Rc-s0N">
+                                            <rect key="frame" x="48" y="0.0" width="30" height="30"/>
+                                            <state key="normal" image="cafetransit_icon_train_off"/>
+                                            <connections>
+                                                <action selector="transitTapped" destination="uH7-e3-t5d" eventType="touchUpInside" id="8PS-Hm-oNP"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="DZQ-e1-ShT">
+                                            <rect key="frame" x="96" y="0.0" width="30" height="30"/>
+                                            <state key="normal" image="cafetransit_icon_yelp_off"/>
+                                            <connections>
+                                                <action selector="internetTapped" destination="uH7-e3-t5d" eventType="touchUpInside" id="wcK-2I-ph2"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="cx9-jo-ViO">
+                                            <rect key="frame" x="144" y="0.0" width="30" height="30"/>
+                                            <state key="normal" image="cafetransit_icon_time_off"/>
+                                            <connections>
+                                                <action selector="timeTapped" destination="uH7-e3-t5d" eventType="touchUpInside" id="FsT-e5-AGe"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                </stackView>
+                                <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" distribution="fillEqually" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="NBn-4O-MY4">
+                                    <rect key="frame" x="67" y="103" width="106" height="34"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Gnn-M8-hqn">
+                                            <rect key="frame" x="0.0" y="2" width="48" height="30"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DEPART" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xjs-eB-3Lm">
+                                                    <rect key="frame" x="0.0" y="0.0" width="48" height="15"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B9n-HA-aRM">
+                                                    <rect key="frame" x="19" y="15" width="11" height="15"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
+                                                    <color key="textColor" red="0.56470588235294117" green="0.56470588235294117" blue="0.56470588235294117" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </stackView>
+                                        <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="1NL-79-wqy">
+                                            <rect key="frame" x="58" y="2" width="48" height="30"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ARRIVE" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vNj-xD-3PT">
+                                                    <rect key="frame" x="2" y="0.0" width="44" height="15"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ewe-Xk-3gm">
+                                                    <rect key="frame" x="19" y="15" width="11" height="15"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
+                                                    <color key="textColor" red="0.56470588239999997" green="0.56470588239999997" blue="0.56470588239999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </stackView>
+                                    </subviews>
+                                </stackView>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="2ph-pb-10v" firstAttribute="leading" secondItem="1Jh-7j-92u" secondAttribute="leading" id="MeO-Af-C1S"/>
+                        <constraint firstAttribute="width" constant="240" id="P7a-qW-2i4"/>
+                        <constraint firstAttribute="trailing" secondItem="2ph-pb-10v" secondAttribute="trailing" id="SXP-Jd-h7N"/>
+                        <constraint firstAttribute="height" constant="196" id="hNh-9z-yhF"/>
+                        <constraint firstAttribute="bottom" secondItem="2ph-pb-10v" secondAttribute="bottom" id="wOB-Vk-BWU"/>
+                    </constraints>
+                </stackView>
+            </subviews>
+            <constraints>
+                <constraint firstItem="1Jh-7j-92u" firstAttribute="top" secondItem="uH7-e3-t5d" secondAttribute="top" id="FKJ-Hb-fMq"/>
+                <constraint firstItem="1Jh-7j-92u" firstAttribute="leading" secondItem="uH7-e3-t5d" secondAttribute="leading" id="JMA-Zy-OK4"/>
+                <constraint firstAttribute="bottom" secondItem="1Jh-7j-92u" secondAttribute="bottom" id="n7Z-zv-ep2"/>
+                <constraint firstAttribute="trailing" secondItem="1Jh-7j-92u" secondAttribute="trailing" id="pmN-8L-b0K"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="arrivalLabel" destination="ewe-Xk-3gm" id="NEU-g5-nF6"/>
+                <outlet property="departureLabel" destination="B9n-HA-aRM" id="BSG-XO-GRG"/>
+                <outlet property="descriptionLabel" destination="oeT-iA-4Vm" id="6Xg-ts-M3y"/>
+                <outlet property="hoursLabel" destination="Ed9-Co-CDP" id="UI4-IB-khl"/>
+                <outlet property="openCloseStatusImage" destination="BwZ-Jf-nea" id="xQh-Ar-tLA"/>
+                <outlet property="timeStackView" destination="NBn-4O-MY4" id="NPH-Eh-UXb"/>
+                <outletCollection property="priceGuideImages" destination="xRH-iT-aei" collectionClass="NSMutableArray" id="gnZ-4O-wTn"/>
+                <outletCollection property="priceGuideImages" destination="mts-fa-rY0" collectionClass="NSMutableArray" id="Tre-u0-Tw0"/>
+                <outletCollection property="priceGuideImages" destination="Fmg-xB-xbQ" collectionClass="NSMutableArray" id="uGq-f5-jUk"/>
+                <outletCollection property="ratingImages" destination="JI2-RD-gh2" collectionClass="NSMutableArray" id="AeL-zl-isG"/>
+                <outletCollection property="ratingImages" destination="kcw-mQ-0u0" collectionClass="NSMutableArray" id="Eb2-IH-Phn"/>
+                <outletCollection property="ratingImages" destination="4yH-Rw-a8b" collectionClass="NSMutableArray" id="Nn6-kL-ydx"/>
+                <outletCollection property="ratingImages" destination="M4e-h5-s9l" collectionClass="NSMutableArray" id="6es-2x-mv7"/>
+                <outletCollection property="ratingImages" destination="ZnC-ZI-EKd" collectionClass="NSMutableArray" id="NWp-7Q-Hhy"/>
+            </connections>
+            <point key="canvasLocation" x="296" y="564"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="cafetransit_icon_call_off" width="30" height="30"/>
+        <image name="cafetransit_icon_open" width="33" height="12"/>
+        <image name="cafetransit_icon_price" width="16" height="16"/>
+        <image name="cafetransit_icon_star_on" width="18" height="17"/>
+        <image name="cafetransit_icon_time_off" width="30" height="30"/>
+        <image name="cafetransit_icon_train_off" width="30" height="30"/>
+        <image name="cafetransit_icon_yelp_off" width="30" height="30"/>
+    </resources>
+</document>
