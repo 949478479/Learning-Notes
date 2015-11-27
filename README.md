@@ -66,8 +66,8 @@ CGPathAddQuadCurveToPoint(path, nil, left.x, left.y, 0, 0)
 elasticShapeLayer.path = path
 ```
 
-最后，将这个容器视图添加到 `UITextField` 上，使二者重合，然后在输入框激活时执行一下动画即可。
+最后，将这个容器视图添加到 `UITextField` 上，使二者重合，设置相同的背景色，然后在输入框激活时执行一下动画即可。
 
 ## 其他
 
-这种思路还是比较巧妙的，利用现成的 `UIView` 动画，省去了复杂的实时计算。当然，更复杂的弹性效果还是需要手动计算路径，可以参考这篇博客 [谈谈iOS中粘性动画以及果冻效果的实现](http://kittenyang.com/deformationandgooey/)
+这种思路还是比较巧妙的，利用现有的 `UIView` 弹性动画，省去了复杂的实时计算。当然，更复杂的弹性效果还是需要手动计算路径，可以参考这篇博客 [谈谈iOS中粘性动画以及果冻效果的实现](http://kittenyang.com/deformationandgooey/) 。
