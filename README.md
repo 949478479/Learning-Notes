@@ -4,7 +4,7 @@
 - [Swift](#Swift)
 - [iOS Animations by Emails 系列](#iOS Animations by Emails)
 - [转场动画](#TransitionAnimation)
-- [动画效果](#LayerAnimation)
+- [其他动画](#LayerAnimation)
 - [菜单效果](#Menu)
 - [其他效果](#Other)
 - [UICollectionView](#UICollectionView)
