@@ -1,87 +1,67 @@
-# 目录
+# 如何创建一个弹性动画
 
-- [iOS 9](#iOS 9)
-- [Swift](#Swift)
-- [iOS Animations by Emails 系列](#iOS Animations by Emails)
-- [图层动画](#LayerAnimation)
-- [转场动画](#TransitionAnimation)
-- [菜单效果](#Menu)
-- [其他效果](#Other)
-- [UICollectionView](#UICollectionView)
-- [UIPickerView](#UIPickerView)
-- [ReactiveCocoa](#ReactiveCocoa)
+![](Screenshot/Final.gif)
 
-<a name="iOS 9"></a>
-## iOS 9
+学习自 `RayWenderlich` 出品的教程 [How To Create an Elastic Animation with Swift](http://www.raywenderlich.com/100939/how-to-create-an-elastic-animation-with-swift) 。
 
-- [初窥 iOS 9 Contacts Framework](https://github.com/949478479/Learning-Notes/tree/A-First-Look-at-Contacts-Framework-in-iOS-9)
-- [地图与位置相关 API 的新特性](https://github.com/949478479/Learning-Notes/tree/Location-and-Mapping-in-iOS-9)
+中文传送门 [如何用Swift实现一个好玩的弹性动画](http://www.cocoachina.com/swift/20150911/13215.html) 。
 
-<a name="Swift"></a>
-## Swift
+#### 思路
 
-- [RayWenderlich 出品的脑洞大开的 Swift 小题目](https://github.com/949478479/Learning-Notes/tree/Are-You-a-Swift-Ninja)
-- [RayWenderlich 出品的 Swift 面试题 & 答案](https://github.com/949478479/Learning-Notes/tree/Swift-Interview-Questions-and-Answers)
-- [WWDC 2015 Session 106 What's New in Swift 2.0](https://github.com/949478479/Learning-Notes/tree/WWDC-2015-Session-106-What%E2%80%99s-New-in-Swift)
-- [WWDC 2015 Session 401 Swift and Objective C Interoperability](https://github.com/949478479/Learning-Notes/tree/WWDC-2015-Session-401-Swift-and-Objective-C-Interoperability)
+创建一个容器视图，然后向上面添加四个子视图，作为四个控制点。如下图所示，图中白色部分即容器视图，四个蓝色的小点即是作为控制点的四个子视图：
 
-<a name="iOS Animations by Emails"></a>
-## iOS Animations by Emails 系列
-
-- 2015.3 [CAReplicatorLayer 动画](https://github.com/949478479/Learning-Notes/tree/Creating-animations-with-CAReplicatorLayer)
-- 2015.7 [CAGradientLayer 与 mask 动画](https://github.com/949478479/Learning-Notes/tree/Fun-with-Gradients-and-Masks)
-
-<a name="LayerAnimation"></a>
-## 图层动画
-
-- [如何用 Swift 创建一个复杂的 loading 动画](https://github.com/949478479/Learning-Notes/tree/SBLoader)
-- [利用 mask 实现注水动画](https://github.com/949478479/Learning-Notes/tree/MaskAnimationDemo)
-
-<a name="TransitionAnimation"></a>
-## 转场动画
-
-- [圆圈缩放效果](https://github.com/949478479/Learning-Notes/tree/PingTransitionAnimation)
-- [翻页效果](https://github.com/949478479/Learning-Notes/tree/FlipTransionAnimation)
-- [魔法移动效果](https://github.com/949478479/Learning-Notes/tree/MagicMoveAnimation)
-
-<a name="Menu"></a>
-## 菜单效果
-
-- [创建一个非常酷的3D效果菜单动画](https://github.com/949478479/Animations-Study/tree/Taasky)
-- [利用 iCarousel 实现类似 iOS9 任务管理器效果动画](https://github.com/949478479/Animations-Study/tree/CardAnimationByiCarousel)
-- [利用 UIViewControllerAnimatedTransitioning 构建一个下滑菜单](https://github.com/949478479/Animations-Study/tree/SlideDownMenu)
-- [类似新浪微博的下拉式菜单](https://github.com/949478479/Learning-Notes/tree/DropdownMenu)
+![](Screenshot/ControlPoints.png)
 
 
-<a name="Other"></a>
-## 其他效果
+然后向容器视图上添加一个等大小的 `CAShapeLayer`，设置其背景色和容器视图相同。
 
-- [可以折叠的 ImageView](https://github.com/949478479/Animations-Study/tree/FoldingImageView)
-- [简易卡片动画](https://github.com/949478479/Animations-Study/tree/CardAnimation)
-- [继承 UIRefreshControl 的自定义下拉刷新控件](https://github.com/949478479/Learning-Notes/tree/Building-a-Custom-Pull-To-Refresh-Control)
-- [Beginning iOS 8 Programming with Swift 小项目](https://github.com/949478479/Learning-Notes/tree/Beginning-iOS-8-Programming-with-Swift)
-- [简易聊天气泡和多行输入框](https://github.com/949478479/Learning-Notes/tree/ChatUIDemo)
-- [QQ 好友下拉列表](https://github.com/949478479/Learning-Notes/tree/QQFriendListDemo)
+最后利用 `UIView` 的弹性动画方法调整四个作为控制点的子视图。在动画过程中，配合 `CADisplayLink` 定时器，获取这些子视图在动画中的实时位置，以此作为贝塞尔曲线的控制点，实时构建 `CGPathRef`，从而实时改变 `CAShapeLayer` 的 `path` 属性。如下图所示：
 
-<a name="UICollectionView"></a>
-## UICollectionView
+![](Screenshot/Quadratic.png)
 
-- [WWDC 上的 UICollectionViewLayout 的 demo](https://github.com/949478479/Learning-Notes/tree/CollectionViewLayoutDemo)
-- [瀑布流布局](https://github.com/949478479/Learning-Notes/tree/UICollectionView-Custom-Layout-Tutorial-Pinterest)
-- [环形滚动布局](https://github.com/949478479/Learning-Notes/tree/CircularCollectionView)
-- [类似 Ultravisual 的视差效果布局](https://github.com/949478479/Learning-Notes/tree/Ultravisual)
-- [用 Flickr 搜索/浏览图片的简陋 demo](https://github.com/949478479/Learning-Notes/tree/FlickrSearch)
+四个控制点视图的动画方法如下：
 
-<a name="UIPickerView"></a>
-## UIPickerView
+```swift
+UIView.animateWithDuration(0.25, delay: 0, usingSpringWithDamping: 0.9,
+    initialSpringVelocity: 0, options: [], animations: {
+    	// 改变四个控制点视图的中心点，也就等于改变了贝塞尔曲线的控制点
+        self.topControlPointView.center.y    -= 10
+        self.leftControlPointView.center.x   -= 10
+        self.bottomControlPointView.center.y += 10
+        self.rightControlPointView.center.x  += 10
+    }, completion: { _ in
+    	// 扩张动画结束后，执行恢复动画
+        UIView.animateWithDuration(0.45, delay: 0, usingSpringWithDamping: 0.15,
+            initialSpringVelocity: 0, options: [], animations: {
+                self.positionControlPoints() // 将四个控制点视图恢复正常位置
+            }, completion: { _ in
+                self.displayLink.paused = true // 动画完全结束，暂停定时器
+        })
+})
 
-- [UIPickerView 简单使用:实现一个老虎机](https://github.com/949478479/Learning-Notes/tree/SlotMachine)
+displayLink.paused = false // 动画开始后启动定时器
+```
 
+在动画过程中，通过定时器以屏幕刷新的频率反复获取四个控制点的实时位置：
 
+```swift
+// 获取四个控制点视图的中心点的实时位置
+let top = topControlPointView.layer.presentationLayer()!.position
+let left = leftControlPointView.layer.presentationLayer()!.position
+let bottom = bottomControlPointView.layer.presentationLayer()!.position
+let right = rightControlPointView.layer.presentationLayer()!.position
 
-<a name="ReactiveCocoa"></a>
-## ReactiveCocoa
+let width = frame.width
+let height = frame.height
 
-- [使用 ReactiveCocoa 构建一个简单的天气应用](https://github.com/949478479/Learning-Notes/tree/SimpleWeather)
+// 根据四个控制点的实时位置创建 CGPath
+let path = CGPathCreateMutable()
+CGPathMoveToPoint(path, nil, 0, 0)
+CGPathAddQuadCurveToPoint(path, nil, top.x, top.y, width, 0)
+CGPathAddQuadCurveToPoint(path, nil, right.x, right.y, width, height)
+CGPathAddQuadCurveToPoint(path, nil, bottom.x, bottom.y, 0, height)
+CGPathAddQuadCurveToPoint(path, nil, left.x, left.y, 0, 0)
 
-
+// 更新 CAShapeLayer 的 path，由于频率很高，从而呈现动画效果
+elasticShapeLayer.path = path
+```

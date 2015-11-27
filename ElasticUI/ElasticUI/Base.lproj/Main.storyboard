@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Ej5-6z-QGv">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="NCt-RU-Sm8">
+            <objects>
+                <viewController id="Ej5-6z-QGv" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Mos-1T-17e"/>
+                        <viewControllerLayoutGuide type="bottom" id="WoM-2v-tfg"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="NRa-tL-EdI">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="BPT-p5-Xyy">
+                                <rect key="frame" x="16" y="102" width="288" height="364"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XzX-0n-AtG" customClass="ElasticView" customModule="ElasticUI" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="288" height="128"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="128" id="wBd-BG-v4U"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="overshootAmount">
+                                                <real key="value" value="20"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="HFr-ZL-Y58">
+                                        <rect key="frame" x="0.0" y="148" width="288" height="68"/>
+                                        <subviews>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="C8h-0A-Mgg" customClass="ElasticTextField" customModule="ElasticUI" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="288" height="30"/>
+                                                <color key="backgroundColor" red="0.91372549020000005" green="0.91372549020000005" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SxY-GS-cMN" customClass="ElasticTextField" customModule="ElasticUI" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="38" width="288" height="30"/>
+                                                <color key="backgroundColor" red="0.91372549020000005" green="0.91372549020000005" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                            </textField>
+                                        </subviews>
+                                    </stackView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z21-mz-poW" customClass="ElasticView" customModule="ElasticUI" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="236" width="288" height="128"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="128" id="Odx-6n-RBR"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.33725490200000002" green="0.72549019609999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="BPT-p5-Xyy" firstAttribute="centerX" secondItem="NRa-tL-EdI" secondAttribute="centerX" id="6gy-L5-9MU"/>
+                            <constraint firstItem="BPT-p5-Xyy" firstAttribute="leading" secondItem="NRa-tL-EdI" secondAttribute="leadingMargin" id="Glb-di-WKj"/>
+                            <constraint firstItem="BPT-p5-Xyy" firstAttribute="centerY" secondItem="NRa-tL-EdI" secondAttribute="centerY" id="Mlb-gn-k9x"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="BPT-p5-Xyy" secondAttribute="trailing" id="pLt-XU-mOl"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="boD-oc-mg2" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="139" y="533"/>
+        </scene>
+    </scenes>
+</document>
