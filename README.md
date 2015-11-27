@@ -3,8 +3,8 @@
 - [iOS 9](#iOS 9)
 - [Swift](#Swift)
 - [iOS Animations by Emails 系列](#iOS Animations by Emails)
-- [图层动画](#LayerAnimation)
 - [转场动画](#TransitionAnimation)
+- [动画效果](#LayerAnimation)
 - [菜单效果](#Menu)
 - [其他效果](#Other)
 - [UICollectionView](#UICollectionView)
@@ -31,12 +31,6 @@
 - 2015.3 [CAReplicatorLayer 动画](https://github.com/949478479/Learning-Notes/tree/Creating-animations-with-CAReplicatorLayer)
 - 2015.7 [CAGradientLayer 与 mask 动画](https://github.com/949478479/Learning-Notes/tree/Fun-with-Gradients-and-Masks)
 
-<a name="LayerAnimation"></a>
-## 图层动画
-
-- [如何用 Swift 创建一个复杂的 loading 动画](https://github.com/949478479/Learning-Notes/tree/SBLoader)
-- [利用 mask 实现注水动画](https://github.com/949478479/Learning-Notes/tree/MaskAnimationDemo)
-
 <a name="TransitionAnimation"></a>
 ## 转场动画
 
@@ -44,12 +38,21 @@
 - [翻页效果](https://github.com/949478479/Learning-Notes/tree/FlipTransionAnimation)
 - [魔法移动效果](https://github.com/949478479/Learning-Notes/tree/MagicMoveAnimation)
 
+<a name="LayerAnimation"></a>
+## 其他动画
+
+- [简易卡片动画](https://github.com/949478479/Animations-Study/tree/CardAnimation)
+- [如何用 Swift 创建一个复杂的 loading 动画](https://github.com/949478479/Learning-Notes/tree/SBLoader)
+- [利用 mask 实现注水动画](https://github.com/949478479/Learning-Notes/tree/MaskAnimationDemo)
+- [如何创建一个弹性动画](https://github.com/949478479/Learning-Notes/tree/How-To-Create-an-Elastic-Animation-with-Swift)
+
 <a name="Menu"></a>
 ## 菜单效果
 
 - [创建一个非常酷的3D效果菜单动画](https://github.com/949478479/Animations-Study/tree/Taasky)
 - [利用 iCarousel 实现类似 iOS9 任务管理器效果动画](https://github.com/949478479/Animations-Study/tree/CardAnimationByiCarousel)
 - [利用 UIViewControllerAnimatedTransitioning 构建一个下滑菜单](https://github.com/949478479/Animations-Study/tree/SlideDownMenu)
+- [QQ 好友下拉列表](https://github.com/949478479/Learning-Notes/tree/QQFriendListDemo)
 - [类似新浪微博的下拉式菜单](https://github.com/949478479/Learning-Notes/tree/DropdownMenu)
 
 
@@ -57,11 +60,9 @@
 ## 其他效果
 
 - [可以折叠的 ImageView](https://github.com/949478479/Animations-Study/tree/FoldingImageView)
-- [简易卡片动画](https://github.com/949478479/Animations-Study/tree/CardAnimation)
 - [继承 UIRefreshControl 的自定义下拉刷新控件](https://github.com/949478479/Learning-Notes/tree/Building-a-Custom-Pull-To-Refresh-Control)
 - [Beginning iOS 8 Programming with Swift 小项目](https://github.com/949478479/Learning-Notes/tree/Beginning-iOS-8-Programming-with-Swift)
 - [简易聊天气泡和多行输入框](https://github.com/949478479/Learning-Notes/tree/ChatUIDemo)
-- [QQ 好友下拉列表](https://github.com/949478479/Learning-Notes/tree/QQFriendListDemo)
 
 <a name="UICollectionView"></a>
 ## UICollectionView
