@@ -1,88 +1,107 @@
-# 目录
+# CurveRefreshControl
 
-- [iOS 9](#iOS 9)
-- [Swift](#Swift)
-- [iOS Animations by Emails 系列](#iOS Animations by Emails)
-- [转场动画](#TransitionAnimation)
-- [其他动画](#LayerAnimation)
-- [菜单效果](#Menu)
-- [其他效果](#Other)
-- [UICollectionView](#UICollectionView)
-- [UIPickerView](#UIPickerView)
-- [ReactiveCocoa](#ReactiveCocoa)
+![](Screenshot/Final.gif)
 
-<a name="iOS 9"></a>
-## iOS 9
+灵感来自这篇博客 [iOS 自定义下拉线条动画](http://kittenyang.com/curvelineanimation/)，图文并茂，就是公式看着头疼- -，我按照自己的方式重新实现了下。。。
 
-- [初窥 iOS 9 Contacts Framework](https://github.com/949478479/Learning-Notes/tree/A-First-Look-at-Contacts-Framework-in-iOS-9)
-- [地图与位置相关 API 的新特性](https://github.com/949478479/Learning-Notes/tree/Location-and-Mapping-in-iOS-9)
+## 动画处理
 
-<a name="Swift"></a>
-## Swift
+原作者的实现方案是在 `CALayer` 中的 `drawInContext(_:)` 中根据相应进度绘制图案，在下拉过程中反复调用 `setNeedsDisplay()` 来重绘。
 
-- [RayWenderlich 出品的脑洞大开的 Swift 小题目](https://github.com/949478479/Learning-Notes/tree/Are-You-a-Swift-Ninja)
-- [RayWenderlich 出品的 Swift 面试题 & 答案](https://github.com/949478479/Learning-Notes/tree/Swift-Interview-Questions-and-Answers)
-- [WWDC 2015 Session 106 What's New in Swift 2.0](https://github.com/949478479/Learning-Notes/tree/WWDC-2015-Session-106-What%E2%80%99s-New-in-Swift)
-- [WWDC 2015 Session 401 Swift and Objective C Interoperability](https://github.com/949478479/Learning-Notes/tree/WWDC-2015-Session-401-Swift-and-Objective-C-Interoperability)
+我的实现方案是利用 `CAShapeLayer` 先画好图案，添加到视图上，如下图所示：
 
-<a name="iOS Animations by Emails"></a>
-## iOS Animations by Emails 系列
+![](Screenshot/Line&Arrow.png)
 
-- 2015.3 [CAReplicatorLayer 动画](https://github.com/949478479/Learning-Notes/tree/Creating-animations-with-CAReplicatorLayer)
-- 2015.7 [CAGradientLayer 与 mask 动画](https://github.com/949478479/Learning-Notes/tree/Fun-with-Gradients-and-Masks)
+图中蓝色的线条和箭头总共由四个 `CAShapeLayer` 组成，线条和小箭头各用两个。线条的路径是一段直线加半个圆弧，下箭头的路径就是个小斜线。
 
-<a name="TransitionAnimation"></a>
-## 转场动画
+对于线条图层，改变其 `strokeStart` 和 `strokeEnd`，这样就会呈现一段直线变成圆弧的效果。对于小箭头图层，在线条的直线阶段，改变其 `position.y`，使之和线条一起沿直线运动；在线条变为圆弧的阶段，改变其 `transform.rotate.z`，使之一同旋转。另外，为了方便小箭头旋转，将其锚点修改为了视图中心点，这样小箭头就能绕着视图中心点旋转了。
 
-- [圆圈缩放效果](https://github.com/949478479/Learning-Notes/tree/PingTransitionAnimation)
-- [翻页效果](https://github.com/949478479/Learning-Notes/tree/FlipTransionAnimation)
-- [魔法移动效果](https://github.com/949478479/Learning-Notes/tree/MagicMoveAnimation)
+在下拉过程中，可以根据相应百分比来修改这些图层属性，从而呈现动画效果。但此方法在线条进入圆弧时，小箭头和线条难以无缝同步，特别是拖动速度很快时。因此最后还是改用图层动画来实现，首先需要将这四个小图层的 `speed` 属性设置为 `0`，这将导致图层动画默认是静止的，然后在下拉过程中，根据进度修改这些图层的 `timeOffset`，从而实现手动动画。同样，为了方便，将动画的 `duration` 设置为 `1.0`，这样就能和下拉进度相匹配了。在这种情况下，使用图层动画不仅解决了同步问题，还避免了很多计算，只需设置初始和结束的状态，剩下的交给核心动画即可。
 
-<a name="LayerAnimation"></a>
-## 其他动画
+通过这种方法能实现一些巧妙的效果，例如这两篇博客：
 
-- [简易卡片动画](https://github.com/949478479/Animations-Study/tree/CardAnimation)
-- [如何用 Swift 创建一个复杂的 loading 动画](https://github.com/949478479/Learning-Notes/tree/SBLoader)
-- [利用 mask 实现注水动画](https://github.com/949478479/Learning-Notes/tree/MaskAnimationDemo)
-- [如何创建一个弹性动画](https://github.com/949478479/Learning-Notes/tree/How-To-Create-an-Elastic-Animation-with-Swift)
+[Controlling Animation Timing](http://ronnqvi.st/controlling-animation-timing/)  
+[Animating the Drawing of a CGPath With CAShapeLayer](http://oleb.net/blog/2010/12/animating-drawing-of-cgpath-with-cashapelayer/)  
 
-<a name="Menu"></a>
-## 菜单效果
+线条的动画代码如下：
 
-- [创建一个非常酷的3D效果菜单动画](https://github.com/949478479/Animations-Study/tree/Taasky)
-- [利用 iCarousel 实现类似 iOS9 任务管理器效果动画](https://github.com/949478479/Animations-Study/tree/CardAnimationByiCarousel)
-- [利用 UIViewControllerAnimatedTransitioning 构建一个下滑菜单](https://github.com/949478479/Animations-Study/tree/SlideDownMenu)
-- [QQ 好友下拉列表](https://github.com/949478479/Learning-Notes/tree/QQFriendListDemo)
-- [类似新浪微博的下拉式菜单](https://github.com/949478479/Learning-Notes/tree/DropdownMenu)
+```swift
+/*  线条的绘制路径是从圆弧开始，一直绘制到直线末端。
+    由 1.0 过渡到 0.0 的效果即为线条从直线末端开始，绘制到圆弧的起点。 */
+let strokeStartAnimatetion = CABasicAnimation(keyPath: "strokeStart")
+strokeStartAnimatetion.fromValue = 1.0
+strokeStartAnimatetion.toValue = 0.0
 
+/*  strokeEnd 最终变为 0.45，由于线条的直线部分和圆弧部分一样长，因此各占 0.5，
+    而 0.45 则意味着最终的圆弧会少一小段，这主要是为了防止两条线条首尾相连。 */
+let strokeEndAnimatetion = CABasicAnimation(keyPath: "strokeEnd")
+strokeEndAnimatetion.fromValue = 1.45
+strokeEndAnimatetion.toValue = 0.45
 
-<a name="Other"></a>
-## 其他效果
+/*  使用时长为 1.0 的动画组结合两个动画，如前所述，1.0 是为了和总进度的 1.0 相匹配。 */
+let animationGroup = CAAnimationGroup()
+animationGroup.duration = 1.0
+animationGroup.animations = [strokeStartAnimatetion, strokeEndAnimatetion]
+```
 
-- [可以折叠的 ImageView](https://github.com/949478479/Animations-Study/tree/FoldingImageView)
-- [继承 UIRefreshControl 的自定义下拉刷新控件](https://github.com/949478479/Learning-Notes/tree/Building-a-Custom-Pull-To-Refresh-Control)
-- [Beginning iOS 8 Programming with Swift 小项目](https://github.com/949478479/Learning-Notes/tree/Beginning-iOS-8-Programming-with-Swift)
-- [简易聊天气泡和多行输入框](https://github.com/949478479/Learning-Notes/tree/ChatUIDemo)
+小箭头的动画略微不同，分为两个阶段，而且左右两个小箭头需分别考虑：
 
-<a name="UICollectionView"></a>
-## UICollectionView
+```swift
+/*  在动画的前半段，小箭头和线条一起直线运动，左侧小箭头由视图底边界运动到水平中心。 */
+let positionAnimatetion = CABasicAnimation(keyPath: "position.y")
+positionAnimatetion.duration = 0.5
+positionAnimatetion.fromValue = bounds.height
+positionAnimatetion.toValue = bounds.midY
 
-- [WWDC 上的 UICollectionViewLayout 的 demo](https://github.com/949478479/Learning-Notes/tree/CollectionViewLayoutDemo)
-- [瀑布流布局](https://github.com/949478479/Learning-Notes/tree/UICollectionView-Custom-Layout-Tutorial-Pinterest)
-- [环形滚动布局](https://github.com/949478479/Learning-Notes/tree/CircularCollectionView)
-- [类似 Ultravisual 的视差效果布局](https://github.com/949478479/Learning-Notes/tree/Ultravisual)
-- [用 Flickr 搜索/浏览图片的简陋 demo](https://github.com/949478479/Learning-Notes/tree/FlickrSearch)
+/*  在动画的后半段，小箭头开始进入旋转半个圆弧的过程。 */
+let transformAnimatetion = CABasicAnimation(keyPath: "transform.rotation.z")
+transformAnimatetion.duration = 0.5
+transformAnimatetion.beginTime = 0.5
+transformAnimatetion.byValue = CGFloat(M_PI)
 
-<a name="UIPickerView"></a>
-## UIPickerView
+/*  同样，使用动画组结合两段动画。 */
+let animationGroup = CAAnimationGroup()
+animationGroup.duration = 1.0
+animationGroup.animations = [positionAnimatetion.copy() as! CABasicAnimation, transformAnimatetion]
 
-- [UIPickerView 简单使用:实现一个老虎机](https://github.com/949478479/Learning-Notes/tree/SlotMachine)
+/*  右侧小箭头的前半段动画由视图的顶部边界运动到水平中心。 */
+positionAnimatetion.fromValue = 0
+positionAnimatetion.toValue = bounds.midY
+animationGroup.animations = [positionAnimatetion, transformAnimatetion]
+```
 
+交互过程的动画处理就这么多，可以将这些动画对象保留起来，在拖拽时添加到图层上，然后在结束后将其从图层上移除。
 
+至于旋转动画，直接对视图的 `layer` 也就是四个小图层的父图层做无限旋转动画即可：
 
-<a name="ReactiveCocoa"></a>
-## ReactiveCocoa
+```swift
+let refreshingAnimation = CABasicAnimation(keyPath: "transform.rotation.z")
+refreshingAnimation.byValue = M_PI * 2
+refreshingAnimation.duration = 1 / frequency
+refreshingAnimation.repeatCount = Float.infinity
+```
 
-- [使用 ReactiveCocoa 构建一个简单的天气应用](https://github.com/949478479/Learning-Notes/tree/SimpleWeather)
+## 刷新处理
 
+### UIRefreshControl 的限制
+
+最简单的方案应该是继承 `UIRefreshControl`，将自定义的刷新控件添加为子视图。不过这样会受到很多限制，只能用于 `UITableView`，而且无法修改下拉幅度。通过打印内部结构，其下拉幅度是 `132.0`，尝试修改但是又被系统改回去了。还有个问题就是只要达到下拉幅度，还没松手就会触发刷新方法，感觉很不好。
+
+放弃这种方案的话，可以将自定义的刷新控件添加到 `UIScrollView` 的顶部边界之外，也就是刷新控件的底部紧贴 `UIScrollView` 的顶部，将其隐藏，向下拖动时再显示，刷新控件就会随着拖动露出来。
+
+为了监听下拉进度，需要通过 KVO 监听 `UIScrollView` 的 `contentOffset`，然后做出相应处理。
+
+### contentInset.top 与 contentOffset.y
+
+`UIScrollView` 往往会处于具有导航栏的环境下，视图控制器的 `automaticallyAdjustsScrollViewInsets` 属性默认是开启的，这将导致 `UIScrollView` 的 `contentInset.top` 被改为 `64.0`（iPhone 横屏下则是 `32.0`）。因此，`UIScrollView` 的 `contentOffset.y` 一开始即为 `-64.0`，所以处理 `contentOffset` 的变化时，需要将其考虑进去。
+
+另外，当拖拽幅度满足触发刷新的幅度时，可以将 `UIScrollView` 的 `contentInset.top` 增加额外的高度，例如刷新控件的高度，从而可以在松手后也能显示刷新控件。相反，结束刷新后则恢复原有的值，从而让刷新控件回到 `UIScrollView` 顶部。
+
+### tracking、decelerating 与 dragging
+
+处理拖拽时，有两个属性非常好用：`tracking` 和 `decelerating`。`tracking` 属性可以用来判断用户是否在拖拽，若是则为 `true`。而 `decelerating` 属性可以判断 `UIScrollView` 在用户松手后是否是静止的，无论是拖拽后松手由于惯性而运动，还是拖拽触发弹簧效果后松手，此属性均为 `true`。这里不得不提一下 `dragging` 属性，该属性实在是名不副实，它主要反映了 `UIScrollView` 是否在滚动，包括设置 `contentOffset` 而造成的滚动，但是拖拽触发弹簧效果后再松手时，其值又貌似为 `false`，总之这个属性远不如上面两个好用- -。
+
+### 自动刷新时的动画处理
+
+除了手动拖拽来触发刷新，还应该可以通过编程的方式触发刷新。这时候该如何处理原先依靠拖拽进度来控制的动画？个人的解决方案是通过 `UIScrollView` 的 `setContentOffset(_:animated:)` 方法来模拟手动拖拽，只要开启动画，就会多次造成 `contentOffset` 改变，和手动拖拽时很像。然后，可以监听进度，只要达到 `1.0`，就增加 `contentInset.top`，并启动刷新动画。结束刷新时将 `contentOffset` 还原，在进度为 `0.0` 时还原 `contentInset.top` 即可。
 
