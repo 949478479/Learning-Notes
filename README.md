@@ -34,7 +34,7 @@
 <a name="TransitionAnimation"></a>
 ## 转场动画
 
-- [圆圈缩放效果](https://github.com/949478479/Learning-Notes/tree/PingTransitionAnimation)
+- [圆圈扩散效果](https://github.com/949478479/Learning-Notes/tree/PingTransitionAnimation)
 - [翻页效果](https://github.com/949478479/Learning-Notes/tree/FlipTransionAnimation)
 - [魔法移动效果](https://github.com/949478479/Learning-Notes/tree/MagicMoveAnimation)
 
@@ -61,6 +61,7 @@
 
 - [可以折叠的 ImageView](https://github.com/949478479/Animations-Study/tree/FoldingImageView)
 - [继承 UIRefreshControl 的自定义下拉刷新控件](https://github.com/949478479/Learning-Notes/tree/Building-a-Custom-Pull-To-Refresh-Control)
+- [线条动画下拉刷新](https://github.com/949478479/Learning-Notes/tree/CurveRefreshControl)
 - [Beginning iOS 8 Programming with Swift 小项目](https://github.com/949478479/Learning-Notes/tree/Beginning-iOS-8-Programming-with-Swift)
 - [简易聊天气泡和多行输入框](https://github.com/949478479/Learning-Notes/tree/ChatUIDemo)
 
