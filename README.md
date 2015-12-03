@@ -6,15 +6,15 @@
 
 ## 动画处理
 
-原作者的实现方案是在 `CALayer` 中的 `drawInContext(_:)` 中根据相应进度绘制图案，在下拉过程中反复调用 `setNeedsDisplay()` 来重绘。
+原作者的实现方案是在 `CALayer` 的 `drawInContext(_:)` 方法中根据相应进度绘制图案，在下拉过程中反复调用 `setNeedsDisplay()` 来重绘。
 
 我的实现方案是利用 `CAShapeLayer` 先画好图案，添加到视图上，如下图所示：
 
 ![](Screenshot/Line&Arrow.png)
 
-图中蓝色的线条和箭头总共由四个 `CAShapeLayer` 组成，线条和小箭头各用两个。线条的路径是一段直线加半个圆弧，下箭头的路径就是个小斜线。
+图中蓝色的线条和箭头总共由四个 `CAShapeLayer` 组成，线条和小箭头各用两个。线条的路径是一段直线加半个圆弧，小箭头的路径就是个小斜线。
 
-对于线条图层，改变其 `strokeStart` 和 `strokeEnd`，这样就会呈现一段直线变成圆弧的效果。对于小箭头图层，在线条的直线阶段，改变其 `position.y`，使之和线条一起沿直线运动；在线条变为圆弧的阶段，改变其 `transform.rotate.z`，使之一同旋转。另外，为了方便小箭头旋转，将其锚点修改为了视图中心点，这样小箭头就能绕着视图中心点旋转了。
+对于线条图层，改变其 `strokeStart` 和 `strokeEnd`，这样就会呈现一段直线变成圆弧的效果。对于小箭头图层，在线条的直线阶段，改变其 `position.y`，使之和线条一起沿直线运动；在线条变为圆弧的阶段，改变其 `transform.rotate.z`，使之一同旋转。另外，为了方便小箭头旋转，对其锚点进行相应修改，小箭头在图中位置时，其锚点位于视图中心点，就能绕着视图中心点旋转了。
 
 在下拉过程中，可以根据相应百分比来修改这些图层属性，从而呈现动画效果。但此方法在线条进入圆弧时，小箭头和线条难以无缝同步，特别是拖动速度很快时。因此最后还是改用图层动画来实现，首先需要将这四个小图层的 `speed` 属性设置为 `0`，这将导致图层动画默认是静止的，然后在下拉过程中，根据进度修改这些图层的 `timeOffset`，从而实现手动动画。同样，为了方便，将动画的 `duration` 设置为 `1.0`，这样就能和下拉进度相匹配了。在这种情况下，使用图层动画不仅解决了同步问题，还避免了很多计算，只需设置初始和结束的状态，剩下的交给核心动画即可。
 
@@ -77,7 +77,7 @@ animationGroup.animations = [positionAnimatetion, transformAnimatetion]
 ```swift
 let refreshingAnimation = CABasicAnimation(keyPath: "transform.rotation.z")
 refreshingAnimation.byValue = M_PI * 2
-refreshingAnimation.duration = 1 / frequency
+refreshingAnimation.duration = 1.0
 refreshingAnimation.repeatCount = Float.infinity
 ```
 
@@ -99,9 +99,9 @@ refreshingAnimation.repeatCount = Float.infinity
 
 ### tracking、decelerating 与 dragging
 
-处理拖拽时，有两个属性非常好用：`tracking` 和 `decelerating`。`tracking` 属性可以用来判断用户是否在拖拽，若是则为 `true`。而 `decelerating` 属性可以判断 `UIScrollView` 在用户松手后是否是静止的，无论是拖拽后松手由于惯性而运动，还是拖拽触发弹簧效果后松手，此属性均为 `true`。这里不得不提一下 `dragging` 属性，该属性实在是名不副实，它主要反映了 `UIScrollView` 是否在滚动，包括设置 `contentOffset` 而造成的滚动，但是拖拽触发弹簧效果后再松手时，其值又貌似为 `false`，总之这个属性远不如上面两个好用- -。
+处理拖拽时，有两个属性非常好用：`tracking` 和 `decelerating`。`tracking` 属性可以用来判断用户是否在拖拽，若是则为 `true`。而 `decelerating` 属性可以判断 `UIScrollView` 在用户松手后是否是静止的，无论是拖拽后松手由于惯性而运动，还是拖拽触发弹簧效果后松手，此属性均为 `true`。至于 `dragging` 属性，实在是名不副实，它主要反映了 `UIScrollView` 是否在滚动，而并非是否处于拖拽中。滚动包括设置 `contentOffset` 而造成的滚动，但是貌似不包括拖拽触发弹簧效果后再松手时的滚动，感觉这个属性远不如上面两个好用- -。
 
 ### 自动刷新时的动画处理
 
-除了手动拖拽来触发刷新，还应该可以通过编程的方式触发刷新。这时候该如何处理原先依靠拖拽进度来控制的动画？个人的解决方案是通过 `UIScrollView` 的 `setContentOffset(_:animated:)` 方法来模拟手动拖拽，只要开启动画，就会多次造成 `contentOffset` 改变，和手动拖拽时很像。然后，可以监听进度，只要达到 `1.0`，就增加 `contentInset.top`，并启动刷新动画。结束刷新时将 `contentOffset` 还原，在进度为 `0.0` 时还原 `contentInset.top` 即可。
+除了手动拖拽来触发刷新，还应该可以通过编程的方式触发刷新。这时候该如何处理原先依靠拖拽进度来控制的动画？个人的解决方案是通过 `UIScrollView` 的 `setContentOffset(_:animated:)` 方法来模拟手动拖拽，只要开启动画，就会造成 `contentOffset` 多次改变，和手动拖拽时很像。然后，可以监听进度，只要达到 `1.0`，就增加 `contentInset.top`，并启动刷新动画。结束刷新时同样用此方法将 `contentOffset.top` 还原，然后在进度为 `0.0` 时还原 `contentInset.top` 即可。
 

@@ -344,6 +344,7 @@ private final class _CurveRefreshView: UIView {
         let layerBounds = CGPathGetPathBoundingBox(path)
         layer.bounds = layerBounds
 
+        // 将锚点的水平位置对应到视图中心，垂直位置对应到小箭头图层的顶部，主要是为了绕视图中心旋转
         let anchorX = -symbol * ( radius / layerBounds.width + (layer === leftArrowLayer ? 1 : 0) )
         let anchorY: CGFloat = (layer === leftArrowLayer ? 0 : 1)
         layer.anchorPoint = CGPoint(x: anchorX, y: anchorY)
