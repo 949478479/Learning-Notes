@@ -1,4 +1,4 @@
-# CurveRefreshControl
+# 线条动画下拉刷新
 
 ![](Screenshot/Final.gif)
 
