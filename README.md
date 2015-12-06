@@ -1,4 +1,4 @@
-# 自定义 Segue
+# 使用自定义 Segue 实现转场动画
 
 ![](Screenshot/Final.gif)
 
