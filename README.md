@@ -38,10 +38,9 @@ class CustomSegue: UIStoryboardSegue {
                 destinationView.transform = CGAffineTransformIdentity
             }, completion: { _ in
                 // 完成实际的 present 过程
-                let sourceViewController = self.sourceViewController
-                sourceViewController.presentViewController(self.destinationViewController, 
+                self.sourceViewController.presentViewController(self.destinationViewController, 
                     animated: false, completion: nil)
-                sourceViewController.view.transform = CGAffineTransformIdentity
+                self.sourceViewController.view.transform = CGAffineTransformIdentity
             })
         })
     }
