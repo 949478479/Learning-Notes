@@ -1,4 +1,4 @@
-# 利用 SFSafariViewController 为应用内置 Safari 浏览器
+# SFSafariViewController
 
 iOS 9 引入了 `SFSafariViewController`，其效果就是个应用内的 Safari 浏览器，使用起来非常方便，如下所示：
 
