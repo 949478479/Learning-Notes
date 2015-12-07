@@ -9,14 +9,15 @@
 <a name="iOS 9"></a>
 ## iOS 9
 
-- [初窥 iOS 9 Contacts Framework](https://github.com/949478479/Learning-Notes/tree/A-First-Look-at-Contacts-Framework-in-iOS-9)
 - [地图与位置相关 API 的新特性](https://github.com/949478479/Learning-Notes/tree/Location-and-Mapping-in-iOS-9)
+- [初窥 iOS 9 Contacts Framework](https://github.com/949478479/Learning-Notes/tree/A-First-Look-at-Contacts-Framework-in-iOS-9)
+- [利用 SFSafariViewController 为应用内置 Safari 浏览器](https://github.com/949478479/Learning-Notes/tree/SFSafariViewControllerDemo)
 
 <a name="Swift"></a>
 ## Swift
 
-- [RayWenderlich 出品的脑洞大开的 Swift 小题目](https://github.com/949478479/Learning-Notes/tree/Are-You-a-Swift-Ninja)
 - [RayWenderlich 出品的 Swift 面试题 & 答案](https://github.com/949478479/Learning-Notes/tree/Swift-Interview-Questions-and-Answers)
+- [RayWenderlich 出品的脑洞大开的 Swift 小题目](https://github.com/949478479/Learning-Notes/tree/Are-You-a-Swift-Ninja)
 - [WWDC 2015 Session 106 What's New in Swift 2.0](https://github.com/949478479/Learning-Notes/tree/WWDC-2015-Session-106-What%E2%80%99s-New-in-Swift)
 - [WWDC 2015 Session 401 Swift and Objective C Interoperability](https://github.com/949478479/Learning-Notes/tree/WWDC-2015-Session-401-Swift-and-Objective-C-Interoperability)
 
@@ -25,8 +26,8 @@
 
 ###### 转场动画
 
-- [圆圈扩散效果](https://github.com/949478479/Learning-Notes/tree/PingTransitionAnimation)
 - [翻页效果](https://github.com/949478479/Learning-Notes/tree/FlipTransionAnimation)
+- [圆圈扩散效果](https://github.com/949478479/Learning-Notes/tree/PingTransitionAnimation)
 - [魔法移动效果](https://github.com/949478479/Learning-Notes/tree/MagicMoveAnimation)
 - [使用自定义 Segue 实现转场动画](https://github.com/949478479/Learning-Notes/tree/CustomSegue)
 
