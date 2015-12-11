@@ -1,4 +1,4 @@
-# WritingAnimation
+# 利用 CAShapeLayer 的 strokeEnd 实现写字动画
 
 ![](Screenshot/demo.gif)
 
