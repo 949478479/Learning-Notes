@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="240" placeholderIntrinsicHeight="128" translatesAutoresizingMaskIntoConstraints="NO" id="gbv-1x-9Fm" customClass="LXWritingAnimationView">
+                                <rect key="frame" x="68" y="270" width="240" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="duration">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="lineWidth">
+                                        <real key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="strokeColor">
+                                        <color key="value" red="0.34901960780000002" green="0.72941176470000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fVv-Xx-bs7">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64" id="gmf-Gp-UAE"/>
+                                </constraints>
+                                <items>
+                                    <navigationItem id="AF4-gz-KfD">
+                                        <nil key="title"/>
+                                        <barButtonItem key="leftBarButtonItem" title="开始" id="yb1-hE-baL">
+                                            <connections>
+                                                <action selector="start:" destination="dLw-lZ-6OZ" id="uwE-Fz-0cs"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <textField key="titleView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="从今以后" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" id="uqB-eb-FKM">
+                                            <rect key="frame" x="113" y="27" width="150" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </textField>
+                                        <barButtonItem key="rightBarButtonItem" title="结束" id="def-Wd-fP2">
+                                            <connections>
+                                                <action selector="endAnimation" destination="gbv-1x-9Fm" id="NZ2-HI-V8V"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="gbv-1x-9Fm" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="1v6-2d-l7R"/>
+                            <constraint firstItem="fVv-Xx-bs7" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="CUK-K7-uFf"/>
+                            <constraint firstItem="fVv-Xx-bs7" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="D8g-BT-KMQ"/>
+                            <constraint firstAttribute="trailing" secondItem="fVv-Xx-bs7" secondAttribute="trailing" id="K3Y-7y-1CD"/>
+                            <constraint firstItem="gbv-1x-9Fm" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="zzT-bo-JLm"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <customObject id="dLw-lZ-6OZ" customClass="LXActionPerformer">
+                    <connections>
+                        <outlet property="textField" destination="uqB-eb-FKM" id="ztv-0C-hwX"/>
+                        <outlet property="writingAnimationView" destination="gbv-1x-9Fm" id="hUR-QY-Wur"/>
+                    </connections>
+                </customObject>
+            </objects>
+            <point key="canvasLocation" x="198.5" y="455.5"/>
+        </scene>
+    </scenes>
+</document>
