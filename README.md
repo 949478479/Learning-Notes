@@ -38,6 +38,7 @@
 - [利用 mask 实现注水动画](https://github.com/949478479/Learning-Notes/tree/MaskAnimationDemo)
 - [CAGradientLayer 与 mask 动画](https://github.com/949478479/Learning-Notes/tree/Fun-with-Gradients-and-Masks)
 - [如何用 Swift 创建一个复杂的 loading 动画](https://github.com/949478479/Learning-Notes/tree/SBLoader)
+- [利用 CAShapeLayer 的 strokeEnd 实现写字动画](https://github.com/949478479/Learning-Notes/tree/WritingAnimation)
 
 <a name="CustomControl"></a>
 ## 自定义控件
