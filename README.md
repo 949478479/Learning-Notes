@@ -1,6 +1,7 @@
 # 目录
 
 - [iOS 9](#iOS 9)
+- [iOS 8](#iOS 8)
 - [Swift](#Swift)
 - [动画效果](#Animations)
 - [自定义控件](#CustomControl)
@@ -12,6 +13,10 @@
 - [地图与位置相关 API 的新特性](https://github.com/949478479/Learning-Notes/tree/Location-and-Mapping-in-iOS-9)
 - [初窥 iOS 9 Contacts Framework](https://github.com/949478479/Learning-Notes/tree/A-First-Look-at-Contacts-Framework-in-iOS-9)
 - [利用 SFSafariViewController 为应用内置 Safari 浏览器](https://github.com/949478479/Learning-Notes/tree/SFSafariViewControllerDemo)
+
+<a name="iOS 8"></a>
+## iOS 8
+- [利用 UISearchController 实现搜索过滤功能](https://github.com/949478479/Learning-Notes/tree/UISearchControllerDemo)
 
 <a name="Swift"></a>
 ## Swift
