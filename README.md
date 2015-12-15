@@ -1,72 +1,66 @@
-# 目录
+# UISearchController
 
-- [iOS 9](#iOS 9)
-- [Swift](#Swift)
-- [动画效果](#Animations)
-- [自定义控件](#CustomControl)
-- [UICollectionView](#UICollectionView)
+学习自 `RayWenderlich` 的教程 [UISearchController Tutorial: Getting Started](http://www.raywenderlich.com/113772/uisearchcontroller-tutorial)。
 
-<a name="iOS 9"></a>
-## iOS 9
+iOS 8 引入了 `UISearchController`，可以非常方便地实现搜索功能，虽然暂时不支持 IB，但是使用代码创建也非常方便：
 
-- [地图与位置相关 API 的新特性](https://github.com/949478479/Learning-Notes/tree/Location-and-Mapping-in-iOS-9)
-- [初窥 iOS 9 Contacts Framework](https://github.com/949478479/Learning-Notes/tree/A-First-Look-at-Contacts-Framework-in-iOS-9)
-- [利用 SFSafariViewController 为应用内置 Safari 浏览器](https://github.com/949478479/Learning-Notes/tree/SFSafariViewControllerDemo)
+```swift
+// 指定一个视图控制器来展示搜索结果，如果传入 nil，则使用当前的视图控制器
+let searchController = UISearchController(searchResultsController: nil)
 
-<a name="Swift"></a>
-## Swift
+override func viewDidLoad() {
+    super.viewDidLoad()
+    
+    // 搜索框内容变化时，会通知该代理来更新搜索结果，一般可设置为当前的控制器
+    searchController.searchResultsUpdater = self
+    // 搜索框激活时，是否产生蒙版效果，由于使用同一个视图控制器来展示搜索结果，因此不需要这种蒙版效果
+    searchController.dimsBackgroundDuringPresentation = false
+    // 让当前视图控制器定义上下文，否则在搜索框激活的情况下，跳转到其他视图控制器后搜索框依然会存在
+    definesPresentationContext = true
+    // 直接将搜索框设置为 tableHeaderView 即可
+    tableView.tableHeaderView = searchController.searchBar
+}
+```
 
-- [RayWenderlich 出品的 Swift 面试题 & 答案](https://github.com/949478479/Learning-Notes/tree/Swift-Interview-Questions-and-Answers)
-- [RayWenderlich 出品的脑洞大开的 Swift 小题目](https://github.com/949478479/Learning-Notes/tree/Are-You-a-Swift-Ninja)
-- [WWDC 2015 Session 106 What's New in Swift 2.0](https://github.com/949478479/Learning-Notes/tree/WWDC-2015-Session-106-What%E2%80%99s-New-in-Swift)
-- [WWDC 2015 Session 401 Swift and Objective C Interoperability](https://github.com/949478479/Learning-Notes/tree/WWDC-2015-Session-401-Swift-and-Objective-C-Interoperability)
+搜索框内容变化时，会通知 `searchResultsUpdater`，作为代理需实现 `UISearchResultsUpdating` 协议：
 
-<a name="Animations"></a>
-## 动画效果
+```swift
+func updateSearchResultsForSearchController(searchController: UISearchController) {
+    // 搜索框内容变化时，根据搜索框内容对数据进行适当过滤
+    filteredDataArray = dataArray.filter {
+        $0.rangeOfString(searchController.searchBar.text!, options: .CaseInsensitiveSearch) != nil
+    }
+    // 使用同一个表视图来展示搜索结果
+    tableView.reloadData()
+}
+```
 
-###### 转场动画
+在数据源方法中，可以进行判断，决定显示普通数据，还是搜索结果，例如：
 
-- [翻页效果](https://github.com/949478479/Learning-Notes/tree/FlipTransionAnimation)
-- [圆圈扩散效果](https://github.com/949478479/Learning-Notes/tree/PingTransitionAnimation)
-- [魔法移动效果](https://github.com/949478479/Learning-Notes/tree/MagicMoveAnimation)
-- [使用自定义 Segue 实现转场动画](https://github.com/949478479/Learning-Notes/tree/CustomSegue)
+```swift
+func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    if searchController.active && !searchController.searchBar.text!.isEmpty {
+        // 搜索框激活，且内容不为空，此时显示对应搜索结果
+        return filteredDataArray.count
+    } else {
+        // 其他情况下，显示正常的数据
+        return dataArray
+    }
+}
+```
 
-###### 图层动画
+另外，`UISearchController` 还有个 `delegate` 属性，支持如下代理方法：
 
-- [如何创建一个弹性动画](https://github.com/949478479/Learning-Notes/tree/How-To-Create-an-Elastic-Animation-with-Swift)
-- [CAReplicatorLayer 动画](https://github.com/949478479/Learning-Notes/tree/Creating-animations-with-CAReplicatorLayer)
-- [利用 mask 实现注水动画](https://github.com/949478479/Learning-Notes/tree/MaskAnimationDemo)
-- [CAGradientLayer 与 mask 动画](https://github.com/949478479/Learning-Notes/tree/Fun-with-Gradients-and-Masks)
-- [如何用 Swift 创建一个复杂的 loading 动画](https://github.com/949478479/Learning-Notes/tree/SBLoader)
-- [利用 CAShapeLayer 的 strokeEnd 实现写字动画](https://github.com/949478479/Learning-Notes/tree/WritingAnimation)
-
-<a name="CustomControl"></a>
-## 自定义控件
-
-###### 菜单效果
-
-- [简易卡片动画](https://github.com/949478479/Animations-Study/tree/CardAnimation)
-- [QQ 好友下拉列表](https://github.com/949478479/Learning-Notes/tree/QQFriendListDemo)
-- [类似新浪微博的下拉式菜单](https://github.com/949478479/Learning-Notes/tree/DropdownMenu)
-- [创建一个非常酷的3D效果菜单动画](https://github.com/949478479/Animations-Study/tree/Taasky)
-- [利用 iCarousel 实现类似 iOS9 任务管理器效果动画](https://github.com/949478479/Animations-Study/tree/CardAnimationByiCarousel)
-- [利用 UIViewControllerAnimatedTransitioning 构建一个下滑菜单](https://github.com/949478479/Animations-Study/tree/SlideDownMenu)
-
-###### 下拉刷新
-
-- [线条动画下拉刷新](https://github.com/949478479/Learning-Notes/tree/CurveRefreshControl)
-- [继承 UIRefreshControl 的自定义下拉刷新控件](https://github.com/949478479/Learning-Notes/tree/Building-a-Custom-Pull-To-Refresh-Control)
-
-###### 乱七八糟
-
-- [可以折叠的 ImageView](https://github.com/949478479/Animations-Study/tree/FoldingImageView)
-- [简易聊天气泡和多行输入框](https://github.com/949478479/Learning-Notes/tree/ChatUIDemo)
-- [UIPickerView 简单使用:实现一个老虎机](https://github.com/949478479/Learning-Notes/tree/SlotMachine)
-
-<a name="UICollectionView"></a>
-## UICollectionView
-
-- [瀑布流布局](https://github.com/949478479/Learning-Notes/tree/UICollectionView-Custom-Layout-Tutorial-Pinterest)
-- [环形滚动布局](https://github.com/949478479/Learning-Notes/tree/CircularCollectionView)
-- [类似 Ultravisual 的视差效果布局](https://github.com/949478479/Learning-Notes/tree/Ultravisual)
-- [WWDC 上的 UICollectionViewLayout 的 demo](https://github.com/949478479/Learning-Notes/tree/CollectionViewLayoutDemo)
+```swift
+protocol UISearchControllerDelegate : NSObjectProtocol {
+    // 只有手动激活或者取消搜索控制器时才会触发这些方法
+    optional func willPresentSearchController(searchController: UISearchController)
+    optional func didPresentSearchController(searchController: UISearchController)
+    optional func willDismissSearchController(searchController: UISearchController)
+    optional func didDismissSearchController(searchController: UISearchController)
+    
+    // 当搜索控制器被激活，无论是点击搜索框激活还是设置 active 属性为 true 来激活，均会调用此方法，
+    // 可以在这里自定义搜索控制器的 present 过程，否则系统会使用默认的效果
+    optional func presentSearchController(searchController: UISearchController)
+}
+```
