@@ -45,6 +45,7 @@
 - [利用 CAReplicatorLayer 实现烟花动画](https://github.com/949478479/Learning-Notes/tree/UberworksAnimation)
 - [如何用 Swift 创建一个复杂的 loading 动画](https://github.com/949478479/Learning-Notes/tree/SBLoader)
 - [利用 CAShapeLayer 的 strokeEnd 实现写字动画](https://github.com/949478479/Learning-Notes/tree/WritingAnimation)
+- [利用 CAGradientLayer 配合 mask 实现滑动解锁效果](https://github.com/949478479/Learning-Notes/tree/SlideToUnlock)
 
 <a name="CustomControl"></a>
 ## 自定义控件
@@ -67,7 +68,7 @@
 
 - [可以折叠的 ImageView](https://github.com/949478479/Animations-Study/tree/FoldingImageView)
 - [简易聊天气泡和多行输入框](https://github.com/949478479/Learning-Notes/tree/ChatUIDemo)
-- [UIPickerView 简单使用:实现一个老虎机](https://github.com/949478479/Learning-Notes/tree/SlotMachine)
+- [利用 UIPickerView 实现简易老虎机](https://github.com/949478479/Learning-Notes/tree/SlotMachine)
 
 <a name="UICollectionView"></a>
 ## UICollectionView
