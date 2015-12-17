@@ -69,6 +69,7 @@
 - [可以折叠的 ImageView](https://github.com/949478479/Animations-Study/tree/FoldingImageView)
 - [简易聊天气泡和多行输入框](https://github.com/949478479/Learning-Notes/tree/ChatUIDemo)
 - [利用 UIPickerView 实现简易老虎机](https://github.com/949478479/Learning-Notes/tree/SlotMachine)
+- [简单使用 UIScrollView 的缩放功能](https://github.com/949478479/Learning-Notes/tree/UIScrollViewZoomDemo)
 
 <a name="UICollectionView"></a>
 ## UICollectionView
