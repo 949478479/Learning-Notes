@@ -16,6 +16,7 @@ func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
 
 ```swift
 func configureScrollViewZoomScale() {
+
     // 由于使用的 IB，确保 imageView 尺寸更新为有效值
     imageView.sizeToFit()
     // 一般在设置 zoomScale 前，最好重置一下，否则被缩放的视图的 transfrom 可能并非初始值，
@@ -58,7 +59,7 @@ func scrollViewDidZoom(scrollView: UIScrollView) {
 
 一般还会涉及到点击图片放大的功能，可以利用 `zoomToRect(_:animated:)` 方法实现：
 
-```
+```swift
 func handleDoubleTap(sender: UITapGestureRecognizer) {
     // 这样就可以以点击点为中心放大了
     let point = sender.locationInView(sender.view)
