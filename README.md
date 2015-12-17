@@ -55,3 +55,5 @@ locationsAnimation.duration = 3
 locationsAnimation.repeatCount = Float.infinity
 layer.addAnimation(locationsAnimation, forKey: nil)
 ```
+
+关于 `CAGradientLayer` 和 `mask` 更详细的介绍，可以看看我之前整理的一篇教程 [Fun with Gradients and Masks](https://github.com/949478479/Learning-Notes/tree/Fun-with-Gradients-and-Masks)。
