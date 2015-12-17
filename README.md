@@ -1,4 +1,4 @@
-# 如何使用 UIScrollView 的缩放功能
+# 简单使用 UIScrollView 的缩放功能
 
 使用 IB 构建 `UIScrollView` 时，`UIScrollView` 会根据自身和子视图之间的约束确定 `contentSize`，水平方向的约束确定 `width`，垂直方向的约束确定 `height`。如果直接在 IB 中将 `UIImageView` 添加到 `UIScrollView` 上，直接将四边约束设置为 `0`，然后为 `UIImageView` 设置个占位的固有尺寸，从而解决无法确定 `UIImageView` 大小的约束歧义报错。当然，如果可以直接设置好图片就更省事了。
 
