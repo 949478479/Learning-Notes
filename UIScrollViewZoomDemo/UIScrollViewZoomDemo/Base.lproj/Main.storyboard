@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="fqD-0T-ovb">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <scenes>
+        <!--滚动和缩放图片-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="BYZ-38-t0r" customClass="ViewController" customModule="UIScrollViewDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UIo-AA-TTB">
+                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                                <subviews>
+                                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="photo1" translatesAutoresizingMaskIntoConstraints="NO" id="rD9-yq-oPn">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                                        <gestureRecognizers/>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="Bkp-HZ-sMm" appends="YES" id="dXz-9d-doa"/>
+                                        </connections>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="rD9-yq-oPn" firstAttribute="leading" secondItem="UIo-AA-TTB" secondAttribute="leading" id="JzY-de-SK1"/>
+                                    <constraint firstAttribute="bottom" secondItem="rD9-yq-oPn" secondAttribute="bottom" id="Muo-9H-Kts"/>
+                                    <constraint firstItem="rD9-yq-oPn" firstAttribute="top" secondItem="UIo-AA-TTB" secondAttribute="top" id="Qhm-m7-6Yp"/>
+                                    <constraint firstAttribute="trailing" secondItem="rD9-yq-oPn" secondAttribute="trailing" id="cYf-yR-VEf"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="quF-Qf-7d8"/>
+                                </connections>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="UIo-AA-TTB" secondAttribute="trailing" id="Av2-bg-zHO"/>
+                            <constraint firstAttribute="bottom" secondItem="UIo-AA-TTB" secondAttribute="bottom" id="BSh-sx-Rmf"/>
+                            <constraint firstItem="UIo-AA-TTB" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Fbj-pn-RNB"/>
+                            <constraint firstItem="UIo-AA-TTB" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="Nd8-rz-TeA"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="滚动和缩放图片" id="UBm-w9-daS"/>
+                    <connections>
+                        <outlet property="imageView" destination="rD9-yq-oPn" id="m2O-a2-k5a"/>
+                        <outlet property="scrollView" destination="UIo-AA-TTB" id="8KR-J1-jLg"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer numberOfTapsRequired="2" id="Bkp-HZ-sMm">
+                    <connections>
+                        <action selector="handleDoubleTap:" destination="BYZ-38-t0r" id="RGC-3Q-y5O"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="441" y="225"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="CUt-bo-TEH">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PKb-0e-wDx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <navigationController id="fqD-0T-ovb" sceneMemberID="viewController">
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="HqB-OK-ghj">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="nl8-Rj-YgB"/>
+                    </connections>
+                </navigationController>
+            </objects>
+            <point key="canvasLocation" x="41" y="225"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="photo1" width="1024" height="768"/>
+    </resources>
+</document>

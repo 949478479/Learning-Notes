@@ -1,79 +1,68 @@
-# 目录
+# 如何使用 UIScrollView 的缩放功能
 
-- [iOS 9](#iOS 9)
-- [iOS 8](#iOS 8)
-- [Swift](#Swift)
-- [动画效果](#Animations)
-- [自定义控件](#CustomControl)
-- [UICollectionView](#UICollectionView)
+使用 IB 构建 `UIScrollView` 时，`UIScrollView` 会根据自身和子视图之间的约束确定 `contentSize`，水平方向的约束确定 `width`，垂直方向的约束确定 `height`。如果直接在 IB 中将 `UIImageView` 添加到 `UIScrollView` 上，直接将四边约束设置为 `0`，然后为 `UIImageView` 设置个占位的固有尺寸，从而解决无法确定 `UIImageView` 大小的约束歧义报错。当然，如果可以直接设置好图片就更省事了。
 
-<a name="iOS 9"></a>
-## iOS 9
+![](Screenshot/Placeholder.png)
 
-- [地图与位置相关 API 的新特性](https://github.com/949478479/Learning-Notes/tree/Location-and-Mapping-in-iOS-9)
-- [初窥 iOS 9 Contacts Framework](https://github.com/949478479/Learning-Notes/tree/A-First-Look-at-Contacts-Framework-in-iOS-9)
-- [利用 SFSafariViewController 为应用内置 Safari 浏览器](https://github.com/949478479/Learning-Notes/tree/SFSafariViewControllerDemo)
+想要进行缩放，需实现如下代理方法，返回对应的视图：
 
-<a name="iOS 8"></a>
-## iOS 8
-- [利用 UISearchController 实现搜索过滤功能](https://github.com/949478479/Learning-Notes/tree/UISearchControllerDemo)
+```swift
+func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
+    return imageView
+}
+```
 
-<a name="Swift"></a>
-## Swift
+缩放主要涉及到 `minimumZoomScale`，`maximumZoomScale`，`zoomScale` 这三个属性，默认都是 `1.0`，前两个属性限制了缩放比率 `zoomScale` 的范围，而 `zoomScale` 决定了当前缩放比率，该值还会影响 `contentSize`。缩放的原理就是将 `zoomScale` 设置为代理方法 `viewForZoomingInScrollView(_:)` 返回的视图的 `transfrom.scale`。
 
-- [RayWenderlich 出品的 Swift 面试题 & 答案](https://github.com/949478479/Learning-Notes/tree/Swift-Interview-Questions-and-Answers)
-- [RayWenderlich 出品的脑洞大开的 Swift 小题目](https://github.com/949478479/Learning-Notes/tree/Are-You-a-Swift-Ninja)
-- [WWDC 2015 Session 106 What's New in Swift 2.0](https://github.com/949478479/Learning-Notes/tree/WWDC-2015-Session-106-What%E2%80%99s-New-in-Swift)
-- [WWDC 2015 Session 401 Swift and Objective C Interoperability](https://github.com/949478479/Learning-Notes/tree/WWDC-2015-Session-401-Swift-and-Objective-C-Interoperability)
+```swift
+func configureScrollViewZoomScale() {
+    // 由于使用的 IB，确保 imageView 尺寸更新为有效值
+    imageView.sizeToFit()
+    // 一般在设置 zoomScale 前，最好重置一下，否则被缩放的视图的 transfrom 可能并非初始值，
+    // 那么此时获取被缩放视图的 frame 以及滚动视图的 contentSize 会不准确
+    scrollView.zoomScale = 1.0
 
-<a name="Animations"></a>
-## 动画效果
+    // 按照 fit 的模式，即宽高不超过屏幕尺寸，且宽或者高等于屏幕宽或者高，确定最小缩放比率
+    let scrollViewFrame = scrollView.frame
+    let scrollViewContentSize = scrollView.contentSize
+    let scaleWidth = scrollViewFrame.width / scrollViewContentSize.width
+    let scaleHeight = scrollViewFrame.height / scrollViewContentSize.height
+    let minScale = min(scaleWidth, scaleHeight)
 
-###### 转场动画
+    scrollView.minimumZoomScale = minScale
+    // 设置 zoomScale 会触发缩放过程，前提是和上次的值不同
+    scrollView.zoomScale = minScale
+}
+```
 
-- [翻页效果](https://github.com/949478479/Learning-Notes/tree/FlipTransionAnimation)
-- [圆圈扩散效果](https://github.com/949478479/Learning-Notes/tree/PingTransitionAnimation)
-- [魔法移动效果](https://github.com/949478479/Learning-Notes/tree/MagicMoveAnimation)
-- [使用自定义 Segue 实现转场动画](https://github.com/949478479/Learning-Notes/tree/CustomSegue)
+缩放之后，会触发代理方法 `scrollViewDidZoom(_:)`，一般可以在这里调整 `contentInset`，从而保证被缩放的视图能一直居中：
 
-###### 图层动画
+```swift
+func scrollViewDidZoom(scrollView: UIScrollView) {
 
-- [如何创建一个弹性动画](https://github.com/949478479/Learning-Notes/tree/How-To-Create-an-Elastic-Animation-with-Swift)
-- [CAReplicatorLayer 动画](https://github.com/949478479/Learning-Notes/tree/Creating-animations-with-CAReplicatorLayer)
-- [利用 mask 实现注水动画](https://github.com/949478479/Learning-Notes/tree/MaskAnimationDemo)
-- [CAGradientLayer 与 mask 动画](https://github.com/949478479/Learning-Notes/tree/Fun-with-Gradients-and-Masks)
-- [利用 CAReplicatorLayer 实现烟花动画](https://github.com/949478479/Learning-Notes/tree/UberworksAnimation)
-- [如何用 Swift 创建一个复杂的 loading 动画](https://github.com/949478479/Learning-Notes/tree/SBLoader)
-- [利用 CAShapeLayer 的 strokeEnd 实现写字动画](https://github.com/949478479/Learning-Notes/tree/WritingAnimation)
-- [利用 CAGradientLayer 配合 mask 实现滑动解锁效果](https://github.com/949478479/Learning-Notes/tree/SlideToUnlock)
+    let imageViewSize = imageView.frame.size
+    let scrollViewSize = scrollView.frame.size
 
-<a name="CustomControl"></a>
-## 自定义控件
+    // 一旦滚动视图的尺寸比被缩放的视图大了，就将多出的这部分用 contentInset 来抵消掉，让视图一直能居中
+    // 如果嵌入了导航控制器，注意将视图控制器的 automaticallyAdjustsScrollViewInsets 关闭，手动调整，
+    // 否则这里处理 contentInset.top 时需要加上对应值
+    let verticalPadding = max((scrollViewSize.height - imageViewSize.height) / 2, 0)
+    let horizontalPadding = max((scrollViewSize.width - imageViewSize.width) / 2, 0)
 
-###### 菜单效果
+    let contentInset = UIEdgeInsets(top: verticalPadding, left: horizontalPadding,
+        bottom: verticalPadding, right: horizontalPadding)
 
-- [简易卡片动画](https://github.com/949478479/Animations-Study/tree/CardAnimation)
-- [QQ 好友下拉列表](https://github.com/949478479/Learning-Notes/tree/QQFriendListDemo)
-- [类似新浪微博的下拉式菜单](https://github.com/949478479/Learning-Notes/tree/DropdownMenu)
-- [创建一个非常酷的3D效果菜单动画](https://github.com/949478479/Animations-Study/tree/Taasky)
-- [利用 iCarousel 实现类似 iOS9 任务管理器效果动画](https://github.com/949478479/Animations-Study/tree/CardAnimationByiCarousel)
-- [利用 UIViewControllerAnimatedTransitioning 构建一个下滑菜单](https://github.com/949478479/Animations-Study/tree/SlideDownMenu)
+    scrollView.contentInset = contentInset
+}
+```
 
-###### 下拉刷新
+一般还会涉及到点击图片放大的功能，可以利用 `zoomToRect(_:animated:)` 方法实现：
 
-- [线条动画下拉刷新](https://github.com/949478479/Learning-Notes/tree/CurveRefreshControl)
-- [继承 UIRefreshControl 的自定义下拉刷新控件](https://github.com/949478479/Learning-Notes/tree/Building-a-Custom-Pull-To-Refresh-Control)
-
-###### 乱七八糟
-
-- [可以折叠的 ImageView](https://github.com/949478479/Animations-Study/tree/FoldingImageView)
-- [简易聊天气泡和多行输入框](https://github.com/949478479/Learning-Notes/tree/ChatUIDemo)
-- [利用 UIPickerView 实现简易老虎机](https://github.com/949478479/Learning-Notes/tree/SlotMachine)
-
-<a name="UICollectionView"></a>
-## UICollectionView
-
-- [瀑布流布局](https://github.com/949478479/Learning-Notes/tree/UICollectionView-Custom-Layout-Tutorial-Pinterest)
-- [环形滚动布局](https://github.com/949478479/Learning-Notes/tree/CircularCollectionView)
-- [类似 Ultravisual 的视差效果布局](https://github.com/949478479/Learning-Notes/tree/Ultravisual)
-- [WWDC 上的 UICollectionViewLayout 的 demo](https://github.com/949478479/Learning-Notes/tree/CollectionViewLayoutDemo)
+```
+func handleDoubleTap(sender: UITapGestureRecognizer) {
+    // 这样就可以以点击点为中心放大了
+    let point = sender.locationInView(sender.view)
+    let rect = CGRect(x: point.x, y: point.y, width: 1, height: 1)
+    scrollView.zoomToRect(rect, animated: true)
+}
+```
