@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="u2L-GV-2f3">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="A1l-81-8vO">
+            <objects>
+                <viewController id="u2L-GV-2f3" customClass="ViewController" customModule="SlideToUnlock" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="3VT-au-wcJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="ndW-JL-Cs4"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="VGX-Wx-CEt">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="02:33" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RWu-Ps-WFf">
+                                <rect key="frame" x="77" y="64" width="221" height="108"/>
+                                <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="90"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="huu-n5-JzE" customClass="AnimatedMaskLabel" customModule="SlideToUnlock" customModuleProvider="target">
+                                <rect key="frame" x="111" y="574" width="154" height="29"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="slide to unlock" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qDn-ST-UOp">
+                                        <rect key="frame" x="0.0" y="0.0" width="154" height="29"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                        <color key="textColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="qDn-ST-UOp" firstAttribute="leading" secondItem="huu-n5-JzE" secondAttribute="leading" id="8fi-rl-gRo"/>
+                                    <constraint firstAttribute="trailing" secondItem="qDn-ST-UOp" secondAttribute="trailing" id="aOl-DL-dcb"/>
+                                    <constraint firstItem="qDn-ST-UOp" firstAttribute="top" secondItem="huu-n5-JzE" secondAttribute="top" id="usK-Cv-9gv"/>
+                                    <constraint firstAttribute="bottom" secondItem="qDn-ST-UOp" secondAttribute="bottom" id="v2w-sV-9cy"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="label" destination="qDn-ST-UOp" id="Fj0-TU-TNa"/>
+                                </connections>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="RWu-Ps-WFf" firstAttribute="centerX" secondItem="VGX-Wx-CEt" secondAttribute="centerX" id="3G7-Js-ocb"/>
+                            <constraint firstItem="huu-n5-JzE" firstAttribute="centerX" secondItem="VGX-Wx-CEt" secondAttribute="centerX" id="4JJ-Es-zAU"/>
+                            <constraint firstItem="RWu-Ps-WFf" firstAttribute="top" secondItem="VGX-Wx-CEt" secondAttribute="top" constant="64" id="D5G-Ew-IRx"/>
+                            <constraint firstItem="ndW-JL-Cs4" firstAttribute="top" secondItem="huu-n5-JzE" secondAttribute="bottom" constant="64" id="x9U-pV-I9V"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CVb-s3-Pw2" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="405.5" y="423.5"/>
+        </scene>
+    </scenes>
+</document>

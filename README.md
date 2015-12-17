@@ -1,78 +1,57 @@
-# 目录
+# 利用 CAGradientLayer 配合 mask 实现滑动解锁效果
 
-- [iOS 9](#iOS 9)
-- [iOS 8](#iOS 8)
-- [Swift](#Swift)
-- [动画效果](#Animations)
-- [自定义控件](#CustomControl)
-- [UICollectionView](#UICollectionView)
+![](Screenshot/SlideToUnlock.gif)
 
-<a name="iOS 9"></a>
-## iOS 9
+利用 `CALayer` 的 `mask` 属性，可以实现很多特殊效果，例如这种类似滑动解锁的效果。
 
-- [地图与位置相关 API 的新特性](https://github.com/949478479/Learning-Notes/tree/Location-and-Mapping-in-iOS-9)
-- [初窥 iOS 9 Contacts Framework](https://github.com/949478479/Learning-Notes/tree/A-First-Look-at-Contacts-Framework-in-iOS-9)
-- [利用 SFSafariViewController 为应用内置 Safari 浏览器](https://github.com/949478479/Learning-Notes/tree/SFSafariViewControllerDemo)
+在这种情况下，使用一个 `UILabel` 的 `layer` 来充当 `mask`。对于 `UILabel` 来说，其 `layer` 不透明的部分就是上面的文字部分了。当然，使用 `CATextLayer` 似乎更直截了当，但是 `UILabel` 用起来更方便些。
 
-<a name="iOS 8"></a>
-## iOS 8
-- [利用 UISearchController 实现搜索过滤功能](https://github.com/949478479/Learning-Notes/tree/UISearchControllerDemo)
+`mask` 所属的图层是一个 `CAGradientLayer`，这里用一个 `UIView` 来提供：
 
-<a name="Swift"></a>
-## Swift
+```swift
+override class func layerClass() -> AnyClass {
+	return CAGradientLayer.self
+}
+```
 
-- [RayWenderlich 出品的 Swift 面试题 & 答案](https://github.com/949478479/Learning-Notes/tree/Swift-Interview-Questions-and-Answers)
-- [RayWenderlich 出品的脑洞大开的 Swift 小题目](https://github.com/949478479/Learning-Notes/tree/Are-You-a-Swift-Ninja)
-- [WWDC 2015 Session 106 What's New in Swift 2.0](https://github.com/949478479/Learning-Notes/tree/WWDC-2015-Session-106-What%E2%80%99s-New-in-Swift)
-- [WWDC 2015 Session 401 Swift and Objective C Interoperability](https://github.com/949478479/Learning-Notes/tree/WWDC-2015-Session-401-Swift-and-Objective-C-Interoperability)
+接着配置下 `CAGradientLayer`：
 
-<a name="Animations"></a>
-## 动画效果
+```swift
+override func awakeFromNib() {
+    super.awakeFromNib()
 
-###### 转场动画
+    let gradientLayer = layer as! CAGradientLayer
 
-- [翻页效果](https://github.com/949478479/Learning-Notes/tree/FlipTransionAnimation)
-- [圆圈扩散效果](https://github.com/949478479/Learning-Notes/tree/PingTransitionAnimation)
-- [魔法移动效果](https://github.com/949478479/Learning-Notes/tree/MagicMoveAnimation)
-- [使用自定义 Segue 实现转场动画](https://github.com/949478479/Learning-Notes/tree/CustomSegue)
+    gradientLayer.startPoint = CGPoint(x: 0, y: 0.5)
+    gradientLayer.endPoint = CGPoint(x: 1, y: 0.5)
+    gradientLayer.locations = [ 0, 0.5, 1 ]
+    gradientLayer.colors = [
+        label.textColor.CGColor,
+        UIColor.whiteColor().CGColor,
+        label.textColor.CGColor
+    ]
 
-###### 图层动画
+    layer.mask = label.layer
+}
+```
 
-- [如何创建一个弹性动画](https://github.com/949478479/Learning-Notes/tree/How-To-Create-an-Elastic-Animation-with-Swift)
-- [CAReplicatorLayer 动画](https://github.com/949478479/Learning-Notes/tree/Creating-animations-with-CAReplicatorLayer)
-- [利用 mask 实现注水动画](https://github.com/949478479/Learning-Notes/tree/MaskAnimationDemo)
-- [CAGradientLayer 与 mask 动画](https://github.com/949478479/Learning-Notes/tree/Fun-with-Gradients-and-Masks)
-- [利用 CAReplicatorLayer 实现烟花动画](https://github.com/949478479/Learning-Notes/tree/UberworksAnimation)
-- [如何用 Swift 创建一个复杂的 loading 动画](https://github.com/949478479/Learning-Notes/tree/SBLoader)
-- [利用 CAShapeLayer 的 strokeEnd 实现写字动画](https://github.com/949478479/Learning-Notes/tree/WritingAnimation)
+为了省事，这里直接将 `UILabel` 作为了背景视图的子视图，这样方便根据文字决定背景视图尺寸。然后将 `UILabel` 的 `layer` 设置为了背景视图图层的 `mask`。根据文档说明，作为 `mask` 的图层如果有父图层，其行为是不确定的。然而，这里的 `UILabel` 不仅有父视图，而且还将自身的图层作为了父视图图层的 `mask`，基本上各种胡来，不过从实际效果来看一切还算正常。
 
-<a name="CustomControl"></a>
-## 自定义控件
+`CAGradientLayer` 未设置 `mask` 时如下图所示：
 
-###### 菜单效果
+![](Screenshot/GradientLayer1.png)
 
-- [简易卡片动画](https://github.com/949478479/Animations-Study/tree/CardAnimation)
-- [QQ 好友下拉列表](https://github.com/949478479/Learning-Notes/tree/QQFriendListDemo)
-- [类似新浪微博的下拉式菜单](https://github.com/949478479/Learning-Notes/tree/DropdownMenu)
-- [创建一个非常酷的3D效果菜单动画](https://github.com/949478479/Animations-Study/tree/Taasky)
-- [利用 iCarousel 实现类似 iOS9 任务管理器效果动画](https://github.com/949478479/Animations-Study/tree/CardAnimationByiCarousel)
-- [利用 UIViewControllerAnimatedTransitioning 构建一个下滑菜单](https://github.com/949478479/Animations-Study/tree/SlideDownMenu)
+将 `UILabel` 的 `layer` 设置为它的 `mask` 后，效果如下所示：
 
-###### 下拉刷新
+![](Screenshot/GradientLayer2.png)
 
-- [线条动画下拉刷新](https://github.com/949478479/Learning-Notes/tree/CurveRefreshControl)
-- [继承 UIRefreshControl 的自定义下拉刷新控件](https://github.com/949478479/Learning-Notes/tree/Building-a-Custom-Pull-To-Refresh-Control)
+最后利用动画改变 `CAGradientLayer` 的 `locations` 即可：
 
-###### 乱七八糟
-
-- [可以折叠的 ImageView](https://github.com/949478479/Animations-Study/tree/FoldingImageView)
-- [简易聊天气泡和多行输入框](https://github.com/949478479/Learning-Notes/tree/ChatUIDemo)
-- [UIPickerView 简单使用:实现一个老虎机](https://github.com/949478479/Learning-Notes/tree/SlotMachine)
-
-<a name="UICollectionView"></a>
-## UICollectionView
-
-- [瀑布流布局](https://github.com/949478479/Learning-Notes/tree/UICollectionView-Custom-Layout-Tutorial-Pinterest)
-- [环形滚动布局](https://github.com/949478479/Learning-Notes/tree/CircularCollectionView)
-- [类似 Ultravisual 的视差效果布局](https://github.com/949478479/Learning-Notes/tree/Ultravisual)
-- [WWDC 上的 UICollectionViewLayout 的 demo](https://github.com/949478479/Learning-Notes/tree/CollectionViewLayoutDemo)
+```swift
+let locationsAnimation = CABasicAnimation(keyPath: "locations")
+locationsAnimation.fromValue = [ -1, -0.5, 0 ]
+locationsAnimation.toValue = [ 1, 1.5, 2 ]
+locationsAnimation.duration = 3
+locationsAnimation.repeatCount = Float.infinity
+layer.addAnimation(locationsAnimation, forKey: nil)
+```
