@@ -64,10 +64,11 @@
 - [线条动画下拉刷新](https://github.com/949478479/Learning-Notes/tree/CurveRefreshControl)
 - [继承 UIRefreshControl 的自定义下拉刷新控件](https://github.com/949478479/Learning-Notes/tree/Building-a-Custom-Pull-To-Refresh-Control)
 
-###### 乱七八糟
+###### 杂七杂八
 
 - [可以折叠的 ImageView](https://github.com/949478479/Animations-Study/tree/FoldingImageView)
 - [简易聊天气泡和多行输入框](https://github.com/949478479/Learning-Notes/tree/ChatUIDemo)
+- [UIGestureRecognizer 学习笔记](https://github.com/949478479/Learning-Notes/tree/UIGestureRecognizerNote)
 - [利用 UIPickerView 实现简易老虎机](https://github.com/949478479/Learning-Notes/tree/SlotMachine)
 - [简单使用 UIScrollView 的缩放功能](https://github.com/949478479/Learning-Notes/tree/UIScrollViewZoomDemo)
 
