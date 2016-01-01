@@ -66,6 +66,7 @@
 
 ###### 杂七杂八
 
+- [Core Image 学习笔记](https://github.com/949478479/Learning-Notes/tree/CoreImageNotes)
 - [可以折叠的 ImageView](https://github.com/949478479/Animations-Study/tree/FoldingImageView)
 - [简易聊天气泡和多行输入框](https://github.com/949478479/Learning-Notes/tree/ChatUIDemo)
 - [UIGestureRecognizer 学习笔记](https://github.com/949478479/Learning-Notes/tree/UIGestureRecognizerNote)
