@@ -4,9 +4,7 @@
 
 ### 基本用法
 
-滤镜功能由 `CIFilter` 提供。使用起来还是比较简单的，根据滤镜名创建对应滤镜，利用 KVC 设置好各项参数，最后生成图片即可。
-
-例如下面这样：
+滤镜功能由 `CIFilter` 提供。使用起来还是比较简单的，根据滤镜名创建对应滤镜，利用 KVC 设置好各项参数，最后生成图片即可。例如下面这样：
 
 ```swift
 let ui_inputImage = UIImage(named: "flower")!
@@ -37,9 +35,7 @@ sepiaFilter.setValue(1.0, forKey: kCIInputIntensityKey)
 
 ### 改善性能
 
-上述用法最终使用 `UIImage` 的构造方法直接由 `CIImage` 生成最终的图片，虽然简单，但是存在一定性能问题。`CIFilter` 的 `outputImage` 属性返回的 `CIImage` 对象，可以看做对图片进行滤镜处理的各种参数配置，只是个配方，实际的渲染过程则是通过 `CIContext` 来完成的。`UIImage` 的构造方法只是封装了 `CIContext` 的创建以及渲染过程。`CIContext` 的创建代价很昂贵，如果需要对图片进行多次处理，频繁创建 `CIContext` 就会带来严重的性能问题。因此，最好单独创建一个 `CIContext`，重复使用，从而避免额外的性能开销。
-
-另外，使用 `UIImage(CIImage:)` 这种方法创建后，利用 `UIImageView` 显示时，`contentMode` 会被忽略，显示效果可能会不正确。
+上述用法最终使用 `UIImage` 的构造方法直接由 `CIImage` 生成最终的图片，虽然简单，但是存在一定性能问题。`CIFilter` 的 `outputImage` 属性返回的 `CIImage` 对象，可以看做对图片进行滤镜处理的各种参数配置，只是个配方，实际的渲染过程则是通过 `CIContext` 来完成的。`UIImage` 的构造方法只是封装了 `CIContext` 的创建以及渲染过程。`CIContext` 的创建代价很昂贵，如果需要对图片进行多次处理，频繁创建 `CIContext` 就会带来严重的性能问题。因此，最好单独创建一个 `CIContext`，重复使用，从而避免额外的性能开销。另外，使用 `UIImage(CIImage:)` 这种方法创建后，利用 `UIImageView` 显示时，`contentMode` 会被忽略，显示效果可能会不正确。
 
 `CIContext` 的创建方式多种多样，常用的有如下两种：
 
