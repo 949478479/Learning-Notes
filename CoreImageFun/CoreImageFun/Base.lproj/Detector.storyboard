@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="SMk-rg-pBE">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <scenes>
+        <!--Detector View Controller-->
+        <scene sceneID="G2u-CD-QrU">
+            <objects>
+                <viewController id="SMk-rg-pBE" customClass="DetectorViewController" customModule="CoreImageFun" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="N2c-rp-WU3"/>
+                        <viewControllerLayoutGuide type="bottom" id="0Y1-Sn-Arz"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="nKE-5F-ouB">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="2wX-dA-xyi">
+                                <rect key="frame" x="50" y="84" width="221" height="465"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="pYK-cS-gW3">
+                                        <rect key="frame" x="0.0" y="0.0" width="221" height="124"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" verticalHuggingPriority="251" image="YaoMing" translatesAutoresizingMaskIntoConstraints="NO" id="YHe-R4-Vgd">
+                                                <rect key="frame" x="0.0" y="0.0" width="113" height="124"/>
+                                            </imageView>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="JinGuanZhang" translatesAutoresizingMaskIntoConstraints="NO" id="ji6-YR-BWx">
+                                                <rect key="frame" x="121" y="0.0" width="100" height="124"/>
+                                            </imageView>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="BCn-Sw-xH5">
+                                        <rect key="frame" x="0.0" y="132" width="221" height="175"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="XueYou" translatesAutoresizingMaskIntoConstraints="NO" id="HHs-ef-U5E">
+                                                <rect key="frame" x="0.0" y="0.0" width="85" height="175"/>
+                                            </imageView>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="XiangCai" translatesAutoresizingMaskIntoConstraints="NO" id="hXu-se-hOF">
+                                                <rect key="frame" x="93" y="0.0" width="128" height="175"/>
+                                            </imageView>
+                                        </subviews>
+                                    </stackView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Faces" translatesAutoresizingMaskIntoConstraints="NO" id="w8b-EU-chg">
+                                        <rect key="frame" x="0.0" y="315" width="221" height="150"/>
+                                    </imageView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="2wX-dA-xyi" firstAttribute="centerY" secondItem="nKE-5F-ouB" secondAttribute="centerY" constant="32" id="Tag-6L-XOV"/>
+                            <constraint firstItem="2wX-dA-xyi" firstAttribute="centerX" secondItem="nKE-5F-ouB" secondAttribute="centerX" id="ygq-Gs-V0a"/>
+                        </constraints>
+                    </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outletCollection property="imageViews" destination="YHe-R4-Vgd" collectionClass="NSMutableArray" id="VNk-CQ-pgr"/>
+                        <outletCollection property="imageViews" destination="ji6-YR-BWx" collectionClass="NSMutableArray" id="eWt-X0-u1n"/>
+                        <outletCollection property="imageViews" destination="HHs-ef-U5E" collectionClass="NSMutableArray" id="53g-Vh-Owc"/>
+                        <outletCollection property="imageViews" destination="hXu-se-hOF" collectionClass="NSMutableArray" id="4Pv-cc-THA"/>
+                        <outletCollection property="imageViews" destination="w8b-EU-chg" collectionClass="NSMutableArray" id="Evt-DN-Grq"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Mha-xO-pHZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1372" y="471"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Faces" width="215" height="150"/>
+        <image name="JinGuanZhang" width="100" height="100"/>
+        <image name="XiangCai" width="128" height="175"/>
+        <image name="XueYou" width="85" height="108"/>
+        <image name="YaoMing" width="97" height="124"/>
+    </resources>
+</document>

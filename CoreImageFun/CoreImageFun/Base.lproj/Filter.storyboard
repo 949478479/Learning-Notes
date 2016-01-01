@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--Filter View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="FilterViewController" customModule="CoreImageFun" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="HHd-9T-D8u">
+                                <rect key="frame" x="14" y="518" width="292" height="31"/>
+                                <connections>
+                                    <action selector="amountSliderValueChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="wrZ-QP-izT"/>
+                                </connections>
+                            </slider>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UGP-LD-2vA">
+                                <rect key="frame" x="0.0" y="164" width="320" height="240"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="UGP-LD-2vA" secondAttribute="height" multiplier="4:3" id="80w-Ti-rdM"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="UGP-LD-2vA" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="08e-U2-NtK"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="HHd-9T-D8u" secondAttribute="bottom" constant="20" id="TJT-BI-5G0"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="HHd-9T-D8u" secondAttribute="trailing" id="Uwc-ZN-tfr"/>
+                            <constraint firstItem="HHd-9T-D8u" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="kEk-68-CYC"/>
+                            <constraint firstItem="UGP-LD-2vA" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="ppx-Zd-ZJ6"/>
+                            <constraint firstAttribute="trailing" secondItem="UGP-LD-2vA" secondAttribute="trailing" id="yWG-Qk-ddQ"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="mgc-fm-F0l"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="amountSlider" destination="HHd-9T-D8u" id="J85-1J-OYq"/>
+                        <outlet property="imageView" destination="UGP-LD-2vA" id="mW0-AO-L01"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1373" y="169"/>
+        </scene>
+    </scenes>
+</document>
