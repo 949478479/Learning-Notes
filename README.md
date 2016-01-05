@@ -1,82 +1,130 @@
-# 目录
+事件传递：响应者链条
 
-- [iOS 9](#iOS 9)
-- [iOS 8](#iOS 8)
-- [Swift](#Swift)
-- [动画效果](#Animations)
-- [自定义控件](#CustomControl)
-- [UICollectionView](#UICollectionView)
+翻译总结自 [*Event Handling Guide for iOS*](https://developer.apple.com/library/ios/documentation/EventHandling/Conceptual/EventHandlingiPhoneOS/Introduction/Introduction.html#//apple_ref/doc/uid/TP40009541-CH1-SW1) 之 [*Event Delivery: The Responder Chain*](https://developer.apple.com/library/ios/documentation/EventHandling/Conceptual/EventHandlingiPhoneOS/event_delivery_responder_chain/event_delivery_responder_chain.html#//apple_ref/doc/uid/TP40009541-CH4-SW2)。主要包含如下三部分内容：
 
-<a name="iOS 9"></a>
-## iOS 9
 
-- [地图与位置相关 API 的新特性](https://github.com/949478479/Learning-Notes/tree/Location-and-Mapping-in-iOS-9)
-- [初窥 iOS 9 Contacts Framework](https://github.com/949478479/Learning-Notes/tree/A-First-Look-at-Contacts-Framework-in-iOS-9)
-- [利用 SFSafariViewController 为应用内置 Safari 浏览器](https://github.com/949478479/Learning-Notes/tree/SFSafariViewControllerDemo)
+- [通过 hit-testing 过程找出被触摸的视图](#Hit-Testing Returns the View Where a Touch Occurred)
+<a name="Hit-Testing Returns the View Where a Touch Occurred"></a>
+- [由响应者对象组成的响应者链条](#The Responder Chain Is Made Up of Responder Objects)
+- [事件在响应者链条上的传递路径](#The Responder Chain Follows a Specific Delivery Path)
 
-<a name="iOS 8"></a>
-## iOS 8
-- [利用 UISearchController 实现搜索过滤功能](https://github.com/949478479/Learning-Notes/tree/UISearchControllerDemo)
+当用户触发一个事件时，例如触摸事件、晃动事件或者远程控制事件，`UIKit` 就会将事件的各种信息包装在 `UIEvent` 对象中，并放入应用程序的事件队列中。封装了事件信息的 `UIEvent` 对象会沿着特定的路线传递，直到某个对象着手处理它。最初，`UIApplication` 单例对象会从事件队列中接收 `UIEvent` 对象并开始进行传递。通常，它会将事件传递给主窗口，主窗口会进一步将事件传递给某个能处理该事件的对象，这取决于事件的类型。
 
-<a name="Swift"></a>
-## Swift
+- 触摸事件
 
-- [RayWenderlich 出品的 Swift 面试题 & 答案](https://github.com/949478479/Learning-Notes/tree/Swift-Interview-Questions-and-Answers)
-- [RayWenderlich 出品的脑洞大开的 Swift 小题目](https://github.com/949478479/Learning-Notes/tree/Are-You-a-Swift-Ninja)
-- [WWDC 2015 Session 106 What's New in Swift 2.0](https://github.com/949478479/Learning-Notes/tree/WWDC-2015-Session-106-What%E2%80%99s-New-in-Swift)
-- [WWDC 2015 Session 401 Swift and Objective C Interoperability](https://github.com/949478479/Learning-Notes/tree/WWDC-2015-Session-401-Swift-and-Objective-C-Interoperability)
+    对于触摸事件，主窗口对象会试图将该事件传递给被触摸的视图。被触摸的视图被称为 `hit-test` 视图，查找该视图的过程被称为 `hit-testing`，详情参阅【[通过 Hit-Testing 找出被触摸的视图](#Hit-Testing Returns the View Where a Touch Occurred)】。
 
-<a name="Animations"></a>
-## 动画效果
+- 运动事件与远程控制事件
+	
+    主窗口会将这类事件传递给第一响应者来处理，详情参阅【[由响应者对象组成的响应者链条](#The Responder Chain Is Made Up of Responder Objects)】。
 
-###### 转场动画
+事件传递的最终目的是找出一个能处理并响应事件的对象。`UIKit` 会将事件传递给最适合处理该事件的对象，对于触摸事件，该对象往往是被触摸的视图；对于其他事件，该对象往往是第一响应者。
 
-- [翻页效果](https://github.com/949478479/Learning-Notes/tree/FlipTransionAnimation)
-- [圆圈扩散效果](https://github.com/949478479/Learning-Notes/tree/PingTransitionAnimation)
-- [魔法移动效果](https://github.com/949478479/Learning-Notes/tree/MagicMoveAnimation)
-- [使用自定义 Segue 实现转场动画](https://github.com/949478479/Learning-Notes/tree/CustomSegue)
 
-###### 图层动画
+## 通过 hit-testing 过程找出被触摸的视图
 
-- [如何创建一个弹性动画](https://github.com/949478479/Learning-Notes/tree/How-To-Create-an-Elastic-Animation-with-Swift)
-- [CAReplicatorLayer 动画](https://github.com/949478479/Learning-Notes/tree/Creating-animations-with-CAReplicatorLayer)
-- [利用 mask 实现注水动画](https://github.com/949478479/Learning-Notes/tree/MaskAnimationDemo)
-- [CAGradientLayer 与 mask 动画](https://github.com/949478479/Learning-Notes/tree/Fun-with-Gradients-and-Masks)
-- [利用 CAReplicatorLayer 实现烟花动画](https://github.com/949478479/Learning-Notes/tree/UberworksAnimation)
-- [如何用 Swift 创建一个复杂的 loading 动画](https://github.com/949478479/Learning-Notes/tree/SBLoader)
-- [利用 CAShapeLayer 的 strokeEnd 实现写字动画](https://github.com/949478479/Learning-Notes/tree/WritingAnimation)
-- [利用 CAGradientLayer 配合 mask 实现滑动解锁效果](https://github.com/949478479/Learning-Notes/tree/SlideToUnlock)
+`iOS` 通过 `hit-testing` 过程来找出被触摸的视图。该过程会检查触摸点是否位于相关视图的范围之内。如果触摸点位于视图范围内，则进一步对其子视图执行检查过程，最终，触摸点所在的视图层级最底层的视图（对于界面来说是最上层的视图）将成为 `hit-test` 视图，`iOS` 会将触摸事件传递给该视图进行处理。
 
-<a name="CustomControl"></a>
-## 自定义控件
+例如，假如用户触摸了下图中的 `View E`，那么 `iOS` 将按照如下过程来找出 `hit-test` 视图：
 
-###### 菜单效果
+1. 判断触摸点是否位于 `View A` 范围内，若是则进一步检查子视图 `View B` 和 `View C`。
+2. 由于触摸点不在 `View B` 范围内，而在 `View C` 范围内，因此进一步检查子视图 `View D` 和 `View E`。
+3. 由于触摸点不在 `View D` 范围内，而在 `View E` 范围内，而且 `View E` 是该视图层级最底层的视图，因此它就是 `hit-test` 视图。
 
-- [简易卡片动画](https://github.com/949478479/Animations-Study/tree/CardAnimation)
-- [QQ 好友下拉列表](https://github.com/949478479/Learning-Notes/tree/QQFriendListDemo)
-- [类似新浪微博的下拉式菜单](https://github.com/949478479/Learning-Notes/tree/DropdownMenu)
-- [创建一个非常酷的3D效果菜单动画](https://github.com/949478479/Animations-Study/tree/Taasky)
-- [利用 iCarousel 实现类似 iOS9 任务管理器效果动画](https://github.com/949478479/Animations-Study/tree/CardAnimationByiCarousel)
-- [利用 UIViewControllerAnimatedTransitioning 构建一个下滑菜单](https://github.com/949478479/Animations-Study/tree/SlideDownMenu)
+![](Screenshot/hit_testing_2x.png)
 
-###### 下拉刷新
+上述查找过程主要利用 `hitTest(_:withEvent:)` 方法，该方法会根据给定的 `CGPoint` 和 `UIEvent` 返回 `hit-test` 视图。首先，该方法会向接收者发送 `pointInside(_:withEvent:)` 消息，如果传入的 `CGPoint`（即触摸点）位于接收者（也就是某个视图）的范围内，`pointInside(_:withEvent:)` 将会返回 `true`。然后，按照子视图添加顺序的相反顺序，对每个子视图发送 `hitTest(_:withEvent:)` 消息，进一步检查子视图。如果触摸点不在视图范围内，`pointInside(_:withEvent:)` 会返回 `false`，`hitTest(_:withEvent:)` 就会直接返回 `nil`，不会进一步检查子视图。如上递归过程结束后，最初调用的 `hitTest(_:withEvent:)` 方法将会返回 `hit-test` 视图，或者返回 `nil`，那么该触摸事件将不会被任何视图处理。如上所述的递归判断过程类似下面这样：
 
-- [线条动画下拉刷新](https://github.com/949478479/Learning-Notes/tree/CurveRefreshControl)
-- [继承 UIRefreshControl 的自定义下拉刷新控件](https://github.com/949478479/Learning-Notes/tree/Building-a-Custom-Pull-To-Refresh-Control)
+```swift
+class UIView: UIResponder {
+    func hitTest(point: CGPoint, withEvent event: UIEvent?) -> UIView? {
+        // 先调用 pointInside(_:withEvent:) 方法判断触摸点是否在自身范围内
+        if pointInside(point, withEvent: event) {
+            // 触摸点在自身范围内，反向遍历子视图，即后添加到视图层级上的子视图（在界面相对靠上的子视图）会被优先遍历到
+            for subview in subviews.reverse() {
+                // 将触摸点由自身坐标系转换到子视图坐标系内
+                let pointInSubview = subview.convertPoint(point, fromView: self)
+                // 调用子视图的 hitTest(_:withEvent:) 方法对子视图进行检查
+                if let hitTestView = subview.hitTest(pointInSubview, withEvent: event) {
+                    return hitTestView // 返回了非 nil 值，该视图即是 hit-test 视图
+                }
+            }
+            return self // 所有子视图都返回了 nil，那么视图自己就是 hit-test 视图
+        }
+        return nil // 触摸点不在自身范围内，直接返回 nil
+    }
+    
+    func pointInside(point: CGPoint, withEvent event: UIEvent?) -> Bool {
+        return bounds.contains(point) // 判断触摸点是否在自身范围内
+    }
+}
+```
 
-###### 杂七杂八
+这里需要注意一点，如果某个子视图的一部分位于父视图范围之外，在父视图的 `clipsToBounds` 属性关闭的情况下，超出父视图范围的这部分子视图不会被裁剪掉，但是此时触摸该子视图位于父视图之外的部分将没有任何反应。因为按照上面所述的判断过程，判断到父视图时，由于触摸点根本不在父视图范围内，也就不会进一步去判断子视图了。
 
-- [Core Image 学习笔记](https://github.com/949478479/Learning-Notes/tree/CoreImageNotes)
-- [可以折叠的 ImageView](https://github.com/949478479/Animations-Study/tree/FoldingImageView)
-- [简易聊天气泡和多行输入框](https://github.com/949478479/Learning-Notes/tree/ChatUIDemo)
-- [UIGestureRecognizer 学习笔记](https://github.com/949478479/Learning-Notes/tree/UIGestureRecognizerNote)
-- [利用 UIPickerView 实现简易老虎机](https://github.com/949478479/Learning-Notes/tree/SlotMachine)
-- [简单使用 UIScrollView 的缩放功能](https://github.com/949478479/Learning-Notes/tree/UIScrollViewZoomDemo)
+`hit-test` 视图拥有最先处理触摸事件的机会，之后，还可以选择将触摸事件沿响应者链条传递给下一个响应者，例如 `hit-test` 视图的父视图。默认情况下，触摸事件被处理后不会传递给下一个响应者。详情参阅【[由响应者对象组成的响应者链条](#The Responder Chain Is Made Up of Responder Objects)】。
 
-<a name="UICollectionView"></a>
-## UICollectionView
+<a name="The Responder Chain Is Made Up of Responder Objects"></a>
+## 由响应者对象组成的响应者链条
 
-- [瀑布流布局](https://github.com/949478479/Learning-Notes/tree/UICollectionView-Custom-Layout-Tutorial-Pinterest)
-- [环形滚动布局](https://github.com/949478479/Learning-Notes/tree/CircularCollectionView)
-- [类似 Ultravisual 的视差效果布局](https://github.com/949478479/Learning-Notes/tree/Ultravisual)
-- [WWDC 上的 UICollectionViewLayout 的 demo](https://github.com/949478479/Learning-Notes/tree/CollectionViewLayoutDemo)
+很多类型的事件都依赖于响应者链条进行传递。顾名思义，响应者链条即是一系列响应者对象链接在一起，开始于第一响应者对象，结束于 `UIApplication` 单例对象。如果第一响应者无法处理事件，事件就会沿响应者链条往下传递，即传递给下一个响应者。
+
+所谓的响应者对象，即是 `UIResponder` 类及其子类的对象，它们具有响应和处理事件的能力。`UIApplication`、`UIViewController` 以及 `UIView` 都是 `UIResponder` 的子类，这意味着所有视图和视图控制器都是响应者对象。注意，`CALayer` 直接继承自 `NSObejct`，因此它不是响应者对象。
+
+第一响应者即是第一个有机会处理事件的响应者对象。通常情况下，它是一个视图。一个响应者对象若想成为第一响应者，需满足如下两点：
+
+1. 重写 `canBecomeFirstResponder()` 方法并返回 `true`。`UIResponder` 的默认实现是返回 `false`。
+2. 收到 `becomeFirstResponder()` 消息。在某些情况下，往往会主动给响应者对象发送此消息，从而主动成为第一响应者。
+
+除了传递事件，响应者链条还会传递一些别的东西，具体说来，响应者链条可传递如下事件或者消息：
+
+- 触摸事件
+	
+	如果 `hit-test` 视图无法处理触摸事件，触摸事件将沿着响应者链条继续向下一个响应者传递。
+
+- 运动事件
+
+	要处理运动事件，第一响应者必须实现 `motionBegan(_:withEvent:)` 或者 `motionEnded(_:withEvent:)` 方法。
+	
+- 远程控制事件
+
+	要处理远程控制事件，第一响应者必须实现 `remoteControlReceivedWithEvent(_:)` 方法。
+	
+- 动作消息
+
+	当用户操作某个控件后，例如按钮或者开关，如果该控件的 `target` 为 `nil`，那么控件绑定的动作将会从控件开始，沿着响应者链向下传递。
+	
+- 编辑菜单消息
+
+	当用户点击了编辑菜单的某个命令后，`iOS` 通过响应者链条来寻找一个实现了相应方法（例如 `cut(_:)`，`copy(_:)`，`paste(:_)`）的对象。
+- 文本编辑
+
+	当用户点击了一个 `UITextField` 或者 `UITextView` 后，该控件会自动成为第一响应者，弹出虚拟键盘并成为输入焦点。
+
+当用户点击 `UITextField` 或者 `UITextView` 后，它们会自动成为第一响应者，而其他响应者则需通过接收 `becomeFirstResponder()` 消息来成为第一响应者。
+
+<a name="The Responder Chain Follows a Specific Delivery Path"></a>
+## 事件在响应者链条上的传递路径
+
+如果某个应该处理事件的响应者（无论是 `hit-test` 视图还是第一响应者）不处理事件，`UIKit` 就会将事件沿着响应者链条向下传递，直到找到处理事件的响应者，或者再没有下一个响应者。每个响应者都可以决定是否处理传给自己的事件，以及是否将事件传递给下一个响应者，即 `nextResponder` 属性所引用的响应者。
+
+如下两图展示了两种响应者链条的传递路径：
+
+![](Screenshot/iOS_responder_chain_2x.png)
+
+如左图所示，事件按如下路径进行传递：
+
+1. 绿色的 `initial view` 优先处理事件，如果它不处理事件，它就将事件传递给父视图，因为它并非视图控制器所属的视图。
+2. 黄色的视图有机会处理事件，如果它不处理事件，它也将事件传递给父视图，因为它也不是视图控制器所属的视图。
+3. 蓝色的视图有机会处理事件，如果它不处理事件，因为它是视图控制器所属的视图，它会将事件传递给视图控制器，而非自己的父视图。
+4. 视图控制器有机会处理事件，如果它不处理事件，它将事件传递给自己的视图的父视图，在这种情况下即是主窗口。
+5. 主窗口有机会处理事件，如果它不处理事件，它将事件传递给 `UIApplication` 单例对象。
+6. `UIApplication` 单例对象有机会处理事件，一般情况下，应用代理也是 `UIResponder` 子类，因此如果它也不处理事件，它会将事件传递给应用代理。
+7. 如果到最后也没有响应者处理事件，事件就会被丢弃。
+
+对于右图所示，事件传递过程大同小异，只不过靠左的视图控制器的视图的父视图不是主窗口而是另一个视图控制器的视图，因此它将事件传递给靠右的视图控制器的视图。
+
+如上所述，事件传递的规律是，一个视图将事件传递给父视图，如果自己是视图控制器的视图，则先传给视图控制器，再传递给父视图。主窗口将事件传给 `UIApplication` 单例对象，后者再进一步传递给 `UIApplicationDelegate`，前提是应用代理是 `UIResponder` 的子类。
+
+> 注意  
+前面反复提到“不处理事件”这个说法，指的是响应者没有对 `UIResponder` 的相应事件传递方法进行自定义重写。例如，对于触摸事件，是通过 `touchesBegan(_:withEvent:)` 等系列方法进行传递的。这些方法的默认实现即是将事件传递给下一响应者，当响应者未重写这些方法时，事件就会传递到下一响应者。即使响应者重写了这些方法，也就是处理了事件，依然可以选择将事件继续传递给下一响应者，这时最好调用超类的相同方法，而不是通过 `nextResponder` 拿到下一响应者来手动调用其相关方法。
