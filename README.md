@@ -69,7 +69,6 @@
 - [Core Image 学习笔记](https://github.com/949478479/Learning-Notes/tree/CoreImageNotes)
 - [可以折叠的 ImageView](https://github.com/949478479/Animations-Study/tree/FoldingImageView)
 - [简易聊天气泡和多行输入框](https://github.com/949478479/Learning-Notes/tree/ChatUIDemo)
-- [UIGestureRecognizer 学习笔记](https://github.com/949478479/Learning-Notes/tree/UIGestureRecognizerNote)
 - [利用 UIPickerView 实现简易老虎机](https://github.com/949478479/Learning-Notes/tree/SlotMachine)
 - [简单使用 UIScrollView 的缩放功能](https://github.com/949478479/Learning-Notes/tree/UIScrollViewZoomDemo)
 
@@ -80,3 +79,10 @@
 - [环形滚动布局](https://github.com/949478479/Learning-Notes/tree/CircularCollectionView)
 - [类似 Ultravisual 的视差效果布局](https://github.com/949478479/Learning-Notes/tree/Ultravisual)
 - [WWDC 上的 UICollectionViewLayout 的 demo](https://github.com/949478479/Learning-Notes/tree/CollectionViewLayoutDemo)
+
+## 官方指南学习记录
+
+###### 事件处理指南
+
+- [手势识别器](https://github.com/949478479/Learning-Notes/tree/UIGestureRecognizerNote)
+- [事件传递：响应者链条](https://github.com/949478479/Learning-Notes/tree/Event-Delivery-The-Responder-Chain)
