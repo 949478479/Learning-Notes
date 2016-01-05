@@ -1,4 +1,4 @@
-事件传递：响应者链条
+# 事件传递：响应者链条
 
 翻译总结自 [*Event Handling Guide for iOS*](https://developer.apple.com/library/ios/documentation/EventHandling/Conceptual/EventHandlingiPhoneOS/Introduction/Introduction.html#//apple_ref/doc/uid/TP40009541-CH1-SW1) 之 [*Event Delivery: The Responder Chain*](https://developer.apple.com/library/ios/documentation/EventHandling/Conceptual/EventHandlingiPhoneOS/event_delivery_responder_chain/event_delivery_responder_chain.html#//apple_ref/doc/uid/TP40009541-CH4-SW2)。主要包含如下三部分内容：
 
@@ -8,7 +8,7 @@
 - [由响应者对象组成的响应者链条](#The Responder Chain Is Made Up of Responder Objects)
 - [事件在响应者链条上的传递路径](#The Responder Chain Follows a Specific Delivery Path)
 
-当用户触发一个事件时，例如触摸事件、晃动事件或者远程控制事件，`UIKit` 就会将事件的各种信息包装在 `UIEvent` 对象中，并放入应用程序的事件队列中。封装了事件信息的 `UIEvent` 对象会沿着特定的路线传递，直到某个对象着手处理它。最初，`UIApplication` 单例对象会从事件队列中接收 `UIEvent` 对象并开始进行传递。通常，它会将事件传递给主窗口，主窗口会进一步将事件传递给某个能处理该事件的对象，这取决于事件的类型。
+当用户触发一个事件时，例如触摸事件、晃动事件或者远程控制事件，`UIKit` 就会将事件的各种信息包装在 `UIEvent` 对象里，并放入应用程序的事件队列中。封装了事件信息的 `UIEvent` 对象会沿着特定的路线传递，直到某个对象着手处理它。最初，`UIApplication` 单例对象会从事件队列中接收 `UIEvent` 对象并开始进行传递。通常，它会将事件传递给主窗口，主窗口会进一步将事件传递给某个能处理该事件的对象，这取决于事件的类型。
 
 - 触摸事件
 
@@ -27,9 +27,9 @@
 
 例如，假如用户触摸了下图中的 `View E`，那么 `iOS` 将按照如下过程来找出 `hit-test` 视图：
 
-1. 判断触摸点是否位于 `View A` 范围内，若是则进一步检查子视图 `View B` 和 `View C`。
-2. 由于触摸点不在 `View B` 范围内，而在 `View C` 范围内，因此进一步检查子视图 `View D` 和 `View E`。
-3. 由于触摸点不在 `View D` 范围内，而在 `View E` 范围内，而且 `View E` 是该视图层级最底层的视图，因此它就是 `hit-test` 视图。
+1. 判断触摸点是否位于 `View A` 内，若是则进一步检查子视图 `View B` 和 `View C`。
+2. 由于触摸点不在 `View B` 内，而在 `View C` 内，因此进一步检查子视图 `View D` 和 `View E`。
+3. 由于触摸点不在 `View D` 内，而在 `View E` 内，并且 `View E` 是视图层级最底层的视图，因此它就是 `hit-test` 视图。
 
 ![](Screenshot/hit_testing_2x.png)
 
@@ -67,39 +67,43 @@ class UIView: UIResponder {
 <a name="The Responder Chain Is Made Up of Responder Objects"></a>
 ## 由响应者对象组成的响应者链条
 
-很多类型的事件都依赖于响应者链条进行传递。顾名思义，响应者链条即是一系列响应者对象链接在一起，开始于第一响应者对象，结束于 `UIApplication` 单例对象。如果第一响应者无法处理事件，事件就会沿响应者链条往下传递，即传递给下一个响应者。
+很多类型的事件都依赖于响应者链条进行传递。顾名思义，响应者链条即是一系列响应者对象链接在一起，开始于第一响应者对象，结束于 `UIApplication` 单例对象（实际上往往结束于它的代理对象）。如果第一响应者无法处理事件，事件就会沿响应者链条往下传递，即传递给下一个响应者。
 
-所谓的响应者对象，即是 `UIResponder` 类及其子类的对象，它们具有响应和处理事件的能力。`UIApplication`、`UIViewController` 以及 `UIView` 都是 `UIResponder` 的子类，这意味着所有视图和视图控制器都是响应者对象。注意，`CALayer` 直接继承自 `NSObejct`，因此它不是响应者对象。
+所谓的响应者对象，即是 `UIResponder` 类及其子类的对象，它们具有响应和处理事件的能力。`UIApplication`、 `UIViewController` 以及 `UIView` 都是 `UIResponder` 的子类，这意味着所有视图和视图控制器都是响应者对象。注意， `CALayer` 直接继承自 `NSObejct`，因此它不是响应者对象。
 
 第一响应者即是第一个有机会处理事件的响应者对象。通常情况下，它是一个视图。一个响应者对象若想成为第一响应者，需满足如下两点：
 
 1. 重写 `canBecomeFirstResponder()` 方法并返回 `true`。`UIResponder` 的默认实现是返回 `false`。
-2. 收到 `becomeFirstResponder()` 消息。在某些情况下，往往会主动给响应者对象发送此消息，从而主动成为第一响应者。
+2. 收到 `becomeFirstResponder()` 消息。在某些情况下，往往会手动给响应者发送此消息，从而主动成为第一响应者。
 
 除了传递事件，响应者链条还会传递一些别的东西，具体说来，响应者链条可传递如下事件或者消息：
 
 - 触摸事件
 	
-	如果 `hit-test` 视图无法处理触摸事件，触摸事件将沿着响应者链条继续向下一个响应者传递。
+	要处理触摸事件，响应者可以重写 `touchesBegan(_withEvent:)` 系列方法。  
+	如果 `hit-test` 对象不处理触摸事件，`UIResponder` 的默认实现会将触摸事件沿着响应者链条传递给下一响应者。
 
 - 运动事件
 
-	要处理运动事件，第一响应者必须实现 `motionBegan(_:withEvent:)` 或者 `motionEnded(_:withEvent:)` 方法。
+	要处理运动事件，响应者需要重写 `motionBegan(_:withEvent:)` 系列方法。  
+	如果第一响应者不处理事件，`UIView` 的默认实现会将运动事件沿着响应者链条传递给下一响应者。  
 	
 - 远程控制事件
 
-	要处理远程控制事件，第一响应者必须实现 `remoteControlReceivedWithEvent(_:)` 方法。
+	要处理远程控制事件，响应者需要实现 `remoteControlReceivedWithEvent(_:)` 方法。  
+	在 `iOS 7.1` 之后，最好使用 `MPRemoteCommandCenter` 获取多媒体控制操作对应的 `MPRemoteCommand` 对象，并注册相应的回调方法或者 `block`。
 	
 - 动作消息
 
-	当用户操作某个控件后，例如按钮或者开关，如果该控件的 `target` 为 `nil`，那么控件绑定的动作将会从控件开始，沿着响应者链向下传递。
+	当用户操作某个控件后，例如按钮或者开关，如果该控件的 `target` 为 `nil`，那么控件绑定的方法将会从控件开始，沿着响应者链向下传递，寻找一个实现了相应方法的响应者。
 	
 - 编辑菜单消息
 
-	当用户点击了编辑菜单的某个命令后，`iOS` 通过响应者链条来寻找一个实现了相应方法（例如 `cut(_:)`，`copy(_:)`，`paste(:_)`）的对象。
+	当用户点击了编辑菜单的某个命令后，`iOS` 通过响应者链条来寻找一个实现了相应方法（例如 `cut(_:)`， `copy(_:)`，`paste(:_)`）的响应者。
+	
 - 文本编辑
 
-	当用户点击了一个 `UITextField` 或者 `UITextView` 后，该控件会自动成为第一响应者，弹出虚拟键盘并成为输入焦点。
+	当用户点击了 `UITextField` 或者 `UITextView` 后，该控件会自动成为第一响应者，弹出虚拟键盘并成为输入焦点。
 
 当用户点击 `UITextField` 或者 `UITextView` 后，它们会自动成为第一响应者，而其他响应者则需通过接收 `becomeFirstResponder()` 消息来成为第一响应者。
 
@@ -114,12 +118,12 @@ class UIView: UIResponder {
 
 如左图所示，事件按如下路径进行传递：
 
-1. 绿色的 `initial view` 优先处理事件，如果它不处理事件，它就将事件传递给父视图，因为它并非视图控制器所属的视图。
-2. 黄色的视图有机会处理事件，如果它不处理事件，它也将事件传递给父视图，因为它也不是视图控制器所属的视图。
-3. 蓝色的视图有机会处理事件，如果它不处理事件，因为它是视图控制器所属的视图，它会将事件传递给视图控制器，而非自己的父视图。
-4. 视图控制器有机会处理事件，如果它不处理事件，它将事件传递给自己的视图的父视图，在这种情况下即是主窗口。
-5. 主窗口有机会处理事件，如果它不处理事件，它将事件传递给 `UIApplication` 单例对象。
-6. `UIApplication` 单例对象有机会处理事件，一般情况下，应用代理也是 `UIResponder` 子类，因此如果它也不处理事件，它会将事件传递给应用代理。
+1. 绿色的 `initial view` 优先处理事件，如果不处理事件，就将事件传递给父视图，因为它并非视图控制器所属的视图。
+2. 黄色的视图有机会处理事件，如果不处理事件，它也将事件传递给父视图，因为它也不是视图控制器所属的视图。
+3. 蓝色的视图有机会处理事件，如果不处理事件，因为它是视图控制器所属的视图，它会将事件传递给视图控制器，而非自己的父视图。
+4. 视图控制器有机会处理事件，如果不处理事件，它将事件传递给自己的视图的父视图，在这种情况下即是主窗口。
+5. 主窗口有机会处理事件，如果不处理事件，它将事件传递给 `UIApplication` 单例对象。
+6. `UIApplication` 单例对象有机会处理事件，如果不处理事件，并且应用代理也是 `UIResponder` 子类，它会将事件传递给应用代理。
 7. 如果到最后也没有响应者处理事件，事件就会被丢弃。
 
 对于右图所示，事件传递过程大同小异，只不过靠左的视图控制器的视图的父视图不是主窗口而是另一个视图控制器的视图，因此它将事件传递给靠右的视图控制器的视图。
@@ -127,4 +131,4 @@ class UIView: UIResponder {
 如上所述，事件传递的规律是，一个视图将事件传递给父视图，如果自己是视图控制器的视图，则先传给视图控制器，再传递给父视图。主窗口将事件传给 `UIApplication` 单例对象，后者再进一步传递给 `UIApplicationDelegate`，前提是应用代理是 `UIResponder` 的子类。
 
 > 注意  
-前面反复提到“不处理事件”这个说法，指的是响应者没有对 `UIResponder` 的相应事件传递方法进行自定义重写。例如，对于触摸事件，是通过 `touchesBegan(_:withEvent:)` 等系列方法进行传递的。这些方法的默认实现即是将事件传递给下一响应者，当响应者未重写这些方法时，事件就会传递到下一响应者。即使响应者重写了这些方法，也就是处理了事件，依然可以选择将事件继续传递给下一响应者，这时最好调用超类的相同方法，而不是通过 `nextResponder` 拿到下一响应者来手动调用其相关方法。
+前面反复提到“不处理事件”这个说法，指的是响应者没有对 `UIResponder` 的相应事件传递方法进行自定义重写。例如，对于触摸事件，是通过 `touchesBegan(_:withEvent:)` 等系列方法进行传递的。这些方法的默认实现即是将事件传递给下一响应者，当响应者未重写这些方法时，事件就会传递到下一响应者。即使响应者重写了这些方法，也就是处理了事件，依然可以选择将事件继续传递给下一响应者，此时最好调用超类的相同方法，而不是通过 `nextResponder` 拿到下一响应者来手动调用其相关方法。
