@@ -6,6 +6,7 @@
 - [动画效果](#Animations)
 - [自定义控件](#CustomControl)
 - [UICollectionView](#UICollectionView)
+- [官方指南学习记录](#Programming_Guide)
 
 <a name="iOS 9"></a>
 ## iOS 9
@@ -80,6 +81,7 @@
 - [类似 Ultravisual 的视差效果布局](https://github.com/949478479/Learning-Notes/tree/Ultravisual)
 - [WWDC 上的 UICollectionViewLayout 的 demo](https://github.com/949478479/Learning-Notes/tree/CollectionViewLayoutDemo)
 
+<a name="Programming_Guide"></a>
 ## 官方指南学习记录
 
 ###### 事件处理指南
