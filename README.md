@@ -84,7 +84,11 @@
 <a name="Programming_Guide"></a>
 ## 官方指南学习记录
 
-###### 事件处理指南
+###### Event Handling Guide for iOS
 
-- [手势识别器](https://github.com/949478479/Learning-Notes/tree/UIGestureRecognizerNote)
-- [事件传递：响应者链条](https://github.com/949478479/Learning-Notes/tree/Event-Delivery-The-Responder-Chain)
+- [手势识别器](https://github.com/949478479/Learning-Notes/blob/Programming-Guide-Notes/Event-Handling-Guide-for-iOS/Gesture-Recognizers.md)
+- [事件传递：响应者链条](https://github.com/949478479/Learning-Notes/blob/Programming-Guide-Notes/Event-Handling-Guide-for-iOS/Event-Delivery-The-Responder-Chain.md)
+
+###### Core Animation Programming Guide
+
+- [设置图层](https://github.com/949478479/Learning-Notes/blob/Programming-Guide-Notes/Core-Animation-Programming-Guide/Setting-Up-Layer-Objects.md)
