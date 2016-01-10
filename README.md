@@ -91,5 +91,7 @@
 
 ###### Core Animation Programming Guide
 
-- [核心动画基础](https://github.com/949478479/Learning-Notes/blob/Programming-Guide-Notes/Core-Animation-Programming-Guide/Core-Animation-Basics.md)
+- [核心动画基本概念](https://github.com/949478479/Learning-Notes/blob/Programming-Guide-Notes/Core-Animation-Programming-Guide/Core-Animation-Basics.md)
 - [设置图层](https://github.com/949478479/Learning-Notes/blob/Programming-Guide-Notes/Core-Animation-Programming-Guide/Setting-Up-Layer-Objects.md)
+- [动画基础](https://github.com/949478479/Learning-Notes/blob/Programming-Guide-Notes/Core-Animation-Programming-Guide/Animating-Layer-Content.md)
+- [动画技巧](https://github.com/949478479/Learning-Notes/blob/Programming-Guide-Notes/Core-Animation-Programming-Guide/Advanced-Animation-Tricks.md)
