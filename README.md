@@ -96,4 +96,4 @@
 - [动画基础](https://github.com/949478479/Learning-Notes/blob/Programming-Guide-Notes/Core-Animation-Programming-Guide/Animating-Layer-Content.md)
 - [动画技巧](https://github.com/949478479/Learning-Notes/blob/Programming-Guide-Notes/Core-Animation-Programming-Guide/Advanced-Animation-Tricks.md)
 - [改变图层的默认行为](https://github.com/949478479/Learning-Notes/blob/Programming-Guide-Notes/Core-Animation-Programming-Guide/Changing-a-Layer%E2%80%99s-Default-Behavior.md)
-- [改善动画性能](https://github.com/949478479/Learning-Notes/blob/Programming-Guide-Notes/Core-Animation-Programming-Guide/Improving-Animation-Performance.md)
+- [提高动画性能](https://github.com/949478479/Learning-Notes/blob/Programming-Guide-Notes/Core-Animation-Programming-Guide/Improving-Animation-Performance.md)
