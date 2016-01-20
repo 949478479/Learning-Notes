@@ -60,22 +60,28 @@ class CustomSegue: UIStoryboardSegue {
     }
 }
 
-// 和第一种方案不同，在 IB 中需要设置 segue 的类型为代理方法的对应类型，当前例子中即是 Present Modally
 extension CustomSegue: UIViewControllerTransitioningDelegate {
+
     func animationControllerForPresentedController(presented: UIViewController,
         presentingController presenting: UIViewController,
         sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return PresentAnimator() // 提供自定义的过渡动画对象
+        return PresentAnimator() // 提供自定义的 present 过渡动画对象
+    }
+    
+    func animationControllerForDismissedController(dismissed: UIViewController)
+        -> UIViewControllerAnimatedTransitioning? {
+        return DismissAnimator() // 提供自定义的 dismiss 过渡动画对象
     }
 }
 
 class PresentAnimator: NSObject, UIViewControllerAnimatedTransitioning {
-    func transitionDuration(transitionContext: UIViewControllerContextTransitioning?) -> NSTimeInterval {
-        return 0.4
-    }
+    // ...
+}
 
-    func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
-        // 设计一些过渡动画。。。
-    }
+class DismissAnimator: NSObject, UIViewControllerAnimatedTransitioning {
+    // ...
 }
 ```
+
+> 注意  
+> 和方案一不同，在 IB 中需要设置 Segue 的类型为代理方法的对应类型，当前例子中即是 Present Modally 类型。另外，使用 Unwind Segue 时，不要设置 Unwind Segue 的类，也就是由同一个 Segue 提供两个动画过程的动画对象。
