@@ -60,6 +60,7 @@ class CustomSegue: UIStoryboardSegue {
     }
 }
 
+// 和第一种方案不同，在 IB 中需要设置 segue 的类型为代理方法的对应类型，当前例子中即是 Present Modally
 extension CustomSegue: UIViewControllerTransitioningDelegate {
     func animationControllerForPresentedController(presented: UIViewController,
         presentingController presenting: UIViewController,
