@@ -1,8 +1,8 @@
-# CoreData 在 iOS 8 后新增的读取、更新、删除数据的新功能
+# iOS 8 后读取、更新、删除数据的新功能
 
 ## 使用 NSAsynchronousFetchRequest 异步读取数据
 
-`iOS 8` 引入了 `NSAsynchronousFetchRequest`，可以方便地异步读取数据。不过目前这部分内容并没有详细文档，只在头文件中稍有提及。
+`iOS 8` 引入了 `NSAsynchronousFetchRequest`，可以方便地异步读取数据，该操作直接作用于持久化存储，不会影响 Managed Object Context。不过目前这部分内容并没有详细文档，只在头文件中稍有提及。
 
 ```swift
 let fetchRequest = NSFetchRequest(entityName: "Department")
@@ -13,7 +13,6 @@ let asyncFetchRequest = NSAsynchronousFetchRequest(fetchRequest: fetchRequest) {
 }
 
 do {
-    // 根据头文件注释，executeRequest(_:) 方法会直接作用于持久化存储，不会影响 Managed Object Context
     // 可以用 NSPersistentStoreAsynchronousResult 取消读取操作，只需调用 cancel() 方法
     let result = try managedObjectContext.executeRequest(asyncFetchRequest) as! NSPersistentStoreAsynchronousResult
 } catch let error as NSError {
@@ -29,7 +28,7 @@ do {
 let batchUpdateRequest = NSBatchUpdateRequest(entityName: "Book")
 // 指定要更新的属性，字典的键是 NSPropertyDescription 或属性名称，值是常量值或结果为常量值的 NSExpression
 batchUpdateRequest.propertiesToUpdate = ["favorite":true]
-// 指定返回结果，这里指定为被更新对象的数量，指定为 UpdatedObjectIDsResultType 可获取被更新对象的 NSManagedObjectID 数组
+// 指定返回结果，这里为被更新对象的数量，指定 UpdatedObjectIDsResultType 可获取被更新对象的 NSManagedObjectID 数组
 batchUpdateRequest.resultType = .UpdatedObjectsCountResultType
 // 指定要操作的持久化存储
 batchUpdateRequest.affectedStores = managedObjectContext.persistentStoreCoordinator!.persistentStores
@@ -48,14 +47,17 @@ do {
 
 ## 使用 NSExpressionDescription 对结果进行处理
 
-这个和新特性无关，只是一点补充。例如，要统计各个 `Department` 中的 `employeeCount` 之和，可以使用 `NSExpressionDescription` 来完成：
+这个和新特性无关，只是一点补充。
+
+例如，要统计各个 `Department` 中的 `employeeCount` 之和，可以使用 `NSExpressionDescription` 来完成：
 
 ```swift
 let sumExpressionDescription = NSExpressionDescription()
 // 指定表达式名字，这会作为结果字典中的键
 sumExpressionDescription.name = "sum" 
 // 由于是求和，因此根据函数 sum: 构建表达式，其他支持的函数可参阅 NSExpression 文档
-// 参数 arguments 的类型是 [NSExpression]，这里指定表达式来根据 valueForKeyPath: 获取 Department 实例的 employeeCount
+// 参数 arguments 的类型是 [NSExpression]，
+// 下面指定的这个表达式会根据 valueForKeyPath: 获取 Department 实例的 employeeCount 的值，从而进行求和
 sumExpressionDescription.expression = NSExpression(forFunction: "sum:",
     arguments: [NSExpression(forKeyPath: "employeeCount")])
 // 指定返回结果的类型
