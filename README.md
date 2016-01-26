@@ -6,6 +6,7 @@
 - [动画效果](#Animations)
 - [控件相关](#Controls)
 - [其他笔记](#Other)
+- [CoreData](CoreData)
 - [官方指南学习记录](#Programming_Guide)
 
 <a name="Swift"></a>
@@ -92,11 +93,16 @@
 - [简易聊天气泡和多行输入框](https://github.com/949478479/Learning-Notes/tree/ChatUIDemo)
 - [利用 UIPickerView 实现简易老虎机](https://github.com/949478479/Learning-Notes/tree/SlotMachine)
 - [简单使用 UIScrollView 的缩放功能](https://github.com/949478479/Learning-Notes/tree/UIScrollViewZoomDemo)
-
+- 
 <a name="Other"></a>
 ## 其他笔记
 
 - [Core Image 学习笔记](https://github.com/949478479/Learning-Notes/tree/CoreImageNotes)
+
+<a name="CoreData"></a>
+## CoreData
+
+- [iOS 8 后读取、更新、删除数据的新功能](https://github.com/949478479/Learning-Notes/blob/CoreData/CoreData_fetching_new_features.md)
 
 <a name="Programming_Guide"></a>
 ## 官方指南学习记录
