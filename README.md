@@ -1,4 +1,4 @@
-## 利用 mask 实现注水动画
+# 利用 mask 实现注水动画
 
 ![](./Screenshot/commtonFinal.gif)
 
