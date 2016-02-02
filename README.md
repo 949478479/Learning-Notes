@@ -1,122 +1,106 @@
-# 目录
+# NSProgress 简单使用
 
-- [Swift](#Swift)
-- [iOS 9](#iOS 9)
-- [iOS 8](#iOS 8)
-- [动画效果](#Animations)
-- [控件相关](#Controls)
-- [其他笔记](#Other)
-- [CoreData](CoreData)
-- [官方指南学习记录](#Programming_Guide)
+苹果在 `iOS 7` 引入了 `NSProgress`，目标是建立一个标准的机制来报告长时间运行的任务的进度。网上搜了下，在 `CocoaChina` 找到一篇翻译自老外博客的中文资料 [NSProgress](http://www.cocoachina.com/industry/20140522/8518.html)。参考文档并结合苹果的示例代码 `PhotoProgress: Using NSProgress`，勉强算是理解了这个类的用法，自己写了个更为简洁直接的 `demo`，并在这里做些总结记录。
 
-<a name="Swift"></a>
-## Swift
+如前所述，`NSProgress` 是用来报告任务进度的，这主要体现在如下三个属性上：
 
-- [RayWenderlich 出品的 Swift 面试题 & 答案](https://github.com/949478479/Learning-Notes/tree/Swift-Interview-Questions-and-Answers)
-- [RayWenderlich 出品的脑洞大开的 Swift 小题目](https://github.com/949478479/Learning-Notes/tree/Are-You-a-Swift-Ninja)
-- [WWDC 2015 Session 106 What's New in Swift 2.0](https://github.com/949478479/Learning-Notes/tree/WWDC-2015-Session-106-What%E2%80%99s-New-in-Swift)
-- [WWDC 2015 Session 401 Swift and Objective C Interoperability](https://github.com/949478479/Learning-Notes/tree/WWDC-2015-Session-401-Swift-and-Objective-C-Interoperability)
+```swift
+var totalUnitCount: Int64 // 任务总数
+var completedUnitCount: Int64 // 任务完成数
+var fractionCompleted: Double { get } // 任务进度，可以简单理解为 completedUnitCount/totalUnitCount
+```
 
-<a name="iOS 9"></a>
-## iOS 9
+实际使用中，可以通过 `KVO` 来监听 `fractionCompleted` 属性，实时获取任务进度。下面举个简单的例子：
 
-- [地图与位置相关 API 的新特性](https://github.com/949478479/Learning-Notes/tree/Location-and-Mapping-in-iOS-9)
-- [初窥 iOS 9 Contacts Framework](https://github.com/949478479/Learning-Notes/tree/A-First-Look-at-Contacts-Framework-in-iOS-9)
-- [利用 SFSafariViewController 为应用内置 Safari 浏览器](https://github.com/949478479/Learning-Notes/tree/SFSafariViewControllerDemo)
+```swift
+class Foo {
+	private let queue = dispatch_queue_create("com.cjyh.NSProgressDemo",
+	    DISPATCH_QUEUE_SERIAL)
+	    
+	func asyncDoSomeThing() {
+		let totalUnitCount: Int64 = 666
+		let progress = NSProgress(totalUnitCount: totalUnitCount)
+		dispatch_async(queue) {
+			for i in 0..<totalUnitCount {
+				progress.completedUnitCount = i + 1
+			}
+		}
+	}
+}
+```
 
-<a name="iOS 8"></a>
-## iOS 8
+想象一下上面的代码片段是某个异步执行的长时任务，指定任务总量为 `666`，每次循环 `completedUnitCount` 都会增加，那么 `completedUnitCount/totalUnitCount` 的比值也会不断增加，观察者就可以通过 `fractionCompleted` 属性的变化来获悉任务进度。
 
-- 自适应布局系列
-    - [自适应布局基础](https://github.com/949478479/iOS-8-by-Tutorials-Study-Notes/tree/Beginning-Adaptive-Layout)
-    - [自适应布局进阶](https://github.com/949478479/iOS-8-by-Tutorials-Study-Notes/blob/Intermediate-Adaptive-Layout/README.md)
-    - [视图控制器层级与自适应布局](https://github.com/949478479/iOS-8-by-Tutorials-Study-Notes/blob/Adaptive-View-Controller-Hierarchies/README.md)
-    - [Transition Coordinators](https://github.com/949478479/iOS-8-by-Tutorials-Study-Notes/tree/Transition-Coordinators)
-    - [UIPresentationController 介绍](https://github.com/949478479/iOS-8-by-Tutorials-Study-Notes/tree/Introducing-Presentation-Controllers)
-    - [定制 UIPresentationController 子类](https://github.com/949478479/iOS-8-by-Tutorials-Study-Notes/blob/Custom-Presentations/README.md)
-- [Today Extension](https://github.com/949478479/iOS-8-by-Tutorials-Study-Notes/tree/Today-Extension)
-- [Xcode 6 实时渲染](https://github.com/949478479/iOS-8-by-Tutorials-Study-Notes/tree/Beginning-Live-Rendering)
-- [WKWebView 学习笔记](https://github.com/949478479/iOS-8-by-Tutorials-Study-Notes/tree/WKWebView)
-- [Photos Framework 学习笔记](https://github.com/949478479/iOS-8-by-Tutorials-Study-Notes/tree/Photos-Framework)
-- [单元测试新功能：异步测试与性能测试](https://github.com/949478479/iOS-8-by-Tutorials-Study-Notes/tree/Asynchronous-And-Performance-Testing)
-- [利用 UIVisualEffectView 实现模糊效果](https://github.com/949478479/iOS-8-by-Tutorials-Study-Notes/tree/Visual-Effects)
-- [利用 UISearchController 实现搜索过滤功能](https://github.com/949478479/Learning-Notes/tree/UISearchControllerDemo)
+可以看到 `Foo` 并未将 `NSProgress` 对象暴露出来，那该如何注册 `KVO` 呢？这就是 `NSProgress` 的神奇之处了，若要监听 `Foo` 执行该方法的实时进度，可以像如下这样：
 
-<a name="Animations"></a>
-## 动画效果
+```swift
+// 观察者创建一个 NSProgress 对象，这里指定任务数量为 1
+let progress = NSProgress(totalUnitCount: 1)
+// 观察者监听自己创建的 NSProgress 对象的进度
+progress.addObserver(self, forKeyPath: "fractionCompleted", options: [], 
+    context: &contextForKVO)
+// 在 becomeCurrentWithPendingUnitCount(_:) 和 resignCurrent() 调用之间让 Foo 执行任务
+progress.becomeCurrentWithPendingUnitCount(1)
+Foo().asyncDoSomeThing()
+progress.resignCurrent()
+```
 
-###### 转场动画
+按照如上方式，观察者就可以通过 `KVO` 监听到 `Foo` 对象执行 `asyncDoSomeThing()` 方法时的任务进度了。下面解释下原因，回忆下 `Foo` 是如何创建 `NSProgress` 的：
 
-- [翻页效果](https://github.com/949478479/Learning-Notes/tree/FlipTransionAnimation)
-- [圆圈扩散效果](https://github.com/949478479/Learning-Notes/tree/PingTransitionAnimation)
-- [魔法移动效果](https://github.com/949478479/Learning-Notes/tree/MagicMoveAnimation)
-- [使用自定义 Segue 实现转场动画](https://github.com/949478479/Learning-Notes/tree/CustomSegue)
+```swift
+let progress = NSProgress(totalUnitCount: 666)
+```
 
-###### 图层动画
+这相当于如下代码：
 
-- [如何创建一个弹性动画](https://github.com/949478479/Learning-Notes/tree/How-To-Create-an-Elastic-Animation-with-Swift)
-- [CAReplicatorLayer 动画](https://github.com/949478479/Learning-Notes/tree/Creating-animations-with-CAReplicatorLayer)
-- [利用 mask 实现注水动画](https://github.com/949478479/Learning-Notes/tree/MaskAnimationDemo)
-- [CAGradientLayer 与 mask 动画](https://github.com/949478479/Learning-Notes/tree/Fun-with-Gradients-and-Masks)
-- [利用 CAReplicatorLayer 实现烟花动画](https://github.com/949478479/Learning-Notes/tree/UberworksAnimation)
-- [如何用 Swift 创建一个复杂的 loading 动画](https://github.com/949478479/Learning-Notes/tree/SBLoader)
-- [利用 CAShapeLayer 的 strokeEnd 实现写字动画](https://github.com/949478479/Learning-Notes/tree/WritingAnimation)
-- [利用 CAGradientLayer 配合 mask 实现滑动解锁效果](https://github.com/949478479/Learning-Notes/tree/SlideToUnlock)
+```swift
+let progress = NSProgress(parent: NSProgress.currentProgress(), userInfo: nil)
+progress.totalUnitCount = 666
+```
 
-<a name="Controls"></a>
-## 控件相关
+关键在于 `NSProgress.currentProgress()`，这会获取到当前线程调用 `becomeCurrentWithPendingUnitCount(_:)` 方法的 `NSProgress` 对象。再看下观察者是如何调用 `Foo` 的 `asyncDoSomeThing()` 方法的：
 
-###### 菜单效果
+```swift
+progress.becomeCurrentWithPendingUnitCount(1)
+Foo().asyncDoSomeThing()
+progress.resignCurrent() 
+// 注意 becomeCurrentWithPendingUnitCount(_:) 和 resignCurrent() 要配对调用
+```
 
-- [简易卡片动画](https://github.com/949478479/Animations-Study/tree/CardAnimation)
-- [QQ 好友下拉列表](https://github.com/949478479/Learning-Notes/tree/QQFriendListDemo)
-- [类似新浪微博的下拉式菜单](https://github.com/949478479/Learning-Notes/tree/DropdownMenu)
-- [创建一个非常酷的3D效果菜单动画](https://github.com/949478479/Animations-Study/tree/Taasky)
-- [利用 iCarousel 实现类似 iOS9 任务管理器效果动画](https://github.com/949478479/Animations-Study/tree/CardAnimationByiCarousel)
-- [利用 UIViewControllerAnimatedTransitioning 构建一个下滑菜单](https://github.com/949478479/Animations-Study/tree/SlideDownMenu)
+这意味着，观察者自己创建的 `NSProgress` 对象会成为 `Foo` 的 `NSProgress` 对象的父 `NSProgress`。`NSProgress` 的强大之处在于，相互间可以形成父子关系，父任务的进度取决于子任务的进度。可以看到，观察者创建 `NSProgress` 对象时指定了任务数量为 `1`，调用 `becomeCurrentWithPendingUnitCount(_:)` 方法时也指定的 `1`，二者相同：
 
-###### 下拉刷新
+```swift
+let progress = NSProgress(totalUnitCount: 1)
+progress.becomeCurrentWithPendingUnitCount(1)
+```
 
-- [线条动画下拉刷新](https://github.com/949478479/Learning-Notes/tree/CurveRefreshControl)
-- [继承 UIRefreshControl 的自定义下拉刷新控件](https://github.com/949478479/Learning-Notes/tree/Building-a-Custom-Pull-To-Refresh-Control)
+这意味着，子任务占父任务的全部比重，子任务完成时，父任务也全部完成。根据上面的例子，`Foo` 的 `asyncDoSomeThing()` 方法完成时，观察者的 `progress.completedUnitCount` 会由 `0` 变为 `1`。换言之，`becomeCurrentWithPendingUnitCount(_:)` 指定的值决定了对应子任务完成时，父任务的 `completedUnitCount` 会增加多少。
 
-###### UICollectionView 自定义布局
+需要注意的时，在没有子任务时，`fractionCompleted` 可以简单地理解为 `completedUnitCount/totalUnitCount`，拥有子任务时，`fractionCompleted` 的值还取决于子任务的进度。在上述例子中，每次循环 `progress.completedUnitCount` 都会递增，因此父任务的 `fractionCompleted` 属性会平滑变化，而不是像 `completedUnitCount` 一样由 `0` 直接跳至 `1`。
 
-- [瀑布流布局](https://github.com/949478479/Learning-Notes/tree/UICollectionView-Custom-Layout-Tutorial-Pinterest)
-- [环形滚动布局](https://github.com/949478479/Learning-Notes/tree/CircularCollectionView)
-- [类似 Ultravisual 的视差效果布局](https://github.com/949478479/Learning-Notes/tree/Ultravisual)
-- [WWDC 上的 UICollectionViewLayout 的 demo](https://github.com/949478479/Learning-Notes/tree/CollectionViewLayoutDemo)
+当存在多个子任务时，可以分配各个子任务所占比重。例如，任务是先下载图片，然后进行滤镜处理。总任务由两个子任务组成，下载比较耗时，可以占八成，滤镜占剩余两成：
 
-###### 杂七杂八
+```swift
+let progress = NSProgress(totalUnitCount: 10)
+progress.becomeCurrentWithPendingUnitCount(8)
+// 下载图片。。。
+progress.resignCurrent()
+progress.becomeCurrentWithPendingUnitCount(2)
+// 滤镜处理。。。
+progress.resignCurrent()
+```
 
-- [可以折叠的 ImageView](https://github.com/949478479/Animations-Study/tree/FoldingImageView)
-- [简易聊天气泡和多行输入框](https://github.com/949478479/Learning-Notes/tree/ChatUIDemo)
-- [利用 UIPickerView 实现简易老虎机](https://github.com/949478479/Learning-Notes/tree/SlotMachine)
-- [简单使用 UIScrollView 的缩放功能](https://github.com/949478479/Learning-Notes/tree/UIScrollViewZoomDemo)
-- 
-<a name="Other"></a>
-## 其他笔记
+在下载完成后，总任务进度为 `8/10`，滤镜处理完成后，总任务进度为 `10/10`，即全部完成。若上面的任务总数设置为 `12`，那么子任务完成时，父任务的 `completedUnitCount` 为 `10`，总任务进度为 `10/12`，父任务还可以自己搞点什么事情，完成后手动将 `completedUnitCount` 加到 `12`。
 
-- [Core Image 学习笔记](https://github.com/949478479/Learning-Notes/tree/CoreImageNotes)
+此外，类似滤镜处理这种任务，无法确定任务的实时进度，可以像如下方式处理，其效果就是下载完成后进入滤镜处理阶段后，任务进度不再变化，而在滤镜任务完成后直接跳至完成：
 
-<a name="CoreData"></a>
-## CoreData
+```swift
+// 指定为负数，NSProgress 的 indeterminate 属性会为 true，表示该任务进度无法确定
+let progress = NSProgress(totalUnitCount: -1)
+// 滤镜处理
+// 完成后将 totalUnitCount 和 completedUnitCount 设置为相同的数，从而比值为 1
+progress.totalUnitCount = 1
+progress.completedUnitCount = 1
+```
 
-- [iOS 8 后读取、更新、删除数据的新功能](https://github.com/949478479/Learning-Notes/blob/CoreData/CoreData_fetching_new_features.md)
-
-<a name="Programming_Guide"></a>
-## 官方指南学习记录
-
-###### Event Handling Guide for iOS
-
-- [手势识别器](https://github.com/949478479/Learning-Notes/blob/Programming-Guide-Notes/Event-Handling-Guide-for-iOS/Gesture-Recognizers.md)
-- [事件传递：响应者链条](https://github.com/949478479/Learning-Notes/blob/Programming-Guide-Notes/Event-Handling-Guide-for-iOS/Event-Delivery-The-Responder-Chain.md)
-
-###### Core Animation Programming Guide
-
-- [核心动画基本概念](https://github.com/949478479/Learning-Notes/blob/Programming-Guide-Notes/Core-Animation-Programming-Guide/Core-Animation-Basics.md)
-- [设置图层](https://github.com/949478479/Learning-Notes/blob/Programming-Guide-Notes/Core-Animation-Programming-Guide/Setting-Up-Layer-Objects.md)
-- [动画基础](https://github.com/949478479/Learning-Notes/blob/Programming-Guide-Notes/Core-Animation-Programming-Guide/Animating-Layer-Content.md)
-- [动画技巧](https://github.com/949478479/Learning-Notes/blob/Programming-Guide-Notes/Core-Animation-Programming-Guide/Advanced-Animation-Tricks.md)
-- [改变图层的默认行为](https://github.com/949478479/Learning-Notes/blob/Programming-Guide-Notes/Core-Animation-Programming-Guide/Changing-a-Layer%E2%80%99s-Default-Behavior.md)
-- [提高动画性能](https://github.com/949478479/Learning-Notes/blob/Programming-Guide-Notes/Core-Animation-Programming-Guide/Improving-Animation-Performance.md)
+可以看到，使用 `NSProgress` 来报告进度耦合度很低，而添加对 `NSProgress` 的支持也并不复杂，当任务支持 `NSProgress` 时，就可以非常方便地观察多个子任务的进度，并汇总到总任务进度中呈现给用户。事实上，`NSProgress` 还支持暂停、恢复、取消的功能，并可以设置相应的闭包来处理这些事件。当对父任务执行这些操作时，子任务相应的闭包就会被调用，从而进行相应的处理。
