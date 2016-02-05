@@ -8,6 +8,20 @@
 - [JSValue Class Reference 等相关类文档](http://congjinyihoudeimac.local:58745/Dash/kmjixytg/documentation/JavaScriptCore/Reference/JSValue_Ref/index.html#//apple_ref/doc/uid/TP40016590)
 - [WWDC 2013 Session 615: Integrating JavaScript into Native Apps](http://asciiwwdc.com/2013/sessions/615?q=Integrating%20JavaScript%20into%20Native%20Apps)
 
+包含内容：
+
+- [JSValue](#JSValue)
+- [JSContext](#JSContext)
+- [JSVirtualMachine](#JSVirtualMachine)
+	- [并发执行 JavaScript 代码](Threading_and_Concurrent_JavaScript_Execution)
+	- [导出对象的内存管理](Managing_Memory_for_Exported_Objects)
+- [JSManagedValue](#JSManagedValue)
+- [JSExport](#JSExport)
+- [内存管理注意事项](#memory_management_caveats)
+	- [避免闭包捕获 JavaScriptCore 对象](#Capturing_JavaScriptCore_Object)
+	- [避免直接储存 JSValue 对象](#Managed_References)
+- [简单使用示例](#Simple_Example)
+
 ## JSValue
 
 `JSValue` 用于表示 `JavaScript` 中的值。利用这个类，可以将基本类型值（例如数字或字符串）在原生代码和 `JavaScript` 代码间进行转换。该类型还可以创建原生代码中自定义对象相对应的 `JavaScript` 对象，以及由原生代码中的方法或是闭包来提供实现的 `JavaScript` 函数。
@@ -24,13 +38,15 @@
 
 `JSVirtualMachine` 表示一个自包含的 `JavaScript` 执行环境。该类有两个作用，即支持 `JavaScript` 并发执行，以及管理对象在原生代码和 `JavaScript` 代码之间桥接时的内存问题。
 
-### 线程与 JavaScript 并发执行
+<a name="Threading_and_Concurrent_JavaScript_Execution"></a>
+### 并发执行 JavaScript 代码
 
 每个 `JSContext` 都从属于一个 `JSVirtualMachine`。每个  `JSVirtualMachine` 可以包含多个 `JSContext`，并允许 `JSValue` 在多个 `JSContext` 间传递。然而，每个 `JSVirtualMachine` 是不同的，不可以将 `JSValue` 在多个 `JSVirtualMachine` 间传递。
 
 `JavaScriptCore` 的 `API` 是线程安全的，例如，一个 `JSValue` 的创建和使用可以分别处于不同线程。然而，当其他线程试图使用同一个 `JSVirtualMachine` 时将会进入等待。因此，为了在多个线程间并发执行 `JavaScript` 代码，应该为每个线程提供一个独立的 `JSVirtualMachine`。
 
-### 管理转换对象的内存
+<a name="Managing_Memory_for_Exported_Objects"></a>
+### 导出对象的内存管理
 
 避免直接引用 `JSValue`，否则很容易导致引用循环。`JSValue` 和 `JSContext` 之间会互相强引用，`JSValue` 也会强引用其包装的原生对象。`JavaScript` 的垃圾回收器能够解决这些循环引用，然而一旦引入了来自外部的强引用，处理不慎就很容易导致内存泄露。作为一种良好地实践，使用 `JSManagedValue` 来包装 `JSValue`，在原生代码中持有 `JSManagedValue` 的强引用，并使用 `JSVirtualMachine` 的 `addManagedReference(_:withOwner:)` 方法进行注册。相应的，当不再需要时，使用 `removeManagedReference(_:withOwner:)` 方法移除注册。当注册的引用全部被移除时，相关对象才能被垃圾回收器回收。
 
@@ -104,8 +120,10 @@ JSExportAs(doFoo, - (void)doFoo:(id)foo withBar:(id)bar);
 @end
 ```
 
-## 内存管理陷阱
+<a name="memory_management_caveats"></a>
+## 内存管理注意事项
 
+<a name="Capturing_JavaScriptCore_Object"></a>
 ### 避免在闭包中捕获 JavaScriptCore 对象
 
 在闭包中若要访问相关 `JavaScriptCore` 对象，应该使用 `JSContext` 的 `current...` 系列方法获取，或是作为参数传入：
@@ -122,7 +140,8 @@ _context[@"callback"] = ^(NSString *text){
 }
 ```
 
-### JSManagedValue
+<a name="Managed_References"></a>
+### 避免直接储存 JSValue 对象
 
 `JSValue` 像其他原生对象一样，可以作为实例变量或属性：
 
@@ -152,9 +171,10 @@ _managedValue = [JSManagedValue managedValueWithValue:value];
 [_context.virtualMachine removeManagedReference:_managedValue withOwner:self];
 ```
 
+<a name="Simple_Example"></a>
 ## 简单使用示例
 
-```
+```JavaScript
 <html>
 	<head>
 		<meta charset="UTF-8">
