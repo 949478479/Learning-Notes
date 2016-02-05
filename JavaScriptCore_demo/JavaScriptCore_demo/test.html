@@ -1,0 +1,19 @@
+
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<script>
+			var share = function() {
+					OCDelegate.share({"title":"我是标题", "content":"我是内容", "time":233});
+					presentNativeAlert("分享成功");
+			}
+			var changeButtonTitle = function(title) {
+				document.getElementById("shareButton").value = title;
+				return 233;
+			}
+		</script>
+	</head>
+	<body>
+		<input type="button" id="shareButton" value="分享" onclick="share()">
+	</body>
+</html>
