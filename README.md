@@ -100,7 +100,6 @@
 - [Core Image 学习笔记](https://github.com/949478479/Learning-Notes/tree/CoreImageNotes)
 - [NSProgress 简单使用](https://github.com/949478479/Learning-Notes/tree/NSProgressDemo)
 - [JavaScriptCore 学习笔记](https://github.com/949478479/Learning-Notes/tree/JavaScriptCore)
-- [应用状态保存和恢复](#https://github.com/949478479/Learning-Notes/tree/State-Preservation-and-Restoration)
 
 <a name="CoreData"></a>
 ## CoreData
