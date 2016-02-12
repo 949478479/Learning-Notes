@@ -6,8 +6,7 @@
 - [动画效果](#Animations)
 - [控件相关](#Controls)
 - [其他笔记](#Other)
-- [CoreData](CoreData)
-- [官方指南学习记录](#Programming_Guide)
+- [CoreData](#CoreData)
 
 <a name="Swift"></a>
 ## Swift
@@ -27,13 +26,13 @@
 <a name="iOS 8"></a>
 ## iOS 8
 
-- 自适应布局系列
+- [自适应布局系列]()
     - [自适应布局基础](https://github.com/949478479/iOS-8-by-Tutorials-Study-Notes/tree/Beginning-Adaptive-Layout)
-    - [自适应布局进阶](https://github.com/949478479/iOS-8-by-Tutorials-Study-Notes/blob/Intermediate-Adaptive-Layout/README.md)
-    - [视图控制器层级与自适应布局](https://github.com/949478479/iOS-8-by-Tutorials-Study-Notes/blob/Adaptive-View-Controller-Hierarchies/README.md)
+    - [自适应布局进阶](https://github.com/949478479/iOS-8-by-Tutorials-Study-Notes/tree/Intermediate-Adaptive-Layout)
+    - [视图控制器层级与自适应布局](https://github.com/949478479/iOS-8-by-Tutorials-Study-Notes/tree/Adaptive-View-Controller-Hierarchies)
     - [Transition Coordinators](https://github.com/949478479/iOS-8-by-Tutorials-Study-Notes/tree/Transition-Coordinators)
     - [UIPresentationController 介绍](https://github.com/949478479/iOS-8-by-Tutorials-Study-Notes/tree/Introducing-Presentation-Controllers)
-    - [定制 UIPresentationController 子类](https://github.com/949478479/iOS-8-by-Tutorials-Study-Notes/blob/Custom-Presentations/README.md)
+    - [定制 UIPresentationController 子类](https://github.com/949478479/iOS-8-by-Tutorials-Study-Notes/tree/Custom-Presentations)
 - [Today Extension](https://github.com/949478479/iOS-8-by-Tutorials-Study-Notes/tree/Today-Extension)
 - [Xcode 6 实时渲染](https://github.com/949478479/iOS-8-by-Tutorials-Study-Notes/tree/Beginning-Live-Rendering)
 - [WKWebView 学习笔记](https://github.com/949478479/iOS-8-by-Tutorials-Study-Notes/tree/WKWebView)
@@ -50,6 +49,7 @@
 - [翻页效果](https://github.com/949478479/Learning-Notes/tree/FlipTransionAnimation)
 - [圆圈扩散效果](https://github.com/949478479/Learning-Notes/tree/PingTransitionAnimation)
 - [魔法移动效果](https://github.com/949478479/Learning-Notes/tree/MagicMoveAnimation)
+- [自定义转场动画详解](https://github.com/949478479/Programming-Guide-for-iOS/blob/View-Controller-Programming-Guide-for-iOS/Part-%E2%85%A2-Presentations-and-Transitions/Customizing-the-Transition-Animations/Customizing-the-Transition-Animations.md)
 - [使用自定义 Segue 实现转场动画](https://github.com/949478479/Learning-Notes/tree/CustomSegue)
 
 ###### 图层动画
@@ -100,26 +100,9 @@
 - [Core Image 学习笔记](https://github.com/949478479/Learning-Notes/tree/CoreImageNotes)
 - [NSProgress 简单使用](https://github.com/949478479/Learning-Notes/tree/NSProgressDemo)
 - [JavaScriptCore 学习笔记](https://github.com/949478479/Learning-Notes/tree/JavaScriptCore)
-- [应用状态保存和恢复](https://github.com/949478479/Learning-Notes/tree/State-Preservation-and-Restoration)
+- [应用状态保存和恢复](https://github.com/949478479/Programming-Guide-for-iOS/blob/App-Programming-Guide-for-iOS/Strategies-for-Implementing-Specific-App-Features/Preserving-Your-App%E2%80%99s-Visual-Appearance-Across-Launches.md)
 
 <a name="CoreData"></a>
 ## CoreData
 
 - [iOS 8 后读取、更新、删除数据的新功能](https://github.com/949478479/Learning-Notes/blob/CoreData/CoreData_fetching_new_features.md)
-
-<a name="Programming_Guide"></a>
-## 官方指南学习记录
-
-###### Event Handling Guide for iOS
-
-- [手势识别器](https://github.com/949478479/Learning-Notes/blob/Programming-Guide-Notes/Event-Handling-Guide-for-iOS/Gesture-Recognizers.md)
-- [事件传递：响应者链条](https://github.com/949478479/Learning-Notes/blob/Programming-Guide-Notes/Event-Handling-Guide-for-iOS/Event-Delivery-The-Responder-Chain.md)
-
-###### Core Animation Programming Guide
-
-- [核心动画基本概念](https://github.com/949478479/Learning-Notes/blob/Programming-Guide-Notes/Core-Animation-Programming-Guide/Core-Animation-Basics.md)
-- [设置图层](https://github.com/949478479/Learning-Notes/blob/Programming-Guide-Notes/Core-Animation-Programming-Guide/Setting-Up-Layer-Objects.md)
-- [动画基础](https://github.com/949478479/Learning-Notes/blob/Programming-Guide-Notes/Core-Animation-Programming-Guide/Animating-Layer-Content.md)
-- [动画技巧](https://github.com/949478479/Learning-Notes/blob/Programming-Guide-Notes/Core-Animation-Programming-Guide/Advanced-Animation-Tricks.md)
-- [改变图层的默认行为](https://github.com/949478479/Learning-Notes/blob/Programming-Guide-Notes/Core-Animation-Programming-Guide/Changing-a-Layer%E2%80%99s-Default-Behavior.md)
-- [提高动画性能](https://github.com/949478479/Learning-Notes/blob/Programming-Guide-Notes/Core-Animation-Programming-Guide/Improving-Animation-Performance.md)
