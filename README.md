@@ -5,8 +5,9 @@
 - [iOS与JS交互实战篇](http://mp.weixin.qq.com/s?__biz=MzIzMzA4NjA5Mw==&mid=214063688&idx=1&sn=903258ec2d3ae431b4d9ee55cb59ed89#rd)
 - [NSHipster: JavaScriptCore](http://nshipster.cn/javascriptcore/)
 - [Objective-C与JavaScript交互的那些事](http://www.jianshu.com/p/f896d73c670a)
+- [JavaScript和Objective-C交互的那些事(续)](http://www.jianshu.com/p/939db6215436)
 - [JSValue Class Reference 等相关类文档](http://congjinyihoudeimac.local:58745/Dash/kmjixytg/documentation/JavaScriptCore/Reference/JSValue_Ref/index.html#//apple_ref/doc/uid/TP40016590)
-- [WWDC 2013 Session 615: Integrating JavaScript into Native Apps](http://asciiwwdc.com/2013/sessions/615?q=Integrating%20JavaScript%20into%20Native%20Apps)
+- [WWDC 2013 Session 615: Integrating JavaScript into Native Apps](https://developer.apple.com/videos/play/wwdc2013/615)
 
 包含内容：
 
@@ -18,7 +19,7 @@
 - [JSManagedValue](#JSManagedValue)
 - [JSExport](#JSExport)
 - [内存管理注意事项](#memory_management_caveats)
-	- [避免闭包捕获 JavaScriptCore 对象](#Capturing_JavaScriptCore_Object)
+	- [避免在闭包中捕获 JSValue 或 JSContext 对象](#Capturing_JavaScriptCore_Object)
 	- [避免直接储存 JSValue 对象](#Managed_References)
 - [简单使用示例](#Simple_Example)
 
@@ -124,7 +125,7 @@ JSExportAs(doFoo, - (void)doFoo:(id)foo withBar:(id)bar);
 ## 内存管理注意事项
 
 <a name="Capturing_JavaScriptCore_Object"></a>
-### 避免在闭包中捕获 JSValue 或 JSContext
+### 避免在闭包中捕获 JSValue 或 JSContext 对象
 
 若要在闭包中访问这些对象，应将其作为参数传入，或是通过 `JSContext` 在闭包内获取相关 `JSValue` 对象，可通过 `[JSContext currentContext]` 在闭包中获取 `JSContext`。
 
