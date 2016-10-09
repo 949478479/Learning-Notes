@@ -124,15 +124,13 @@ JSExportAs(doFoo, - (void)doFoo:(id)foo withBar:(id)bar);
 ## 内存管理注意事项
 
 <a name="Capturing_JavaScriptCore_Object"></a>
-### 避免在闭包中捕获 JavaScriptCore 对象
+### 避免在闭包中捕获 JSValue 或 JSContext
 
-在闭包中若要访问相关 `JavaScriptCore` 对象，应该使用 `JSContext` 的 `current...` 系列方法获取，或是作为参数传入：
+若要在闭包中访问这些对象，应将其作为参数传入，或是通过 `JSContext` 在闭包内获取相关 `JSValue` 对象，可通过 `[JSContext currentContext]` 在闭包中获取 `JSContext`。
 
 ```Objective-C
-__weak ViewController *weakSelf = self;
-_context[@"callback"] = ^(NSString *text){
-	__strong typeof(weakSelf) strongSelf = weakSelf;
-	[strongSelf doSomething:text];
+JSContext *context = [[JSContext alloc] init];
+context[@"callback"] = ^(NSString *text){
 	JSValue *object = [JSValue valueWithNewObjectInContext:[JSContext currentContext]];
 	object[@"x"] = 2;
 	object[@"y"] = 3;
@@ -146,29 +144,60 @@ _context[@"callback"] = ^(NSString *text){
 `JSValue` 像其他原生对象一样，可以作为实例变量或属性：
 
 ```Objective-C
-@interface ViewController () { 
-	JSValue *_value1;}
+@interface NativeObject () { 
+	JSValue *_value1;
+}
 @property (nonatomic) JSValue *value2;
 @end
 ```
 
-然而，这非常容易引发循环引用，`JavaScriptCore` 专门提供了 `JSManagedValue` 来解决这个问题：
+这时候要格外注意不要引发循环引用。举个例子，通过如下代码添加一个 `JavaScript` 函数，用于弹出一个原生弹窗，并且点击弹窗的 `success` 和 `failure` 两个按钮则应分别调用相应的 `JavaScript` 函数。两个 `JavaScript` 回调函数以 `JSValue` 的形式作为闭包参数传入，`NativeAlertView` 需要保存它们以供按钮被点击时调用相对应的 `JavaScript` 函数。
 
 ```Objective-C
-// 接口声明
-@interface ViewController () { 
-	JSContext *_context;
-	JSManagedValue *_managedValue;}
+self.context[@"presentNativeAlert"] = ^(JSValue *success, JSValue *failure) {
+	JSContext *context = [JSContext currentContext]; 
+	NativeAlertView *alertView = [[NativeAlertView alloc]
+		initWithSuccess:success failure:failure context:context];
+	[alertView show];
+};
+```
 
-// 某个 JSValue 对象
-JSValue *value = /* ... */
+`NativeAlertView` 不应直接持有两个 `JavaScript` 函数的 `JSValue`，而是应该使用 `JSManagedValue` 对 `JSValue` 进行包装：
 
-// 需要持有时，先用 JSManagedValue 包装，再注册到虚拟机
-_managedValue = [JSManagedValue managedValueWithValue:value];
-[_context.virtualMachine addManagedReference:_managedValue withOwner:self];
+```Objective-C
+@interface NativeAlertView() <UIAlertViewDelegate>
+@property (nonatomic) JSContext *context;
+@property (nonatomic) JSManagedValue *successHandler;
+@property (nonatomic) JSManagedValue *failureHandler;
+@end
 
-// 不再需要时，从虚拟机移除注册
-[_context.virtualMachine removeManagedReference:_managedValue withOwner:self];
+...
+
+// 在初始化方法中
+_context = context;
+_successHandler = [JSManagedValue managedValueWithValue:success];
+[context.virtualMachine addManagedReference:_successHandler withOwner:self];
+_failureHandler = [JSManagedValue managedValueWithValue:failure];
+[context.virtualMachine addManagedReference:_failureHandler withOwner:self];
+```
+
+在弹窗按钮被点击时，调用相应的回调函数，并从 `JSVirtualMachine` 移除之前添加的 `JSManagedValue` 对象：
+
+```Objective-C
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex 
+{
+	if (/*点击 failure 按钮*/) { 
+		JSValue *function = [self.failureHandler value]; 
+		[function callWithArguments:@[]];
+	} else {
+		JSValue *function = [self.successHandler value];
+		[function callWithArguments:@[]]; }
+	}
+	
+	[self.context.virtualMachine removeManagedReference:self.failureHandler withOwner:self];
+	[self.context.virtualMachine removeManagedReference:self.successHandler withOwner:self];
+}
+
 ```
 
 <a name="Simple_Example"></a>
@@ -195,7 +224,7 @@ _managedValue = [JSManagedValue managedValueWithValue:value];
 </html>
 ```
 
-在上述代码中，点击分享按钮会调用 `OCDelegate` 对象的 `share` 方法，并传入参数字典。稍后会使用视图控制器作为 `OCDelegate` 对象，并实现 `share:` 方法，这样点击网页上的分享按钮就会调用视图控制器的相应方法。`presentNativeAlert` 函数则会由原生代码通过闭包来提供具体实现。`changeButtonTitle` 则是为了演示原生代码调用 `JavaScript` 函数。
+在上述代码中，点击分享按钮会调用 `OCDelegate` 对象的 `share` 方法，并传入参数字典。稍后会设置一个代理对象作为 `OCDelegate` 对象，并实现 `share:` 方法，这样点击网页上的分享按钮就会调用代理对象的相应方法。`presentNativeAlert` 函数则会由原生代码通过闭包来提供具体实现。`changeButtonTitle` 则是为了演示原生代码调用 `JavaScript` 函数。
 
 如前所述，原生代码通过 `<JSExport>` 协议将方法暴露给 `JavaScript`，针对上面的情况，这里将 `share:` 方法暴露出去：
 
@@ -205,25 +234,26 @@ _managedValue = [JSManagedValue managedValueWithValue:value];
 @end
 ```
 
-然后让视图控制器实现该协议即可：
+然后引入一个代理对象来实现该协议：
 
 ```Objective-C
-@interface ViewController () <UIWebViewDelegate, LXJSExport>
-// 这两个属性没有在协议中声明，因此对 JavaScript 并不可见
-@property (nonatomic) IBOutlet UIWebView *webView;
-@property (nonatomic) JSContext *context;
+@interface LXOCDelegate : NSObject <LXJSExport>
 @end
-```
+@implementation LXOCDelegate
 
-```Objective-C
-@implementation ViewController
+- (void)dealloc
+{
+    NSLog(@"%@ delloc", self.class);
+}
+
 - (void)share:(NSDictionary *)json
 {
-	// 这里的调用线程是子线程
-	NSLog(@"%s %@", __FUNCTION__, [NSThread currentThread]);
+    // 这里的调用线程是子线程
+    NSLog(@"%s %@", __FUNCTION__, [NSThread currentThread]);
 
-	NSLog(@"%@", json);
+    NSLog(@"%@", json);
 }
+
 @end
 ```
 
@@ -232,41 +262,44 @@ _managedValue = [JSManagedValue managedValueWithValue:value];
 ```Objective-C
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
-	// 从 webView 中获取 JSContext
-	_context = [webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
+    // 从 webView 中获取 JSContext
+    self.context = [webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
 
-	// 让控制器作为 JavaScript 代码中的 OCDelegate 对象
-	_context[@"OCDelegate"] = self;
+    // 设置 JavaScript 代码中的 OCDelegate 对象
+    // 注意这里如果使用 self 作为 OCDelegate 对象的话则会导致内存泄漏
+    // JSContext 会保留 self，而 self 会保留 UIWebView，后者则会保留 JSContext
+    self.context[@"OCDelegate"] = [LXOCDelegate new];
 
-	// 利用闭包为 JavaScript 代码中的 presentNativeAlert 函数提供实现
-	__weak typeof(self) weakSelf = self;
-	_context[@"presentNativeAlert"] = ^(NSString *text){
+    // 为 JavaScript 代码中的 presentNativeAlert 函数提供实现
+    __weak typeof(self) weakSelf = self;
+    self.context[@"presentNativeAlert"] = ^(NSString *text){
 
-		// 这里的调用线程也是子线程
-		NSLog(@"%s %@", __FUNCTION__, [NSThread currentThread]);
+        // 这里的调用线程是子线程
+        NSLog(@"%s %@", __FUNCTION__, [NSThread currentThread]);
 
-		dispatch_async(dispatch_get_main_queue(), ^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            __strong typeof(weakSelf) self = weakSelf;
 
-			UIAlertController *alert =
-			[UIAlertController alertControllerWithTitle:text
-												message:nil
-										 preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertController *alert =
+            [UIAlertController alertControllerWithTitle:text
+                                                message:nil
+                                         preferredStyle:UIAlertControllerStyleAlert];
 
-			UIAlertAction *action =
-			[UIAlertAction actionWithTitle:@"朕知道了"
-									 style:UIAlertActionStyleDefault
-								   handler:^(UIAlertAction *action) {
-
-			    // 调用 JavaScript 代码中的函数，并通过打印查看返回值
-				JSValue *changeButtonTitle = weakSelf.context[@"changeButtonTitle"];
-				JSValue *reuslt = [changeButtonTitle callWithArguments:@[@"已分享！！！"]];
-				NSLog(@"%d", reuslt.toInt32);
-			}];
-
-			[alert addAction:action];
-
-			[weakSelf presentViewController:alert animated:YES completion:nil];
-		});
-	};
+            UIAlertAction *action =
+            [UIAlertAction actionWithTitle:@"朕知道了"
+                                     style:UIAlertActionStyleDefault
+                                   handler:^(UIAlertAction *action) {
+                                       __strong typeof(weakSelf) self = weakSelf;
+                                       // 调用 JavaScript 代码中的函数
+                                       JSValue *changeButtonTitle = self.context[@"changeButtonTitle"];
+                                       JSValue *reuslt = [changeButtonTitle callWithArguments:@[@"已分享！！！"]];
+                                       NSLog(@"reuslt.toInt32: %d", reuslt.toInt32);
+                                   }];
+            
+            [alert addAction:action];
+            
+            [self presentViewController:alert animated:YES completion:nil];
+        });
+    };
 }
 ```
