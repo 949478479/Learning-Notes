@@ -99,7 +99,7 @@ refreshingAnimation.repeatCount = Float.infinity
 
 ### tracking、decelerating 与 dragging
 
-处理拖拽时，有两个属性非常好用：`tracking` 和 `decelerating`。`tracking` 属性可以用来判断用户是否在拖拽，若是则为 `true`。而 `decelerating` 属性可以判断 `UIScrollView` 在用户松手后是否是静止的，无论是拖拽后松手由于惯性而运动，还是拖拽触发弹簧效果后松手，此属性均为 `true`。至于 `dragging` 属性，实在是名不副实，它主要反映了 `UIScrollView` 是否在滚动，而并非是否处于拖拽中。滚动包括设置 `contentOffset` 而造成的滚动，但是貌似不包括拖拽触发弹簧效果后再松手时的滚动，感觉这个属性远不如上面两个好用- -。
+处理拖拽时，有两个属性非常好用：`tracking` 和 `decelerating`。`tracking` 属性可以用来判断用户是否在拖拽，若正在拖拽则为 `true`。而 `decelerating` 属性可以判断 `UIScrollView` 在用户松手后是否是静止的，无论是由于惯性而滑动的过程，还是触发弹簧效果后的回弹过程，此属性均为 `true`。至于 `dragging` 属性，则表示 `UIScrollView` 是否在滑动，而并非字面意思的是否正被拖拽。滑动包括设置 `contentOffset` 而造成的滑动，但是不包括触发弹簧效果后的回弹。
 
 ### 自动刷新时的动画处理
 
