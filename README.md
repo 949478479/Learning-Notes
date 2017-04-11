@@ -1,8 +1,8 @@
 # 目录
 
 - [Swift](#Swift)
-- [iOS 9](#iOS 9)
-- [iOS 8](#iOS 8)
+- [iOS 9](#iOS_9)
+- [iOS 8](#iOS_8)
 - [动画效果](#Animations)
 - [控件相关](#Controls)
 - [其他笔记](#Other)
@@ -16,14 +16,14 @@
 - [WWDC 2015 Session 106 What's New in Swift 2.0](https://github.com/949478479/Learning-Notes/tree/WWDC-2015-Session-106-What%E2%80%99s-New-in-Swift)
 - [WWDC 2015 Session 401 Swift and Objective C Interoperability](https://github.com/949478479/Learning-Notes/tree/WWDC-2015-Session-401-Swift-and-Objective-C-Interoperability)
 
-<a name="iOS 9"></a>
+<a name="iOS_9"></a>
 ## iOS 9
 
 - [地图与位置相关 API 的新特性](https://github.com/949478479/Learning-Notes/tree/Location-and-Mapping-in-iOS-9)
 - [初窥 iOS 9 Contacts Framework](https://github.com/949478479/Learning-Notes/tree/A-First-Look-at-Contacts-Framework-in-iOS-9)
 - [利用 SFSafariViewController 为应用内置 Safari 浏览器](https://github.com/949478479/Learning-Notes/tree/SFSafariViewControllerDemo)
 
-<a name="iOS 8"></a>
+<a name="iOS_8"></a>
 ## iOS 8
 
 - [自适应布局系列]()
